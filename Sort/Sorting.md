@@ -56,8 +56,8 @@ Kể từ thuật toán này trở đi, đầu vào và đầu ra của hầu h�
 
 ## Độ phức tạp thuật toán
 
-- **Best case** : _Số lần so sánh_: n(n-1)/2. _Số lần hoán vị_: 0.
-- **Worst case** : _Số lần so sánh_: n(n-1)/2. _Số lần hoán vị_: n(n-1)/2.
+- **Best case** : _Số lần so sánh_: n(n - 1)/2. _Số lần hoán vị_: 0.
+- **Worst case** : _Số lần so sánh_: n(n - 1)/2. _Số lần hoán vị_: n(n - 1)/2. Độ phức tạp $O(n^2)$.
 - **Average Case** : Độ phức tạp đa thức $O(n^2)$.
 
 ## Giải thuật mẫu
@@ -66,16 +66,17 @@ Kể từ thuật toán này trở đi, đầu vào và đầu ra của hầu h�
 void interchangeSort(int* a,int n)
 {
     // Do xét cặp nên chỉ xét đến phần tử kế cuối
-    for (int i = 0; i > n - 1; i++)
+    for (int i = 0; i < n - 1; i++)
     {
-        // So sánh với các phần tử còn lại khác chính nó_
+        // So sánh với các phần tử còn lại khác chính nó
         for (int j = i + 1; j < n;j++){
+
             //Giả sử xếp tăng dần
             if(a[j] > a[i])
             {
-                a[i] = a[j] + a[i];
-                a[j] = a[i] - a[j];
-                a[i] = a[i] - a[j];
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
             }
         }
     }
@@ -122,11 +123,11 @@ _Số lần hoán vị_: 0.
 ```c++
 void selectionSort(int *a, int n)
 {
-    // Phần tử kế cuối đã tự sắp xếp_
+    // Phần tử kế cuối đã tự sắp xếp
     for(int i = 0;i < n - 1; i++)
     {
         int min = i;
-        for(int j = i + 1;j < n; j++)
+        for(int j = i + 1; j < n; j++)
         {
             if(a[j] < a[min])
 
@@ -159,10 +160,12 @@ void bubbleSort(int *a,int n)
     for (int i = 0; i < n - 1; i++)
     {
         bool isSorted = true;// Tạo ra một cờ lệnh
-        //?Do chúng ta so sánh hai phần tử j và j + 1,nên: j + 1 < n
-        //?Sau mỗi vòng lặp thì giảm đi một phần tử nên trừ đi i: j + 1 < n - i
-        //?Chuyển vế đổi dấu ta có điều kiện là j < n - i - 1
 
+        //Do chúng ta so sánh hai phần tử j và j + 1,nên: j + 1 < n
+        //Sau mỗi vòng lặp thì giảm đi một phần tử nên trừ đi i: j + 1 < n - i
+        //Chuyển vế đổi dấu ta có điều kiện là j < n - i - 1
+
+        //Tức là cuối mảng sau mỗi lần lặp xem như đã sắp xếp.
         for(int j = 0; j < n - i - 1; j++){
             if(a[j] < a[j + 1])
             {
@@ -200,9 +203,9 @@ Shaker Sort là một dạng nâng cao của Bubble Sort nên nó có thể nh�
 ## Giải thuật mẫu
 
 ```c++
-void shakerSort(int *a,int n)
+void shakerSort(int *a, int n)
 {
-    int left = 0, right = n - 1,k = n - 1;
+    int left = 0, right = n - 1, k = n - 1;
     while(left < right)
     {
         //Lượt đi index giảm dần, đổi chỗ các cặp nghịch thế liền kề
@@ -218,14 +221,14 @@ void shakerSort(int *a,int n)
         left = k;
 
         //Lượt về index tăng dần
-        for(int i = left;i < right;i++)
+        for(int i = left; i < right; i++)
         {
             if(a[i] > a[i + 1]){
-                swap(a[i],a[i + 1]);
+                swap(a[i], a[i + 1]);
                 k = i;
             }
         }
-        right=k;
+        right = k;
     }
 }
 ```
@@ -274,7 +277,7 @@ void insertionSort(int *a,int n)
 
             //So sánh với phần tử trước đó (i-1), nếu bé hơn thì bắt đầu dời chỗ.
             //Dời chỗ cho đến khi gặp phần tử nhỏ hơn phần tử thứ i hồi nãy (x).
-            a[j + 1] =a [j];
+            a[j + 1] = a [j];
         }
 
         //Sau đó chèn phần tử i hồi nãy (x) vào vị trí đã tìm ở vòng lặp trên.
@@ -287,44 +290,50 @@ void insertionSort(int *a,int n)
 
 ## Ý tưởng
 
-Gồm hai phần: Phân hoạch và sắp xếp, dựa trên ý tưởng chia để trị.
+Gồm hai phần: phân hoạch và sắp xếp, dựa trên ý tưởng chia để trị.
 
-- **Bước 1** : Chọn tùy ý một phần tử a[k] trong dãy là phần tử nút trục (pivot) (l . Giả sử chọn ở giữa.
+- **Bước 1** : Chọn tùy ý một phần tử a[k] trong dãy là phần tử nút trục (pivot), ý tưởng trình bày ở đây chọn ở giữa.
 
-```c++
-x = a[k];
-i = L;
-j = R;
-k = (L + R) / 2;
+```python
+i = L
+j = R
+k = (L + R) / 2
+x = a[k]
 ```
 
 Nếu $L \geq R$ (dãy có ít hơn 2 phần tử) kết thúc, dãy đã được sắp xếp.
 
-- **Bước 2** : Ngược lại thì tạo vòng lặp phát hiện và hiệu chỉnh cặp phần tử a[i], a[j] nằm sai chỗ. (Nói cách khác là phân hoạch).
+- **Bước 2** : Ngược lại thì tạo vòng lặp phát hiện và hiệu chỉnh cặp phần tử a[i], a[j] nằm sai chỗ.
 
-  - Trong khi (a[i] < x) i++;
-  - Trong khi (a[j] > x) i--;
-  - Nếu i <= j: Swap a[i],a[j];
+  - Trong khi (a[i] < x) i++
+  - Trong khi (a[j] > x) i--
+  - Nếu $i \leq j$: Swap (a[i], a[j])
 
-Nếu i vẫn < j, lặp lại bước 2. Ngược lại i >= j thoát vòng lặp và gọi đệ qui.
+Nếu $i < j$, lặp lại bước 2. Ngược lại $i \geq j$ thì thoát vòng lặp và gọi đệ qui.
 
-- **Bước 3** : Gọi đệ qui đoạn bên trái pivot từ phần tử đầu hiện tại là L đến vị trí j;
+Đại ý bước này là chuyển các phần tử nhỏ hơn pivot về bên trái pivot và lớn hơn pivot về bên phải pivot. Hay nói cách khác là thiết lập điểm phân hoạch.
+
+- **Bước 3** Phân hoạch bằng đệ qui:
+
+Gọi đệ qui đoạn bên trái pivot từ phần tử đầu hiện tại là L đến vị trí j;
 
 Gọi đệ qui đoạn bên phải pivot từ phần tử i đến phần tử cuối hiện tại là R;
 
-Bên trong các hàm đệ qui tiếp tục thực hiện tử bước 1 đến bước 3.
+Bên trong các hàm đệ qui tiếp tục thực hiện tử bước 1 đến bước 2.
 
 Bước đệ qui các mảng nhỏ hơn chính là bước trị, khi đi vào bước trị thì tiếp tục CẢ HAI bước chia để trị.
 
 Có nhiều kỹ thuật phân hoạch, có thể tham khảo thêm slide của HCMUS.
 
+## Phân tích
+
 **Lưu ý** : Việc chọn pivot là ngẫu nhiên, có thể chọn đầu, cuối hoặc ở giữa. Tuy nhiên chọn pivot ở đầu hoặc cuối trong một số trường hợp mảng gần như được sắp sẽ dẫn đến Worst case. Do đó chọn pivot ở giữa là chấp nhận được trong phần lớp các trường hợp. Mặc dù vậy, nếu chọn pivot ở cuối (hoặc đầu) thì việc phân hoạch có đôi chút sửa đổi. Có thể tham khảo ở [đây](https://nguyenvanhieu.vn/thuat-toan-sap-xep-quick-sort/).
 
 Ngoài ra, không phải lúc nào cũng nên chọn phần tử có GIÁ TRỊ trung bình (average). Vì giá trị trung bình này không đại diện cho sự phân phối đồng đều của các phần tử trong mảng. Mà phần tử tốt nhất là phần tử có GIÁ TRỊ trung vị (median). Dẫu vậy, tìm trung vị của một dãy không hề đơn giản, nên chúng ta không tiếp cận theo hướng này.
 
-Do đó, chúng ta lost-tolerant chọn ba phần tử đầu, cuối và giữa. Nếu dính vào trường hợp xấu nhất thì phải chấp nhận mặc dù xác suất xảy ra worst case là rất thấp. Thêm nữa, có thể sử dụng một trick là: so sánh ba phần tử đầu, cuối và giữa rồi lấy Median của ba vị trí này và chọn làm pivot.
+Do đó, chúng ta lost - tolerant chọn ba phần tử đầu, cuối và giữa. Nếu dính vào trường hợp xấu nhất thì phải chấp nhận mặc dù xác suất xảy ra worst case là rất thấp. Thêm nữa, có thể sử dụng một trick là: so sánh ba phần tử đầu, cuối và giữa rồi lấy Median của ba vị trí này và chọn làm pivot.
 
-**Sự khác biệt giữa Quick và Merge** : Merge mấu chốt ở bước tổng hợp, bước chia rất đơn giản. Tuy nhiên bước chia của Quick Sort rất phức tạp và quan trọng nhưng bước tổng hợp lại cực kì đơn giản.
+**Sự khác biệt giữa Quick và Merge** : Merge mấu chốt ở bước trộn, bước chia rất đơn giản. Tuy nhiên bước chia của Quick Sort rất phức tạp và quan trọng nhưng bước trộn lại cực kì đơn giản.
 
 ## Đầu vào – Đầu ra
 
@@ -339,6 +348,8 @@ Do đó, chúng ta lost-tolerant chọn ba phần tử đầu, cuối và giữa
 
 ## Giải thuật mẫu
 
+Trường hợp chọn pivot ở giữa
+
 ```c++
 void quickSort(int *a,int left, int right)
 {
@@ -346,7 +357,7 @@ void quickSort(int *a,int left, int right)
     int pivot = a[(left + right) / 2];
     int i = left, j = right;
 
-    //Phân hoạch mảng
+    //Đưa các phần tử về đúng phía so với pivot
     while(i < j)
     {
         while(a[i] < pivot) i++;
@@ -355,9 +366,45 @@ void quickSort(int *a,int left, int right)
             swap(a[i++],a[j--]);
     }
 
-    //Gọi đệ qui sắp xếp cho các phân hoạch.
-    if(j < left) quickSort(a,left,j);
-    if(i > right) quickSort(a,i,right);
+    //Gọi đệ qui phân hoạch và sắp xếp
+    if(j > left) quickSort(a, left, j);
+    if(i < right) quickSort(a, i, right);
+}
+```
+
+Trường hợp chọn pivot ở cuối
+
+```c++
+int partition(int arr[], int left, int right)
+{
+    int pivot = arr[right]; // pivot
+    int i = left;
+    int j = right - 1;
+    while (i < j)
+    {
+        while (i <= j && arr[i] < pivot)
+            i++; // Tìm phần tử >= arr[pivot]
+        while (j >= i && arr[j] > pivot)
+            j--; // Tìm phần tử <= arr[pivot]
+        if (i <= j)
+            swap(arr[i++], arr[j--]);
+    }
+    swap(arr[i], arr[right]);
+    return i; // Trả về chỉ số dùng để phân hoạch
+}
+void quickSort(int arr[], int left, int right)
+{
+    if (left < right)
+    {
+        // Tìm vị trí của pivot
+        // (do trước và sau khi phân hoạch pivot có thể thay đổi vị trí)
+        int pi = partition(arr, left, right);
+
+        // Gọi đệ qui sắp xếp cho hai phân hoạch hai bên pivot
+        // (pivot nếu đã tìm được thì cố định ở vị trí đó luôn)
+        quickSort(arr, left, pi - 1);
+        quickSort(arr, pi + 1, right);
+    }
 }
 ```
 
@@ -381,7 +428,9 @@ Trộn 2 mảng con **đã được sắp xếp** thực hiện như sau:
     <img src = "img/Sort1.png">
 </center>
 
-**Nhận xét** : Không tối ưu bộ nhớ vì dùng mảng tạm trong quá trình trộn. Nhanh hơn Quick Sort vì thời gian thực hiện Merge Sort có bậc nhỏ hơn $O(nlog_2(n))$, còn trong trường hợp tốt nhất Quick Sort mới có độ phức tạp là $O(nlog_2(n))$. Thường dùng Merge Sort để sắp khối dữ liệu lớn ở bộ nhớ ngoài.
+## Phân tích
+
+Không tối ưu bộ nhớ vì dùng mảng tạm trong quá trình trộn. Nhanh hơn Quick Sort vì thời gian thực hiện Merge Sort có bậc nhỏ hơn $O(nlog_2(n))$, còn trong trường hợp tốt nhất Quick Sort mới có độ phức tạp là $O(nlog_2(n))$. Thường dùng Merge Sort để sắp khối dữ liệu lớn ở bộ nhớ ngoài.
 
 Một phiên bản khác của Merge Sort không dùng đến việc chia mảng là Bottom - Up Merge Sort. Thuật toán này sẽ trộn các phần tử liền kề với nhau rồi mở rộng ra. Chẳng hạn như nó sẽ trộn 2 phần tử liên tiếp thành mảng con 2 phần tử. Sau đó nó sẽ trộn tiếp 2 mảng gồm 2 phần tử với nhau thành mảng 4 phần tử. Cứ như thế cho đến khi trộn hết mảng cũng là lúc mảng đã được sắp xếp.
 
@@ -389,7 +438,7 @@ Ngoài ra còn có Natural Merge Sort, thuật toán này sẽ không chia trự
 
 Một scenario điển hình là sắp xếp dữ liệu có kích thước lớn, người ta sẽ đưa nó vào bộ nhớ trong sắp xếp một phần rồi đem ra bộ nhớ ngoài để sử dụng Natural Merge Sort.
 
-Do tính chất Non-inplace, thuật toán Merge Sort thường cần dùng bộ nhớ tạm trong quá trình thực thi, vì vậy mà thuật toán này sẽ sử dụng trong các cấu trúc dữ liệu khác mảng chẳng hạn như Linked List hoặc File.
+Do tính chất Non - inplace, thuật toán Merge Sort thường cần dùng bộ nhớ tạm trong quá trình thực thi, vì vậy mà thuật toán này sẽ sử dụng trong các cấu trúc dữ liệu khác mảng chẳng hạn như Linked List hoặc File.
 
 ## Đầu vào – Đầu ra
 
@@ -398,7 +447,7 @@ Do tính chất Non-inplace, thuật toán Merge Sort thường cần dùng bộ
 
 ## Độ phức tạp thuật toán
 
-Độ phức tạp của phần merge là $O(n + m) = O(n)$ (n,m là kích thước hai mảng con cần trộn), và phần chia là $O(log_2n)$
+Độ phức tạp của phần merge là $O(n + m) = O(n)$ (n, m là kích thước hai mảng con cần trộn), và phần chia là $O(log_2n)$.
 
 Best case, Worst case, Average case: $O(nlog_2(n))$.
 
@@ -422,7 +471,7 @@ void mergeSort(int *a,int left, int right)
 ### Phần trộn mảng
 
 ```c++
-voidmerge(int *a, intleft, intmid, intright)
+void merge(int *a, intleft, intmid, intright)
 {
     int *temp = new int[right - left + 1];
     //Mảng thứ nhất từ left đến mid, mảng thứ hai từ mid + 1 đến right
@@ -528,6 +577,15 @@ Mảng của chúng ta sau khi vun đống: [9, 5, 8, 2, 3, 1, 6, 2].
 
 Heap Sort là một thuật toán **cải tiến của Selection Sort**. Nhờ sử dụng cấu trúc Heap mà Heap Sort có số lần so sánh ít hơn Selection, nó chỉ tốn O(nlog(n)) chi phí so sánh.
 
+## Phân tích
+
+**Advantage** là một thuật toán hiệu quả, sử dụng ít bộ nhớ và ổn định. Ngoài ra thì cũng có thể tìm top k trong n như Selection Sort.
+
+Heap Sort dựa vào việc so sánh để sắp xếp. Và sự so sánh này trên cấu trúc Heap không bị ảnh hưởng bởi kiểu dữ liệu (int, float, bool, char,...). Ngoài ra, đối với chuỗi ký tự, còn có **Dictionary-based.**
+
+Ví dụ "been" > "ant", "been" < "boy", "Been" < "been".
+**Disadvantage** là một loại Unstable Sort, nếu dữ liệu quá lớn thì sẽ không hoạt động hiệu quả bằng Merge Sort.
+
 ## Đầu vào – Đầu ra
 
 - Input: Mảng A gồm n phần tử chưa sắp xếp.
@@ -597,13 +655,6 @@ void heapSort(int* arr, int n)
 }
 ```
 
-**Advantage** là một thuật toán hiệu quả, sử dụng ít bộ nhớ và ổn định. Ngoài ra thì cũng có thể tìm top k trong n như Selection Sort.
-
-Heap Sort dựa vào việc so sánh để sắp xếp. Và sự so sánh này trên cấu trúc Heap không bị ảnh hưởng bởi kiểu dữ liệu (int, float, bool, char,...). Ngoài ra, đối với chuỗi ký tự, còn có **Dictionary-based.**
-
-Ví dụ "been" > "ant", "been" < "boy", "Been" < "been".
-**Disadvantage** là một loại Unstable Sort, nếu dữ liệu quá lớn thì sẽ không hoạt động hiệu quả bằng Merge Sort.
-
 # Conclusion
 
 Ta cần phân tích một chút lý do tại sao ba thuật toán Quick, Merge và Heap lại là $O(n.log_2n)$.
@@ -618,7 +669,7 @@ Do vậy, với mỗi lần chia danh sách ban đầu ra làm hai, chúng ta ph
 
 ## Ý tưởng
 
-**Radix – cơ số**. Thuật toán này sắp xếp dựa trên cơ số (2, 8, 10, 16), mỗi cơ số có một cách biểu diễn riêng cho các giá trị phụ thuộc vào số lượng ký số (số ký tự để biểu diễn giá trị). Và mỗi bucket trong Radix Sort sẽ lưu các giá trị theo một loại ký số riêng biệt. Do đó nếu giá trị không thể hiện dưới dạng một số cơ số nhất định nào đó (chẳng hạn số thực) thì việc sắp xếp sẽ khá khó khăn.
+**Radix – cơ số**: Thuật toán này sắp xếp dựa trên cơ số (2, 8, 10, 16), mỗi cơ số có một cách biểu diễn riêng cho các giá trị phụ thuộc vào số lượng ký số (số ký tự để biểu diễn giá trị). Và mỗi bucket trong Radix Sort sẽ lưu các giá trị theo một loại ký số riêng biệt. Do đó nếu giá trị không thể hiện dưới dạng một số cơ số nhất định nào đó (chẳng hạn số thực) thì việc sắp xếp sẽ khá khó khăn.
 
 **Điểm mạnh** của Radix Sort là nhanh, chỉ phụ thuộc vào số lượng ký số. Chẳng hạn có n phần tử nhưng phần tử có chiều dài ký số lớn nhất là 7, thì chỉ cần 7 lần sắp xếp.
 
@@ -665,7 +716,6 @@ Kết quả thu được chính là mảng đã sắp xếp.
 ## Đầu vào - Đầu ra
 
 Tương tự các loại Sort không cần chia mảng.
-
 ## Độ phức tạp thuật toán
 
 Xét riêng Counting Sort, cần tốn n lần duyệt qua n phần tử. Đồng thời các key cần xem xét phụ thuộc vào hệ cơ số, nếu hệ cơ số là 10 thì k = 10 (các số chạy từ 0 đến 9), như ở ví dụ trên.
@@ -739,6 +789,6 @@ void radixsort(int arr[], int n)
 
 # So sánh giữa các thuật toán
 
-<center>
-    <img src = "img/Sort8.png">
-</center>
+<p align="center">
+    <img src="img/Sort8.png"/>
+</p>
