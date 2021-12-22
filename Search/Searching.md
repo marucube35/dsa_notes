@@ -49,14 +49,17 @@ Là tiêu chuẩn tìm kiếm trình bày dưới dạng phát biểu không hì
 
 ## Ý tưởng
 
-Chọn $a_m$ ở giữa A để so sánh với khóa x. A được chia thành hai phần trước và sau $a_m$. Chỉ số bắt đầu và kết thúc của A là L và R.
+Chọn $a_M$ ở giữa A để so sánh với khóa x. A được chia thành hai phần trước và sau $a_M$. Chỉ số bắt đầu và kết thúc của A là L và R.
 
-Nếu x = $a_m$ tức là đã tìm thấy và dừng thuật toán.
+M = $\frac{L + R}{2}$, làm tròn phần nguyên.
 
-Xét thứ tự x, $a_m$:
 
-- Nếu thứ tự này là _P_ (tức là bé hơn hoặc lớn hơn tùy thuộc vào cách sắp xếp của dữ liệu cho trước), thì tìm x trong đoạn trước $a_m$([L,R]) với R = M – 1 (Tức là đi từ L đến M).
-- Ngược lại thì tìm x trong đoạn sau $a_m$([L,R]) với L = M + 1 (Đi từ M đến R)
+So sánh x và $a_M$:
+- Nếu x < $a_M$, thì tìm x trong đoạn bên trái $a_M$([L,R]) với R = M – 1 (Tức là đi từ L đến M - 1).
+- Ngược lại thì tìm x trong đoạn bên phải $a_M$([L,R]) với L = M + 1 (Đi từ M + 1 đến R).
+ - Nếu x = $a_M$ tức là đã tìm thấy và dừng thuật toán.
+
+Mảng giảm dần thì làm ngược lại.
 
 ## Đầu vào – Đầu ra
 
@@ -66,8 +69,8 @@ Xét thứ tự x, $a_m$:
 ## Độ phức tạp thuật toán
 
 - **Best case** : Phần tử cần tìm nằm ở vị trí (L + R)/2 – Số lần lặp là 1 – Độ phức tạp hằng số $O(1)$.
-- **Worst case** : Số lần tìm là số lần chia đôi đến khi dãy tìm kiếm còn 1 phần tử - Lặp khoảng log2(n) + 1 – Độ phức tạp logarithm $O(log(n))$.
-- **Average case** : Độ phức tạp là $O(log(n))$.
+- **Worst case** : Số lần tìm là số lần chia đôi đến khi dãy tìm kiếm còn 1 phần tử - Lặp khoảng $log_2(n) + 1$ – Độ phức tạp logarithm $O(log_2(n))$.
+- **Average case** : Độ phức tạp là $O(log_2(n))$.
 
 ## Lưu ý
 
