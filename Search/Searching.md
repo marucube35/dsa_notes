@@ -78,7 +78,7 @@ Xét thứ tự x, $a_m$:
 ```c++
 int binarySearch(int *a,int n,int x)
 {
-    int L = 0,R = n-1;
+    int L = 0,R = n - 1;
     while(L <= R)
     {
         int M = (L + R) / 2;
@@ -104,10 +104,10 @@ int binarySearch(int *a,int n,int x)
 Thay vì xác định điểm M = (L+R)/2 thì xác định M như sau:
 
 $$
-M =  L+\frac {R - L.(x-AL)}{ AR-A[L]}
+M =  L+\frac {(R - L)(x-A[L])}{ A[R]-A[L]}
 $$
 
-Các bước còn lại như Binary Search.
+Các bước còn lại như Binary Search. Đây là một phương pháp thống kê, bởi vì vậy nên nó mới áp dụng cho phân bố dữ liệu ngẫu nhiên đồng đều.
 
 ## Đầu vào – Đầu ra
 
@@ -130,7 +130,7 @@ Thuật toán Interpolation Search áp dụng trong trường hợp không gian 
 ```c++
 int interpolationSearch(int *a,int n,int x)
 {
-    int L = 0, R = n-1;
+    int L = 0, R = n - 1;
     while(L <= R) {
         int M = L + (R - L)*((x - a[L])/(a[R] - a[L]));
         if(x == a[M]){
