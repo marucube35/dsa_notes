@@ -35,12 +35,15 @@ Nói theo nghĩa khác, một thuật toán sẽ phải được đo lường th
 Một kịch bản khác, thuật toán không thể đo lường chính xác nếu như dùng hai ngôn ngữ khác nhau để implement nó. Chẳng hạn như ta dùng C++ để implement thuật toán Binary Search, và cũng dùng Python để implement thuật toán tương tự. Với các ngôn ngữ khác nhau, thời gian chạy thuật toán có thể có sự sai khác. Vì vậy mà chúng ta cần đo lường chúng theo cách độc lập với ngôn ngữ, gọi là **Language Independent**.
 
 Từ đó, cách đo lường sử dụng Big O notation ra đời.
-
 ## Definition
 
-Big O Notation (Ký hiệu O lớn) là một số để đo lường mức độ hiệu quả của thuật toán. Mức độ hiệu quả chính là độ phức tạp thời gian và độ phức tạp không gian. Độ phức tạp thời gian là để chỉ thời gian và độ phức tạp không gian là để chỉ bộ nhớ. Thời gian thực thi và bộ nhớ thực thi chính là hai yếu tố cần thiết góp phần vào mức độ hiệu quả của thuật toán. Ngoài ra, ký hiệu O lớn dùng để mô tả mức độ tăng lên của thời gian hoặc không gian thực thi bởi chương trình, khi đối số đầu vào tiến về một số nào đó. Ký hiệu O lớn ta có thể gọi chung là độ phức tạp thuật toán.
+Big O Notation (Ký hiệu O lớn) là một số để đo lường mức độ hiệu quả của thuật toán. Mức độ hiệu quả chính là độ phức tạp thời gian và độ phức tạp không gian. Độ phức tạp thời gian là để chỉ thời gian và độ phức tạp không gian là để chỉ bộ nhớ dùng thêm tương ứng với dữ liệu đầu vào trong lúc chạy chương trình. Thời gian thực thi và bộ nhớ thực thi chính là hai yếu tố cần thiết góp phần vào mức độ hiệu quả của thuật toán. 
+
+Ngoài ra, ký hiệu O lớn dùng để mô tả mức độ tăng lên của thời gian hoặc không gian thực thi bởi chương trình, khi đối số đầu vào tiến về một số nào đó. Ký hiệu O lớn ta có thể gọi chung là độ phức tạp thuật toán.
 
 Ở ví dụ trên thời gian thực thi của con chim là hằng số, dẫu cho dữ liệu đầu vào có tiến về bao nhiêu. Thời gian thực thi của internet lại là tuyến tính, nó sẽ là một đường thẳng tiến về một số cụ thể phụ thuộc vào lượng dữ liệu đầu vào.
+
+Chú ý rằng Big O là đo cận trên của thời gian chạy thuật toán, ngoài ra còn Omega Notation để đo cận dưới và Theta Notation để đo trung bình giữa hai cận trên và dưới.
 
 ## Formal Definition
 
@@ -110,13 +113,13 @@ Có thể thấy hình trên, ban đầu $G(n) = n$ có thể lớn hơn, nhưng
 
 Để tính toán độ phức tạp của một thuật toán, ta cần tuân thủ theo các bước sau:
 
-### Hiểu cách mà thuật toán vận hành:
+### Understand how algorithm works
 
 Mục đích của thuật toán.
 
 Dữ liệu đầu vào, dữ liệu đầu ra.
 
-### Xác định một đơn vị chuẩn cơ bản để thuật toán dựa trên đó mà đếm, có thể là:
+### Determine the criterial unit that algorithm base on
 
 Các dòng xuất thông tin.
 
@@ -126,11 +129,15 @@ Lời gọi đệ quy (đây là đơn vị cơ bản cho các hàm đệ quy).
 
 Đồng thời tập trung vào trường hợp tệ nhất.
 
-### Ghi nhận lại các lần đếm từ bước hai trở đi và tìm ra quy luật tăng lên của nó. Sau đó kết luận bậc của Big O cho thuật toán.
+### Counting the unit and regconize the pattern. Conclusion the complexity.
 
 ## Cases
 
 Độ phức tạp thuật toán chia thành ba trường hợp: Worst Case – xấu nhất, Best Case – tốt nhất và Average Case – trung bình. Thông thường thường người ta sẽ lưu tâm đến Worst Case hoặc Average Case vì Best Case không có ý nghĩa gì với chúng ta khi xét về độ hiệu quả của thuật toán.
+
+## Comparision
+
+Để so sánh hai thuật toán thì ta dùng Big O Notation cho lượng dữ liệu đầu vào lớn. 
 
 ## Order of Big O
 
@@ -142,7 +149,7 @@ Lời gọi đệ quy (đây là đơn vị cơ bản cho các hàm đệ quy).
 
 Có bốn quy luật về độ phức tạp thuật toán như sau:
 
-## Quy luật 1
+## Rule 1
 
 _Nếu như một thuật toán thực hiện một dãy gồm n bước thực thi, thì độ phức tạp sẽ là $O(n)$._
 
@@ -164,7 +171,7 @@ void findMin(int* a,int n)
 
 Vòng lặp thực hiện quét qua n phần tử của mảng, độ phức tạp của nó hiển nhiên sẽ là O(n). Giả sử ta tìm kiếm một số cụ thể nào đó, ví dụ số x, trong mảng a, thì độ phức tạp thuật toán sẽ phụ thuộc vào vị trí của x. Nếu x càng ở gần đầu mảng (nếu ta duyệt từ đầu mảng), thì độ phức tạp sẽ giảm so với Worst Case.
 
-## Quy luật 2
+## Rule 2
 
 _Nếu như thuật toán thực hiện một tác vụ tốn a bước, sau đó thực hiện một tác vụ khác tốn b bước. Thì tổng độ phức tạp thuật toán sẽ à $O(a+b)$ bước._
 
@@ -213,7 +220,7 @@ void findMin(int* a,int* b,int n)
 
 Lưu ý rằng độ phức tạp trong trường hợp này không phải $O(2n)$ mà chỉ đơn giản là $O(n)$.
 
-## Quy luật 3
+## Rule 3
 
 _Nếu một thuật toán có độ phức tạp là $O(a+b)$ và a lớn hơn rất nhiều so với b, thì độ phức tạp có thể đơn giản thành O(a)._
 
@@ -223,7 +230,7 @@ Mở rộng ra, nếu ta có một chương trình có tổng độ phức tạp
 
 $O(n) \leq O(n^2+n) \leq O(n^2+n^2)$. Nếu n là một số lớn ($n^2 >> n$) thì $O(n^2+n)$ có thể đơn giản thành $O(n)$.
 
-## Quy luật 4
+## Rule 4
 
 Nếu một thuật toán có độ phức tạp là $O(a)$, và mỗi bước i từ 1 đến a lại có b bước nhỏ nữa. Thì độ phức tạp thuật toán tổng cộng là $O(a * b)$.
 
@@ -242,3 +249,120 @@ void findMin(int** a,int n)
 
 Ví dụ này, có hai vòng lặp lồng nhau. Với mỗi vòng lặp của chỉ số i lại có n vòng lặp của chỉ số j. Do cả a và b đều là n nên độ phức tạp thuật toán tổng cộng, bao gồm cả dòng cấp phát bộ nhớ đầu, sẽ là $O(n^2+1)$. Trong trường hợp dữ liệu đầu vào là lớn, $O(n^2+1)$ có thể rút gọn thành $O(n^2)$.
 
+# Practices
+
+>Thuật toán dưới đây có độ phức tạp là $O(1)$
+
+```c++
+for(int i = 0; i < n; i++)
+{
+    i += n / 2;
+}
+```
+Do nhảy hai lần là đến n nên độ phức tạp luôn là một hằng số (số 2).
+
+
+>Thuật toán dưới đây có độ phức tạp là $O(log_c(n))$
+
+```c++
+for(int i = 1; i < n; i*=c)
+    // some O(1) expressions or statements
+```
+
+Mục đích của chúng ta là đi xác định số lần lặp.
+Đặt số lần lặp trong vòng lặp là k (khác n do không phải bước nhảy tuyến tính), ta thấy giá trị của i là $0, c, c^2 , c^3, c^4 ,... c^k$. Giá trị cuối phải bé hơn hoặc bằng n.
+
+Ta cho $n = c^k$ và lấy log hai vế theo cơ số c, ta được $log_c(n) = log_c(c^k) = k$. Như vậy với k lần lặp thì độ phức tạp là $O(log_c(n))$. 
+
+Cụ thể hơn, để i = 1 trở thành 16, c = 2, thì cần $k = log_2(16) = 4$ lần lặp. K ở đây có ý nghĩa là số lần lặp để giá trị i bằng hoặc nhỏ hơn n khi kết thúc vòng lặp. Nói cách khác, đối với các thuật toán có bước nhảy phi tuyến tính thì số lần lặp bằng độ phức tạp thuật toán là một hàm số logarith.
+
+> Thuật toán dưới đây có độ phức tạp là $O(log_2(n))$
+
+```c++
+for(int i = n; i > 0; i/=2)
+    // some O(1) expressions or statements
+```
+
+Trường hợp này là trường hợp khác của trường hợp trên, thay vì nhân cho 2 thì ta lại chia cho 2
+> Thuật toán dưới đây có độ phức tạp là $O(n^2)$
+
+```js
+var value = 0;
+for(var i = 0; i < n; i++)
+    for(var j = 0; j < i; j++)
+    value += 1;
+```
+
+Có n lần lặp theo biến i, mỗi lần lặp sẽ lặp i lần theo biến j, tổng chuỗi sẽ có dạng 1 + 2 +  3 + 4 + 5 + ... + n. Tổng này sẽ có giá trị $\frac{n(n+1)}{2}$.
+
+> Thuật toán dưới đây có độ phức tạp là $O(log_c(log_2(n)))$
+
+```c++
+for (int i = 2; i <=n; i = pow(i, c)) 
+{ 
+    // some O(1) expressions or statements
+}
+```
+
+Giá trị của i lần lượt là $2^c, (2^c)^c = 2^{c^2}, 2^{c^3}, ..., 2^{c^{log_c(log_2(n))}}$. Giá trị cuối phải bằng hoặc nhỏ hơn n mà ta có giá trị cuối là $2^{c^{log_c(log_2(n))}} = 2^{log_2(n)} = n$, thỏa mãn yêu cầu. 
+
+Như vậy có $log_c(log_2(n))$ vòng lặp và do đó độ phức tạp là $O(log_c(log_2(n)))$. Nếu k là 2 thì có độ phức tạp $O(log_2(log_2(n)))$.
+
+Trường hợp khác: 
+```c++
+// func() is any constant root function
+for (int i = n; i > 1; i = func(i)) 
+{ 
+   // some O(1) expressions or statements
+}
+```
+
+Độ phức tạp cũng tương tự, là $O(log_k(log_2(n)))$.
+
+> Thuật toán dưới đây có độ phức tạp là $O(\sqrt n)$
+
+```c++
+void function(int n)
+{
+    int i = 1, s = 1;
+    while (s <= n)
+    {
+        i++;
+        s += i;
+        printf("*");
+    }
+}
+```
+
+Thoạt nhìn, có thể thấy giá trị của i là 1, 2, 3... Nhưng giá trị của $s_i = s_{i - 1} + i$, tức là giá trị thứ i của s là tổng các giá trị i trước đó. 
+
+Mục đích của chúng ta vẫn là đi tìm số lần lặp của vòng lặp. Ta gọi k là số lần lặp. Tổng s lớn hơn n sẽ dừng vòng lặp, nghĩa là nếu $s = 1 + 2 + 3 + 4 + ... + k = \frac{k(k+1)}{2}$ > n thì dừng.
+
+Cho $\frac{k(k+1)}{2} = n$, lấy căn hai vế ta được $k = \sqrt n$. Suy ra độ phức tạp thuật toán $O(\sqrt n)$.
+
+> Thuật toán dưới đây có độ phức tạp là $O(n^5)$
+
+```c++
+void function(int n)
+{
+    int count = 0;
+ 
+    // executes n times
+    for (int i=0; i<n; i++)
+ 
+        // executes O(n*n) times.
+        for (int j=i; j< i*i; j++)
+            if (j%i == 0)
+            {
+                // executes j times = O(n*n) times
+                for (int k=0; k<j; k++)
+                    printf("*");
+            }
+}
+```
+
+Điều kiện trong vòng lặp thứ hai để lặp trên những số chia hết cho $i$ từ $i$ đến $i^2$. Ví dụ từ $i$ bằng 2 thì sẽ có hai số là 2 và 4. Nếu $i$ = 5 thì có năm số: {5,10,15,20,25}. 
+
+Như vậy với số $i$ bất kỳ thì có $i$ số từ $i$ đến $i^2$ chia hết cho nó. Và mỗi số như vậy được lặp thêm j lần nữa.
+
+*Chưa chắc câu này lắm.*
