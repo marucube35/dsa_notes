@@ -41,7 +41,7 @@ Trong đó Shell Sort, Heap Sort, Quick Sort, Merge Sort và Radix Sort là các
 
 # Interchange Sort
 
-**Nghịch thế** là một cặp giá trị $(a_i,a_j)$ khi $a_i$ và $a_j$ không thỏa điều kiện sắp thứ tự. Ví dụ nếu mảng một chiều có các phần tử tăng dần mà có một cặp $(ai,aj)$ nào đó giảm dần thì cặp đó được gọi là **nghịch thế**.
+**Nghịch thế** là một cặp giá trị $(a_i,a_j)$ khi $a_i$ và $a_j$ không thỏa điều kiện sắp thứ tự. Ví dụ nếu mảng một chiều có các phần tử tăng dần mà có một cặp $(a_i,a_j)$ nào đó giảm dần thì cặp đó được gọi là **nghịch thế**.
 
 ## Ý tưởng
 
@@ -107,9 +107,9 @@ Dễ hiểu, dễ cài đặt, dùng trong **(prototype?)**. Tức là khi mình
 
 Nên _số lần so sánh_:
 
-$$
+```math
 \sum_{i=0}^{n-2}{n-i-1}= (n – 1) + (n – 2) + … + (n\ –\ i\ –\ 1) + … + 1 = n(n – 1)/2.
-$$
+```
 
 _Số lần hoán vị_: 0.
 
@@ -716,6 +716,7 @@ Kết quả thu được chính là mảng đã sắp xếp.
 ## Đầu vào - Đầu ra
 
 Tương tự các loại Sort không cần chia mảng.
+
 ## Độ phức tạp thuật toán
 
 Xét riêng Counting Sort, cần tốn n lần duyệt qua n phần tử. Đồng thời các key cần xem xét phụ thuộc vào hệ cơ số, nếu hệ cơ số là 10 thì k = 10 (các số chạy từ 0 đến 9), như ở ví dụ trên.
@@ -789,6 +790,4 @@ void radixsort(int arr[], int n)
 
 # So sánh giữa các thuật toán
 
-<p align="center">
-    <img src="img/Sort8.png"/>
-</p>
+![comparison](img/Sort8.png)
