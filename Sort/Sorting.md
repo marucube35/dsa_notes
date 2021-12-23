@@ -9,7 +9,7 @@ title: "Sorting Algorithms"
         float:none;
         margin-left:auto;
         margin-right:auto;
-        width:50%;
+        width:60%;
     }
     p{
         text-align: justify;
@@ -73,13 +73,33 @@ Thuật toán Interchange Sort sẽ duyệt qua tất cả các cặp giá trị
 - Input: Mảng A gồm n phần tử chưa sắp xếp.
 - Output: Mảng A đã sắp xếp.
 
-Kể từ thuật toán này trở đi, đầu vào và đầu ra của hầu hết các thuật toán sắp xếp khác đều như nhau.
+Thuật toán nào không nêu cụ thể đầu vào đầu ra ngầm hiểu có đầu vào đầu ra là một mảng chưa sắp xếp.
+
+## Phân tích độ phức tạp thuật toán
+
+Ở mỗi lần lặp theo biến, có n - i lần so sánh (do các số phía trước đã sắp xếp).
+
+Như vậy ta có tổng số lần so sánh là:
+
+```math
+\sum_{i = 1}^{n - 1}(n - i) = \frac{n(n - 1)}{2}
+```
+
+Trong trường hợp tốt nhất, chuỗi đã được sắp xếp thì chỉ so sánh mà không thực hiện hoán vị.
+
+Còn trong trường hợp xấu nhất khi chuỗi bị đảo ngược thì mỗi lần so sánh đều phải hoán vị.
+
+> Dựa vào số lần thực hiện các toán tử cơ bản như so sánh và hoán vị, ta kết luận được độ phức tạp thuật toán của một thuật toán bất kỳ. Riêng trường hợp trung bình thì thường khá khó để tính và phải dựa trên sự hiểu biết cùng thông tin về phân bố của dữ liệu đầu vào.
 
 ## Độ phức tạp thuật toán
 
-- **Best case** : _Số lần so sánh_: n(n - 1)/2. _Số lần hoán vị_: 0.
-- **Worst case** : _Số lần so sánh_: n(n - 1)/2. _Số lần hoán vị_: n(n - 1)/2. Độ phức tạp $O(n^2)$.
-- **Average Case** : Độ phức tạp đa thức $O(n^2)$.
+| Cases        | Complexity |
+| :----------- | :--------- |
+| Best case    | $O(n^2)$   |
+| Worst case   | $O(n^2)$   |
+| Average case | $O(n^2)$   |
+
+Space Complexity: $O(1)$.
 
 ## Giải thuật mẫu
 
@@ -92,7 +112,7 @@ void interchangeSort(int* a,int n)
         // So sánh với các phần tử còn lại khác chính nó
         for (int j = i + 1; j < n;j++){
 
-            //Giả sử xếp tăng dần
+            // Theo thứ tự tăng dần
             if(a[j] > a[i])
             {
                 int temp = a[i];
@@ -108,37 +128,83 @@ void interchangeSort(int* a,int n)
 
 ## Ý tưởng
 
-Chọn phần tử nhỏ nhất (cực trị) cho các vị trí từ 0 đến n – 1.
+Lặp qua các vị trí từ 0 đến n - 1. Ở mỗi lần lặp i tìm phần tử cực trị (nhỏ nhất hoặc lớn nhất) trong khoảng từ i đến n - 1. Sau đó thay thế phần tử $a_i$ với phần tử cực trị vừa tìm. Trong trường hợp xếp mảng tăng dần thì phần tử cực trị là phần tử nhỏ nhất.
 
-Lần chọn 0: Chọn phần tử nhỏ nhất (a[min]) từ 0 đến n – 1. Đổi chỗ hai nút tại vị trí min và 0.
-
-Lần chọn 1: Chọn phần tử nhỏ nhất (a[min]) từ 1 đến n – 1. Đổi chỗ hai nút tại vị trí min và 1.
-
-Lần chọn i: Chọn phần tử nhỏ nhất (a[min]) từ i đến n – 1. Đổi chỗ hai nút tại vị trí min và i.
-
-Lần chọn cuối: n – 2.
+## Phân tích thuật toán
 
 Điểm thú vị của selection là có thể sort trong khoảng từ 0 đến k (k < n). Ví dụ khi tuyển sinh, ta chỉ tuyển 500 học sinh đầu trong 1000 học sinh. Chúng ta sắp xếp theo tên của các học sinh, khi sắp xếp đến số lượng 500 thì ngừng, không cần duyệt qua toàn bộ dữ liệu đầu vào. Vậy Selection Sort nó có thể ngừng sort tại vị trí mong muốn nào đó trong quá trình sort, giúp tiết kiệm chi phí.
 
+**Điểm mạnh**
 Dễ hiểu, dễ cài đặt, dùng trong **(prototype?)**. Tức là khi mình build một hàm lớn, cần sắp xếp dữ liệu, chúng ta chọn Selection Sort để làm điều đó. Sau này, khi chúng ta cần tối ưu hóa thời gian thực hiện thì thay thế bằng các thuật toán khác mà không làm ảnh hưởng đến kết quả xử lý.
+
+Đồng thời selection sort còn làm việc rất tốt với các mảng dữ liệu nhỏ và phân bố ngẫu nhiên. Là một thuật toán inplace tiết kiệm bộ nhớ.
+
+**Điểm yếu**
+Mảng dữ liệu lớn và phân bố có gần như có thứ tự sẽ làm cho thuật toán chạy chậm và không hiệu quả.
+
+## Phân tích độ phức tạp thuật toán
+
+Lúc ban đầu mảng có hai phần, phần được sắp xếp và phần chưa sắp xếp, gọi kích thước của chúng lần lượt là S1 và S2. Ở mỗi lần lặp, kích thước S1 tăng lên 1 và S2 giảm đi 1. Do đó S2 = n - S1.
+
+Độ phức tạp thời gian cho việc tìm cực trị của mảng chưa sắp xếp có kích thước S2 là $O(S2)$.
+Với vòng lặp i bất kỳ, S1 sẽ là i - 1, do đó S2 = n - S1 = n - i + 1.
+
+Như vậy độ phức tạp của việc tìm phần tử cực trị sẽ là $O(n - i + 1)$ và $O(1)$ cho công việc hoán vị.
+
+Tổng độ phức tạp sẽ là
+
+$$
+\sum_{i = 1}^{n + 1} O(n - i + 1) + \sum_{i = 1}^{n + 1} O(1)
+$$
+
+Do ở bước i thì S1 = i - 1, mà ta lặp đến khi nào S1 = n nên sẽ có n + 1 bước.
+
+Ta có
+
+$$
+\sum_{i = 1}^{n + 1} O(1) = 1 + 1 + 1 + ... = n + 1 = O(n)
+$$
+
+Và
+
+$$
+\sum_{i = 1}^{n + 1} O(n - i + 1) = n + (n - 1) + ... + 1 + 0\\
+= 1 + 2 + ... + n
+= \frac{n(n + 1)}{2} = O(n^2)
+$$
+
+Do quy luật áp đảo mà độ phức tạp tổng cộng sẽ là $O(n^2)$.
+
+**Worst case**
+Giả sử mảng đã sắp có thứ tự $a_1, a_2,... a_n$. Và đẩy $a_1$ về cuối, ta có mảng $a_2, a_3,..., a_n, a_1$. Lúc này thuật toán sẽ rơi vào trường hợp xấu nhất khi mà chỉ xảy ra đúng một lần hoán vị.
+Worst case có:
+
+$\cfrac{n(n\ +\ 1)}{2}$ số lần so sánh.
+
+$n$ lần hoán vị trong tổng số các vòng lặp.
+
+Do đó mà độ phức tạp là $O(n^2)$.
+
+**Best case**
+Trường hợp tốt nhất có thể xem như không xảy ra bất kỳ sự hoán vị nào, tức là khi mảng đã được sắp xếp.
+Best case có:
+
+$\cfrac{n(n\ +\ 1)}{2}$ số lần so sánh.
+
+0 lần hoán vị trong tổng số các lần lặp.
+
+**Average case**
+Pân tích chi tiết độ phức tạp trung bình ở [đây](https://iq.opengenus.org/time-complexity-of-selection-sort/).
 
 ## Độ phức tạp thuật toán
 
-- **Best case** : Ở lượt thứ i, lúc nào cũng cần n – i – 1 lượt so sánh để xác định phần tử nhỏ nhất hiện hành.
+| Cases        | Complexity |
+| :----------- | :--------- |
+| Best case    | $O(n^2)$   |
+| Worst case   | $O(n^2)$   |
+| Average case | $O(n^2)$   |
 
-Nên _số lần so sánh_:
-
-$$
-\sum_{i=0}^{n-2}{n-i-1} = (n – 1) + (n – 2) + … + \\
-(n\ –\ i\ –\ 1) + … + 1 = n(n – 1)/2.
-$$
-
-_Số lần hoán vị_: 0.
-
-Độ phức tạp là: $O(n)$.
-
-- **Worst case** : Số lần so sánh: n(n – 1)/2. Số lần hoán vị: n – 1.
-- **Average case** : $O(n^2)$.
+Space Complexity: $O(1)$.
 
 ## Giải thuật mẫu
 
@@ -148,6 +214,7 @@ void selectionSort(int *a, int n)
     // Phần tử kế cuối đã tự sắp xếp
     for(int i = 0;i < n - 1; i++)
     {
+        // Tìm phần tử nhỏ nhất trong mảng chưa sắp xếp
         int min = i;
         for(int j = i + 1; j < n; j++)
         {
@@ -164,15 +231,53 @@ void selectionSort(int *a, int n)
 
 ## Ý tưởng
 
-Xuất phát từ đầu dãy hoặc cuối dãy, đổi chỗ các cặp phần tử liền kề để đưa phần tử nhỏ hơn trong cặp phần tử đó về đúng đầu dãy hiện hành. Sau đó sẽ không xét đến nó ở bước tiếp theo, do vậy ở lần xử lý thử i thì vị trí đầu dãy là i.
+Xuất phát từ đầu dãy hoặc cuối dãy, đổi chỗ các cặp phần tử liền kề để đưa phần tử nhỏ hơn trong cặp phần tử đó về đúng đầu dãy hiện hành. Sau đó sẽ không xét đến nó ở bước tiếp theo, do vậy ở lần xử lý thứ i thì vị trí đầu dãy là i.
 
-Cần phân biệt với Interchange Sort khi thuật toán Bubble Sort không so sánh tất cả các cặp tồn tại mà chỉ so sánh các cặp nghịch thế liền kề với nhau.
+Cần phân biệt rõ ràng với Interchange Sort vì thuật toán Bubble Sort không so sánh tất cả các cặp tồn tại mà chỉ so sánh các cặp nghịch thế liền kề với nhau.
+
+## Phân tích thuật toán
+
+**Điểm mạnh**
+Là một thuật toán dễ cài đặt, dễ hiểu và hoạt động tốt cho mảng có số lượng phần tử nhỏ.
+
+**Điểm yếu**
+Không hiệu quả đối với mảng có số lượng phần tử lớn, thường thì Bubble Sort được dùng trong giảng dạy hơn là áp dụng thực tiễn.
+
+## Phân tích độ phức tạp thuật toán
+
+Bubble Sort không dễ chứng minh và phân tích trực tiếp như Selection Sort và Insertion Sort. Vì vậy ta sẽ chia nó ra ba trường hợp để phân tích
+
+**Best case**
+Do thuật toán sử dụng cờ lệnh và biết được khi nào mảng đã được sắp xếp, nên khi mảng đầu vào là dãy đã được sắp xếp thì cũng chính là trường hợp tốt nhất của thuật toán.
+
+Lúc này thuật toán sẽ quét qua từng phần tử rồi dừng nên độ phức tạp sẽ là tuyến tính $O(n)$.
+
+**Worst case**
+Trường hợp xấu nhất xảy ra khi dữ liệu mà ta muốn sắp bị đảo ngược, chẳng hạn giảm dần khi ta muốn sắp tăng dần. Lúc này, với mỗi vòng lặp i, ta cần n - i lần hoán vị để đưa phần tử thứ i về đúng vị trí cuối mảng.
+
+<img src = "img/sort9.png">
+
+Và ta có n vòng lặp như vậy, số lần thực hiện hoán vị của hai vòng lặp lồng nhau này là:
+
+$$
+    \frac{n(n - 1)}{2}
+$$
+
+(Có thể xem lại bài phân tích thuật toán để biết lý do).
+Do đó mà độ phức tạp sẽ là $O(n^2)$.
+
+**Average case**
+Phân tích chi tiết ở [đây](https://de.wikipedia.org/wiki/Bubblesort#Durchschnittlicher_Fall).
 
 ## Độ phức tạp thuật toán
 
-- **Best case** : _Số lần so sánh_ là n(n – 1)/2, _số lần hoán vị_ là 0. Độ phức tạp: O(n) (mảng đã sắp xếp).
-- **Worst case** : _Số lần so sánh_ là n(n – 1)/2, _số lần hoán vị_ là n(n – 1)/2. Độ phức tạp: O(n2)
-- **Average case** : O(n2).
+| Cases        | Complexity |
+| :----------- | :--------- |
+| Best case    | $O(n)$     |
+| Worst case   | $O(n^2)$   |
+| Average case | $O(n^2)$   |
+
+Space Complexity: $O(1)$.
 
 ## Giải thuật mẫu
 
@@ -206,21 +311,28 @@ void bubbleSort(int *a,int n)
 
 ## Ý tưởng
 
-Trong mỗi lần sắp xếp, duyệt mảng theo 2 lượt từ hai phía khác nhau:
-
+Trong mỗi lần sắp xếp, duyệt mảng theo 2 lượt từ hai phía khác nhau.
 Lượt đi: đẩy phần tử nhỏ về đầu mảng.
-
 Lượt về: đẩy phần tử lớn về cuối mảng.
-
 Ghi nhận lại các đoạn đã sắp xếp nhằm tiết kiệm các phép so sánh thừa.
 
-Shaker Sort là một dạng nâng cao của Bubble Sort nên nó có thể nhận diện được mảng đã sắp xếp. Đồng thời Shaker Sort sẽ tối ưu hơn Bubble Sort trong trường hợp dãy đã gần như có thứ tự. Ví dụ {2,3,4,5,1} thì Shaker Sort cần 2 lần đi và về, Bubble Sort cần 4 lần duyệt. Tuy nhiên nếu như Bubble Sort có cờ lệnh thì cũng sẽ còn 2 lần lặp (1 lần sắp xếp và 1 lần để biết mảng đã có thứ tự).
+## Phân tích thuật toán
+
+Shaker Sort là một dạng nâng cao của Bubble Sort nên nó có thể nhận diện được mảng đã sắp xếp. Đồng thời Shaker Sort sẽ tối ưu hơn Bubble Sort trong trường hợp dãy đã gần như có thứ tự.
+
+Ví dụ {2,3,4,5,1} thì Shaker Sort cần 2 lần đi và về, Bubble Sort cần 4 lần duyệt. Tuy nhiên trong trường hợp mảng phân bố ngẫu nhiên thì Shaker Sort có thời gian thực hiện ngang với Bubble Sort
 
 ## Độ phức tạp thuật toán
 
-- **Best case** : $O(n)$ khi mảng đã hoàn toàn sắp xếp.
-- **Worst case** : $O(n^2)$.
-- **Average case** : $O(n^2)$.
+Best case và Worst case xảy ra với mảng đầu vào tương tự như Bubble Sort.
+
+| Cases        | Complexity |
+| :----------- | :--------- |
+| Best case    | $O(n)$     |
+| Worst case   | $O(n^2)$   |
+| Average case | $O(n^2)$   |
+
+Space Complexity: $O(1)$.
 
 ## Giải thuật mẫu
 
@@ -230,6 +342,7 @@ void shakerSort(int *a, int n)
     int left = 0, right = n - 1, k = n - 1;
     while(left < right)
     {
+        // Đi từ phải qua đẩy nhỏ nhất về đầu mảng
         for(int i = right; i > left; i--)
         {
             if(a[i] <  a[i - 1]){
@@ -237,7 +350,11 @@ void shakerSort(int *a, int n)
                 k = i;//Lưu lại vị trí có hoán vị
             }
         }
-        left = k;
+
+        // Giảm kích thước mảng về vị trí có hoán vị
+        left = k; // Vì trước đó xem như đã sắp xếp
+
+        // Đi từ trái qua đẩy lớn nhất về cuối mảng
         for(int i = left; i < right; i++)
         {
             if(a[i] > a[i + 1]){
@@ -245,7 +362,8 @@ void shakerSort(int *a, int n)
                 k = i;
             }
         }
-        right = k;
+
+        right = k; // Sau đó xem như đã sắp xếp
     }
 }
 ```
@@ -256,19 +374,16 @@ void shakerSort(int *a, int n)
 
 Thuật toán Insertion Sort sắp xếp dựa trên tư tưởng là không gian cần sắp xếp đã được sắp xếp một đoạn và ta chỉ cần thêm giá trị mới vào không gian này sao cho không gian mới được sắp xếp.
 
-Giả sử i phần tử đầu tiên $a_0, a_1,…,a_i-1$ đã có thứ tự.
+Giả sử i phần tử đầu tiên $a_0, a_1,…,a_n-1$ đã có thứ tự.
 
 Tìm cách chèn phần tử $a_i$ vào vị trí thích hợp của đoạn đã được sắp để có đoạn mới $a_0, a_1,…,a_i$ trở nên có thứ tự.
 
-Các bước thực hiện:
+**Các bước thực hiện**:
 
-Có n – 1 lần chèn
-
-Ở mỗi lần chèn ta phải:
-
-1. Tìm kiếm vị trí chèn hợp lệ (vị trí j).
-2. Tuần tự dời các phần tử từ vị trí j trở đi xuống 1 vị trí về cuối mảng.
-3. Đưa phần tử cần chèn vào vị trí j.
+Có n – 1 lần chèn tương đương n - 1 lần lặp, ở mỗi lần chèn ta cần:
+1. Tuần tự dời các phần tử từ vị trí i về trước tiến về i một vị trí.
+2. Tìm kiếm vị trí chèn hợp lệ (vị trí j + 1).
+3. Đưa phần tử cần chèn vào vị trí j + 1.
 
 ## Độ phức tạp thuật toán
 
@@ -294,7 +409,7 @@ void insertionSort(int *a,int n)
 
             //So sánh với phần tử trước đó (i-1), nếu bé hơn thì bắt đầu dời chỗ.
             //Dời chỗ cho đến khi gặp phần tử nhỏ hơn phần tử thứ i hồi nãy (x).
-            a[j + 1] = a [j];
+            a[j + 1] = a[j];
         }
 
         //Sau đó chèn phần tử i hồi nãy (x) vào vị trí đã tìm ở vòng lặp trên.
@@ -307,55 +422,33 @@ void insertionSort(int *a,int n)
 
 ## Ý tưởng
 
-Gồm hai phần: phân hoạch và sắp xếp, dựa trên ý tưởng chia để trị.
+Gồm hai phần: _phân hoạch_ và _sắp xếp_, dựa trên ý tưởng chia để trị.
 
-- **Bước 1** : Chọn tùy ý một phần tử a[k] trong dãy là phần tử nút trục (pivot), ý tưởng trình bày ở đây chọn ở giữa.
+- **Bước 1** : Chọn tùy ý một phần tử a[pivot] trong dãy là phần tử nút trục (pivot), ý tưởng trình bày ở đây chọn ở giữa.
 
-```python
-i = L
-j = R
-k = (L + R) / 2
-x = a[k]
-```
-
-Nếu $L \geq R$ (dãy có ít hơn 2 phần tử) kết thúc, dãy đã được sắp xếp.
-
-- **Bước 2** : Ngược lại thì tạo vòng lặp phát hiện và hiệu chỉnh cặp phần tử a[i], a[j] nằm sai chỗ.
-
-  - Trong khi (a[i] < x) i++
-  - Trong khi (a[j] > x) i--
-  - Nếu $i \leq j$: Swap (a[i], a[j])
-
-Nếu $i < j$, lặp lại bước 2. Ngược lại $i \geq j$ thì thoát vòng lặp và gọi đệ qui.
-
-Đại ý bước này là chuyển các phần tử nhỏ hơn pivot về bên trái pivot và lớn hơn pivot về bên phải pivot. Hay nói cách khác là thiết lập điểm phân hoạch.
+- **Bước 2** : Tạo vòng lặp phát hiện và hiệu chỉnh cặp phần tử a[i], a[j] nằm sai chỗ. Tức là tìm phần tử nhỏ hơn pivot và lớn hơn pivot để swap với nhau.
+  Mục đích là để chuyển các phần tử nhỏ hơn pivot về bên trái pivot và lớn hơn pivot về bên phải pivot. Hay nói cách khác là thiết lập điểm phân hoạch.
 
 - **Bước 3** Phân hoạch bằng đệ qui:
+  Gọi đệ qui đoạn bên trái pivot và đoạn bên phải pivot.
+  Bên trong các hàm đệ qui tiếp tục thực hiện từ bước 1 đến bước 2.
 
-Gọi đệ qui đoạn bên trái pivot từ phần tử đầu hiện tại là L đến vị trí j;
-
-Gọi đệ qui đoạn bên phải pivot từ phần tử i đến phần tử cuối hiện tại là R;
-
-Bên trong các hàm đệ qui tiếp tục thực hiện tử bước 1 đến bước 2.
-
-Bước đệ qui các mảng nhỏ hơn chính là bước trị, khi đi vào bước trị thì tiếp tục CẢ HAI bước chia để trị.
-
-Có nhiều kỹ thuật phân hoạch, có thể tham khảo thêm slide của HCMUS.
+> Bước gọi đệ qui cho các mảng nhỏ hơn chính là bước trị, khi đi vào bước trị thì tiếp tục CẢ HAI bước chia và trị.
 
 ## Phân tích
 
 **Lưu ý** : Việc chọn pivot là ngẫu nhiên, có thể chọn đầu, cuối hoặc ở giữa. Tuy nhiên chọn pivot ở đầu hoặc cuối trong một số trường hợp mảng gần như được sắp sẽ dẫn đến Worst case. Do đó chọn pivot ở giữa là chấp nhận được trong phần lớp các trường hợp. Mặc dù vậy, nếu chọn pivot ở cuối (hoặc đầu) thì việc phân hoạch có đôi chút sửa đổi. Có thể tham khảo ở [đây](https://nguyenvanhieu.vn/thuat-toan-sap-xep-quick-sort/).
 
-Ngoài ra, không phải lúc nào cũng nên chọn phần tử có GIÁ TRỊ trung bình (average). Vì giá trị trung bình này không đại diện cho sự phân phối đồng đều của các phần tử trong mảng. Mà phần tử tốt nhất là phần tử có GIÁ TRỊ trung vị (median). Dẫu vậy, tìm trung vị của một dãy không hề đơn giản, nên chúng ta không tiếp cận theo hướng này.
+Ngoài ra, không phải lúc nào cũng nên chọn phần tử có GIÁ TRỊ trung bình (average). Vì giá trị trung bình này không đại diện cho sự phân phối đồng đều của các phần tử trong mảng. Mà phần tử tốt nhất là phần tử trung vị (median) (vị trí ở giữa). Dẫu vậy, tìm trung vị của một dãy không hề đơn giản, nên chúng ta không tiếp cận theo hướng này.
 
 Do đó, chúng ta lost - tolerant chọn ba phần tử đầu, cuối và giữa. Nếu dính vào trường hợp xấu nhất thì phải chấp nhận mặc dù xác suất xảy ra worst case là rất thấp. Thêm nữa, có thể sử dụng một trick là: so sánh ba phần tử đầu, cuối và giữa rồi lấy Median của ba vị trí này và chọn làm pivot.
 
-**Sự khác biệt giữa Quick và Merge** : Merge mấu chốt ở bước trộn, bước chia rất đơn giản. Tuy nhiên bước chia của Quick Sort rất phức tạp và quan trọng nhưng bước trộn lại cực kì đơn giản.
+> **Sự khác biệt giữa Quick và Merge** : Merge mấu chốt ở bước trộn, bước chia rất đơn giản. Tuy nhiên bước chia của Quick Sort rất phức tạp và quan trọng nhưng bước trộn lại cực kì đơn giản.
 
 ## Đầu vào – Đầu ra
 
-- Input: Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc phân hoạch.
-- Output: Mảng A đã sắp xếp.
+- Input: Danh sách A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của danh sách chính hoặc phân hoạch.
+- Output: Danh sách A đã sắp xếp.
 
 ## Độ phức tạp thuật toán
 
@@ -397,6 +490,7 @@ int partition(int arr[], int left, int right)
     int pivot = arr[right]; // pivot
     int i = left;
     int j = right - 1;
+
     while (i < j)
     {
         while (i <= j && arr[i] < pivot)
@@ -406,6 +500,7 @@ int partition(int arr[], int left, int right)
         if (i <= j)
             swap(arr[i++], arr[j--]);
     }
+
     swap(arr[i], arr[right]);
     return i; // Trả về chỉ số dùng để phân hoạch
 }
