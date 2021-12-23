@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sorting.md</title>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+  
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #abb2bf;
+  background: #282c34;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #c678dd;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75;
+}
+
+.hljs-literal {
+  color: #56b6c2;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #98c379;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #e6c07b;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #d19a66;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #61aeee;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+ <script src=""></script>
+</head>
+
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains("vscode-dark") ||
+        document.body.classList.contains("vscode-high-contrast") ?
+        "dark" : "default",
+    });
+  </script>
+
+  <style>
+    img
+    {
+        display:block;
+        float:none;
+        margin-left:auto;
+        margin-right:auto;
+        width:50%;
+    }
+    p{
+        text-align: justify;
+    }
+    ul{
+        margin-left:5px;
+    }
+</style>
+<!-- slide -->
+<h1 id="c%C3%A1c-thu%E1%BA%ADt-to%C3%A1n-s%E1%BA%AFp-x%E1%BA%BFp">Các thuật toán sắp xếp</h1>
+<p>Các thuật toán sắp xếp gồm hai loại: sắp xếp nội (internal sorting), đưa toàn bộ dữ liệu vào bộ nhớ trong. Sắp xếp nội có kích thước dữ liệu không lớn và thời gian thực hiện thuật toán nhanh. Loại thứ hai là sắp xếp ngoại (external sorting), chỉ có một phần dữ liệu được đưa vào bộ nhớ trong, phần còn lại lưu ở bộ nhớ ngoài. Sắp xếp ngoại có kích thước dữ liệu rất lớn và thời gian thực hiện chậm.</p>
+<!-- slide -->
+<p><strong>Internal memory</strong> – bộ nhớ trong, chính xác là RAM. Sẽ mất dữ liệu khi tắt máy. Truy xuất dữ liệu ngẫu nhiên.</p>
+<p><strong>External memory</strong> – bộ nhớ ngoài, ngoài RAM hoặc Register. Điển hình là HDD hoặc SSD. Không mất dữ liệu khi tắt máy. Truy xuất dữ liệu trực tiếp phụ thuộc vào vị trí vật lý của dữ liệu.</p>
+<p><strong>Inplace</strong> : Không dùng bộ nhớ trung gian.</p>
+<!-- slide -->
+<p><strong>Stable</strong> : Một thuật toán được gọi là stable khi chúng giữ nguyên thứ tự của các phần tử tương tự tính chất với nhau. Chẳng hạn như ta có dãy</p>
+<p>$$
+1,7,4,5a,5b,5c,7,6
+$$</p>
+<p>Sau khi sắp xếp xong, thuật toán Stable sẽ không đảo thứ tự giữa 5a, 5b và 5c. Còn các thuật toán Unstable có thể đảo thành 5a, 5c, 5b hoặc 5c, 5b, 5a gì đấy.</p>
+<!-- slide -->
+<p>Một ví dụ khác là:</p>
+<p>$$
+1,9,82,2,19,27
+$$</p>
+<p>Một thuật toán Stable, sau khi sắp xếp dãy trên xong, thứ tự giữa 82 và 2 là không đổi, do chúng có cùng tính chất là giống nhau hàng đơn vị (82 và 02).</p>
+<!-- slide -->
+<p>Ngoại trừ Radix Sort thì còn lại đều là <strong>Comparison-based Sorting Algorithm</strong>. Tất cả các thuật toán Comparision-based mang tính tổng quát (General Purpose) thì lower bound là O(nlog(n)). Còn Radix Sort, mang tính đặc dụng hơn (Specific Purpose), thì có lower bound là O(n).</p>
+<p>Chúng ta phải xem xét các thuật toán dựa trên một ngữ cảnh nhất định.</p>
+<!-- slide -->
+<h1 id="internal-sorting">Internal Sorting</h1>
+<p>Có bốn loại internal sorting đó là</p>
+<ul>
+<li>Đổi chỗ (Exchange Sort) gồm Bubble Sort, Shaker Sort, Interchange Sort, Quick Sort,..</li>
+<li>Chèn (Insertion Sort) gồm Simple Insertion Sort, Binary Insertion Sort, Shell Sort,…</li>
+<li>Trộn (Merge Sort) gồm Merge Sort, Natural Merge Sort,…</li>
+<li>Lựa chọn (Selection Sort) gồm Simple Selection Sort, Heap Sort,…</li>
+</ul>
+<!-- slide -->
+<p>Trong đó Shell Sort, Heap Sort, Quick Sort, Merge Sort và Radix Sort là các thuật toán phức tạp nhưng chi phí thấp. Các thuật toán còn lại đơn giản nhưng chi phí cao.</p>
+<!-- slide -->
+<h1 id="interchange-sort">Interchange Sort</h1>
+<p><strong>Nghịch thế</strong> là một cặp giá trị $(a_i,a_j)$ khi $a_i$ và $a_j$ không thỏa điều kiện sắp thứ tự. Ví dụ nếu mảng một chiều có các phần tử tăng dần mà có một cặp $(a_i,a_j)$ nào đó giảm dần thì cặp đó được gọi là <strong>nghịch thế</strong>.</p>
+<!-- slide -->
+<h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
+<p>Thuật toán Interchange Sort sẽ duyệt qua tất cả các cặp giá trị trong mảng và hoán vị hai giá trị trong một cặp nếu cặp giá trị đó là <strong>nghịch thế</strong>.</p>
+<!-- slide -->
+<h2 id="%C4%91%E1%BA%A7u-v%C3%A0o-%E2%80%93-%C4%91%E1%BA%A7u-ra">Đầu vào – Đầu ra</h2>
+<ul>
+<li>Input: Mảng A gồm n phần tử chưa sắp xếp.</li>
+<li>Output: Mảng A đã sắp xếp.</li>
+</ul>
+<p>Kể từ thuật toán này trở đi, đầu vào và đầu ra của hầu hết các thuật toán sắp xếp khác đều như nhau.</p>
+<!-- slide -->
+<h2 id="%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Độ phức tạp thuật toán</h2>
+<ul>
+<li><strong>Best case</strong> : <em>Số lần so sánh</em>: n(n - 1)/2. <em>Số lần hoán vị</em>: 0.</li>
+<li><strong>Worst case</strong> : <em>Số lần so sánh</em>: n(n - 1)/2. <em>Số lần hoán vị</em>: n(n - 1)/2. Độ phức tạp $O(n^2)$.</li>
+<li><strong>Average Case</strong> : Độ phức tạp đa thức $O(n^2)$.</li>
+</ul>
+<!-- slide -->
+<h2 id="gi%E1%BA%A3i-thu%E1%BA%ADt-m%E1%BA%ABu">Giải thuật mẫu</h2>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">interchangeSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* a,<span class="hljs-keyword">int</span> n)</span>
+</span>{
+    <span class="hljs-comment">// Do xét cặp nên chỉ xét đến phần tử kế cuối</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i++)
+    {
+        <span class="hljs-comment">// So sánh với các phần tử còn lại khác chính nó</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; n;j++){
+
+            <span class="hljs-comment">//Giả sử xếp tăng dần</span>
+            <span class="hljs-keyword">if</span>(a[j] &gt; a[i])
+            {
+                <span class="hljs-keyword">int</span> temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+}
+</div></code></pre>
+<!-- slide -->
+<h1 id="selection-sort">Selection Sort</h1>
+<!-- slide -->
+<h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
+<p>Chọn phần tử nhỏ nhất (cực trị) cho các vị trí từ 0 đến n – 1.</p>
+<p>Lần chọn 0: Chọn phần tử nhỏ nhất (a[min]) từ 0 đến n – 1. Đổi chỗ hai nút tại vị trí min và 0.</p>
+<p>Lần chọn 1: Chọn phần tử nhỏ nhất (a[min]) từ 1 đến n – 1. Đổi chỗ hai nút tại vị trí min và 1.</p>
+<p>Lần chọn i: Chọn phần tử nhỏ nhất (a[min]) từ i đến n – 1. Đổi chỗ hai nút tại vị trí min và i.</p>
+<p>Lần chọn cuối: n – 2.</p>
+<!-- slide -->
+<p>Điểm thú vị của selection là có thể sort trong khoảng từ 0 đến k (k &lt; n). Ví dụ khi tuyển sinh, ta chỉ tuyển 500 học sinh đầu trong 1000 học sinh. Chúng ta sắp xếp theo tên của các học sinh, khi sắp xếp đến số lượng 500 thì ngừng, không cần duyệt qua toàn bộ dữ liệu đầu vào. Vậy Selection Sort nó có thể ngừng sort tại vị trí mong muốn nào đó trong quá trình sort, giúp tiết kiệm chi phí.</p>
+<!-- slide -->
+<p>Dễ hiểu, dễ cài đặt, dùng trong <strong>(prototype?)</strong>. Tức là khi mình build một hàm lớn, cần sắp xếp dữ liệu, chúng ta chọn Selection Sort để làm điều đó. Sau này, khi chúng ta cần tối ưu hóa thời gian thực hiện thì thay thế bằng các thuật toán khác mà không làm ảnh hưởng đến kết quả xử lý.</p>
+<!-- slide -->
+<h2 id="%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Độ phức tạp thuật toán</h2>
+<ul>
+<li><strong>Best case</strong> : Ở lượt thứ i, lúc nào cũng cần n – i – 1 lượt so sánh để xác định phần tử nhỏ nhất hiện hành.</li>
+</ul>
+<p>Nên <em>số lần so sánh</em>:</p>
+<p>$$
+\sum_{i=0}^{n-2}{n-i-1} = (n – 1) + (n – 2) + … + \
+(n\ –\ i\ –\ 1) + … + 1 = n(n – 1)/2.
+$$</p>
+<p><em>Số lần hoán vị</em>: 0.</p>
+<p>Độ phức tạp là: $O(n)$.</p>
+<!-- slide -->
+<ul>
+<li><strong>Worst case</strong> : Số lần so sánh: n(n – 1)/2. Số lần hoán vị: n – 1.</li>
+<li><strong>Average case</strong> : $O(n^2)$.</li>
+</ul>
+<!-- slide -->
+<h2 id="gi%E1%BA%A3i-thu%E1%BA%ADt-m%E1%BA%ABu">Giải thuật mẫu</h2>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">selectionSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *a, <span class="hljs-keyword">int</span> n)</span>
+</span>{
+    <span class="hljs-comment">// Phần tử kế cuối đã tự sắp xếp</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; n - <span class="hljs-number">1</span>; i++)
+    {
+        <span class="hljs-keyword">int</span> <span class="hljs-built_in">min</span> = i;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; n; j++)
+        {
+            <span class="hljs-keyword">if</span>(a[j] &lt; a[<span class="hljs-built_in">min</span>])
+
+                <span class="hljs-built_in">min</span> = j;
+        }
+        swap(a[i], a[<span class="hljs-built_in">min</span>]);
+    }
+}
+</div></code></pre>
+<!-- slide -->
+<h1 id="bubble-sort">Bubble Sort</h1>
+<!-- slide -->
+<h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
+<p>Xuất phát từ đầu dãy hoặc cuối dãy, đổi chỗ các cặp phần tử liền kề để đưa phần tử nhỏ hơn trong cặp phần tử đó về đúng đầu dãy hiện hành. Sau đó sẽ không xét đến nó ở bước tiếp theo, do vậy ở lần xử lý thử i thì vị trí đầu dãy là i.</p>
+<p>Cần phân biệt với Interchange Sort khi thuật toán Bubble Sort không so sánh tất cả các cặp tồn tại mà chỉ so sánh các cặp nghịch thế liền kề với nhau.</p>
+<!-- slide -->
+<h2 id="%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Độ phức tạp thuật toán</h2>
+<ul>
+<li><strong>Best case</strong> : <em>Số lần so sánh</em> là n(n – 1)/2, <em>số lần hoán vị</em> là 0. Độ phức tạp: O(n) (mảng đã sắp xếp).</li>
+<li><strong>Worst case</strong> : <em>Số lần so sánh</em> là n(n – 1)/2, <em>số lần hoán vị</em> là n(n – 1)/2. Độ phức tạp: O(n2)</li>
+<li><strong>Average case</strong> : O(n2).</li>
+</ul>
+<!-- slide -->
+<h2 id="gi%E1%BA%A3i-thu%E1%BA%ADt-m%E1%BA%ABu">Giải thuật mẫu</h2>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bubbleSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *a,<span class="hljs-keyword">int</span> n)</span>
+</span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i++)
+    {
+        <span class="hljs-keyword">bool</span> isSorted = <span class="hljs-literal">true</span>;<span class="hljs-comment">// Tạo ra một cờ lệnh</span>
+
+        <span class="hljs-comment">//Do chúng ta so sánh hai phần tử j và j + 1,nên: j + 1 &lt; n</span>
+        <span class="hljs-comment">//Sau mỗi vòng lặp thì giảm đi một phần tử nên trừ đi i: j + 1 &lt; n - i</span>
+        <span class="hljs-comment">//Chuyển vế đổi dấu ta có điều kiện là j &lt; n - i - 1</span>
+
+        <span class="hljs-comment">//Tức là cuối mảng sau mỗi lần lặp xem như đã sắp xếp.</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n - i - <span class="hljs-number">1</span>; j++){
+            <span class="hljs-keyword">if</span>(a[j] &lt; a[j + <span class="hljs-number">1</span>])
+            {
+                swap(a[j], a[j + <span class="hljs-number">1</span>]);
+                isSorted = <span class="hljs-literal">false</span>;
+            }
+        }
+
+        <span class="hljs-comment">//Nếu như không có sự thay đổi nào thì dừng sắp xếp.</span>
+        <span class="hljs-keyword">if</span>(isSorted) <span class="hljs-keyword">return</span>;
+    }
+}
+</div></code></pre>
+<!-- slide -->
+<h1 id="shaker-sort-cocktail-sort">Shaker Sort (Cocktail Sort)</h1>
+<!-- slide -->
+<h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
+<p>Trong mỗi lần sắp xếp, duyệt mảng theo 2 lượt từ hai phía khác nhau:</p>
+<p>Lượt đi: đẩy phần tử nhỏ về đầu mảng.</p>
+<p>Lượt về: đẩy phần tử lớn về cuối mảng.</p>
+<p>Ghi nhận lại các đoạn đã sắp xếp nhằm tiết kiệm các phép so sánh thừa.</p>
+<!-- slide -->
+<p>Shaker Sort là một dạng nâng cao của Bubble Sort nên nó có thể nhận diện được mảng đã sắp xếp. Đồng thời Shaker Sort sẽ tối ưu hơn Bubble Sort trong trường hợp dãy đã gần như có thứ tự. Ví dụ {2,3,4,5,1} thì Shaker Sort cần 2 lần đi và về, Bubble Sort cần 4 lần duyệt. Tuy nhiên nếu như Bubble Sort có cờ lệnh thì cũng sẽ còn 2 lần lặp (1 lần sắp xếp và 1 lần để biết mảng đã có thứ tự).</p>
+<!-- slide -->
+<h2 id="%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Độ phức tạp thuật toán</h2>
+<ul>
+<li><strong>Best case</strong> : $O(n)$ khi mảng đã hoàn toàn sắp xếp.</li>
+<li><strong>Worst case</strong> : $O(n^2)$.</li>
+<li><strong>Average case</strong> : $O(n^2)$.</li>
+</ul>
+<!-- slide -->
+<h2 id="gi%E1%BA%A3i-thu%E1%BA%ADt-m%E1%BA%ABu">Giải thuật mẫu</h2>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">shakerSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *a, <span class="hljs-keyword">int</span> n)</span>
+</span>{
+    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>, k = n - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span>(left &lt; right)
+    {
+        <span class="hljs-comment">//Lượt đi index giảm dần, đổi chỗ các cặp nghịch thế liền kề</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = right; i &gt; left; i--)
+        {
+            <span class="hljs-keyword">if</span>(a[i] &lt;  a[i - <span class="hljs-number">1</span>]){
+                swap(a[i], a[i - <span class="hljs-number">1</span>]);
+                k = i;<span class="hljs-comment">//Lưu lại vị trí có hoán vị</span>
+            }
+        }
+
+        <span class="hljs-comment">//Loại bỏ các đoạn đã sắp xếp</span>
+        left = k;
+
+        <span class="hljs-comment">//Lượt về index tăng dần</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = left; i &lt; right; i++)
+        {
+            <span class="hljs-keyword">if</span>(a[i] &gt; a[i + <span class="hljs-number">1</span>]){
+                swap(a[i], a[i + <span class="hljs-number">1</span>]);
+                k = i;
+            }
+        }
+        right = k;
+    }
+}
+</div></code></pre>
+<!-- slide -->
+<h1 id="insertion-sort">Insertion Sort</h1>
+<!-- slide -->
+<h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
+<p>Thuật toán Insertion Sort sắp xếp dựa trên tư tưởng là không gian cần sắp xếp đã được sắp xếp một đoạn và ta chỉ cần thêm giá trị mới vào không gian này sao cho không gian mới được sắp xếp.</p>
+<p>Giả sử i phần tử đầu tiên $a_0, a_1,…,a_i-1$ đã có thứ tự.</p>
+<p>Tìm cách chèn phần tử $a_i$ vào vị trí thích hợp của đoạn đã được sắp để có đoạn mới $a_0, a_1,…,a_i$ trở nên có thứ tự.</p>
+<!-- slide -->
+<p>Các bước thực hiện:</p>
+<p>Có n – 1 lần chèn</p>
+<p>Ở mỗi lần chèn ta phải:</p>
+<ol>
+<li>Tìm kiếm vị trí chèn hợp lệ (vị trí j).</li>
+<li>Tuần tự dời các phần tử từ vị trí j trở đi xuống 1 vị trí về cuối mảng.</li>
+<li>Đưa phần tử cần chèn vào vị trí j.</li>
+</ol>
+<!-- slide -->
+<h2 id="%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Độ phức tạp thuật toán</h2>
+<ul>
+<li><strong>Best case</strong> : Mỗi lần lặp sẽ có n – 1 bước so sánh. Số lần đổi chỗ là 0. Độ phức tạp sẽ là $O(n-1)$.</li>
+<li><strong>Worst case</strong> :</li>
+</ul>
+<p>Số lần so sánh tối đa trong lần chèn thứ i là $C(n)$.</p>
+<p>Số lần chèn tối đa thứ i là $M(n)$</p>
+<ul>
+<li><strong>Average case</strong> : $O(n^2)$.</li>
+</ul>
+<!-- slide -->
+<h2 id="gi%E1%BA%A3i-thu%E1%BA%ADt-m%E1%BA%ABu">Giải thuật mẫu</h2>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insertionSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *a,<span class="hljs-keyword">int</span> n)</span>
+</span>{
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++){
+
+        <span class="hljs-keyword">int</span> x = a[i];
+        <span class="hljs-keyword">int</span> j;
+        <span class="hljs-keyword">for</span>(j = i - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>  &amp;&amp; a[j] &gt; x; j--){
+
+            <span class="hljs-comment">//So sánh với phần tử trước đó (i-1), nếu bé hơn thì bắt đầu dời chỗ.</span>
+            <span class="hljs-comment">//Dời chỗ cho đến khi gặp phần tử nhỏ hơn phần tử thứ i hồi nãy (x).</span>
+            a[j + <span class="hljs-number">1</span>] = a [j];
+        }
+
+        <span class="hljs-comment">//Sau đó chèn phần tử i hồi nãy (x) vào vị trí đã tìm ở vòng lặp trên.</span>
+        a[j + <span class="hljs-number">1</span>] = x;
+    }
+}
+</div></code></pre>
+<!-- slide -->
+<h1 id="quick-sort">Quick Sort</h1>
+<!-- slide -->
+<h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
+<p>Gồm hai phần: phân hoạch và sắp xếp, dựa trên ý tưởng chia để trị.</p>
+<ul>
+<li><strong>Bước 1</strong> : Chọn tùy ý một phần tử a[k] trong dãy là phần tử nút trục (pivot), ý tưởng trình bày ở đây chọn ở giữa.</li>
+</ul>
+<pre class="hljs"><code><div>i = L
+j = R
+k = (L + R) / <span class="hljs-number">2</span>
+x = a[k]
+</div></code></pre>
+<p>Nếu $L \geq R$ (dãy có ít hơn 2 phần tử) kết thúc, dãy đã được sắp xếp.</p>
+<!-- slide -->
+<ul>
+<li>
+<p><strong>Bước 2</strong> : Ngược lại thì tạo vòng lặp phát hiện và hiệu chỉnh cặp phần tử a[i], a[j] nằm sai chỗ.</p>
+<ul>
+<li>Trong khi (a[i] &lt; x) i++</li>
+<li>Trong khi (a[j] &gt; x) i--</li>
+<li>Nếu $i \leq j$: Swap (a[i], a[j])</li>
+</ul>
+</li>
+</ul>
+<p>Nếu $i &lt; j$, lặp lại bước 2. Ngược lại $i \geq j$ thì thoát vòng lặp và gọi đệ qui.</p>
+<p>Đại ý bước này là chuyển các phần tử nhỏ hơn pivot về bên trái pivot và lớn hơn pivot về bên phải pivot. Hay nói cách khác là thiết lập điểm phân hoạch.</p>
+<!-- slide -->
+<ul>
+<li><strong>Bước 3</strong> Phân hoạch bằng đệ qui:</li>
+</ul>
+<p>Gọi đệ qui đoạn bên trái pivot từ phần tử đầu hiện tại là L đến vị trí j;</p>
+<p>Gọi đệ qui đoạn bên phải pivot từ phần tử i đến phần tử cuối hiện tại là R;</p>
+<p>Bên trong các hàm đệ qui tiếp tục thực hiện tử bước 1 đến bước 2.</p>
+<p>Bước đệ qui các mảng nhỏ hơn chính là bước trị, khi đi vào bước trị thì tiếp tục CẢ HAI bước chia để trị.</p>
+<!-- slide -->
+<p>Có nhiều kỹ thuật phân hoạch, có thể tham khảo thêm slide của HCMUS.</p>
+<!-- slide -->
+<h2 id="ph%C3%A2n-t%C3%ADch">Phân tích</h2>
+<p><strong>Lưu ý</strong> : Việc chọn pivot là ngẫu nhiên, có thể chọn đầu, cuối hoặc ở giữa. Tuy nhiên chọn pivot ở đầu hoặc cuối trong một số trường hợp mảng gần như được sắp sẽ dẫn đến Worst case. Do đó chọn pivot ở giữa là chấp nhận được trong phần lớp các trường hợp. Mặc dù vậy, nếu chọn pivot ở cuối (hoặc đầu) thì việc phân hoạch có đôi chút sửa đổi. Có thể tham khảo ở <a href="https://nguyenvanhieu.vn/thuat-toan-sap-xep-quick-sort/">đây</a>.</p>
+<!-- slide -->
+<p>Ngoài ra, không phải lúc nào cũng nên chọn phần tử có GIÁ TRỊ trung bình (average). Vì giá trị trung bình này không đại diện cho sự phân phối đồng đều của các phần tử trong mảng. Mà phần tử tốt nhất là phần tử có GIÁ TRỊ trung vị (median). Dẫu vậy, tìm trung vị của một dãy không hề đơn giản, nên chúng ta không tiếp cận theo hướng này.</p>
+<!-- slide -->
+<p>Do đó, chúng ta lost - tolerant chọn ba phần tử đầu, cuối và giữa. Nếu dính vào trường hợp xấu nhất thì phải chấp nhận mặc dù xác suất xảy ra worst case là rất thấp. Thêm nữa, có thể sử dụng một trick là: so sánh ba phần tử đầu, cuối và giữa rồi lấy Median của ba vị trí này và chọn làm pivot.</p>
+<p><strong>Sự khác biệt giữa Quick và Merge</strong> : Merge mấu chốt ở bước trộn, bước chia rất đơn giản. Tuy nhiên bước chia của Quick Sort rất phức tạp và quan trọng nhưng bước trộn lại cực kì đơn giản.</p>
+<!-- slide -->
+<h2 id="%C4%91%E1%BA%A7u-v%C3%A0o-%E2%80%93-%C4%91%E1%BA%A7u-ra">Đầu vào – Đầu ra</h2>
+<ul>
+<li>Input: Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc phân hoạch.</li>
+<li>Output: Mảng A đã sắp xếp.</li>
+</ul>
+<!-- slide -->
+<h2 id="%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Độ phức tạp thuật toán</h2>
+<ul>
+<li><strong>Best case</strong> : $O(nlog_2(n))$.</li>
+<li><strong>Worst case</strong> : $O(n^2)$.</li>
+<li><strong>Average case</strong> : $O(nlog_2(n))$.</li>
+</ul>
+<!-- slide -->
+<h2 id="gi%E1%BA%A3i-thu%E1%BA%ADt-m%E1%BA%ABu">Giải thuật mẫu</h2>
+<p>Trường hợp chọn pivot ở giữa</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *a,<span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span>
+</span>{
+    <span class="hljs-comment">//Chọn phần tử ở giữa làm phần tử pivot (nút trục)</span>
+    <span class="hljs-keyword">int</span> pivot = a[(left + right) / <span class="hljs-number">2</span>];
+    <span class="hljs-keyword">int</span> i = left, j = right;
+
+    <span class="hljs-comment">//Đưa các phần tử về đúng phía so với pivot</span>
+    <span class="hljs-keyword">while</span>(i &lt; j)
+    {
+        <span class="hljs-keyword">while</span>(a[i] &lt; pivot) i++;
+        <span class="hljs-keyword">while</span>(a[j] &gt; pivot) j--;
+        <span class="hljs-keyword">if</span>(i &lt;= j)
+            swap(a[i++],a[j--]);
+    }
+
+    <span class="hljs-comment">//Gọi đệ qui phân hoạch và sắp xếp</span>
+    <span class="hljs-keyword">if</span>(j &gt; left) quickSort(a, left, j);
+    <span class="hljs-keyword">if</span>(i &lt; right) quickSort(a, i, right);
+}
+</div></code></pre>
+<!-- slide -->
+<p>Trường hợp chọn pivot ở cuối</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arr[], <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span>
+</span>{
+    <span class="hljs-keyword">int</span> pivot = arr[right]; <span class="hljs-comment">// pivot</span>
+    <span class="hljs-keyword">int</span> i = left;
+    <span class="hljs-keyword">int</span> j = right - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (i &lt; j)
+    {
+        <span class="hljs-keyword">while</span> (i &lt;= j &amp;&amp; arr[i] &lt; pivot)
+            i++; <span class="hljs-comment">// Tìm phần tử &gt;= arr[pivot]</span>
+        <span class="hljs-keyword">while</span> (j &gt;= i &amp;&amp; arr[j] &gt; pivot)
+            j--; <span class="hljs-comment">// Tìm phần tử &lt;= arr[pivot]</span>
+        <span class="hljs-keyword">if</span> (i &lt;= j)
+            swap(arr[i++], arr[j--]);
+    }
+    swap(arr[i], arr[right]);
+    <span class="hljs-keyword">return</span> i; <span class="hljs-comment">// Trả về chỉ số dùng để phân hoạch</span>
+}
+</div></code></pre>
+<!-- slide -->
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arr[], <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (left &lt; right)
+    {
+        <span class="hljs-comment">// Tìm vị trí của pivot</span>
+        <span class="hljs-comment">// (do trước và sau khi phân hoạch pivot có thể thay đổi vị trí)</span>
+        <span class="hljs-keyword">int</span> pi = partition(arr, left, right);
+
+        <span class="hljs-comment">// Gọi đệ qui sắp xếp cho hai phân hoạch hai bên pivot</span>
+        <span class="hljs-comment">// (pivot nếu đã tìm được thì cố định ở vị trí đó luôn)</span>
+        quickSort(arr, left, pi - <span class="hljs-number">1</span>);
+        quickSort(arr, pi + <span class="hljs-number">1</span>, right);
+    }
+}
+</div></code></pre>
+<!-- slide -->
+<h1 id="merge-sort">Merge Sort</h1>
+<!-- slide -->
+<h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
+<p>Thuật toán Merge Sort được chia thành hai phần.</p>
+<p>Phần đầu tiên, chia các mảng thành hai không gian con, nếu các không gian con này có nhiều hơn một phần tử thì tiếp tục chia đôi. Ngược lại có duy nhất một phần tử hoặc không có phần tử nào (trong trường hợp dãy lẻ) thì bắt đầu trộn lại (gọi đệ qui).</p>
+<!-- slide -->
+<p>Phần thứ hai chính là quá trình trộn, trong quá trình trộn sẽ kết hợp sắp xếp mảng.</p>
+<p>Trộn 2 mảng con <strong>đã được sắp xếp</strong> thực hiện như sau:</p>
+<ol>
+<li>Chọn phần tử min ở vị trí đầu của một trong hai mảng, xếp vào mảng cần trộn.</li>
+<li>Phần tử nào đã xếp vào thì xóa đi, vị trí đầu của mảng là phần tử tiếp theo.</li>
+<li>Nếu chưa đến cuối mảng thì lặp lại bước 1. Nếu đã đến cuối của một mảng (luôn xảy ra một mảng đã sắp hết và một mảng thì chưa), thì thêm toàn bộ mảng kia vào mảng cần sắp.</li>
+</ol>
+<!-- slide -->
+<center>
+    <img src = "img/Sort1.png">
+</center>
+<!-- slide -->
+<h2 id="ph%C3%A2n-t%C3%ADch">Phân tích</h2>
+<p>Không tối ưu bộ nhớ vì dùng mảng tạm trong quá trình trộn. Nhanh hơn Quick Sort vì thời gian thực hiện Merge Sort có bậc nhỏ hơn $O(nlog_2(n))$, còn trong trường hợp tốt nhất Quick Sort mới có độ phức tạp là $O(nlog_2(n))$. Thường dùng Merge Sort để sắp khối dữ liệu lớn ở bộ nhớ ngoài.</p>
+<p>Một phiên bản khác của Merge Sort không dùng đến việc chia mảng là Bottom - Up Merge Sort. Thuật toán này sẽ trộn các phần tử liền kề với nhau rồi mở rộng ra. Chẳng hạn như nó sẽ trộn 2 phần tử liên tiếp thành mảng con 2 phần tử. Sau đó nó sẽ trộn tiếp 2 mảng gồm 2 phần tử với nhau thành mảng 4 phần tử. Cứ như thế cho đến khi trộn hết mảng cũng là lúc mảng đã được sắp xếp.</p>
+<!-- slide -->
+<p>Ngoài ra còn có Natural Merge Sort, thuật toán này sẽ không chia trực tiếp mà chẳng cần quan tâm đến thứ tự đã sắp xếp như Merge Sort. Ở đây nó sẽ xem xét các đường chạy (dãy đã có thứ tự). Trong khi Merge Sort cứng nhắc về số lần phân hoạch dựa vào chiều dài dãy là k, thì Natural Merge Sort sẽ dựa vào số đường chạy và mảng được sắp xếp là mảng chỉ có một đường chạy. Thực tế, người ta sử dụng Natural nhiều hơn trong trường hợp dãy đã sắp xếp một phần nào đó.</p>
+<p>Một scenario điển hình là sắp xếp dữ liệu có kích thước lớn, người ta sẽ đưa nó vào bộ nhớ trong sắp xếp một phần rồi đem ra bộ nhớ ngoài để sử dụng Natural Merge Sort.</p>
+<!-- slide -->
+<p>Do tính chất Non - inplace, thuật toán Merge Sort thường cần dùng bộ nhớ tạm trong quá trình thực thi, vì vậy mà thuật toán này sẽ sử dụng trong các cấu trúc dữ liệu khác mảng chẳng hạn như Linked List hoặc File.</p>
+<!-- slide -->
+<h2 id="%C4%91%E1%BA%A7u-v%C3%A0o-%E2%80%93-%C4%91%E1%BA%A7u-ra">Đầu vào – Đầu ra</h2>
+<ul>
+<li>Input: Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc phân hoạch.</li>
+<li>Output: Mảng A đã sắp xếp.</li>
+</ul>
+<!-- slide -->
+<h2 id="%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Độ phức tạp thuật toán</h2>
+<p>Độ phức tạp của phần merge là $O(n + m) = O(n)$ (n, m là kích thước hai mảng con cần trộn), và phần chia là $O(log_2n)$.</p>
+<p>Best case, Worst case, Average case: $O(nlog_2(n))$.</p>
+<!-- slide -->
+<h2 id="gi%E1%BA%A3i-thu%E1%BA%ADt-m%E1%BA%ABu">Giải thuật mẫu</h2>
+<h3 id="ph%E1%BA%A7n-chia-m%E1%BA%A3ng">Phần chia mảng</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mergeSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *a,<span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span>
+</span>{
+    <span class="hljs-keyword">if</span>(left &lt;= right) <span class="hljs-keyword">return</span>;
+    <span class="hljs-comment">//Tìm vị trí giữa mảng để chia</span>
+
+    <span class="hljs-keyword">int</span> mid = (left + right) / <span class="hljs-number">2</span>;
+    mergeSort(a,left,mid);
+    mergeSort(a,mid + <span class="hljs-number">1</span>,right);
+    merge(a,left,mid,right);
+}
+</div></code></pre>
+<h3 id="ph%E1%BA%A7n-tr%E1%BB%99n-m%E1%BA%A3ng">Phần trộn mảng</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *a, intleft, intmid, intright)</span>
+</span>{
+    <span class="hljs-keyword">int</span> *temp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[right - left + <span class="hljs-number">1</span>];
+    <span class="hljs-comment">//Mảng thứ nhất từ left đến mid, mảng thứ hai từ mid + 1 đến right</span>
+    <span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> i = left;
+    <span class="hljs-keyword">int</span> j = mid + <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">//?Khi hai mảng con chưa xét đến phần tử cuối</span>
+    <span class="hljs-keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;=right)
+    {
+        <span class="hljs-comment">//?So sánh phần tử đầu mỗi mảng và cho vào mảng phụ</span>
+        <span class="hljs-keyword">if</span> (a[i] &lt;= a[j])
+        {
+            temp[k++] =a[i++];
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            temp[k++] =a[j++];
+        }
+    }
+</div></code></pre>
+<!-- slide -->
+<pre class="hljs"><code><div>
+    <span class="hljs-comment">//?Chép các phần tử còn lại (nếu còn)</span>
+    <span class="hljs-keyword">while</span> (i &lt;= mid)
+    {
+        temp[k++] =a[i++];
+    }
+    <span class="hljs-keyword">while</span> (j &lt;= right)
+    {
+        temp[k++] =a[j++];
+    }
+
+    <span class="hljs-comment">//?Chép mảng phụ lại vào mảng chính</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = left; i &lt;= right; i++)
+    {
+        <span class="hljs-comment">//Index của a tính từ left</span>
+        a[i] =temp[i - left];
+    }
+}
+</div></code></pre>
+<!-- slide -->
+<h1 id="heap-sort">Heap Sort</h1>
+<h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
+<p>Thuật toán Heap Sort được chia làm hai phần.</p>
+<p><strong>Phần đầu tiên</strong> là xây dựng Max Heap từ mảng đầu vào.</p>
+<p>Heap là gì? Heap là cây nhị phân hoàn chỉnh.</p>
+<p>Cây nhị phân hoàn chỉnh là gì? Cây nhị phân là cây mỗi nốt đều có 0 hoặc 2 con.</p>
+<!-- slide -->
+<center>
+    <img src = "img/Sort2.png">
+</center>
+<!-- slide -->
+<p>Hai phần tử con của một phần tử i bất kỳ là 2i+1 và 2i+2 (nếu phần tử đầu là 0) hoặc 2i và 2i+1 (nếu phần tử đầu là 1), là các phần tử <strong>liên đới</strong>.</p>
+<p>Max Heap là Heap mà mỗi nốt đều lớn hơn các nốt con của nó. Phần này chính là đi xây dựng Max Heap từ phần tử giữa mảng. Theo hình trên thì các số chính là vị trí index trong mảng. Các số này được xây dựng trên việc duyệt cây theo các mức.</p>
+<p>Ví dụ Max Heap 11 phần tử: 9, 8, 7, 5, 6, 3, 2, 4, 1, 1, 2. Có thể thấy với mỗi phần tử thứ i, nó sẽ lớn hơn các phần tử ở vị trí 2i+1 và 2i+2. Min Heap 7 phần tử 1, 2, 2, 3, 4, 5, 7.</p>
+<!-- slide -->
+<p>Ví dụ có mảng [1, 2, 6, 2, 3, 8, 9, 5], thì cây đồ thị sẽ là:</p>
+<center>
+    <img src = "img/Sort3.png">
+</center>
+<!-- slide -->
+<p>Ở ví dụ trên, đầu tiên sẽ vun đống phần tử giữa mảng, index sẽ là
+n/2 – 1 = 8/2 – 1 = 3.
+Mà a[3] là 2.
+Chúng ta sẽ hoán vị một phần tử với node con của nó nếu giá trị của node đó bé hơn node con. Và nếu cả hai node con đều lớn hơn, ta sẽ hoán vị với node con lớn nhất. Theo ví dụ trên thì ta có một hoán vị là (2-5).</p>
+<!-- slide -->
+<p>Các phần tử bị hoán vị phải được vun đống ở vị trí mà nó hoán vị đến. Việc này để vun đống lại Heap sau khi có sự ảnh hưởng gây ra bởi việc swap. ở trên ta sẽ xét vun đống tại a[7], nhưng không có gì xảy ra vì nốt này không có con.</p>
+<center>
+    <img src = "img/Sort4.png">
+</center>
+<!-- slide -->
+<p>Tiếp theo sẽ xét vun đống tiến dần về đầu mảng, ta xét a[2] = 6. Sẽ có hoán vị (6-9). Xét đệ quy tại a[6] nhưng không có gì xảy ra do nốt không có con.</p>
+<center>
+    <img src = "img/Sort5.png">
+</center>
+<!-- slide -->
+<p>Xét a[1] = 2, ta sẽ hoán vị (2-5) và xét a[3], nhưng do 2 = 2 nên không vun đống tiếp.</p>
+<center>
+    <img src = "img/Sort6.png">
+</center>
+<!-- slide -->
+<p>Cuối cùng ta xét a[0] = 1, hoán vị (1-9, 1-8). Được kết quả là:</p>
+<center>
+    <img src = "img/Sort7.png">
+</center>
+<p>Mảng của chúng ta sau khi vun đống: [9, 5, 8, 2, 3, 1, 6, 2].</p>
+<!-- slide -->
+<p><strong>Phần thứ hai</strong> là sắp xếp. Ở phần này, khi đã xây dựng được Max Heap, chúng ta sẽ sắp xếp.</p>
+<p>Ở phần sắp xếp này, chúng ta sẽ đổi chỗ phần tử đầu và phần tử cuối mảng. Sau đó sẽ xóa đi phần tử cuối mảng và tiếp tục Heapify (vun đống) như ở bước 1 (phần tử đầu hồi nãy có giá trị lớn nhất). Nhưng không cần Heapify toàn bộ, chỉ <strong>xét phần tử đầu tiên</strong> và build Heap ở đó do các phần tử còn lại đã được Heapify rồi.</p>
+<!-- slide -->
+<p>Heap Sort là một thuật toán <strong>cải tiến của Selection Sort</strong>. Nhờ sử dụng cấu trúc Heap mà Heap Sort có số lần so sánh ít hơn Selection, nó chỉ tốn O(nlog(n)) chi phí so sánh.</p>
+<!-- slide -->
+<h2 id="ph%C3%A2n-t%C3%ADch">Phân tích</h2>
+<p><strong>Advantage</strong> là một thuật toán hiệu quả, sử dụng ít bộ nhớ và ổn định. Ngoài ra thì cũng có thể tìm top k trong n như Selection Sort.</p>
+<p>Heap Sort dựa vào việc so sánh để sắp xếp. Và sự so sánh này trên cấu trúc Heap không bị ảnh hưởng bởi kiểu dữ liệu (int, float, bool, char,...). Ngoài ra, đối với chuỗi ký tự, còn có <strong>Dictionary-based.</strong></p>
+<p>Ví dụ &quot;been&quot; &gt; &quot;ant&quot;, &quot;been&quot; &lt; &quot;boy&quot;, &quot;Been&quot; &lt; &quot;been&quot;.
+<strong>Disadvantage</strong> là một loại Unstable Sort, nếu dữ liệu quá lớn thì sẽ không hoạt động hiệu quả bằng Merge Sort.</p>
+<!-- slide -->
+<h2 id="%C4%91%E1%BA%A7u-v%C3%A0o-%E2%80%93-%C4%91%E1%BA%A7u-ra">Đầu vào – Đầu ra</h2>
+<ul>
+<li>Input: Mảng A gồm n phần tử chưa sắp xếp.</li>
+<li>Output: Mảng A đã sắp xếp.</li>
+</ul>
+<!-- slide -->
+<h2 id="%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Độ phức tạp thuật toán</h2>
+<p><strong>Best case:</strong> $O(nlog_2(n))$</p>
+<p><strong>Worst case:</strong> $O(nlog_2(n))$</p>
+<p><strong>Average case:</strong> $O(nlog_2(n))$</p>
+<p>=&gt; Consistency</p>
+<!-- slide -->
+<h2 id="gi%E1%BA%A3i-thu%E1%BA%ADt-m%E1%BA%ABu">Giải thuật mẫu</h2>
+<p>(Tham khảo GeeksforGeeks)</p>
+<h3 id="ph%E1%BA%A7n-heapify-vun-%C4%91%E1%BB%91ng">Phần Heapify (vun đống)</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// To heapify a subtree rooted with node i, which is an index in arr.</span>
+<span class="hljs-comment">// n is size of heap</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heapify</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* arr, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> i)</span>
+</span>{
+    <span class="hljs-keyword">int</span> largest = i; <span class="hljs-comment">// Initialize largest as root</span>
+    <span class="hljs-keyword">int</span> l = <span class="hljs-number">2</span> * i + <span class="hljs-number">1</span>; <span class="hljs-comment">// left = 2*i + 1</span>
+    <span class="hljs-keyword">int</span> r = <span class="hljs-number">2</span> * i + <span class="hljs-number">2</span>; <span class="hljs-comment">// right = 2*i + 2</span>
+
+    <span class="hljs-comment">// If left child is larger than root</span>
+    <span class="hljs-keyword">if</span> (l &lt; n &amp;&amp; arr[l] &gt; arr[largest])
+        largest = l;
+
+    <span class="hljs-comment">// If right child is larger than largest so far</span>
+    <span class="hljs-keyword">if</span> (r &lt; n &amp;&amp; arr[r] &gt; arr[largest])
+        largest = r;
+
+    <span class="hljs-comment">// If largest is not root</span>
+    <span class="hljs-keyword">if</span> (largest != i) {
+        swap(arr[i], arr[largest]);
+
+        <span class="hljs-comment">// Recursively heapify the affected sub-tree</span>
+        heapify(arr, n, largest);
+    }
+}
+</div></code></pre>
+<!-- slide -->
+<h3 id="ph%E1%BA%A7n-s%E1%BA%AFp-x%E1%BA%BFp">Phần sắp xếp</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// main function to do heap sort</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heapSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* arr, <span class="hljs-keyword">int</span> n)</span>
+</span>{
+    <span class="hljs-comment">// Build heap (rearrange array) from middle to beginning of the array</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--)
+        heapify(arr, n, i);
+
+    <span class="hljs-comment">// One by one extract an element from heap</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n - <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">0</span>; i--) {
+        <span class="hljs-comment">// Move current root to end</span>
+        swap(arr[<span class="hljs-number">0</span>], arr[i]);
+
+        <span class="hljs-comment">// call max heapify on the reduced heap</span>
+        heapify(arr, i, <span class="hljs-number">0</span>);
+    }
+}
+</div></code></pre>
+<h1 id="conclusion">Conclusion</h1>
+<p>Ta cần phân tích một chút lý do tại sao ba thuật toán Quick, Merge và Heap lại là $O(n.log_2n)$.</p>
+<p>Nếu để ý, dễ dàng thấy được rằng cả ba thuật toán này đều có các bước chia đôi không gian sắp xếp ra để thao tác. Các bước để chia đôi một danh sách bất kỳ là $log_2n$. Lý do là vì hàm $log_2n$ là hàm biểu thị cho một số nào đó, cần thiết để chia một danh sách n phần tử thành cơ số của nó (cơ số 2). Và cũng nói luôn, trong khoa học máy tính, chúng ta chỉ xét cơ số hai đối với hàm logarith. Ngược lại với nó là hàm mũ, nó biểu thị cho số lần để nhân tích lũy các cơ số lên để thành một số n nào đó. Nói cách khác, $log_2n$ biểu thị cho số lần cần thiết để chia danh sách ban đầu thành nhiều phần nhỏ cho tiện việc xử lý.</p>
+<p>Tiếp sau đó là việc xử lý. Trong hầu hết các công việc xử lý, như hàm Merge, thuật toán bắt buộc phải chạm tới từng phần tử trong bất kỳ lần trộn nào. Tức là công việc trộn này tốn O(n) thời gian để thực hiện. Quick sort cũng vậy, ở mỗi bước chúng ta đều phải duyệt các phần tử để đổi chỗ cho nhau. Tương tự đối với Heap sort.</p>
+<p>Do vậy, với mỗi lần chia danh sách ban đầu ra làm hai, chúng ta phải duyệt qua n phần tử. Từ đó mà độ phức tạp tổng cộng sẽ là $O(n.log_2n)$.</p>
+<h1 id="radix-sort">Radix Sort</h1>
+<h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
+<p><strong>Radix – cơ số</strong>: Thuật toán này sắp xếp dựa trên cơ số (2, 8, 10, 16), mỗi cơ số có một cách biểu diễn riêng cho các giá trị phụ thuộc vào số lượng ký số (số ký tự để biểu diễn giá trị). Và mỗi bucket trong Radix Sort sẽ lưu các giá trị theo một loại ký số riêng biệt. Do đó nếu giá trị không thể hiện dưới dạng một số cơ số nhất định nào đó (chẳng hạn số thực) thì việc sắp xếp sẽ khá khó khăn.</p>
+<p><strong>Điểm mạnh</strong> của Radix Sort là nhanh, chỉ phụ thuộc vào số lượng ký số. Chẳng hạn có n phần tử nhưng phần tử có chiều dài ký số lớn nhất là 7, thì chỉ cần 7 lần sắp xếp.</p>
+<p><strong>Điểm yếu</strong> là số lượng bộ nhớ cần dùng rất lớn, nếu cơ số là 10, thì mảng sử dụng để lưu ký số là 10. Hơn nữa, nếu có n phần tử trong số các bucket, thì mảng cần sử dụng sẽ là 10*n.</p>
+<p><strong>Ứng dụng</strong> thường gặp của Radix Sort là sắp xếp thư từ dựa trên mã bưu chính (Postal Code hoặc ZIP Code)</p>
+<p>Thay vì sort GIÁ TRỊ, chúng ta sẽ sort theo CHỮ SỐ của cơ số. Radix Sort có thể sử dụng Counting Sort làm hàm con của nó. Radix Sort là một thuật toán stable.</p>
+<p>Chẳng hạn ta có một dãy số dưới đây:</p>
+<p>$$
+129,450,356,118,928,323,875,223
+$$</p>
+<p>Đầu tiên, chúng ta dùng Counting Sort, sắp xếp các số dựa vào hàng đơn vị, số nào có hàng đơn vị lớn hơn thì đem ra sau, nhỏ hơn thì đem về trước.</p>
+<p>Ta gạch dưới các chữ số hàng đơn vị.</p>
+<p>$$
+129, 450, 356, 118, 928, 323, 875, 223
+$$</p>
+<p>Sắp xếp dựa trên hàng đơn vị.</p>
+<p>$$
+450, 323, 223, 875, 356, 118, 928, 129
+$$</p>
+<p>Chúng ta có thể thấy thứ tự giữa các số có cùng hàng đơn vị vẫn không đổi. Sau đó ta gạch dưới các chữ số hàng chục và tiếp tục sắp xếp.</p>
+<p>$$
+118, 323, 223, 928, 129, 450, 356, 875
+$$</p>
+<p>Tiếp tục đối với hàng trăm.</p>
+<p>$$
+118, 129, 223, 323, 356, 450, 875, 928
+$$</p>
+<p>Kết quả thu được chính là mảng đã sắp xếp.</p>
+<h2 id="%C4%91%E1%BA%A7u-v%C3%A0o---%C4%91%E1%BA%A7u-ra">Đầu vào - Đầu ra</h2>
+<p>Tương tự các loại Sort không cần chia mảng.</p>
+<h2 id="%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Độ phức tạp thuật toán</h2>
+<p>Xét riêng Counting Sort, cần tốn n lần duyệt qua n phần tử. Đồng thời các key cần xem xét phụ thuộc vào hệ cơ số, nếu hệ cơ số là 10 thì k = 10 (các số chạy từ 0 đến 9), như ở ví dụ trên.</p>
+<p>Tổng độ phức tạp thuật toán của mỗi lần thực hiện Counting Sort là O(n+k). Và chúng ta thực hiện Counting Sort phụ thuộc vào số chữ số tối đa của phần tử. Nếu phần tử có 3 chữ số như ví dụ trên thì Counting Sort thực hiện 3 lần, d chữ số thì thực hiện d lần.</p>
+<p>Vậy độ phức tạp tổng quát là $O(d*(n+k))$.</p>
+<p>Xét trong các trường hợp cụ thể khi giới hạn $k \leq nc$ và b là n. Thì độ phức tạp là $O(n)$.</p>
+<h2 id="gi%E1%BA%A3i-thu%E1%BA%ADt-m%E1%BA%ABu">Giải thuật mẫu</h2>
+<p>(Tham khảo GeeksforGeeks)</p>
+<h3 id="ph%E1%BA%A7n-counting-sort">Phần Counting Sort</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">countSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arr[], <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> <span class="hljs-built_in">exp</span>)</span>
+</span>{
+    <span class="hljs-keyword">int</span> *output = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n]; <span class="hljs-comment">// output array</span>
+    <span class="hljs-keyword">int</span> i, count[<span class="hljs-number">10</span>] = { <span class="hljs-number">0</span> };
+
+    <span class="hljs-comment">// Store count of occurrences in count[]</span>
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; n; i++)
+        count[(arr[i] / <span class="hljs-built_in">exp</span>) % <span class="hljs-number">10</span>]++;
+
+    <span class="hljs-comment">// Change count[i] so that count[i] now contains actual</span>
+    <span class="hljs-comment">//  position of this digit in output[]</span>
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">10</span>; i++)
+        count[i] += count[i - <span class="hljs-number">1</span>];
+
+    <span class="hljs-comment">// Build the output array</span>
+    <span class="hljs-keyword">for</span> (i = n - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+        output[count[(arr[i] / <span class="hljs-built_in">exp</span>) % <span class="hljs-number">10</span>] - <span class="hljs-number">1</span>] = arr[i];
+        count[(arr[i] / <span class="hljs-built_in">exp</span>) % <span class="hljs-number">10</span>]--;
+    }
+
+    <span class="hljs-comment">// Copy the output array to arr[], so that arr[] now</span>
+    <span class="hljs-comment">// contains sorted numbers according to current digit</span>
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; n; i++)
+        arr[i] = output[i];
+}
+</div></code></pre>
+<h3 id="ph%E1%BA%A7n-radix-sort">Phần Radix Sort</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// A utility function to get maximum value in arr[]</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getMax</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arr[], <span class="hljs-keyword">int</span> n)</span>
+</span>{
+    <span class="hljs-keyword">int</span> mx = arr[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++)
+        <span class="hljs-keyword">if</span> (arr[i] &gt; mx)
+            mx = arr[i];
+    <span class="hljs-keyword">return</span> mx;
+}
+<span class="hljs-comment">// The main function to that sorts arr[] of size n using</span>
+<span class="hljs-comment">// Radix Sort</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">radixsort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arr[], <span class="hljs-keyword">int</span> n)</span>
+</span>{
+    <span class="hljs-comment">// Find the maximum number to know number of digits</span>
+    <span class="hljs-keyword">int</span> m = getMax(arr, n);
+
+    <span class="hljs-comment">// Do counting sort for every digit. Note that instead</span>
+    <span class="hljs-comment">// of passing digit number, exp is passed. exp is 10^i</span>
+    <span class="hljs-comment">// where i is current digit number</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> <span class="hljs-built_in">exp</span> = <span class="hljs-number">1</span>; m / <span class="hljs-built_in">exp</span> &gt; <span class="hljs-number">0</span>; <span class="hljs-built_in">exp</span> *= <span class="hljs-number">10</span>)
+        countSort(arr, n, <span class="hljs-built_in">exp</span>);
+}
+</div></code></pre>
+<h1 id="so-s%C3%A1nh-gi%E1%BB%AFa-c%C3%A1c-thu%E1%BA%ADt-to%C3%A1n">So sánh giữa các thuật toán</h1>
+<img src = "img/Sort8.png">
+
+</body>
+
+</html>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$', '$']],displayMath: [ ['$$','$$'], ["\\[","\\]"] ],}, 
+  messageStyle: "none" ,
+});
+</script>
