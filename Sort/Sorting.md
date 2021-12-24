@@ -233,7 +233,7 @@ void selectionSort(int *a, int n)
 
 ## Ý tưởng
 
-Xuất phát từ đầu dãy hoặc cuối dãy, đổi chỗ các cặp phần tử liền kề để đưa phần tử nhỏ hơn trong cặp phần tử đó về đúng đầu dãy hiện hành. Sau đó sẽ không xét đến nó ở bước tiếp theo, do vậy ở lần xử lý thứ i thì vị trí đầu dãy là i.
+Xuất phát từ đầu dãy hoặc cuối dãy, đổi chỗ các cặp phần tử liền kề để đưa phần tử lớn hơn trong cặp phần tử đó về đúng cuối dãy hiện hành. Sau đó sẽ không xét đến nó ở bước tiếp theo, do vậy ở lần xử lý thứ i thì vị trí đầu dãy là n - i - 1.
 
 Cần phân biệt rõ ràng với Interchange Sort vì thuật toán Bubble Sort không so sánh tất cả các cặp tồn tại mà chỉ so sánh các cặp nghịch thế liền kề với nhau.
 
@@ -489,7 +489,12 @@ Gồm hai phần: _phân hoạch_ và _sắp xếp_, dựa trên ý tưởng chi
 
 > Bước gọi đệ qui cho các mảng nhỏ hơn chính là bước trị, khi đi vào bước trị thì tiếp tục CẢ HAI bước chia và trị.
 
-## Phân tích
+## Đầu vào – Đầu ra
+
+- Input: Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc mảng con cần sắp xếp.
+- Output: Mảng A đã sắp xếp.
+
+## Phân tích thuật toán
 
 **Lưu ý** : Việc chọn pivot là ngẫu nhiên, có thể chọn đầu, cuối hoặc ở giữa. Tuy nhiên chọn pivot ở đầu hoặc cuối trong một số trường hợp mảng gần như được sắp sẽ dẫn đến Worst case. Do đó chọn pivot ở giữa là chấp nhận được trong phần lớp các trường hợp. Mặc dù vậy, nếu chọn pivot ở cuối (hoặc đầu) thì việc phân hoạch có đôi chút sửa đổi. Có thể tham khảo ở [đây](https://nguyenvanhieu.vn/thuat-toan-sap-xep-quick-sort/).
 
@@ -499,10 +504,11 @@ Do đó, chúng ta lost - tolerant chọn ba phần tử đầu, cuối và gi�
 
 > **Sự khác biệt giữa Quick và Merge** : Merge mấu chốt ở bước trộn, bước chia rất đơn giản. Tuy nhiên bước chia của Quick Sort rất phức tạp và quan trọng nhưng bước trộn lại cực kì đơn giản.
 
-## Đầu vào – Đầu ra
+**Điểm mạnh** 
+Là thuật toán có tốc độ nhanh sử dụng cho các dãy đầu vào lớn, không sử dụng bộ nhớ phụ, stack sử dụng khá nhỏ.
 
-- Input: Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc mảng con cần sắp xếp.
-- Output: Mảng A đã sắp xếp.
+**Điểm yếu** 
+Unstable, trường hợp xấu nhất có thể dẫn đến độ phức tạp bình phương. Khá khó để cài đặt, đặc biệt là cài đặt mà không dùng đệ quy.
 
 ## Phân tích độ phức tạp thuật toán
 
@@ -681,44 +687,95 @@ void quickSort(int arr[], int left, int right)
 
 ## Ý tưởng
 
-Thuật toán Merge Sort được chia thành hai phần.
- 
-Phần đầu tiên, chia các mảng thành hai không gian con, nếu các không gian con này có nhiều hơn một phần tử thì tiếp tục chia đôi. Ngược lại có duy nhất một phần tử (trong trường hợp dãy lẻ) hoặc không có phần tử nào thì bắt đầu trộn lại (gọi đệ qui).
+Thuật toán Merge Sort là một thuật toán ứng dụng phương pháp chia để trị, thuật toán này gồm hai phần.
+
+Phần đầu tiên, chia các mảng thành hai không gian con, nếu các không gian con này có nhiều hơn một phần tử thì tiếp tục chia đôi. Ngược lại có duy nhất một phần tử hoặc không có phần tử nào (trong trường hợp dãy lẻ) thì bắt đầu trộn lại (gọi đệ qui).
 
 Phần thứ hai chính là quá trình trộn, trong quá trình trộn sẽ kết hợp sắp xếp mảng.
-
-Trộn 2 mảng con **đã được sắp xếp** thực hiện như sau:
+Trộn 2 mảng con được thực hiện như sau:
 
 1. Chọn phần tử min ở vị trí đầu của một trong hai mảng, xếp vào mảng cần trộn.
 2. Phần tử nào đã xếp vào thì xóa đi, vị trí đầu của mảng là phần tử tiếp theo.
 3. Nếu chưa đến cuối mảng thì lặp lại bước 1. Nếu đã đến cuối của một mảng (luôn xảy ra một mảng đã sắp hết và một mảng thì chưa), thì thêm toàn bộ mảng kia vào mảng cần sắp.
 
-<center>
-    <img src = "img/Sort1.png">
-</center>
-
-## Phân tích
-
-Không tối ưu bộ nhớ vì dùng mảng tạm trong quá trình trộn. Nhanh hơn Quick Sort vì thời gian thực hiện Merge Sort có bậc nhỏ hơn $O(nlog_2(n))$, còn trong trường hợp tốt nhất Quick Sort mới có độ phức tạp là $O(nlog_2(n))$. Thường dùng Merge Sort để sắp khối dữ liệu lớn ở bộ nhớ ngoài.
-
-Một phiên bản khác của Merge Sort không dùng đến việc chia mảng là Bottom - Up Merge Sort. Thuật toán này sẽ trộn các phần tử liền kề với nhau rồi mở rộng ra. Chẳng hạn như nó sẽ trộn 2 phần tử liên tiếp thành mảng con 2 phần tử. Sau đó nó sẽ trộn tiếp 2 mảng gồm 2 phần tử với nhau thành mảng 4 phần tử. Cứ như thế cho đến khi trộn hết mảng cũng là lúc mảng đã được sắp xếp.
-
-Ngoài ra còn có Natural Merge Sort, thuật toán này sẽ không chia trực tiếp mà chẳng cần quan tâm đến thứ tự đã sắp xếp như Merge Sort. Ở đây nó sẽ xem xét các đường chạy (dãy đã có thứ tự). Trong khi Merge Sort cứng nhắc về số lần phân hoạch dựa vào chiều dài dãy là k, thì Natural Merge Sort sẽ dựa vào số đường chạy và mảng được sắp xếp là mảng chỉ có một đường chạy. Thực tế, người ta sử dụng Natural nhiều hơn trong trường hợp dãy đã sắp xếp một phần nào đó.
-
-Một scenario điển hình là sắp xếp dữ liệu có kích thước lớn, người ta sẽ đưa nó vào bộ nhớ trong sắp xếp một phần rồi đem ra bộ nhớ ngoài để sử dụng Natural Merge Sort.
-
-Do tính chất Non - inplace, thuật toán Merge Sort thường cần dùng bộ nhớ tạm trong quá trình thực thi, vì vậy mà thuật toán này sẽ sử dụng trong các cấu trúc dữ liệu khác mảng chẳng hạn như Linked List hoặc File.
+<img src="img/Sort17.png">
 
 ## Đầu vào – Đầu ra
 
 - Input: Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc phân hoạch.
 - Output: Mảng A đã sắp xếp.
 
+## Phân tích thuật toán
+
+Không tối ưu bộ nhớ vì dùng mảng tạm trong quá trình trộn. Nhanh hơn Quick Sort vì thời gian thực hiện Merge Sort có bậc là $O(nlog_2(n))$, còn trong trường hợp tốt nhất hoặc trung bình Quick Sort mới có độ phức tạp là $O(nlog_2(n))$. Thường dùng Merge Sort để sắp lượng dữ liệu lớn ở bộ nhớ ngoài.
+
+Do tính chất Non - inplace, thuật toán Merge Sort thường cần dùng bộ nhớ tạm trong quá trình thực thi, vì vậy mà thuật toán này thường được sử dụng trong các cấu trúc dữ liệu khác mảng chẳng hạn như Linked List hoặc File.
+
+**Điểm mạnh**
+Có độ phức tạp ở ba case là như nhau nên mang tính ổn định. Tốc độ nhanh đối với những dữ liệu có kích thước lớn. Ứng dụng trong external sorting. Stable Sort.
+
+**Điểm yếu**
+Sử dụng bộ nhớ phụ, nếu dùng Linked List thì có thể giảm bớt vấn đề này (giảm ra sao :question:). Đối với lượng dữ liệu nhỏ thì không hiệu quả. Không thể nhận biết mảng đã sắp xếp.
+
+## Phân tích độ phức tạp thuật toán
+
+Ta đã biết trong các bài toán chia đôi không gian thuật toán làm hai như Binary Search hoặc Quick Sort thì độ phức tạp của việc chia ra như vậy là $O(log_2(n))$. Nói cách khác, ta cần $k = O(log_2(n)$ bước để chia một mảng n phần tử thành các mảng có 1 phần tử. Ngược lại cũng cần $k = O(log_2(n))$ lần nhân đôi một phần tử để trở thành mảng có n phần tử.
+
+Từ đó ta có được độ phức tạp của bước chia mảng trong Merge Sort là $O(log_2(n))$.
+
+Ngoài ra, khi trộn mảng, ta phải duyệt qua từng phần tử của hai mảng con bất kỳ. Như vậy độ phức tạp phần trộn là $O(n + m)$, với n và m là kích thước của hai mảng con.
+
+Nói cách khác, nếu gọi T(n) là độ phức tạp thời gian của thuật toán, ta có lần chia đầu tiên sẽ là
+
+$$
+T(n) = 2 * T(n/2) + n
+$$
+
+$2 * T(n/2)$ là độ phức tạp cho hai mảng con có kích thước bằng hoặc chênh nhau một phần tử.
+n là số lần duyệt qua n phần tử trong mỗi lần trộn. Do có k lần chia cũng như k lần trộn nên ta gộp chúng lại với nhau.
+
+Lần chia thứ hai
+
+$$
+T(n) = 2 * (2 * T(n/4) + n/2) + n\\
+= 4 * T(n/4) + 2 * n
+$$
+
+Lần chia thứ ba
+
+$$
+T(n) = 4 * (2 * T(n/8) + n/4) + 2 * n\\
+= 8 * T(n/8) + 3 * n
+$$
+
+Tổng quát cho lần chia thứ k
+
+$$
+T(n) = 2^k * T(n/2^k)  + k * n
+$$
+
+Ta có số lần chia là $k = log_2(n)$ (luôn chia đôi), thay vào biểu thức trên, có được:
+
+$$
+T(n) = n * T(1)  + n * log_2(n)\\
+= n * (log_2(n) + 1)
+$$
+
+Kết luận độ phức tạp thuật toán là $O(nlog_2(n))$.
+
+Ba trường hợp của Merge Sort là như nhau bởi vì Merge Sort luôn chia đôi mảng và quét hết qua n phần tử trong các lần trộn ở mỗi mức.
+
+Độ phức tạp không gian cũng thế, ở ba trường hợp đều là độ phức tạp tuyến tính.
+
 ## Độ phức tạp thuật toán
 
-Độ phức tạp của phần merge là $O(n + m) = O(n)$ (n, m là kích thước hai mảng con cần trộn), và phần chia là $O(log_2n)$.
+| Cases        | Complexity     |
+| :----------- | :------------- |
+| Best case    | $O(nlog_2(n))$ |
+| Worst case   | $O(nlog_2(n))$ |
+| Average case | $O(nlog_2(n))$ |
 
-Best case, Worst case, Average case: $O(nlog_2(n))$.
+Space Complexity: O(n)
 
 ## Giải thuật mẫu
 
@@ -728,8 +785,8 @@ Best case, Worst case, Average case: $O(nlog_2(n))$.
 void mergeSort(int *a,int left, int right)
 {
     if(left <= right) return;
-    //Tìm vị trí giữa mảng để chia
 
+    //Tìm vị trí giữa mảng để chia
     int mid = (left + right) / 2;
     mergeSort(a,left,mid);
     mergeSort(a,mid + 1,right);
@@ -781,94 +838,145 @@ void merge(int *a, intleft, intmid, intright)
 }
 ```
 
+## Biến thể
+
+### Bottom - Up
+
+Một phiên bản khác của Merge Sort không dùng đến việc chia mảng là Bottom - Up Merge Sort. Thuật toán này sẽ trộn các phần tử liền kề với nhau rồi mở rộng ra. Chẳng hạn như nó sẽ trộn 2 phần tử liên tiếp thành mảng con 2 phần tử. Sau đó nó sẽ trộn tiếp 2 mảng gồm 2 phần tử với nhau thành mảng 4 phần tử. Cứ như thế cho đến khi trộn hết mảng cũng là lúc mảng đã được sắp xếp.
+
+<img src="img/Sort18.png">
+<img src="img/Sort19.png">
+<img src="img/Sort20.png">
+
+(Hình ảnh tham khảo [interviewbit](https://www.interviewbit.com/tutorial/merge-sort-algorithm/))
+
+### Natural Merge Sort
+
+Tham khảo [wikipedia](https://en.wikipedia.org/wiki/Merge_sort#Natural_merge_sort).
+
+Ngoài ra còn có Natural Merge Sort, thuật toán này sẽ không chia trực tiếp mà chẳng cần quan tâm đến thứ tự đã sắp xếp như Merge Sort. Ở đây nó sẽ xem xét các đường chạy (dãy đã có thứ tự). Trong khi Merge Sort cứng nhắc về số lần phân hoạch dựa vào chiều dài dãy là k, thì Natural Merge Sort sẽ dựa vào số đường chạy và mảng được sắp xếp là mảng chỉ có một đường chạy. Thực tế, người ta sử dụng Natural nhiều hơn trong trường hợp dãy đã sắp xếp một phần nào đó.
+
+Bởi vì Merge Sort thông thường không nhận biết được một dãy đã sắp xếp nên trong thực tế người ta không dùng Merge Sort thuần để ứng dụng. Thay vào đó họ sử dụng Natural Merge Sort tận dụng các đường chạy để tối ưu thuật toán.
+Đường chạy là một dãy tăng không giảm. Ví dụ dãy 7 8 1 2 5 6 4 3 sẽ có bốn đường chạy là (7, 8), (1, 2, 5, 6), (4) và (3). Khi chọn ra được các đường chạy trong cùng một mảng, chúng ta sẽ tiến hành trộn tuần tự các đường chạy đó lại với nhau. Ví dụ sắp xếp cho dãy trên, ta có:
+
+<img src="img/Sort21.png">
+
+Trộn hai đường chạy đầu tiên lại với nhau
+
+<img src="img/Sort22.png">
+
+Tiếp tục trộn
+
+<img src="img/Sort23.png">
+
+Cuối cùng ta được dãy đã sắp xếp
+<img src="img/Sort24.png">
+
+Thay vì phân ra quá nhiều mảng con, phiên bản này của Merge Sort chỉ phân ra k đường chạy nhất định rồi trộn chúng lại với nhau.
+
+Một scenario điển hình là sắp xếp dữ liệu có kích thước lớn, người ta sẽ đưa nó vào bộ nhớ trong sắp xếp một phần rồi đem ra bộ nhớ ngoài để sử dụng Natural Merge Sort.
+
 # Heap Sort
 
 ## Ý tưởng
 
-Thuật toán Heap Sort được chia làm hai phần.
+Thuật toán Heap Sort được chia làm hai phần là xây dựng Max Heap và sắp xếp.
 
-**Phần đầu tiên** là xây dựng Max Heap từ mảng đầu vào.
+**Heap** là cây nhị phân hoàn chỉnh.
 
-Heap là gì? Heap là cây nhị phân hoàn chỉnh.
+**Cây nhị phân hoàn chỉnh** là cấu trúc cây nhị phân hoàn hảo nhưng trừ mức cuối, ở mức cuối các node lá dồn hết qua trái càng xa càng tốt.
 
-Cây nhị phân hoàn chỉnh là gì? Cây nhị phân là cây mỗi nốt đều có 0 hoặc 2 con.
+<img src="img/Sort2.png">
 
-<center>
-    <img src = "img/Sort2.png">
-</center>
+Hai phần tử con của một phần tử **a[i]** bất kỳ sẽ nằm ở vị trí **2i + 1** và **2i + 2** (nếu phần tử đầu là 0) hoặc **2i** và **2i + 1** (nếu phần tử đầu là 1). Các phần tử này gọi là các **phần tử liên đới**. Các số đánh trong hình trên chính là vị trí index của các phần tử khi thể hiện dưới dạng mảng. Nếu duyệt cây theo các mức (Level Order Traversal), ta sẽ thu được một danh sách tăng dần các vị trí index từ 1 đến n (hoặc từ 0 đến n – 1).
 
-Hai phần tử con của một phần tử i bất kỳ là 2i+1 và 2i+2 (nếu phần tử đầu là 0) hoặc 2i và 2i+1 (nếu phần tử đầu là 1), là các phần tử **liên đới**.
+**Vun đống** (Heapify) là một thao tác kiểm tra xem node đang xét có giá trị lớn hơn giá trị của node con nó hay chưa. Chúng ta sẽ hoán vị một phần tử với node con của nó nếu giá trị của node đó bé hơn node con. Và nếu cả hai node con đều lớn hơn, ta sẽ hoán vị với node con lớn nhất.
 
-Max Heap là Heap mà mỗi nốt đều lớn hơn các nốt con của nó. Phần này chính là đi xây dựng Max Heap từ phần tử giữa mảng. Theo hình trên thì các số chính là vị trí index trong mảng. Các số này được xây dựng trên việc duyệt cây theo các mức.
+**Max Heap** là một heap sao cho các node đều lớn hơn các node con của nó. Có thể có hai node bằng nhau trong trường hợp Max Heap sử dụng cho thuật toán. Để xây dựng Max Heap, ta sẽ vun đống từ giữa mảng. Ta không cần phải đi xây dựng một cấu trúc cây nhị phân trừu tượng mà sẽ thao tác trực tiếp trên mảng dữ liệu đầu vào.
 
-Ví dụ Max Heap 11 phần tử: 9, 8, 7, 5, 6, 3, 2, 4, 1, 1, 2. Có thể thấy với mỗi phần tử thứ i, nó sẽ lớn hơn các phần tử ở vị trí 2i+1 và 2i+2. Min Heap 7 phần tử 1, 2, 2, 3, 4, 5, 7.
+Giả sử ta cần xây dựng Max Heap từ mảng dưới đây
 
-Ví dụ có mảng [1, 2, 6, 2, 3, 8, 9, 5], thì cây đồ thị sẽ là:
+<img src="img/sort3.png">
 
-<center>
-    <img src = "img/Sort3.png">
-</center>
+Phần tử xét vun đống là giữa mảng, có vị trí index là `i = int(5 - 1)/2 = 2` hoặc `i = 6/2 - 1 = 2`.
 
-Ở ví dụ trên, đầu tiên sẽ vun đống phần tử giữa mảng, index sẽ là
-n/2 – 1 = 8/2 – 1 = 3.
-Mà a[3] là 2.
-Chúng ta sẽ hoán vị một phần tử với node con của nó nếu giá trị của node đó bé hơn node con. Và nếu cả hai node con đều lớn hơn, ta sẽ hoán vị với node con lớn nhất. Theo ví dụ trên thì ta có một hoán vị là (2-5).
+Bước đầu tiên là **`swap(9,10)`** vì 10 lớn hơn 9.
 
-Các phần tử bị hoán vị phải được vun đống ở vị trí mà nó hoán vị đến. Việc này để vun đống lại Heap sau khi có sự ảnh hưởng gây ra bởi việc swap. ở trên ta sẽ xét vun đống tại a[7], nhưng không có gì xảy ra vì nốt này không có con.
+<img src="img/sort4.png">
 
-<center>
-    <img src = "img/Sort4.png">
-</center>
+Các phần tử bị hoán vị phải được vun đống ở vị trí mà nó hoán vị đến. Việc này để đảm bảo các node luôn có giá trị lớn hơn node con của nó sau khi có sự thay đổi gây ra bởi công việc hoán vị. Ở trên do `arr[5]` là node lá nên không có gì xảy ra.
 
-Tiếp theo sẽ xét vun đống tiến dần về đầu mảng, ta xét a[2] = 6. Sẽ có hoán vị (6-9). Xét đệ quy tại a[6] nhưng không có gì xảy ra do nốt không có con.
+Sau khi xét `arr[2]` thì ta tiếp tục xét `arr[1]` (cứ thế tiến dần về đầu mảng).
 
-<center>
-    <img src = "img/Sort5.png">
-</center>
+<img src="img/sort5.png">
 
-Xét a[1] = 2, ta sẽ hoán vị (2-5) và xét a[3], nhưng do 2 = 2 nên không vun đống tiếp.
+Nhận thấy node này đã được vun đống sẵn rồi nên bỏ qua và xét `arr[0]`.
 
-<center>
-    <img src = "img/Sort6.png">
-</center>
+<img src="img/sort6.png">
 
-Cuối cùng ta xét a[0] = 1, hoán vị (1-9, 1-8). Được kết quả là:
+Ở đây ta thấy 12 > 10 > 1 nên ta sẽ **`swap(12,1)`**. Sau đó xét vun đống ở `arr[1]`, nơi mà ta vừa thực hiện hoán vị để bảo toàn Max Heap. Tại `arr[1]` ta thấy 6 > 5 > 1, thực hiện **`swap(6,1)`** và xét `arr[4]` ở bước tiếp theo. Node `arr[4]` là node lá nên không có gì xảy ra, ta thu được Max Heap hoàn chỉnh.
 
-<center>
-    <img src = "img/Sort7.png">
-</center>
+(Hình ảnh tham khảo từ [programmingquiz](https://www.programiz.com/dsa/heap-sort))
 
-Mảng của chúng ta sau khi vun đống: [9, 5, 8, 2, 3, 1, 6, 2].
+>**Tổng quát hóa cho quá trình xây dựng Max Heap**:
+- Xét vun đống Max Heap tại vị trí giữa mảng. Lý do chọn vị trí này vì các vị trí sau sẽ không tồn tại bất kỳ node con nào.
+- Khi giá trị của node con lớn hơn node đang xét, hoán vị chúng với nhau. Nếu hai node con đều lớn hơn, chọn node con lớn nhất.
+- Khi xảy ra hoán vị, cần xét vun đống tại vị trí được hoán vị tới của node đang xét. Ví dụ hoán vị giá trị của node tại vị trí i với vị trí j, thì ta cần phải xét vun đống tại vị trí j.
+- Lặp lại quá trình xét cho đến phần tử đầu mảng.
 
-**Phần thứ hai** là sắp xếp. Ở phần này, khi đã xây dựng được Max Heap, chúng ta sẽ sắp xếp.
+>**Sau khi xây dựng được Max Heap, ta sẽ lặp lại quá trình sắp xếp n lần như sau**:
+- Hoán vị phần tử đầu với phần tử cuối mảng, sau đó loại bỏ phần tử cuối mảng ra khỏi phạm vi vun đống. Vị trí cuối mảng xem như đã được sắp xếp. 
+- Tiến hành vun đống cho vị trí đầu tiên trong mảng, do các vị trí còn lại đều đã được vun đống.
+- Lặp lại quá trình này khi chỉ còn một phần tử trong mảng hay nói cách khác là tất cả các phần tử đều đã chuyển đến cuối mảng và được sắp xếp.
 
-Ở phần sắp xếp này, chúng ta sẽ đổi chỗ phần tử đầu và phần tử cuối mảng. Sau đó sẽ xóa đi phần tử cuối mảng và tiếp tục Heapify (vun đống) như ở bước 1 (phần tử đầu hồi nãy có giá trị lớn nhất). Nhưng không cần Heapify toàn bộ, chỉ **xét phần tử đầu tiên** và build Heap ở đó do các phần tử còn lại đã được Heapify rồi.
+## Phân tích thuật toán
 
 Heap Sort là một thuật toán **cải tiến của Selection Sort**. Nhờ sử dụng cấu trúc Heap mà Heap Sort có số lần so sánh ít hơn Selection, nó chỉ tốn O(nlog(n)) chi phí so sánh.
 
-## Phân tích
+Heap Sort dựa vào việc so sánh để sắp xếp. Và sự so sánh này trên cấu trúc Heap không bị ảnh hưởng bởi kiểu dữ liệu (int, float, bool, char,...). Ngoài ra, đối với chuỗi ký tự, còn có **Dictionary - based** :question:. Ứng dụng trong **Priority Queues** :question:.
 
-**Advantage** là một thuật toán hiệu quả, sử dụng ít bộ nhớ và ổn định. Ngoài ra thì cũng có thể tìm top k trong n như Selection Sort.
+Ví dụ: "been" > "ant", "been" < "boy", "Been" < "been".
 
-Heap Sort dựa vào việc so sánh để sắp xếp. Và sự so sánh này trên cấu trúc Heap không bị ảnh hưởng bởi kiểu dữ liệu (int, float, bool, char,...). Ngoài ra, đối với chuỗi ký tự, còn có **Dictionary-based.**
+**Điểm mạnh** 
+- Là một thuật toán hiệu quả, sử dụng ít bộ nhớ và ổn định. 
+- Ngoài ra thì cũng có thể tìm top k trong n như Selection Sort.
+- Có Worst Case tốt hơn Quick Sort.
 
-Ví dụ "been" > "ant", "been" < "boy", "Been" < "been".
-**Disadvantage** là một loại Unstable Sort, nếu dữ liệu quá lớn thì sẽ không hoạt động hiệu quả bằng Merge Sort.
+**Điểm yếu** 
+- Là một loại Unstable Sort, nếu dữ liệu quá lớn thì sẽ không hoạt động hiệu quả bằng Merge Sort. 
+- Chỉ tốt hơn Quick Sort ở Worst Case, còn lại thì kém hiệu quả hơn ở các case khác.
+- Khó cài đặt code.
+- Ít ứng dụng hơn Quick Sort, Merge Sort.
 
-## Đầu vào – Đầu ra
+## Phân tích độ phức tạp thuật toán
 
-- Input: Mảng A gồm n phần tử chưa sắp xếp.
-- Output: Mảng A đã sắp xếp.
+Ta đã biết chiều cao của cây nhị phân có n nodes là $log_2(n)$. Để vun đống tại node bất kỳ thì thuật toán luôn phải so sánh nó với hai node con. Việc so sánh này sẽ đào sâu đến khi nào chạm node lá, nên chi phí cho việc so sánh sẽ là $O(log_2(n))$.
+
+Trường hợp tốt nhất thì Max Heap đã được xây dựng, không tồn tại bất kỳ phép hoán vị nào, xấu nhất là khi phải đẩy phần tử đang xét vun đống đến tận node lá, tốn $log_2(n)$ lần hoán vị.
+
+Trong bước build Max Heap thì cần xét vun đống cho n/2 phần tử, do đó tổng chi phí trong bước này là $O(\frac{n}{2}*log_2(n)) \sim O(nlog_2(n))$. 
+
+*Thực tế, bước build Max Heap có độ phức tạp là O(n), nhưng do không ảnh hưởng đến tổng độ phức tạp nên không cần đi sâu. Có thể xem ở [đây](https://www.happycoders.eu/algorithms/heapsort/).*
+
+Ở bước sắp xếp, mỗi lần sắp xếp cũng cần build Max Heap, tốn chi phí $log_2(n)$ để thực hiện phép so sánh, trường hợp xấu nhất thì số phép hoán vị cũng là $log_2(n)$. Và ta thực hiện việc sắp xếp này cho n - 1 phần tử (phần tử cuối cùng mặc định đã được sắp). Do đó chi phí của bước sắp xếp sẽ là $O(nlog_2(n))$.
+
+Do hai bước này thực hiện liền kề nhau, tổng chi phí cho thuật toán là $O(nlog_2(n))$.
+
+Tương tự như Merge Sort, cả ba cases của thuật toán đều có chi phí như nhau là $O(nlog_2(n))$.
+
+>Đối với dữ liệu đã sắp xếp (kể cả đã sắp xếp đảo ngược), thì Heap Sort có tốc độ nhanh hơn, câu trả lời là [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor) :question:.
+
+(Tham khảo [programmingquiz](https://www.programiz.com/dsa/heap-sort) và [happycoders](https://www.happycoders.eu/algorithms/heapsort/))
 
 ## Độ phức tạp thuật toán
 
-**Best case:** $O(nlog_2(n))$
+| Cases        | Complexity     |
+| :----------- | :------------- |
+| Best case    | $O(nlog_2(n))$ |
+| Worst case   | $O(nlog_2(n))$ |
+| Average case | $O(nlog_2(n))$ |
 
-**Worst case:** $O(nlog_2(n))$
-
-**Average case:** $O(nlog_2(n))$
-
-=> Consistency
+Space Complexity: O(1)
 
 ## Giải thuật mẫu
 
@@ -898,23 +1006,26 @@ void heapify(int* arr, int n, int i)
 ### Phần sắp xếp
 
 ```c++
-// main function to do heap sort
 void heapSort(int* arr, int n)
 {
-    // Build heap (rearrange array) from middle to beginning of the array
+    // Xây dựng heap từ giữa mảng đến đầu mảng
     for (int i = n / 2 - 1; i >= 0; i--)
         heapify(arr, n, i);
 
-    // One by one extract an element from heap
+    // Sắp xếp
     for (int i = n - 1; i > 0; i--) {
-        // Move current root to end
+        // Chuyển phần tử root về phần mảng đã được sắp xếp
         swap(arr[0], arr[i]);
 
-        // call max heapify on the reduced heap
+        // Tái xây dựng Max Heap ở phần tử root mới
         heapify(arr, i, 0);
     }
 }
 ```
+
+## Biến thể
+
+
 
 # Conclusion
 
