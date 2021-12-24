@@ -142,6 +142,11 @@ Dễ hiểu, dễ cài đặt, dùng trong **(prototype?)**. Tức là khi mình
 **Điểm yếu**
 Mảng dữ liệu lớn và phân bố có gần như có thứ tự sẽ làm cho thuật toán chạy chậm và không hiệu quả.
 
+> Khi nào nên sử dụng?
+
+- Khi danh sách đầu vào là nhỏ
+- Bộ nhớ bị giới hạn
+
 ## Phân tích độ phức tạp thuật toán
 
 Tham khảo [opengenus](https://iq.opengenus.org/time-complexity-of-selection-sort/).
@@ -244,6 +249,10 @@ Là một thuật toán dễ cài đặt, dễ hiểu và hoạt động tốt c
 
 **Điểm yếu**
 Không hiệu quả đối với mảng có số lượng phần tử lớn, thường thì Bubble Sort được dùng trong giảng dạy hơn là áp dụng thực tiễn.
+
+> Khi nào nên sử dụng?
+
+- Mảng đầu vào có kích thước cực nhỏ và hoặc gần như có thứ tự.
 
 ## Phân tích độ phức tạp thuật toán
 
@@ -394,6 +403,12 @@ Có n – 1 lần chèn tương đương n - 1 lần lặp, ở mỗi lần chè
 
 <img src="img/Sort10.png">
 
+> Khi nào nên sử dụng?
+
+- Mảng đầu vào nhỏ hoặc gần như có thứ tự.
+- Cần sự stable cho dữ liệu vì đây là thuật toán Stable.
+- Bộ nhớ sử dụng bị hạn chế
+
 ## Phân tích độ phức tạp thuật toán
 
 Tham khảo ở [happycoders](https://www.happycoders.eu/algorithms/insertion-sort/).
@@ -504,11 +519,24 @@ Do đó, chúng ta lost - tolerant chọn ba phần tử đầu, cuối và gi�
 
 > **Sự khác biệt giữa Quick và Merge** : Merge mấu chốt ở bước trộn, bước chia rất đơn giản. Tuy nhiên bước chia của Quick Sort rất phức tạp và quan trọng nhưng bước trộn lại cực kì đơn giản.
 
-**Điểm mạnh** 
-Là thuật toán có tốc độ nhanh sử dụng cho các dãy đầu vào lớn, không sử dụng bộ nhớ phụ, stack sử dụng khá nhỏ.
+> **[Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians)**: Là một phương pháp để chọn pivot nhằm tránh rơi vào trường hợp Worst Case của Quick Sort.
 
-**Điểm yếu** 
-Unstable, trường hợp xấu nhất có thể dẫn đến độ phức tạp bình phương. Khá khó để cài đặt, đặc biệt là cài đặt mà không dùng đệ quy.
+**Điểm mạnh**
+
+- Không sử dụng bộ nhớ phụ.
+- Stack sử dụng khá nhỏ.
+- Là một thuật toán sử dụng hàm có đệ quy đuôi, đệ quy đuôi là đệ quy mà lời gọi đệ quy là thứ cuối cùng mà hàm thực hiện. Hàm sử dụng đệ quy đuôi có thể được tối ưu hóa bởi compiler nên nó hiệu quả hơn hàm không dùng đệ quy đuôi
+
+**Điểm yếu**
+
+- Unstable Sort
+- Trường hợp xấu nhất có thể dẫn đến độ phức tạp bình phương.
+- Khá khó để cài đặt, đặc biệt là cài đặt mà không dùng đệ quy.
+
+> Khi nào nên sử dụng?
+
+- Hiệu quả với kích thước dữ liệu mà bộ nhớ chứa được (bộ nhớ trong), hoạt động tốt hơn đối với kích thước dữ liệu nhỏ.
+- Kích thước dữ liệu lớn thì không tốt bằng Merge Sort.
 
 ## Phân tích độ phức tạp thuật toán
 
@@ -712,10 +740,23 @@ Không tối ưu bộ nhớ vì dùng mảng tạm trong quá trình trộn. Nha
 Do tính chất Non - inplace, thuật toán Merge Sort thường cần dùng bộ nhớ tạm trong quá trình thực thi, vì vậy mà thuật toán này thường được sử dụng trong các cấu trúc dữ liệu khác mảng chẳng hạn như Linked List hoặc File.
 
 **Điểm mạnh**
-Có độ phức tạp ở ba case là như nhau nên mang tính ổn định. Tốc độ nhanh đối với những dữ liệu có kích thước lớn. Ứng dụng trong external sorting. Stable Sort.
+
+- Stable Sort.
+- Có độ phức tạp ở ba case là như nhau nên mang tính ổn định.
+- Tốc độ nhanh đối với những dữ liệu có kích thước lớn.
+- Ứng dụng trong External Sorting.
 
 **Điểm yếu**
-Sử dụng bộ nhớ phụ, nếu dùng Linked List thì có thể giảm bớt vấn đề này (giảm ra sao :question:). Đối với lượng dữ liệu nhỏ thì không hiệu quả. Không thể nhận biết mảng đã sắp xếp.
+
+- Sử dụng bộ nhớ phụ, nếu dùng Linked List thì có thể giảm bớt vấn đề này (giảm ra sao :question:).
+- Đối với lượng dữ liệu nhỏ thì không hiệu quả.
+- Không thể nhận biết mảng đã sắp xếp.
+
+> Khi nào thì sử dụng?
+
+- Khi cấu trúc dữ liệu không hỗ trợ truy cập ngẫu nhiên (dùng linked list).
+- Sắp xếp ở bộ nhớ ngoài, khi truy cập trực tiếp hao phí rất nhiều so với truy cập tuần tự :question:.
+- Cần tính ổn định.
 
 ## Phân tích độ phức tạp thuật toán
 
@@ -918,14 +959,16 @@ Nhận thấy node này đã được vun đống sẵn rồi nên bỏ qua và 
 
 (Hình ảnh tham khảo từ [programmingquiz](https://www.programiz.com/dsa/heap-sort))
 
->**Tổng quát hóa cho quá trình xây dựng Max Heap**:
+> **Tổng quát hóa cho quá trình xây dựng Max Heap**:
+
 - Xét vun đống Max Heap tại vị trí giữa mảng. Lý do chọn vị trí này vì các vị trí sau sẽ không tồn tại bất kỳ node con nào.
 - Khi giá trị của node con lớn hơn node đang xét, hoán vị chúng với nhau. Nếu hai node con đều lớn hơn, chọn node con lớn nhất.
 - Khi xảy ra hoán vị, cần xét vun đống tại vị trí được hoán vị tới của node đang xét. Ví dụ hoán vị giá trị của node tại vị trí i với vị trí j, thì ta cần phải xét vun đống tại vị trí j.
 - Lặp lại quá trình xét cho đến phần tử đầu mảng.
 
->**Sau khi xây dựng được Max Heap, ta sẽ lặp lại quá trình sắp xếp n lần như sau**:
-- Hoán vị phần tử đầu với phần tử cuối mảng, sau đó loại bỏ phần tử cuối mảng ra khỏi phạm vi vun đống. Vị trí cuối mảng xem như đã được sắp xếp. 
+> **Sau khi xây dựng được Max Heap, ta sẽ lặp lại quá trình sắp xếp n lần như sau**:
+
+- Hoán vị phần tử đầu với phần tử cuối mảng, sau đó loại bỏ phần tử cuối mảng ra khỏi phạm vi vun đống. Vị trí cuối mảng xem như đã được sắp xếp.
 - Tiến hành vun đống cho vị trí đầu tiên trong mảng, do các vị trí còn lại đều đã được vun đống.
 - Lặp lại quá trình này khi chỉ còn một phần tử trong mảng hay nói cách khác là tất cả các phần tử đều đã chuyển đến cuối mảng và được sắp xếp.
 
@@ -937,16 +980,21 @@ Heap Sort dựa vào việc so sánh để sắp xếp. Và sự so sánh này t
 
 Ví dụ: "been" > "ant", "been" < "boy", "Been" < "been".
 
-**Điểm mạnh** 
-- Là một thuật toán hiệu quả, sử dụng ít bộ nhớ và ổn định. 
+**Điểm mạnh**
+
+- Là một thuật toán hiệu quả, sử dụng ít bộ nhớ và ổn định.
 - Ngoài ra thì cũng có thể tìm top k trong n như Selection Sort.
 - Có Worst Case tốt hơn Quick Sort.
 
-**Điểm yếu** 
-- Là một loại Unstable Sort, nếu dữ liệu quá lớn thì sẽ không hoạt động hiệu quả bằng Merge Sort. 
-- Chỉ tốt hơn Quick Sort ở Worst Case, còn lại thì kém hiệu quả hơn ở các case khác.
+**Điểm yếu**
+
+- Là một loại Unstable Sort
+- Nếu dữ liệu quá lớn hoặc được phân bố ngẫu nhiên thì kém hiệu quả so với Merge Sort hoặc Quick Sort.
 - Khó cài đặt code.
-- Ít ứng dụng hơn Quick Sort, Merge Sort.
+
+> Khi nào nên sử dụng?
+
+- Không gian bộ nhớ bị giới hạn.
 
 ## Phân tích độ phức tạp thuật toán
 
@@ -954,9 +1002,9 @@ Ta đã biết chiều cao của cây nhị phân có n nodes là $log_2(n)$. Đ
 
 Trường hợp tốt nhất thì Max Heap đã được xây dựng, không tồn tại bất kỳ phép hoán vị nào, xấu nhất là khi phải đẩy phần tử đang xét vun đống đến tận node lá, tốn $log_2(n)$ lần hoán vị.
 
-Trong bước build Max Heap thì cần xét vun đống cho n/2 phần tử, do đó tổng chi phí trong bước này là $O(\frac{n}{2}*log_2(n)) \sim O(nlog_2(n))$. 
+Trong bước build Max Heap thì cần xét vun đống cho n/2 phần tử, do đó tổng chi phí trong bước này là $O(\frac{n}{2}*log_2(n)) \sim O(nlog_2(n))$.
 
-*Thực tế, bước build Max Heap có độ phức tạp là O(n), nhưng do không ảnh hưởng đến tổng độ phức tạp nên không cần đi sâu. Có thể xem ở [đây](https://www.happycoders.eu/algorithms/heapsort/).*
+_Thực tế, bước build Max Heap có độ phức tạp là O(n), nhưng do không ảnh hưởng đến tổng độ phức tạp nên không cần đi sâu. Có thể xem ở [đây](https://www.happycoders.eu/algorithms/heapsort/)._
 
 Ở bước sắp xếp, mỗi lần sắp xếp cũng cần build Max Heap, tốn chi phí $log_2(n)$ để thực hiện phép so sánh, trường hợp xấu nhất thì số phép hoán vị cũng là $log_2(n)$. Và ta thực hiện việc sắp xếp này cho n - 1 phần tử (phần tử cuối cùng mặc định đã được sắp). Do đó chi phí của bước sắp xếp sẽ là $O(nlog_2(n))$.
 
@@ -964,7 +1012,11 @@ Do hai bước này thực hiện liền kề nhau, tổng chi phí cho thuật 
 
 Tương tự như Merge Sort, cả ba cases của thuật toán đều có chi phí như nhau là $O(nlog_2(n))$.
 
->Đối với dữ liệu đã sắp xếp (kể cả đã sắp xếp đảo ngược), thì Heap Sort có tốc độ nhanh hơn, câu trả lời là [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor) :question:.
+> Đối với dữ liệu đã sắp xếp (tăng dần hoặc giảm dần), thì Heap Sort có tốc độ nhanh hơn thông thường.
+
+Dễ hiểu thì khi dữ liệu giảm dần thì nó đã là Max Heap. Còn trong trường hợp tăng dần thì nó là Min Heap. Do đó chỉ tốn chi phí $O(n)$ để build Heap. Tuy nhiên, chi phí cuối cùng vẫn là $O(nlog_2(n))$.
+
+Mặc dù vậy, máy tính có thể tối ưu thời gian thuật toán của Heap Sort dựa vào [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor) nếu dữ liệu đã được sắp xếp. Đại loại là ở mỗi lần thực hiện phép so sánh, kết quả đều giống nhau, nên máy tính có thể dự đoán được kết quả của lần tiếp theo và thực hiện tối ưu. :question:
 
 (Tham khảo [programmingquiz](https://www.programiz.com/dsa/heap-sort) và [happycoders](https://www.happycoders.eu/algorithms/heapsort/))
 
@@ -1025,71 +1077,195 @@ void heapSort(int* arr, int n)
 
 ## Biến thể
 
+Có một biến thể của Heap Sort gọi là [Bottom - Up Heap Sort](https://www.happycoders.eu/algorithms/heapsort/), được tinh chỉnh phần build Max Heap để giảm số lần so sánh so với Heap Sort thông thường.
 
+# Counting Sort
 
-# Conclusion
-
-Ta cần phân tích một chút lý do tại sao ba thuật toán Quick, Merge và Heap lại là $O(n.log_2n)$.
-
-Nếu để ý, dễ dàng thấy được rằng cả ba thuật toán này đều có các bước chia đôi không gian sắp xếp ra để thao tác. Các bước để chia đôi một danh sách bất kỳ là $log_2n$. Lý do là vì hàm $log_2n$ là hàm biểu thị cho một số nào đó, cần thiết để chia một danh sách n phần tử thành cơ số của nó (cơ số 2).
-
-Và cũng nói luôn, trong khoa học máy tính, chúng ta chỉ xét cơ số hai đối với hàm logarith. Ngược lại với nó là hàm mũ, nó biểu thị cho số lần để nhân tích lũy các cơ số lên để thành một số n nào đó. Nói cách khác, $log_2n$ biểu thị cho số lần cần thiết để chia danh sách ban đầu thành nhiều phần nhỏ cho tiện việc xử lý.
-
-Tiếp sau đó là việc xử lý. Trong hầu hết các công việc xử lý, như hàm Merge, thuật toán bắt buộc phải chạm tới từng phần tử trong bất kỳ lần trộn nào. Tức là công việc trộn này tốn O(n) thời gian để thực hiện. Quick sort cũng vậy, ở mỗi bước chúng ta đều phải duyệt các phần tử để đổi chỗ cho nhau. Tương tự đối với Heap sort.
-
-Do vậy, với mỗi lần chia danh sách ban đầu ra làm hai, chúng ta phải duyệt qua n phần tử. Từ đó mà độ phức tạp tổng cộng sẽ là $O(n.log_2n)$.
-
-# Radix Sort
+(Hình ảnh và nội dung tham khảo từ [programmingquiz](https://www.programiz.com/dsa/counting-sort) và [journaldev](https://www.journaldev.com/42355/counting-sort-algorithm)).
 
 ## Ý tưởng
 
-**Radix – cơ số**: Thuật toán này sắp xếp dựa trên cơ số (2, 8, 10, 16), mỗi cơ số có một cách biểu diễn riêng cho các giá trị phụ thuộc vào số lượng ký số (số ký tự để biểu diễn giá trị). Và mỗi bucket trong Radix Sort sẽ lưu các giá trị theo một loại ký số riêng biệt. Do đó nếu giá trị không thể hiện dưới dạng một số cơ số nhất định nào đó (chẳng hạn số thực) thì việc sắp xếp sẽ khá khó khăn.
+Counting Sort là thuật toán sắp xếp mảng bằng cách đếm số lần xuất hiện của những phần tử riêng biệt có trong mảng. Số lần đếm được này được lưu trong mảng phụ và thuật toán kết thúc khi ánh xạ các số lần đếm này thành index của mảng.
 
-**Điểm mạnh** của Radix Sort là nhanh, chỉ phụ thuộc vào số lượng ký số. Chẳng hạn có n phần tử nhưng phần tử có chiều dài ký số lớn nhất là 7, thì chỉ cần 7 lần sắp xếp.
+Các bước thực hiện:
 
-**Điểm yếu** là số lượng bộ nhớ cần dùng rất lớn, nếu cơ số là 10, thì mảng sử dụng để lưu ký số là 10. Hơn nữa, nếu có n phần tử trong số các bucket, thì mảng cần sử dụng sẽ là 10\*n.
+1. Tìm phần tử lớn nhất trong mảng, gọi giá trị này là `max`
 
-**Ứng dụng** thường gặp của Radix Sort là sắp xếp thư từ dựa trên mã bưu chính (Postal Code hoặc ZIP Code)
+<img src="img/sort26.png">
 
-Thay vì sort GIÁ TRỊ, chúng ta sẽ sort theo CHỮ SỐ của cơ số. Radix Sort có thể sử dụng Counting Sort làm hàm con của nó. Radix Sort là một thuật toán stable.
+- Độ phức tạp thời gian $O(n)$, không gian $O(1)$.
 
-Chẳng hạn ta có một dãy số dưới đây:
+2. Khởi tạo một mảng có độ dài `max + 1` với mọi giá trị đều là 0. Mảng này dùng để lưu các giá trị đếm số lần xuất hiện trong mảng của các phần tử.
+
+<img src="img/sort27.png">
+
+- Độ phức tạp thời gian và không gian $O(max)$.
+
+3. Tiến hành đếm số lần xuất hiện của giá trị `k` bất kỳ và cho vào vị trí `count[k]` của mảng đếm.
+
+<img src="img/sort28.png">
+
+- Độ phức tạp thời gian $O(n)$, không gian $O(1)$.
+
+4. Thực hiện cộng tích lũy các phần tử trong mảng đếm, phục vụ cho việc ánh xạ sang mảng chính để sắp xếp. Với `count[k] = count[k] + count[k - 1]`(Tại sao nó phục vụ cho việc ánh xạ :question:).
+
+<img src="img/sort29.png">
+
+- Độ phức tạp thời gian $O(max)$, không gian $O(1)$.
+
+Chú ý rằng giá trị cuối mảng `count[]` sau khi tính tích lũy luôn là tổng giá trị có trong mảng `count[]` trước khi tính tích lũy.
+
+> Nếu thực hiện Counting Sort sắp xếp giảm dần, chỉ cần tính tích lũy theo chiều ngược lại.
+
+5. Tìm vị trí của phần tử mảng, chẳng hạn 4 thông qua mảng đếm và ánh xạ đến đúng vị trí của nó (có trừ cho 1 :question:).
+
+<img src="img/sort30.png">
+
+- Độ phức tạp thời gian $O(n)$, không gian $O(n)$ (do cần chép qua một mảng phụ).
+
+6. Sau khi ánh xạ thì giảm giá trị của `count[4]` đi 1.
+
+- Độ phức tạp thời gian $O(n)$, không gian $O(1)$.
+
+## Phân tích thuật toán
+
+Không dựa vào các phép so sánh như các thuật toán thông thường.
+
+**Điểm mạnh**
+
+- Stable Sort.
+- Độ phức tạp tuyến tính rất nhanh.
+- Giảm không gian phụ nếu khoảng giá trị là nhỏ (nhiều tần số).
+
+**Điểm yếu**
+
+- Cả độ phức tạp thời gian và không gian tăng đáng kể nếu dữ liệu đầu vào lớn và khoảng giá trị rộng.
+- Chỉ hoạt động cho các giá trị rời rạc như số nguyên.
+- Nếu dùng cho số âm thì độ phức tạp thuật toán và cài đặt đều tăng.
+- Tiêu tốn nhiều bộ nhớ không cần thiết nếu dữ liệu phân bố thành cụm (chẳng hạn như dữ liệu có 1000 phần tử và có 1000 phần tử giá trị 1. Lúc này mảng đếm có 1000 vị trí nhưng 999 vị trí trong số đó là trống).
+
+## Phân tích độ phức tạp thuật toán
+
+Như đã ghi chú ở phần ý tưởng, các vòng for ở mỗi có độ phức tạp thời gian lần lượt là:
+
+1. $O(n)$
+2. $O(max)$
+3. $O(n)$
+4. $O(max)$
+5. $O(n)$
+6. $O(n)$
+
+Tổng độ phức tạp thời gian là $O(n + max)$. Cả ba cases đều có độ phức tạp thời gian là $O(n + max)$, vì cho dù dữ liệu đầu vào có như thế nào, nó vẫn duyệt qua `n + max` lần. Điều này cho thấy đây vẫn là một thuật toán không phụ thuộc dãy đầu vào.
+
+Tuy nhiên độ phức tạp không gian là khá cao, $O(max)$.
+
+## Độ phức tạp thuật toán
+
+| Cases        | Complexity   |
+| :----------- | :----------- |
+| Best case    | $O(n + max)$ |
+| Worst case   | $O(n + max)$ |
+| Average case | $O(n + max)$ |
+
+Space Complexity: O(max)
+
+với max là giá trị lớn nhất của các phần tử.
+
+## Giải thuật mẫu
+
+```c++
+void countSort(int array[], int size)
+{
+
+    int output[10];
+    int count[10] = {0}; //Đã khởi tạo mảng đếm
+    int max = array[0];
+
+    // Tìm phần tử lớn nhất
+    for (int i = 1; i < size; i++)
+    {
+        if (array[i] > max)
+            max = array[i];
+    }
+
+    // Đếm tần số xuất hiện của các phần tử
+    for (int i = 0; i < size; i++)
+    {
+        count[array[i]]++;
+    }
+
+    // Đếm giá trị tích lũy
+    for (int i = 1; i <= max; i++)
+    {
+        count[i] += count[i - 1];
+    }
+
+    // Ánh xạ giá trị qua mảng tạm
+    for (int i = size - 1; i >= 0; i--)
+    {
+        output[count[array[i]] - 1] = array[i];
+        count[array[i]]--;
+    }
+
+    // Chép mảng tạm vào mảng chính
+    for (int i = 0; i < size; i++)
+    {
+        array[i] = output[i];
+    }
+}
+```
+
+# Radix Sort
+
+**Radix – cơ số**: Thuật toán này sắp xếp dựa trên cơ số (2, 8, 10, 16), mỗi cơ số có một cách biểu diễn riêng cho các giá trị phụ thuộc vào số lượng ký số (số ký tự để biểu diễn giá trị). Do đó nếu giá trị không thể hiện dưới dạng một số cơ số nhất định nào đó (chẳng hạn số thực hoặc số âm) thì việc sắp xếp sẽ khá khó khăn.
+
+## Ý tưởng
+
+Radix sort gồm hai bước là phân loại và sắp xếp. Đầu tiên phân loại các phần tử về đúng phân lớp, sau đó tiến hành sắp xếp các phần tử trong cùng một phân lớp. Hai bước này được thực hiện song song nhau. Radix Sort có thể sử dụng Counting Sort (là một Stable Sort) làm hàm con của nó.
+
+Ví dụ cho mảng dưới đây
 
 $$
-129,450,356,118,928,323,875,223
+121, 432, 564, 23, 1, 45, 788
 $$
 
-Đầu tiên, chúng ta dùng Counting Sort, sắp xếp các số dựa vào hàng đơn vị, số nào có hàng đơn vị lớn hơn thì đem ra sau, nhỏ hơn thì đem về trước.
+<img src="img/Sort34.png">
 
-Ta gạch dưới các chữ số hàng đơn vị.
+Ở vòng lặp 1 thực hiện phân các giá trị vào 6 lớp (1, 2, 3, 4, 5, 8) dựa trên các giá trị của hàng đơn vị (luôn có 9 lớp đối với cơ số 10). Vòng lặp hai thì cũng phân vào 6 lớp (0, 2, 3, 4, 6, 8). Cuối cùng phân vào 5 lớp (0, 1, 4, 5, 7). Và chính việc cho vào các phân lớp như này cũng tức là sắp xếp chúng.
 
-$$
-129, 450, 356, 118, 928, 323, 875, 223
-$$
+**Các bước thực hiện**:
+1. Tìm phần tử lớn nhất `max`. Ở đây `max = 788` và nó có 3 ký tự.
+2. Gọi Counting Sort cho từng hàng số. (Ví dụ này có hàng đơn vị, hàng chục và hàng trăm).
+3. Lặp lại bước hai đến khi nào xét hết mọi ký tự.
 
-Sắp xếp dựa trên hàng đơn vị.
+Vòng lặp đầu tiên ta gọi Counting Sort cho hàng đơn vị.
 
-$$
-450, 323, 223, 875, 356, 118, 928, 129
-$$
+<img src="img/Sort31.png">
 
-Chúng ta có thể thấy thứ tự giữa các số có cùng hàng đơn vị vẫn không đổi. Sau đó ta gạch dưới các chữ số hàng chục và tiếp tục sắp xếp.
+Chúng ta có thể thấy thứ tự giữa các số có cùng hàng đơn vị vẫn không đổi (Stable).
 
-$$
-118, 323, 223, 928, 129, 450, 356, 875
-$$
+Tiếp theo cho hàng chục
 
-Tiếp tục đối với hàng trăm.
+<img src="img/Sort32.png">
 
-$$
-118, 129, 223, 323, 356, 450, 875, 928
-$$
+Cuối cùng là hàng trăm và kết thúc thuật toán
 
-Kết quả thu được chính là mảng đã sắp xếp.
+<img src="img/Sort33.png">
 
-## Đầu vào - Đầu ra
+## Phân tích thuật toán
 
-Tương tự các loại Sort không cần chia mảng.
+**Điểm mạnh**
+
+- Tốc độ nhanh, chỉ phụ thuộc vào số lượng ký số. Chẳng hạn có n phần tử nhưng phần tử có chiều dài ký số lớn nhất là 7, thì chỉ cần 7 lần sắp xếp
+  Radix Sort là một thuật toán stable.
+
+**Điểm yếu**
+
+- Số lượng bộ nhớ cần dùng rất lớn, chẳng hạn nếu cơ số là 10, thì mảng sử dụng để lưu ký số là 10.
+
+**Ứng dụng**
+
+- Sắp xếp thư từ dựa trên mã bưu chính (Postal Code hoặc ZIP Code)
 
 ## Độ phức tạp thuật toán
 
