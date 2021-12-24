@@ -144,6 +144,8 @@ Mảng dữ liệu lớn và phân bố có gần như có thứ tự sẽ làm 
 
 ## Phân tích độ phức tạp thuật toán
 
+Tham khảo [opengenus](https://iq.opengenus.org/time-complexity-of-selection-sort/).
+
 Lúc ban đầu mảng có hai phần, phần được sắp xếp và phần chưa sắp xếp, gọi kích thước của chúng lần lượt là S1 và S2. Ở mỗi lần lặp, kích thước S1 tăng lên 1 và S2 giảm đi 1. Do đó S2 = n - S1.
 
 Độ phức tạp thời gian cho việc tìm cực trị của mảng chưa sắp xếp có kích thước S2 là $O(S2)$.
@@ -244,6 +246,8 @@ Là một thuật toán dễ cài đặt, dễ hiểu và hoạt động tốt c
 Không hiệu quả đối với mảng có số lượng phần tử lớn, thường thì Bubble Sort được dùng trong giảng dạy hơn là áp dụng thực tiễn.
 
 ## Phân tích độ phức tạp thuật toán
+
+Tham khảo [happycoders](https://www.happycoders.eu/algorithms/bubble-sort/#Bubble_Sort_Time_Complexity).
 
 Bubble Sort không dễ chứng minh và phân tích trực tiếp như Selection Sort và Insertion Sort. Vì vậy ta sẽ chia nó ra ba trường hợp để phân tích
 
@@ -381,20 +385,70 @@ Tìm cách chèn phần tử $a_i$ vào vị trí thích hợp của đoạn đ�
 **Các bước thực hiện**:
 
 Có n – 1 lần chèn tương đương n - 1 lần lặp, ở mỗi lần chèn ta cần:
+
 1. Tuần tự dời các phần tử từ vị trí i về trước tiến về i một vị trí.
 2. Tìm kiếm vị trí chèn hợp lệ (vị trí j + 1).
 3. Đưa phần tử cần chèn vào vị trí j + 1.
 
+> Có thể hình dung Insertion Sort giống như khi chúng ta chơi tiến lên, chúng ta cần sắp bài vào sau khi được chia để có thể ra quân một cách nhanh chóng.
+
+<img src="img/Sort10.png">
+
+## Phân tích độ phức tạp thuật toán
+
+Tham khảo ở [happycoders](https://www.happycoders.eu/algorithms/insertion-sort/).
+
+Giả sử cần sắp xếp một mảng có sáu phần tử, ở vòng lặp đầu tiên, có hai khả năng xảy ra là dời chỗ một lần và không dời chỗ lần nào. Nên trung bình sẽ có 0.5 lần dời chỗ.
+
+<img src="img/Sort11.png">
+
+Vòng lặp thứ hai thì có ba khả năng từ 0 đến 2 lần dời chỗ, ta lấy 0 + 2 rồi chia 2 được trung bình 1 lần dời chỗ.
+
+<img src="img/Sort12.png">
+
+Xét tương tự cho đến vòng lặp thứ 5, ta sẽ có trung bình 2.5 lần dời chỗ.
+
+<img src="img/Sort13.png">
+
+Tổng quát hơn, với 6 phần tử thì ta có 5 lần lặp, mỗi lần lặp thì nửa số phần tử đã được sắp xếp, đồng thời ta chèn phần tử vào giữa mảng của một nửa phần tử đã sắp xếp đó. Ta có:
+
+$$
+6 \times 5 \times 1/2 \times 1/2 = 30 \times 1/4 = 7.5
+$$
+
+Thay 6 thành n và 5 thành n - 1, ta có:
+
+$$
+n \times (n - 1) \times 1/4
+$$
+
+Như vậy độ phức tạp của việc dời chỗ là $O(n^2)$.
+
+Xét phép so sánh trong mỗi lần lặp, số lần so sánh là số lần dời chỗ cộng thêm một (bằng nhau trong trường hợp đã dời đến vị trí cuối cùng của đầu mảng bên trái và không cần so sánh lần tiếp theo). Như vậy độ phức tạp của phép so sánh cũng là $O(n^2)$.
+
+Số lần hoán vị có khả năng xảy ra tương ứng với lượng phần tử còn lại ở bên phải. Do đó sẽ có n - 1 lần hoán vị ở mức tối đa. Do đó độ phức tạp của phép hoán vị sẽ là $O(n)$.
+
+Kết luận độ phức tạp trong Average case của Insertion Sort là $O(n^2)$.
+
+**Worst case**
+Trường hợp xấu nhất xảy ra khi mảng được sắp xếp nhưng bị đảo ngược. Lúc này ở mỗi lần lặp, thuật toán cần dời chỗ i phần tử để chèn phần tử vào vị trí ngoài cùng nhất bên trái của mảng.
+
+<img src="img/Sort14.png">
+
+Lúc đó sẽ có $\cfrac{n(n - 1)}{2}$ lần dời chỗ dẫn đến độ phức tạp là $O(n^2)$.
+
+**Best case**
+Trường hợp tốt nhất xảy ra khi mảng đã sắp xếp, lúc đó chỉ cần một lần so sánh trong mỗi vòng lặp và không có phép hoán vị nào. Dẫn đến tổng phép so sánh là n - 1 (bỏ qua phần tử đầu). Do đó độ phức tạp là tuyến tính $O(1)$.
+
 ## Độ phức tạp thuật toán
 
-- **Best case** : Mỗi lần lặp sẽ có n – 1 bước so sánh. Số lần đổi chỗ là 0. Độ phức tạp sẽ là $O(n-1)$.
-- **Worst case** :
+| Cases        | Complexity |
+| :----------- | :--------- |
+| Best case    | $O(n)$     |
+| Worst case   | $O(n^2)$   |
+| Average case | $O(n^2)$   |
 
-Số lần so sánh tối đa trong lần chèn thứ i là $C(n)$.
-
-Số lần chèn tối đa thứ i là $M(n)$
-
-- **Average case** : $O(n^2)$.
+Space Complexity: $O(1)$.
 
 ## Giải thuật mẫu
 
@@ -407,7 +461,7 @@ void insertionSort(int *a,int n)
         int j;
         for(j = i - 1; j >= 0  && a[j] > x; j--){
 
-            //So sánh với phần tử trước đó (i-1), nếu bé hơn thì bắt đầu dời chỗ.
+            //So sánh với phần tử trước đó (i - 1), nếu bé hơn thì bắt đầu dời chỗ.
             //Dời chỗ cho đến khi gặp phần tử nhỏ hơn phần tử thứ i hồi nãy (x).
             a[j + 1] = a[j];
         }
@@ -447,14 +501,114 @@ Do đó, chúng ta lost - tolerant chọn ba phần tử đầu, cuối và gi�
 
 ## Đầu vào – Đầu ra
 
-- Input: Danh sách A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của danh sách chính hoặc phân hoạch.
-- Output: Danh sách A đã sắp xếp.
+- Input: Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc mảng con cần sắp xếp.
+- Output: Mảng A đã sắp xếp.
+
+## Phân tích độ phức tạp thuật toán
+
+Tham khảo [opengenus](https://iq.opengenus.org/time-and-space-complexity-of-quick-sort/) và [khan academy](https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort).
+
+**Best case**
+Trường hợp này xảy ra khi các mảng phân hoạch có kích thước đồng đều nhất có thể, kích thước của chúng bằng nhau hoặc hơn kém nhau một phần tử. Đồng thời pivot luôn có khả năng là phần tử giữa mảng sau khi phân hoạch.
+
+Trường hợp bằng nhau xảy ra khi số phần tử trong phân hoạch là lẻ và pivot nằm ngay vị trí ở giữa sau khi thực hiện phân hoạch. Lúc đó mỗi phân hoạch sẽ có $\cfrac{n - 1}{2}$ phần tử.
+
+Trường hợp hơn kém một phần tử xảy ra khi số phần tử trong phân hoạch là chẵn và hai phân hoạch có kích thước lần lượt là $n/2$ và $n/2 - 1$.
+
+Cả hai trường hợp trên thì kích thước của các phân hoạch tối đa là n/2, và cây phân hoạch tương tự như cây phân hoạch của Merge Sort (cây nhị phân đầy đủ). Nói cách khác, chiều cao của cây là tối thiểu và tiết kiệm được nhiều chi phí duyệt qua các mức thừa.
+
+<img src="img/Sort15.png">
+
+Giả sử T(n) là độ phức tạp thời gian cho trường hợp tốt nhất và n là số phần tử của mảng.
+Ở bước đầu tiên khi ta chia mảng làm đôi:
+
+$$
+T(n) = 2 * T(n/2) + c * n
+$$
+
+$2 * T(n/2)$ vì ta chia mảng thành hai mảng con bằng nhau (xét trường hợp mảng lẻ).
+Còn **c** là một hằng số nào đó bé hơn 1 đặc trưng cho số lần duyệt qua các phần tử ở mỗi mức (không phải lúc nào cũng duyệt hết n phần tử).
+
+Bước thứ hai, ta lại chia hai mảng con này thành 4 mảng con khác:
+
+$$
+T(n) = 2 * (2 * T(n/4) + c* n/2) + c * n\\
+= 4* T(n/4) + 2* c* n
+$$
+
+Một cách tổng quát, ở bước thứ k, ta có:
+
+$$
+T(n) = 2^k * T(n/(2^k)) + k * c * n
+$$
+
+Mà k đồng thời cũng là số lần chia mảng, nên $2^k = n$ (giống vòng lặp có bước nhảy là 2 ở bài phân tích độ phức tạp thuật toán). Do đó $k = \log_2(n)$. Suy ra
+
+$$
+T(n) = n * T(1) + n * log_2(n)
+$$
+
+Vậy độ phức tạp thuật toán trong trường hợp tốt nhất là $O(nlog_2(n))$.
+
+**Worst case**
+Worst case xảy ra khi mảng đã được sắp xếp tăng dần hoặc giảm dần, đồng thời ta chọn pivot là phần tử ở hai đầu mảng. Lúc đó cây phân hoạch trở thành một cây mất cân bằng và suy biến về một cây thẳng đứng, khiến cho chiều cao của cây là tối đa (n).
+
+<img src="img/Sort16.png">
+
+Ở mỗi lần chia ta phải duyệt qua $c * n$ phần tử, đồng thời có n lần chia như vậy, dễ thấy độ phức tạp của trường hợp xấu nhất là bình phương.
+
+Ta giả sử T(n) là độ phức tạp thời gian của thuật toán.
+
+Ở lần đầu tiên chia mảng, ta chỉ loại bỏ bớt phần tử pivot nên mảng còn n - 1 phần tử, và cần duyệt qua $c * n$ phần tử trong mảng đó để phân hoạch.
+
+$$
+T(n) = T(n - 1) + c * n
+$$
+
+Ở lần chia thứ hai và thứ ba:
+
+$$
+T(n) = T(n - 2) + c * (n - 1) + c * n\\
+= T(n - 2) + 2 * c * n - c\\
+T(n) = T(n - 3)  + 3 * c * n - 2 * c - c
+$$
+
+Tổng quát hóa:
+
+$$
+\begin{align*}
+T(n) &= T(n - k) + k * c * n - (k - 1) * c\ ... - 2 * c - c\\
+&= T(n - k) + k * c * n - c * ((k - 1) + ... + 3 + 2 + 1)\\
+&= T(n - k) + k * n * c - c * (k(k - 1)/2)
+\end{align*}
+$$
+
+Do có n lần chia tương ứng với k lần lặp, cho $n = k$, ta có:
+
+$$
+T(n) = T(0) + c * n * n - c * (n(n - 1)/2)
+$$
+
+Loại bỏ hằng số, ta có
+
+$$
+T(n) = n*n  - n*(n - 1)/2
+$$
+
+Suy ra độ phức tạp thuật toán trong trường hợp xấu nhất là $O(n^2)$.
+
+**Average case**
+Phân tích chi tiết ở [opengenus](https://iq.opengenus.org/time-and-space-complexity-of-quick-sort/) và [khan academy](https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort).
 
 ## Độ phức tạp thuật toán
 
-- **Best case** : $O(nlog_2(n))$.
-- **Worst case** : $O(n^2)$.
-- **Average case** : $O(nlog_2(n))$.
+| Cases        | Complexity     |
+| :----------- | :------------- |
+| Best case    | $O(nlog_2(n))$ |
+| Worst case   | $O(n^2)$       |
+| Average case | $O(nlog_2(n))$ |
+
+Space Complexity: $O(1)$.
 
 ## Giải thuật mẫu
 
@@ -528,8 +682,8 @@ void quickSort(int arr[], int left, int right)
 ## Ý tưởng
 
 Thuật toán Merge Sort được chia thành hai phần.
-
-Phần đầu tiên, chia các mảng thành hai không gian con, nếu các không gian con này có nhiều hơn một phần tử thì tiếp tục chia đôi. Ngược lại có duy nhất một phần tử hoặc không có phần tử nào (trong trường hợp dãy lẻ) thì bắt đầu trộn lại (gọi đệ qui).
+ 
+Phần đầu tiên, chia các mảng thành hai không gian con, nếu các không gian con này có nhiều hơn một phần tử thì tiếp tục chia đôi. Ngược lại có duy nhất một phần tử (trong trường hợp dãy lẻ) hoặc không có phần tử nào thì bắt đầu trộn lại (gọi đệ qui).
 
 Phần thứ hai chính là quá trình trộn, trong quá trình trộn sẽ kết hợp sắp xếp mảng.
 
