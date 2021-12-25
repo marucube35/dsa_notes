@@ -226,7 +226,7 @@ pre code {
 }
 
 </style>
-
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
 <style>
 /*
 
@@ -391,41 +391,26 @@ code {
     });
   </script>
 
-  <style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+  <link rel="stylesheet" href="main.css">
 <h1 id="heap-sort">Heap Sort</h1>
 <h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
 <p>Thuật toán Heap Sort được chia làm hai phần là xây dựng Max Heap và sắp xếp.</p>
 <p><strong>Heap</strong> là cây nhị phân hoàn chỉnh.</p>
 <p><strong>Cây nhị phân hoàn chỉnh</strong> là cấu trúc cây nhị phân hoàn hảo nhưng trừ mức cuối, ở mức cuối các node lá dồn hết qua trái càng xa càng tốt.</p>
-<img src="img/Sort2.png">
+<img src = "../img/Sort2.png">
 <p>Hai phần tử con của một phần tử <strong>a[i]</strong> bất kỳ sẽ nằm ở vị trí <strong>2i + 1</strong> và <strong>2i + 2</strong> (nếu phần tử đầu là 0) hoặc <strong>2i</strong> và <strong>2i + 1</strong> (nếu phần tử đầu là 1). Các phần tử này gọi là các <strong>phần tử liên đới</strong>. Các số đánh trong hình trên chính là vị trí index của các phần tử khi thể hiện dưới dạng mảng. Nếu duyệt cây theo các mức (Level Order Traversal), ta sẽ thu được một danh sách tăng dần các vị trí index từ 1 đến n (hoặc từ 0 đến n – 1).</p>
 <p><strong>Vun đống</strong> (Heapify) là một thao tác kiểm tra xem node đang xét có giá trị lớn hơn giá trị của node con nó hay chưa. Chúng ta sẽ hoán vị một phần tử với node con của nó nếu giá trị của node đó bé hơn node con. Và nếu cả hai node con đều lớn hơn, ta sẽ hoán vị với node con lớn nhất.</p>
 <p><strong>Max Heap</strong> là một heap sao cho các node đều lớn hơn các node con của nó. Có thể có hai node bằng nhau trong trường hợp Max Heap sử dụng cho thuật toán. Để xây dựng Max Heap, ta sẽ vun đống từ giữa mảng. Ta không cần phải đi xây dựng một cấu trúc cây nhị phân trừu tượng mà sẽ thao tác trực tiếp trên mảng dữ liệu đầu vào.</p>
 <p>Giả sử ta cần xây dựng Max Heap từ mảng dưới đây</p>
-<img src="img/sort3.png">
+<img src = "../img/sort3.png">
 <p>Phần tử xét vun đống là giữa mảng, có vị trí index là <code>i = int(5 - 1)/2 = 2</code> hoặc <code>i = 6/2 - 1 = 2</code>.</p>
 <p>Bước đầu tiên là <strong><code>swap(9,10)</code></strong> vì 10 lớn hơn 9.</p>
-<img src="img/sort4.png">
+<img src = "../img/sort4.png">
 <p>Các phần tử bị hoán vị phải được vun đống ở vị trí mà nó hoán vị đến. Việc này để đảm bảo các node luôn có giá trị lớn hơn node con của nó sau khi có sự thay đổi gây ra bởi công việc hoán vị. Ở trên do <code>arr[5]</code> là node lá nên không có gì xảy ra.</p>
 <p>Sau khi xét <code>arr[2]</code> thì ta tiếp tục xét <code>arr[1]</code> (cứ thế tiến dần về đầu mảng).</p>
-<img src="img/sort5.png">
+<img src = "../img/sort5.png">
 <p>Nhận thấy node này đã được vun đống sẵn rồi nên bỏ qua và xét <code>arr[0]</code>.</p>
-<img src="img/sort6.png">
+<img src = "../img/sort6.png">
 <p>Ở đây ta thấy 12 &gt; 10 &gt; 1 nên ta sẽ <strong><code>swap(12,1)</code></strong>. Sau đó xét vun đống ở <code>arr[1]</code>, nơi mà ta vừa thực hiện hoán vị để bảo toàn Max Heap. Tại <code>arr[1]</code> ta thấy 6 &gt; 5 &gt; 1, thực hiện <strong><code>swap(6,1)</code></strong> và xét <code>arr[4]</code> ở bước tiếp theo. Node <code>arr[4]</code> là node lá nên không có gì xảy ra, ta thu được Max Heap hoàn chỉnh.</p>
 <p>(Hình ảnh tham khảo từ <a href="https://www.programiz.com/dsa/heap-sort">programmingquiz</a>)</p>
 <blockquote>

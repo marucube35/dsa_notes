@@ -2,22 +2,7 @@
 title: "Interchange Sort"
 ---
 
-<style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+<link rel="stylesheet" href="main.css">
 
 # Interchange Sort
 
@@ -40,9 +25,9 @@ Thuật toán nào không nêu cụ thể đầu vào đầu ra ngầm hiểu c�
 
 Như vậy ta có tổng số lần so sánh là:
 
-```math
+$$
 \sum_{i = 1}^{n - 1}(n - i) = \frac{n(n - 1)}{2}
-```
+$$
 
 Trong trường hợp tốt nhất, chuỗi đã được sắp xếp thì chỉ so sánh mà không thực hiện hoán vị.
 

@@ -226,7 +226,7 @@ pre code {
 }
 
 </style>
-
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
 <style>
 /*
 
@@ -391,22 +391,7 @@ code {
     });
   </script>
 
-  <style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+  <link rel="stylesheet" href="main.css">
 <h1 id="quick-sort">Quick Sort</h1>
 <h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
 <p>Gồm hai phần: <em>phân hoạch</em> và <em>sắp xếp</em>, dựa trên ý tưởng chia để trị.</p>
@@ -468,7 +453,7 @@ Trường hợp này xảy ra khi các mảng phân hoạch có kích thước �
 <p>Trường hợp bằng nhau xảy ra khi số phần tử trong phân hoạch là lẻ và pivot nằm ngay vị trí ở giữa sau khi thực hiện phân hoạch. Lúc đó mỗi phân hoạch sẽ có $\cfrac{n - 1}{2}$ phần tử.</p>
 <p>Trường hợp hơn kém một phần tử xảy ra khi số phần tử trong phân hoạch là chẵn và hai phân hoạch có kích thước lần lượt là $n/2$ và $n/2 - 1$.</p>
 <p>Cả hai trường hợp trên thì kích thước của các phân hoạch tối đa là n/2, và cây phân hoạch tương tự như cây phân hoạch của Merge Sort (cây nhị phân đầy đủ). Nói cách khác, chiều cao của cây là tối thiểu và tiết kiệm được nhiều chi phí duyệt qua các mức thừa.</p>
-<img src="img/Sort15.png">
+<img src = "../img/Sort15.png">
 <p>Giả sử T(n) là độ phức tạp thời gian cho trường hợp tốt nhất và n là số phần tử của mảng.
 Ở bước đầu tiên khi ta chia mảng làm đôi:</p>
 <p>$$
@@ -492,7 +477,7 @@ $$</p>
 <p>Vậy độ phức tạp thuật toán trong trường hợp tốt nhất là $O(nlog_2(n))$.</p>
 <p><strong>Worst case</strong>
 Worst case xảy ra khi mảng đã được sắp xếp tăng dần hoặc giảm dần, đồng thời ta chọn pivot là phần tử ở hai đầu mảng. Lúc đó cây phân hoạch trở thành một cây mất cân bằng và suy biến về một cây thẳng đứng, khiến cho chiều cao của cây là tối đa (n).</p>
-<img src="img/Sort16.png">
+<img src = "../img/Sort16.png">
 <p>Ở mỗi lần chia ta phải duyệt qua $c * n$ phần tử, đồng thời có n lần chia như vậy, dễ thấy độ phức tạp của trường hợp xấu nhất là bình phương.</p>
 <p>Ta giả sử T(n) là độ phức tạp thời gian của thuật toán.</p>
 <p>Ở lần đầu tiên chia mảng, ta chỉ loại bỏ bớt phần tử pivot nên mảng còn n - 1 phần tử, và cần duyệt qua $c * n$ phần tử trong mảng đó để phân hoạch.</p>

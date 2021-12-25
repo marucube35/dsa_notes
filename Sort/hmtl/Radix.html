@@ -226,7 +226,7 @@ pre code {
 }
 
 </style>
-
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
 <style>
 /*
 
@@ -391,22 +391,7 @@ code {
     });
   </script>
 
-  <style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+  <link rel="stylesheet" href="main.css">
 <h1 id="radix-sort">Radix Sort</h1>
 <p><strong>Radix – cơ số</strong>: Thuật toán này sắp xếp dựa trên cơ số (2, 8, 10, 16), mỗi cơ số có một cách biểu diễn riêng cho các giá trị phụ thuộc vào số lượng ký số (số ký tự để biểu diễn giá trị). Do đó nếu giá trị không thể hiện dưới dạng một số cơ số nhất định nào đó (chẳng hạn số thực hoặc số âm) thì việc sắp xếp sẽ khá khó khăn.</p>
 <h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
@@ -415,7 +400,7 @@ code {
 <p>$$
 121, 432, 564, 23, 1, 45, 788
 $$</p>
-<img src="img/Sort34.png">
+<img src = "../img/Sort34.png">
 <p>Ở vòng lặp 1 thực hiện phân các giá trị vào 6 lớp (1, 2, 3, 4, 5, 8) dựa trên các giá trị của hàng đơn vị (luôn có 9 lớp đối với cơ số 10). Vòng lặp hai thì cũng phân vào 6 lớp (0, 2, 3, 4, 6, 8). Cuối cùng phân vào 5 lớp (0, 1, 4, 5, 7). Và chính việc cho vào các phân lớp như vậy cũng làm cho dữ liệu được sắp xếp.</p>
 <p><strong>Các bước thực hiện</strong>:</p>
 <ol>
@@ -424,12 +409,12 @@ $$</p>
 <li>Lặp lại bước hai đến khi nào xét hết mọi ký tự.</li>
 </ol>
 <p>Vòng lặp đầu tiên ta gọi Counting Sort cho hàng đơn vị.</p>
-<img src="img/Sort31.png">
+<img src = "../img/Sort31.png">
 <p>Chúng ta có thể thấy thứ tự giữa các số có cùng hàng đơn vị vẫn không đổi (Stable).</p>
 <p>Tiếp theo cho hàng chục</p>
-<img src="img/Sort32.png">
+<img src = "../img/Sort32.png">
 <p>Cuối cùng là hàng trăm và kết thúc thuật toán</p>
-<img src="img/Sort33.png">
+<img src = "../img/Sort33.png">
 <p>(Hình ảnh tham khảo từ <a href="https://www.programiz.com/dsa/radix-sort">programmingquiz</a>)</p>
 <h2 id="ph%C3%A2n-t%C3%ADch-thu%E1%BA%ADt-to%C3%A1n">Phân tích thuật toán</h2>
 <p><strong>Điểm mạnh</strong></p>

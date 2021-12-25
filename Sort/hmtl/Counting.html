@@ -226,7 +226,7 @@ pre code {
 }
 
 </style>
-
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
 <style>
 /*
 
@@ -391,22 +391,7 @@ code {
     });
   </script>
 
-  <style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+  <link rel="stylesheet" href="main.css">
 <h1 id="counting-sort">Counting Sort</h1>
 <p>(Hình ảnh và nội dung tham khảo từ <a href="https://www.programiz.com/dsa/counting-sort">programmingquiz</a> và <a href="https://www.journaldev.com/42355/counting-sort-algorithm">journaldev</a>).</p>
 <h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
@@ -415,28 +400,28 @@ code {
 <ol>
 <li>Tìm phần tử lớn nhất trong mảng, gọi giá trị này là <code>max</code></li>
 </ol>
-<img src="img/sort26.png">
+<img src = "../img/sort26.png">
 <ul>
 <li>Độ phức tạp thời gian $O(n)$, không gian $O(1)$.</li>
 </ul>
 <ol start="2">
 <li>Khởi tạo một mảng có độ dài <code>max + 1</code> với mọi giá trị đều là 0. Mảng này dùng để lưu các giá trị đếm số lần xuất hiện trong mảng của các phần tử.</li>
 </ol>
-<img src="img/sort27.png">
+<img src = "../img/sort27.png">
 <ul>
 <li>Độ phức tạp thời gian và không gian $O(max)$.</li>
 </ul>
 <ol start="3">
 <li>Tiến hành đếm số lần xuất hiện của giá trị <code>k</code> bất kỳ và cho vào vị trí <code>count[k]</code> của mảng đếm.</li>
 </ol>
-<img src="img/sort28.png">
+<img src = "../img/sort28.png">
 <ul>
 <li>Độ phức tạp thời gian $O(n)$, không gian $O(1)$.</li>
 </ul>
 <ol start="4">
 <li>Thực hiện cộng tích lũy các phần tử trong mảng đếm, phục vụ cho việc ánh xạ sang mảng chính để sắp xếp. Với <code>count[k] = count[k] + count[k - 1]</code>(Tại sao nó phục vụ cho việc ánh xạ ?).</li>
 </ol>
-<img src="img/sort29.png">
+<img src = "../img/sort29.png">
 <ul>
 <li>Độ phức tạp thời gian $O(max)$, không gian $O(1)$.</li>
 </ul>
@@ -447,7 +432,7 @@ code {
 <ol start="5">
 <li>Tìm vị trí của phần tử mảng, chẳng hạn 4 thông qua mảng đếm và ánh xạ đến đúng vị trí của nó (có trừ cho 1 ?).</li>
 </ol>
-<img src="img/sort30.png">
+<img src = "../img/sort30.png">
 <ul>
 <li>Độ phức tạp thời gian $O(n)$, không gian $O(n)$ (do cần chép qua một mảng phụ).</li>
 </ul>

@@ -226,7 +226,7 @@ pre code {
 }
 
 </style>
-
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
 <style>
 /*
 
@@ -391,22 +391,7 @@ code {
     });
   </script>
 
-  <style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+  <link rel="stylesheet" href="main.css">
 <h1 id="merge-sort">Merge Sort</h1>
 <h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
 <p>Thuật toán Merge Sort là một thuật toán ứng dụng phương pháp chia để trị, thuật toán này gồm hai phần.</p>
@@ -418,7 +403,7 @@ Trộn 2 mảng con được thực hiện như sau:</p>
 <li>Phần tử nào đã xếp vào thì xóa đi, vị trí đầu của mảng là phần tử tiếp theo.</li>
 <li>Nếu chưa đến cuối mảng thì lặp lại bước 1. Nếu đã đến cuối của một mảng (luôn xảy ra một mảng đã sắp hết và một mảng thì chưa), thì thêm toàn bộ mảng kia vào mảng cần sắp.</li>
 </ol>
-<img src="img/Sort17.png">
+<img src = "../img/Sort17.png">
 <h2 id="%C4%91%E1%BA%A7u-v%C3%A0o-%E2%80%93-%C4%91%E1%BA%A7u-ra">Đầu vào – Đầu ra</h2>
 <ul>
 <li>Input: Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc phân hoạch.</li>
@@ -561,22 +546,22 @@ $$</p>
 <h2 id="bi%E1%BA%BFn-th%E1%BB%83">Biến thể</h2>
 <h3 id="bottom---up">Bottom - Up</h3>
 <p>Một phiên bản khác của Merge Sort không dùng đến việc chia mảng là Bottom - Up Merge Sort. Thuật toán này sẽ trộn các phần tử liền kề với nhau rồi mở rộng ra. Chẳng hạn như nó sẽ trộn 2 phần tử liên tiếp thành mảng con 2 phần tử. Sau đó nó sẽ trộn tiếp 2 mảng gồm 2 phần tử với nhau thành mảng 4 phần tử. Cứ như thế cho đến khi trộn hết mảng cũng là lúc mảng đã được sắp xếp.</p>
-<img src="img/Sort18.png">
-<img src="img/Sort19.png">
-<img src="img/Sort20.png">
+<img src = "../img/Sort18.png">
+<img src = "../img/Sort19.png">
+<img src = "../img/Sort20.png">
 <p>(Hình ảnh tham khảo <a href="https://www.interviewbit.com/tutorial/merge-sort-algorithm/">interviewbit</a>)</p>
 <h3 id="natural-merge-sort">Natural Merge Sort</h3>
 <p>Tham khảo <a href="https://en.wikipedia.org/wiki/Merge_sort#Natural_merge_sort">wikipedia</a>.</p>
 <p>Ngoài ra còn có Natural Merge Sort, thuật toán này sẽ không chia trực tiếp mà chẳng cần quan tâm đến thứ tự đã sắp xếp như Merge Sort. Ở đây nó sẽ xem xét các đường chạy (dãy đã có thứ tự). Trong khi Merge Sort cứng nhắc về số lần phân hoạch dựa vào chiều dài dãy là k, thì Natural Merge Sort sẽ dựa vào số đường chạy và mảng được sắp xếp là mảng chỉ có một đường chạy. Thực tế, người ta sử dụng Natural nhiều hơn trong trường hợp dãy đã sắp xếp một phần nào đó.</p>
 <p>Bởi vì Merge Sort thông thường không nhận biết được một dãy đã sắp xếp nên trong thực tế người ta không dùng Merge Sort thuần để ứng dụng. Thay vào đó họ sử dụng Natural Merge Sort tận dụng các đường chạy để tối ưu thuật toán.
 Đường chạy là một dãy tăng không giảm. Ví dụ dãy 7 8 1 2 5 6 4 3 sẽ có bốn đường chạy là (7, 8), (1, 2, 5, 6), (4) và (3). Khi chọn ra được các đường chạy trong cùng một mảng, chúng ta sẽ tiến hành trộn tuần tự các đường chạy đó lại với nhau. Ví dụ sắp xếp cho dãy trên, ta có:</p>
-<img src="img/Sort21.png">
+<img src = "../img/Sort21.png">
 <p>Trộn hai đường chạy đầu tiên lại với nhau</p>
-<img src="img/Sort22.png">
+<img src = "../img/Sort22.png">
 <p>Tiếp tục trộn</p>
-<img src="img/Sort23.png">
+<img src = "../img/Sort23.png">
 <p>Cuối cùng ta được dãy đã sắp xếp
-<img src="img/Sort24.png"></p>
+<img src = "../img/Sort24.png"></p>
 <p>Thay vì phân ra quá nhiều mảng con, phiên bản này của Merge Sort chỉ phân ra k đường chạy nhất định rồi trộn chúng lại với nhau.</p>
 <p>Một scenario điển hình là sắp xếp dữ liệu có kích thước lớn, người ta sẽ đưa nó vào bộ nhớ trong sắp xếp một phần rồi đem ra bộ nhớ ngoài để sử dụng Natural Merge Sort.</p>
 

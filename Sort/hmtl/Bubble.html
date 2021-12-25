@@ -226,7 +226,7 @@ pre code {
 }
 
 </style>
-
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
 <style>
 /*
 
@@ -391,31 +391,16 @@ code {
     });
   </script>
 
-  <style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+  <link rel="stylesheet" href="main.css">
 <h1 id="bubble-sort">Bubble Sort</h1>
 <h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
 <p>Xuất phát từ đầu dãy hoặc cuối dãy, đổi chỗ các cặp phần tử liền kề để đưa phần tử lớn hơn trong cặp phần tử đó về đúng cuối dãy hiện hành. Sau đó sẽ không xét đến nó ở bước tiếp theo, do vậy ở lần xử lý thứ i thì vị trí đầu dãy là n - i - 1.</p>
 <p>Cần phân biệt rõ ràng với Interchange Sort vì thuật toán Bubble Sort không so sánh tất cả các cặp tồn tại mà chỉ so sánh các cặp nghịch thế liền kề với nhau.</p>
 <h2 id="ph%C3%A2n-t%C3%ADch-thu%E1%BA%ADt-to%C3%A1n">Phân tích thuật toán</h2>
-<p><strong>Điểm mạnh</strong>
-Là một thuật toán dễ cài đặt, dễ hiểu và hoạt động tốt cho mảng có số lượng phần tử nhỏ.</p>
-<p><strong>Điểm yếu</strong>
-Không hiệu quả đối với mảng có số lượng phần tử lớn, thường thì Bubble Sort được dùng trong giảng dạy hơn là áp dụng thực tiễn.</p>
+<p><strong>Điểm mạnh</strong></p>
+<p>Là một thuật toán dễ cài đặt, dễ hiểu và hoạt động tốt cho mảng có số lượng phần tử nhỏ.</p>
+<p><strong>Điểm yếu</strong></p>
+<p>Không hiệu quả đối với mảng có số lượng phần tử lớn, thường thì Bubble Sort được dùng trong giảng dạy hơn là áp dụng thực tiễn.</p>
 <blockquote>
 <p>Khi nào nên sử dụng?</p>
 </blockquote>
@@ -425,19 +410,19 @@ Không hiệu quả đối với mảng có số lượng phần tử lớn, th�
 <h2 id="ph%C3%A2n-t%C3%ADch-%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Phân tích độ phức tạp thuật toán</h2>
 <p>Tham khảo <a href="https://www.happycoders.eu/algorithms/bubble-sort/#Bubble_Sort_Time_Complexity">happycoders</a>.</p>
 <p>Bubble Sort không dễ chứng minh và phân tích trực tiếp như Selection Sort và Insertion Sort. Vì vậy ta sẽ chia nó ra ba trường hợp để phân tích</p>
-<p><strong>Best case</strong>
+<p><strong>Best case</strong><br>
 Do thuật toán sử dụng cờ lệnh và biết được khi nào mảng đã được sắp xếp, nên khi mảng đầu vào là dãy đã được sắp xếp thì cũng chính là trường hợp tốt nhất của thuật toán.</p>
 <p>Lúc này thuật toán sẽ quét qua từng phần tử rồi dừng nên độ phức tạp sẽ là tuyến tính $O(n)$.</p>
-<p><strong>Worst case</strong>
+<p><strong>Worst case</strong><br>
 Trường hợp xấu nhất xảy ra khi dữ liệu mà ta muốn sắp bị đảo ngược, chẳng hạn giảm dần khi ta muốn sắp tăng dần. Lúc này, với mỗi vòng lặp i, ta cần n - i lần hoán vị để đưa phần tử thứ i về đúng vị trí cuối mảng.</p>
-<img src = "img/sort9.png">
+<img src = "../img/sort9.png">
 <p>Và ta có n vòng lặp như vậy, số lần thực hiện hoán vị của hai vòng lặp lồng nhau này là:</p>
 <p>$$
 \frac{n(n - 1)}{2}
 $$</p>
 <p>(Có thể xem lại bài phân tích thuật toán để biết lý do).
 Do đó mà độ phức tạp sẽ là $O(n^2)$.</p>
-<p><strong>Average case</strong>
+<p><strong>Average case</strong><br>
 Phân tích chi tiết ở <a href="https://de.wikipedia.org/wiki/Bubblesort#Durchschnittlicher_Fall">đây</a>.</p>
 <h2 id="%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Độ phức tạp thuật toán</h2>
 <table>

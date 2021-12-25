@@ -226,7 +226,7 @@ pre code {
 }
 
 </style>
-
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
 <style>
 /*
 
@@ -391,22 +391,7 @@ code {
     });
   </script>
 
-  <style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+  <link rel="stylesheet" href="main.css">
 <h1 id="flash-sort">Flash Sort</h1>
 <p>Flash Sort là một thuật toán sắp xếp dựa trên sự phân bố của dữ liệu, cụ thể là phân bố đều, được Karl-Dietrich Neubert phát minh năm 1998. Nếu chúng ta không xác định được phân bố của một tập dữ liệu, khi dữ liệu có khả năng phân bố không đều, thì độ phức tạp có thể trở thành O(n2).</p>
 <h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
@@ -431,7 +416,7 @@ $$</p>
 <li>Độ phức tạp thời gian $O(n)$ và không gian $O(1)$.</li>
 </ul>
 <p>Sau đó ta đi tìm phân lớp của phần tử <code>a[i]</code> bất kỳ. Có biểu đồ sau:</p>
-<img src = "img/sort35.png">
+<img src = "../img/sort35.png">
 <p>Ta lấy đoạn màu đỏ chia cho đoạn màu xanh dương được</p>
 <p>$$
 \cfrac{a[i] - min}{max - min}
@@ -451,7 +436,7 @@ Khi đã có được số lượng phần tử này rồi thì ta cần tính v
 </ul>
 <h3 id="ho%C3%A1n-v%E1%BB%8B">Hoán vị</h3>
 <p>Bước này là bước quan trọng của thuật toán, nó sẽ kiểm tra giá trị <code>k</code> của phần tử <code>a[i]</code> bất kỳ. Nếu đúng chỗ thì xét tiếp phần tử tiếp theo, sai chỗ thì sẽ hoán vị với phần tử đang nằm ở phân lớp <code>k</code> mà nó đáng lẽ phải ở đó.</p>
-<img src = "img/sort36.png">
+<img src = "../img/sort36.png">
 <p>Giả sử trong hình minh họa trên, giá trị phân lớp <code>k</code> của  <code>a[i]</code> là 2 (Bước 1). Ta tìm vị trí mà phân lớp 2 cho phép hoán vị là <code>L[2]</code> (Bước 2). <code>L[2]</code> đang trỏ đến <code>a[j]</code>. Ta sẽ hoán vị <code>a[i]</code> và  <code>a[j]</code> (Bước 3).</p>
 
 </body>

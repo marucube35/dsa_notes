@@ -2,22 +2,7 @@
 title: "Quick Sort"
 ---
 
-<style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+<link rel="stylesheet" href="main.css">
 
 # Quick Sort
 

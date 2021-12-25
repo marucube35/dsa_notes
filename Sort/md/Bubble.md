@@ -2,22 +2,7 @@
 title: "Bubble Sort"
 ---
 
-<style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+<link rel="stylesheet" href="main.css">
 
 # Bubble Sort
 
@@ -30,9 +15,11 @@ Cần phân biệt rõ ràng với Interchange Sort vì thuật toán Bubble Sor
 ## Phân tích thuật toán
 
 **Điểm mạnh**
+
 Là một thuật toán dễ cài đặt, dễ hiểu và hoạt động tốt cho mảng có số lượng phần tử nhỏ.
 
 **Điểm yếu**
+
 Không hiệu quả đối với mảng có số lượng phần tử lớn, thường thì Bubble Sort được dùng trong giảng dạy hơn là áp dụng thực tiễn.
 
 > Khi nào nên sử dụng?
@@ -45,15 +32,15 @@ Tham khảo [happycoders](https://www.happycoders.eu/algorithms/bubble-sort/#Bub
 
 Bubble Sort không dễ chứng minh và phân tích trực tiếp như Selection Sort và Insertion Sort. Vì vậy ta sẽ chia nó ra ba trường hợp để phân tích
 
-**Best case**
+**Best case**\
 Do thuật toán sử dụng cờ lệnh và biết được khi nào mảng đã được sắp xếp, nên khi mảng đầu vào là dãy đã được sắp xếp thì cũng chính là trường hợp tốt nhất của thuật toán.
 
 Lúc này thuật toán sẽ quét qua từng phần tử rồi dừng nên độ phức tạp sẽ là tuyến tính $O(n)$.
 
-**Worst case**
+**Worst case**\
 Trường hợp xấu nhất xảy ra khi dữ liệu mà ta muốn sắp bị đảo ngược, chẳng hạn giảm dần khi ta muốn sắp tăng dần. Lúc này, với mỗi vòng lặp i, ta cần n - i lần hoán vị để đưa phần tử thứ i về đúng vị trí cuối mảng.
 
-<img src = "../../img/sort9.png">
+<img src = "../img/sort9.png">
 
 Và ta có n vòng lặp như vậy, số lần thực hiện hoán vị của hai vòng lặp lồng nhau này là:
 
@@ -64,7 +51,7 @@ $$
 (Có thể xem lại bài phân tích thuật toán để biết lý do).
 Do đó mà độ phức tạp sẽ là $O(n^2)$.
 
-**Average case**
+**Average case**\
 Phân tích chi tiết ở [đây](https://de.wikipedia.org/wiki/Bubblesort#Durchschnittlicher_Fall).
 
 ## Độ phức tạp thuật toán

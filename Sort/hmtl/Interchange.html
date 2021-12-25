@@ -226,7 +226,7 @@ pre code {
 }
 
 </style>
-
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
 <style>
 /*
 
@@ -391,22 +391,7 @@ code {
     });
   </script>
 
-  <style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+  <link rel="stylesheet" href="main.css">
 <h1 id="interchange-sort">Interchange Sort</h1>
 <p><strong>Nghịch thế</strong> là một cặp giá trị $(a_i,a_j)$ khi $a_i$ và $a_j$ không thỏa điều kiện sắp thứ tự. Ví dụ nếu mảng một chiều có các phần tử tăng dần mà có một cặp $(a_i,a_j)$ nào đó giảm dần thì cặp đó được gọi là <strong>nghịch thế</strong>.</p>
 <h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
@@ -420,8 +405,9 @@ code {
 <h2 id="ph%C3%A2n-t%C3%ADch-%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Phân tích độ phức tạp thuật toán</h2>
 <p>Ở mỗi lần lặp theo biến, có n - i lần so sánh (do các số phía trước đã sắp xếp).</p>
 <p>Như vậy ta có tổng số lần so sánh là:</p>
-<pre class="hljs"><code><div>\sum_{i = 1}^{n - 1}(n - i) = \frac{n(n - 1)}{2}
-</div></code></pre>
+<p>$$
+\sum_{i = 1}^{n - 1}(n - i) = \frac{n(n - 1)}{2}
+$$</p>
 <p>Trong trường hợp tốt nhất, chuỗi đã được sắp xếp thì chỉ so sánh mà không thực hiện hoán vị.</p>
 <p>Còn trong trường hợp xấu nhất khi chuỗi bị đảo ngược thì mỗi lần so sánh đều phải hoán vị.</p>
 <blockquote>

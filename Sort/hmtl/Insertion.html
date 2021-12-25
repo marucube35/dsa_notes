@@ -226,7 +226,7 @@ pre code {
 }
 
 </style>
-
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
 <style>
 /*
 
@@ -391,22 +391,7 @@ code {
     });
   </script>
 
-  <style>
-    img
-    {
-        display:block;
-        float:none;
-        margin-left:auto;
-        margin-right:auto;
-        width:60%;
-    }
-    p{
-        text-align: justify;
-    }
-    ul{
-        margin-left:5px;
-    }
-</style>
+  <link rel="stylesheet" href="main.css">
 <h1 id="insertion-sort">Insertion Sort</h1>
 <h2 id="%C3%BD-t%C6%B0%E1%BB%9Fng">Ý tưởng</h2>
 <p>Thuật toán Insertion Sort sắp xếp dựa trên tư tưởng là không gian cần sắp xếp đã được sắp xếp một đoạn và ta chỉ cần thêm giá trị mới vào không gian này sao cho không gian mới được sắp xếp.</p>
@@ -422,7 +407,7 @@ code {
 <blockquote>
 <p>Có thể hình dung Insertion Sort giống như khi chúng ta chơi tiến lên, chúng ta cần sắp bài vào sau khi được chia để có thể ra quân một cách nhanh chóng.</p>
 </blockquote>
-<img src="img/Sort10.png">
+<img src = "../img/Sort10.png">
 <blockquote>
 <p>Khi nào nên sử dụng?</p>
 </blockquote>
@@ -434,11 +419,11 @@ code {
 <h2 id="ph%C3%A2n-t%C3%ADch-%C4%91%E1%BB%99-ph%E1%BB%A9c-t%E1%BA%A1p-thu%E1%BA%ADt-to%C3%A1n">Phân tích độ phức tạp thuật toán</h2>
 <p>Tham khảo ở <a href="https://www.happycoders.eu/algorithms/insertion-sort/">happycoders</a>.</p>
 <p>Giả sử cần sắp xếp một mảng có sáu phần tử, ở vòng lặp đầu tiên, có hai khả năng xảy ra là dời chỗ một lần và không dời chỗ lần nào. Nên trung bình sẽ có 0.5 lần dời chỗ.</p>
-<img src="img/Sort11.png">
+<img src = "../img/Sort11.png">
 <p>Vòng lặp thứ hai thì có ba khả năng từ 0 đến 2 lần dời chỗ, ta lấy 0 + 2 rồi chia 2 được trung bình 1 lần dời chỗ.</p>
-<img src="img/Sort12.png">
+<img src = "../img/Sort12.png">
 <p>Xét tương tự cho đến vòng lặp thứ 5, ta sẽ có trung bình 2.5 lần dời chỗ.</p>
-<img src="img/Sort13.png">
+<img src = "../img/Sort13.png">
 <p>Tổng quát hơn, với 6 phần tử thì ta có 5 lần lặp, mỗi lần lặp thì nửa số phần tử đã được sắp xếp, đồng thời ta chèn phần tử vào giữa mảng của một nửa phần tử đã sắp xếp đó. Ta có:</p>
 <p>$$
 6 \times 5 \times 1/2 \times 1/2 = 30 \times 1/4 = 7.5
@@ -453,7 +438,7 @@ $$</p>
 <p>Kết luận độ phức tạp trong Average case của Insertion Sort là $O(n^2)$.</p>
 <p><strong>Worst case</strong>
 Trường hợp xấu nhất xảy ra khi mảng được sắp xếp nhưng bị đảo ngược. Lúc này ở mỗi lần lặp, thuật toán cần dời chỗ i phần tử để chèn phần tử vào vị trí ngoài cùng nhất bên trái của mảng.</p>
-<img src="img/Sort14.png">
+<img src = "../img/Sort14.png">
 <p>Lúc đó sẽ có $\cfrac{n(n - 1)}{2}$ lần dời chỗ dẫn đến độ phức tạp là $O(n^2)$.</p>
 <p><strong>Best case</strong>
 Trường hợp tốt nhất xảy ra khi mảng đã sắp xếp, lúc đó chỉ cần một lần so sánh trong mỗi vòng lặp và không có phép hoán vị nào. Dẫn đến tổng phép so sánh là n - 1 (bỏ qua phần tử đầu). Do đó độ phức tạp là tuyến tính $O(1)$.</p>
