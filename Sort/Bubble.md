@@ -37,7 +37,7 @@ Không hiệu quả đối với mảng có số lượng phần tử lớn, th�
 
 > Khi nào nên sử dụng?
 
-- Mảng đầu vào có kích thước cực nhỏ và hoặc gần như có thứ tự.
+- Mảng đầu vào có kích thước cực nhỏ và hoặc gần như có thứ tự hoặc đã có thứ tự.
 
 ## Phân tích độ phức tạp thuật toán
 
