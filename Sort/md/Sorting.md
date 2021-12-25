@@ -61,4 +61,4 @@ Có bốn loại internal sorting đó là
 Trong đó Shell Sort, Heap Sort, Quick Sort, Merge Sort và Radix Sort là các thuật toán phức tạp nhưng chi phí thấp. Các thuật toán còn lại đơn giản nhưng chi phí cao.
 # So sánh giữa các thuật toán
 
-<img src = "img/Sort8.png">
+<img src = "../img/Sort8.png">

@@ -33,7 +33,7 @@ $$
 121, 432, 564, 23, 1, 45, 788
 $$
 
-<img src="img/Sort34.png">
+<img src = "../img/Sort34.png">
 
 Ở vòng lặp 1 thực hiện phân các giá trị vào 6 lớp (1, 2, 3, 4, 5, 8) dựa trên các giá trị của hàng đơn vị (luôn có 9 lớp đối với cơ số 10). Vòng lặp hai thì cũng phân vào 6 lớp (0, 2, 3, 4, 6, 8). Cuối cùng phân vào 5 lớp (0, 1, 4, 5, 7). Và chính việc cho vào các phân lớp như vậy cũng làm cho dữ liệu được sắp xếp.
 
@@ -45,17 +45,17 @@ $$
 
 Vòng lặp đầu tiên ta gọi Counting Sort cho hàng đơn vị.
 
-<img src="img/Sort31.png">
+<img src = "../img/Sort31.png">
 
 Chúng ta có thể thấy thứ tự giữa các số có cùng hàng đơn vị vẫn không đổi (Stable).
 
 Tiếp theo cho hàng chục
 
-<img src="img/Sort32.png">
+<img src = "../img/Sort32.png">
 
 Cuối cùng là hàng trăm và kết thúc thuật toán
 
-<img src="img/Sort33.png">
+<img src = "../img/Sort33.png">
 
 (Hình ảnh tham khảo từ [programmingquiz](https://www.programiz.com/dsa/radix-sort))
 ## Phân tích thuật toán

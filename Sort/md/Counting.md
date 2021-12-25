@@ -31,25 +31,25 @@ Các bước thực hiện:
 
 1. Tìm phần tử lớn nhất trong mảng, gọi giá trị này là `max`
 
-<img src="img/sort26.png">
+<img src = "../img/sort26.png">
 
 - Độ phức tạp thời gian $O(n)$, không gian $O(1)$.
 
 2. Khởi tạo một mảng có độ dài `max + 1` với mọi giá trị đều là 0. Mảng này dùng để lưu các giá trị đếm số lần xuất hiện trong mảng của các phần tử.
 
-<img src="img/sort27.png">
+<img src = "../img/sort27.png">
 
 - Độ phức tạp thời gian và không gian $O(max)$.
 
 3. Tiến hành đếm số lần xuất hiện của giá trị `k` bất kỳ và cho vào vị trí `count[k]` của mảng đếm.
 
-<img src="img/sort28.png">
+<img src = "../img/sort28.png">
 
 - Độ phức tạp thời gian $O(n)$, không gian $O(1)$.
 
-4. Thực hiện cộng tích lũy các phần tử trong mảng đếm, phục vụ cho việc ánh xạ sang mảng chính để sắp xếp. Với `count[k] = count[k] + count[k - 1]`(Tại sao nó phục vụ cho việc ánh xạ :question:).
+4. Thực hiện cộng tích lũy các phần tử trong mảng đếm, phục vụ cho việc ánh xạ sang mảng chính để sắp xếp. Với `count[k] = count[k] + count[k - 1]`(Tại sao nó phục vụ cho việc ánh xạ ?).
 
-<img src="img/sort29.png">
+<img src = "../img/sort29.png">
 
 - Độ phức tạp thời gian $O(max)$, không gian $O(1)$.
 
@@ -57,9 +57,9 @@ Chú ý rằng giá trị cuối mảng `count[]` sau khi tính tích lũy luôn
 
 > Nếu thực hiện Counting Sort sắp xếp giảm dần, chỉ cần tính tích lũy theo chiều ngược lại.
 
-5. Tìm vị trí của phần tử mảng, chẳng hạn 4 thông qua mảng đếm và ánh xạ đến đúng vị trí của nó (có trừ cho 1 :question:).
+5. Tìm vị trí của phần tử mảng, chẳng hạn 4 thông qua mảng đếm và ánh xạ đến đúng vị trí của nó (có trừ cho 1 ?).
 
-<img src="img/sort30.png">
+<img src = "../img/sort30.png">
 
 - Độ phức tạp thời gian $O(n)$, không gian $O(n)$ (do cần chép qua một mảng phụ).
 

@@ -53,7 +53,7 @@ Lúc này thuật toán sẽ quét qua từng phần tử rồi dừng nên đ�
 **Worst case**
 Trường hợp xấu nhất xảy ra khi dữ liệu mà ta muốn sắp bị đảo ngược, chẳng hạn giảm dần khi ta muốn sắp tăng dần. Lúc này, với mỗi vòng lặp i, ta cần n - i lần hoán vị để đưa phần tử thứ i về đúng vị trí cuối mảng.
 
-<img src = "img/sort9.png">
+<img src = "../../img/sort9.png">
 
 Và ta có n vòng lặp như vậy, số lần thực hiện hoán vị của hai vòng lặp lồng nhau này là:
 

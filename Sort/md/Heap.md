@@ -29,7 +29,7 @@ Thuật toán Heap Sort được chia làm hai phần là xây dựng Max Heap v
 
 **Cây nhị phân hoàn chỉnh** là cấu trúc cây nhị phân hoàn hảo nhưng trừ mức cuối, ở mức cuối các node lá dồn hết qua trái càng xa càng tốt.
 
-<img src="img/Sort2.png">
+<img src = "../img/Sort2.png">
 
 Hai phần tử con của một phần tử **a[i]** bất kỳ sẽ nằm ở vị trí **2i + 1** và **2i + 2** (nếu phần tử đầu là 0) hoặc **2i** và **2i + 1** (nếu phần tử đầu là 1). Các phần tử này gọi là các **phần tử liên đới**. Các số đánh trong hình trên chính là vị trí index của các phần tử khi thể hiện dưới dạng mảng. Nếu duyệt cây theo các mức (Level Order Traversal), ta sẽ thu được một danh sách tăng dần các vị trí index từ 1 đến n (hoặc từ 0 đến n – 1).
 
@@ -39,23 +39,23 @@ Hai phần tử con của một phần tử **a[i]** bất kỳ sẽ nằm ở v
 
 Giả sử ta cần xây dựng Max Heap từ mảng dưới đây
 
-<img src="img/sort3.png">
+<img src = "../img/sort3.png">
 
 Phần tử xét vun đống là giữa mảng, có vị trí index là `i = int(5 - 1)/2 = 2` hoặc `i = 6/2 - 1 = 2`.
 
 Bước đầu tiên là **`swap(9,10)`** vì 10 lớn hơn 9.
 
-<img src="img/sort4.png">
+<img src = "../img/sort4.png">
 
 Các phần tử bị hoán vị phải được vun đống ở vị trí mà nó hoán vị đến. Việc này để đảm bảo các node luôn có giá trị lớn hơn node con của nó sau khi có sự thay đổi gây ra bởi công việc hoán vị. Ở trên do `arr[5]` là node lá nên không có gì xảy ra.
 
 Sau khi xét `arr[2]` thì ta tiếp tục xét `arr[1]` (cứ thế tiến dần về đầu mảng).
 
-<img src="img/sort5.png">
+<img src = "../img/sort5.png">
 
 Nhận thấy node này đã được vun đống sẵn rồi nên bỏ qua và xét `arr[0]`.
 
-<img src="img/sort6.png">
+<img src = "../img/sort6.png">
 
 Ở đây ta thấy 12 > 10 > 1 nên ta sẽ **`swap(12,1)`**. Sau đó xét vun đống ở `arr[1]`, nơi mà ta vừa thực hiện hoán vị để bảo toàn Max Heap. Tại `arr[1]` ta thấy 6 > 5 > 1, thực hiện **`swap(6,1)`** và xét `arr[4]` ở bước tiếp theo. Node `arr[4]` là node lá nên không có gì xảy ra, ta thu được Max Heap hoàn chỉnh.
 
@@ -78,7 +78,7 @@ Nhận thấy node này đã được vun đống sẵn rồi nên bỏ qua và 
 
 Heap Sort là một thuật toán **cải tiến của Selection Sort**. Nhờ sử dụng cấu trúc Heap mà Heap Sort có số lần so sánh ít hơn Selection, nó chỉ tốn O(nlog(n)) chi phí so sánh.
 
-Heap Sort dựa vào việc so sánh để sắp xếp. Và sự so sánh này trên cấu trúc Heap không bị ảnh hưởng bởi kiểu dữ liệu (int, float, bool, char,...). Ngoài ra, đối với chuỗi ký tự, còn có **Dictionary - based** :question:. Ứng dụng trong **Priority Queues** :question:.
+Heap Sort dựa vào việc so sánh để sắp xếp. Và sự so sánh này trên cấu trúc Heap không bị ảnh hưởng bởi kiểu dữ liệu (int, float, bool, char,...). Ngoài ra, đối với chuỗi ký tự, còn có **Dictionary - based** ?. Ứng dụng trong **Priority Queues** ?.
 
 Ví dụ: "been" > "ant", "been" < "boy", "Been" < "been".
 
@@ -118,7 +118,7 @@ Tương tự như Merge Sort, cả ba cases của thuật toán đều có chi p
 
 Dễ hiểu thì khi dữ liệu giảm dần thì nó đã là Max Heap. Còn trong trường hợp tăng dần thì nó là Min Heap. Do đó chỉ tốn chi phí $O(n)$ để build Heap. Tuy nhiên, chi phí cuối cùng vẫn là $O(nlog_2(n))$.
 
-Mặc dù vậy, máy tính có thể tối ưu thời gian thuật toán của Heap Sort dựa vào [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor) nếu dữ liệu đã được sắp xếp. Đại loại là ở mỗi lần thực hiện phép so sánh, kết quả đều giống nhau, nên máy tính có thể dự đoán được kết quả của lần tiếp theo và thực hiện tối ưu. :question:
+Mặc dù vậy, máy tính có thể tối ưu thời gian thuật toán của Heap Sort dựa vào [branch prediction](https://en.wikipedia.org/wiki/Branch_predictor) nếu dữ liệu đã được sắp xếp. Đại loại là ở mỗi lần thực hiện phép so sánh, kết quả đều giống nhau, nên máy tính có thể dự đoán được kết quả của lần tiếp theo và thực hiện tối ưu. ?
 
 (Tham khảo [programmingquiz](https://www.programiz.com/dsa/heap-sort) và [happycoders](https://www.happycoders.eu/algorithms/heapsort/))
 

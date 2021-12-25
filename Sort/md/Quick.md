@@ -83,7 +83,7 @@ Trường hợp hơn kém một phần tử xảy ra khi số phần tử trong 
 
 Cả hai trường hợp trên thì kích thước của các phân hoạch tối đa là n/2, và cây phân hoạch tương tự như cây phân hoạch của Merge Sort (cây nhị phân đầy đủ). Nói cách khác, chiều cao của cây là tối thiểu và tiết kiệm được nhiều chi phí duyệt qua các mức thừa.
 
-<img src="img/Sort15.png">
+<img src = "../img/Sort15.png">
 
 Giả sử T(n) là độ phức tạp thời gian cho trường hợp tốt nhất và n là số phần tử của mảng.
 Ở bước đầu tiên khi ta chia mảng làm đôi:
@@ -119,7 +119,7 @@ Vậy độ phức tạp thuật toán trong trường hợp tốt nhất là $O
 **Worst case**
 Worst case xảy ra khi mảng đã được sắp xếp tăng dần hoặc giảm dần, đồng thời ta chọn pivot là phần tử ở hai đầu mảng. Lúc đó cây phân hoạch trở thành một cây mất cân bằng và suy biến về một cây thẳng đứng, khiến cho chiều cao của cây là tối đa (n).
 
-<img src="img/Sort16.png">
+<img src = "../img/Sort16.png">
 
 Ở mỗi lần chia ta phải duyệt qua $c * n$ phần tử, đồng thời có n lần chia như vậy, dễ thấy độ phức tạp của trường hợp xấu nhất là bình phương.
 

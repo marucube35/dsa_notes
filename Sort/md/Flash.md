@@ -49,7 +49,7 @@ Tiếp theo tìm giá trị nhỏ nhất `min` và lớn nhất `max`.
 
 Sau đó ta đi tìm phân lớp của phần tử `a[i]` bất kỳ. Có biểu đồ sau:
 
-<img src = "img/sort35.png">
+<img src = "../img/sort35.png">
 
 Ta lấy đoạn màu đỏ chia cho đoạn màu xanh dương được 
 
@@ -75,6 +75,6 @@ Khi đã có được số lượng phần tử này rồi thì ta cần tính v
 
 Bước này là bước quan trọng của thuật toán, nó sẽ kiểm tra giá trị `k` của phần tử `a[i]` bất kỳ. Nếu đúng chỗ thì xét tiếp phần tử tiếp theo, sai chỗ thì sẽ hoán vị với phần tử đang nằm ở phân lớp `k` mà nó đáng lẽ phải ở đó.
 
-<img src = "img/sort36.png">
+<img src = "../img/sort36.png">
 
 Giả sử trong hình minh họa trên, giá trị phân lớp `k` của  `a[i]` là 2 (Bước 1). Ta tìm vị trí mà phân lớp 2 cho phép hoán vị là `L[2]` (Bước 2). `L[2]` đang trỏ đến `a[j]`. Ta sẽ hoán vị `a[i]` và  `a[j]` (Bước 3).
