@@ -47,7 +47,7 @@ Tham khảo các khái niệm và thuật ngữ khác bằng [Tiếng Việt](ht
 
 - Một phiên bản khác của cây gọi là Tries được dùng để lưu các thông tin định tuyến trong Router.
 - Đa số các cơ sở dữ liệu sử dụng B - Tree và T - Tree để tổ chức dữ liệu.
-- Compilers sử dụng _Syntax Tree_ để kiểm tra Syntax khi chúng ta biên dịch.
+- Compilers sử dụng _Syntax Tree_ để kiểm tra cú pháp khi chúng ta biên dịch chương trình
 
 (Hình ảnh ở trên và phần ứng dụng tham khảo của [programmingquiz](https://www.programiz.com/dsa/trees))
 

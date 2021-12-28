@@ -8,21 +8,72 @@
 
 # Application
 
+- Lưu trữ và tìm kiếm thông tin hiệu quả và dễ dàng.
+- Xây dựng cấu trúc Heap.
 - Cây tổ chức thi đấu.
-- Cây biểu thức số học.
-- Lưu trữ và tìm kiếm thông tin.
+- Cây biểu thức số học, cây cú pháp
+- Sử dụng trong các thuật toán định tuyến.
 
 # Classification
 
-Ta gọi số đỉnh là `N`, chiều cao là `H`, `L` là số đỉnh lá và `i` là mức. Có các loại cây nhị phân phổ biến sau:
+Ta gọi số đỉnh là `N`, chiều cao là `H`, `L` là số đỉnh lá và `i` là mức. Thuật ngữ "node" đôi khi dùng thay thế cho "đỉnh". Có các loại cây nhị phân phổ biến sau:
 
-> **Full Binary Tree** – cây nhị phân đầy đủ. Là một cây nhị phân mà các đỉnh trong luôn có bậc là 2.
+## Pathological or Degenerate Tree 
+
+> Cây nhị phân suy thoái, là một cây chỉ có một con trái hoặc con phải.
+
+<img src="../img/Tree25.png">
+
+## Skewed Binary Tree 
+
+> Cây nhị phân lệch hay thẳng, là cây nhị phân suy thoái mà các đỉnh con của nó toàn bộ là con trái hoặc con phải.
+
+<img src="../img/Tree26.png">
+
+## Full Binary Tree
+
+> Cây nhị phân đầy đủ. Là một cây nhị phân mà các đỉnh trong luôn có bậc là 2.
 
 Tức là nếu đỉnh đó có đỉnh con, thì phải có đầy đủ 2 đỉnh con. Nói cách khác, số bậc của các đỉnh sẽ là 0 hoặc là 2.
 
 <img src="../img/Tree10.png">
 
-> **Perfect Binary Tree** – cây nhị phân hoàn hảo: là một cây nhị phân mà các đỉnh lá của nó cùng nằm trên một mức. Hay nói cách khác, số bậc của đỉnh luôn là 2.
+### Properties
+Gọi `I` là tổng số đỉnh trong. Số đỉnh:
+- Lá: $I + 1$
+- Lá: $(n + 1) / 2$
+- Lá tối đa: $2^i - 1$
+- Trong: $L - 1$
+- Trong: $(n - 1) / 2$
+- Tổng số đỉnh: $2I + 1$
+- Tổng số đỉnh: $2L - 1$
+
+### Implementation
+
+```c++
+bool isFull(NODE *root)
+{
+    if (root != nullptr)
+    {
+        // Nếu hai con khác nhau thì có root có thể có 1 hoặc 2 con
+        if (root->left != root->right)
+        {
+            // Nếu một trong hai bằng null thì là 1 con
+            // Không thể có trường hợp cả hai đều null do đã xét ở trên
+            if (root->left == nullptr or root->right == nullptr)
+                return false;
+        }
+
+        return isFull(root->left) && isFull(root->right);
+    }
+    else
+        return true;
+}
+```
+
+## Perfect Binary Tree
+
+> Cây nhị phân hoàn hảo: là một cây nhị phân mà các đỉnh lá của nó cùng nằm trên một mức. Hay nói cách khác, số bậc của đỉnh luôn là 2.
 
 <img src="../img/Tree11.png">
 
@@ -38,7 +89,9 @@ $$
 H = log_2(N + 1)
 $$
 
-> **Complete Binary Tree** – cây nhị phân hoàn chỉnh: là cây nhị phân mà mọi mức đều được lấp đầy, trừ mức cuối. Tất cả các đỉnh lá của mức cuối dồn hết qua bên trái hết mức có thể.
+## Complete Binary Tree
+
+> Cây nhị phân hoàn chỉnh: là cây nhị phân mà mọi mức đều được lấp đầy, trừ mức cuối. Tất cả các đỉnh lá của mức cuối dồn hết qua bên trái hết mức có thể.
 
 <img src="../img/Tree12.png">
 
@@ -52,9 +105,15 @@ _Perfect Binary Tree là một Full Binary Tree và cũng là một Complete Bin
 
 Trong tất cả các cây nhị phân có N đỉnh, thì CBT là cây có chiều cao thấp nhất và PBT là cây có chiều cao cao nhất.
 
-> **Balanced Binary Tree** – Cây nhị phân cân bằng là cây nhị phân mà chiều cao của nó luôn duy trì ở giá trị $O(log_2(n))$.
+## Balanced Binary Tree
 
-# Properties
+Cây nhị phân cân bằng là cây nhị phân mà mỗi đỉnh có sự khác biệt giữa chiều cao cây con trái và cây con phải không quá 1.
+
+<img src="../img/Tree27.png">
+
+(Hình ảnh tham khảo từ [programmingquiz](https://www.programiz.com/dsa/binary-tree))
+
+# General Properties
 
 **Số đỉnh ở mức i** tối đa là $2^i$, tối thiểu là 1.
 
