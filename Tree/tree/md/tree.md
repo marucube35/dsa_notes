@@ -77,6 +77,16 @@ struct node{
 };
 ```
 
+Cấu trúc node của cây nhị phân:
+
+```c++
+struct NODE{
+    int key;
+    NODE* left;
+    NODE* right;
+};
+```
+
 Hoặc cấp phát sẵn một mảng các con trỏ với số lượng node con cố định.
 
 ```c++

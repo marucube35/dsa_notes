@@ -3,6 +3,9 @@ title: Binary Search Tree
 ---
 
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+      <center><h1 class="bigtitle">Binary Search Tree</h1></center>
+</div>
 
 # Search Tree
 
@@ -38,7 +41,7 @@ Cây nhị phân tìm kiếm phụ thuộc vào dữ liệu đầu vào, nếu n
 
 Ta bắt đầu duyệt từ node gốc. Nếu giá trị cần tìm nhỏ hơn node gốc, tìm bên cây con trái. Ngược lại tìm bên cây con phải. Trường hợp node đó rỗng hoặc là node cần tìm thì trả về.
 
-### Implementation
+### Code
 
 ```c++
 NODE *Search(NODE *root, int x)
@@ -62,7 +65,7 @@ Tiến hành duyệt trước qua các phần tử trong cây. Mỗi lần duy�
 
 Giá trị trả về nên là int. Với 1 là thêm thành công và 0 là thêm thất bại.
 
-### Implementation
+### Code
 
 ```c++
 void Insert(NODE *&root, int x)
@@ -102,7 +105,7 @@ Có ba khả năng xảy ra khi remove một node trong BST.
 - Hoán đổi giá trị của node cần xóa với C.
 - Nếu C là node lớn nhất cây con trái thì xóa con phải của node cha. Ngược lại nếu C là node nhỏ nhất cây con phải thì xóa con trái của node cha.
 
-### Implement
+### Code
 
 **Code tìm node cha của node nhỏ nhất bên cây con phải:**
 
@@ -183,60 +186,89 @@ void Remove(NODE *&pRoot, int x)
 
 ## Complexity of Search, Insert and Remove
 
-- Độ phức tạp thời gian:
-  Best case: $O(log_2(n))$, xảy ra khi cây có chiều cao tối thiểu.
-  Worst case: $O(n)$, xảy ra khi nó là một cây lệch.
-  Average case: $O(log_2(n))$.
-- Độ phức tạp không gian: $O(n)$ (Các lời gọi đệ quy).
+**Worst case**
+Xảy ra khi đây là một cây lệch, lúc này cần duyệt qua $N$ phần tử để có thể thực hiện thao tác.
 
+**Best case**
+Khi cây là gần như hoàn hảo hoặc hoàn hảo. Lúc này chiều cao của cây là tối thiểu $log_2(N + 1)$ nên các thao tác thêm và xóa sẽ tốn ít chi phí nhất.
+
+Đối với thao tác xóa, nếu phần tử cần xóa nằm ở đầu thì chi phí cho việc tìm kiếm phần tử cần xóa là $O(1)$. Tuy nhiên chi phí để tìm kiếm phần tử thế mạng sẽ là $O(log_2(n))$ nên tổng độ phức tạp thời gian vẫn là $O(log_2(n))$.
+Nói cách khác, chi phí tìm kiếm phần tử cần xóa và phần tử thế mạng là bù trừ cho nhau.
+
+**Best case of search**
+Trường hợp tốt nhất xảy ra khi tìm kiếm là phần tử cần tìm nằm ở node gốc, nên có độ phức tạp thời gian $O(1)$.
+
+| Cases               | Complexity    |
+| :------------------ | :------------ |
+| Best case           | $O(log_2(n))$ |
+| Best case of Search | $O(1)$        |
+| Worst case          | $O(n)$        |
+| Average case        | $O(log_2(n))$ |
+
+Space Complexity: $O(n)$ (Lưu giữ các lời gọi đệ quy).
 
 # Counting
+
 ## Count less
 
-Đếm số node mà bé hơn một giá trị cho trước trong cây.
+Đếm số node bé hơn một giá trị cho trước.
 
 ```c++
-int countLess(NODE* pRoot, int x)
+int countLess(NODE *root, int x)
 {
-    if(pRoot == nullptr)
+    if (root == nullptr)
         return 0;
-    if(x > pRoot->key)
-        return 1 + countNode(pRoot->left) + countLess(pRoot->right,x);
-    else if (x < pRoot->key)
-        return countLess(pRoot->left,x);
+
+    // Nếu lớn hơn node hiện tại, cộng tất cả các node bên cây con trái và node hiện tại.
+    // Sau đó duyệt sang cây con phải.
+    if (x > root->key)
+        return 1 + countNode(root->left) + countLess(root->right, x);
+
+    // Hoặc có thể dùng cách khác, duyệt sang cả hai bên của cây khi x > root->key.
+    // return 1 + countLess(root->left,x) + countLess(root->right, x);
+
+    // Nếu nhỏ hơn hoặc bằng thì chỉ duyệt sang cây con trái.
     else
-        return countNode(pRoot->left);
+        return countLess(root->left, x);
 }
 ```
 
 ## Count Greater
 
-Đếm số node lớn hơn một giá trị cho trước
+Đếm số node lớn hơn một giá trị cho trước. Ý tưởng ngược lại với Count Less.
 
 ```c++
-int countGreater(NODE *pRoot, int x)
+int countGreater(NODE *root, int x)
 {
-    if (pRoot == nullptr)
+    if (root == nullptr)
+    {
         return 0;
-    if (x < pRoot->key)
-        return 1 + countNode(pRoot->right) + countGreater(pRoot->left,x);
-    else if (x > pRoot->key)
-        return countGreater(pRoot->right, x);
-    else
-        return countNode(pRoot->right);
-}
+    }
 
+    // Nếu nhỏ hơn, đếm tất cả các node bên cây con phải và node hiện tại.
+    // Sau đó duyệt sang cây con trái.
+    if (x < root->key)
+        return 1 + countNode(root->right) + countGreater(root->left, x);
+
+    // Nếu lớn hơn hoặc bằng thì chỉ duyệt sang cây con phải.
+    else
+        return countGreater(root->right, x);
+}
 ```
 
 # Is BST ?
 
+## Method 1
+
+### Idea
+
 Thuật toán chứng minh một cây là cây nhị phân tìm kiếm có hai phần.
 
-Phần đầu tiên là chứng minh nó là cây nhị phân tìm kiếm cục bộ, tức là xét với mỗi node thì nó đều nhỏ hơn con phải và lớn hơn con trái.
+Phần đầu tiên là chứng minh nó là cây nhị phân tìm kiếm cục bộ, tức là xét với mỗi node thì nó đều lớn hơn con trái và nhỏ hơn con phải.
 
 Phần thứ hai là xét toàn cục, với mỗi node thì tìm node nhỏ nhất của cây con bên phải so với nó, nếu lớn hơn thì là BST. Tương tự tìm node lớn nhất của cây con bên trái, nếu nhỏ hơn thì là BST.
 
-**Code:**
+### Code
 
 ```c++
 bool isBST(NODE *pRoot)
@@ -246,16 +278,23 @@ bool isBST(NODE *pRoot)
         NODE *rightMin = pRoot;
         NODE *leftMax = pRoot;
 
+        // Tìm phần tử lớn nhất cây con trái
         if (pRoot->left != nullptr)
             searchLeftMax(leftMax);
+        // và nhỏ nhất cây con phải
         else if (pRoot->right != nullptr)
             searchRightMin(rightMin);
 
+        // So sánh điều kiện 1
         if ((pRoot->left != nullptr && pRoot->left->key > pRoot->key)
         || (pRoot->right != nullptr && pRoot->right->key < pRoot->key))
             return false;
+
+        // So sánh điều kiện 2
         else if (rightMin->key < pRoot->key || leftMax->key > pRoot->key)
             return false;
+
+        // Xét các cây con
         else
             return isBST(pRoot->left) && isBST(pRoot->right);
     }
@@ -265,7 +304,36 @@ bool isBST(NODE *pRoot)
 }
 ```
 
+### Complexity
+
+Ở mỗi node, cần phải đi tìm phần tử lớn nhất cây con trái (maxLeft) và nhỏ nhất cây con phải (minRight) nên tốn chi phí $O(log_2(n))$.
+
+Chẳng hạn khi ở node gốc, cần phải lặp $H$ vòng lặp để tìm được maxLeft và minRight . Node ở mức 1 thì cần $H - 1$, tương tự ở mức i bất kỳ thì cần $H - i$ lần lặp.
+
+Tuy nhiên tối đa vẫn là $H$ vòng lặp.
+
+Ta đã biết
+
+$$
+log_2(N + 1) \leq H \leq N
+$$
+
+Từ đó suy ra chi phí cho các vòng lặp sẽ là:
+Worst case: $O(n)$
+Best case: $O(log_2(n))$
+
+Mà cần phải duyệt qua $N$ node trong cây để kiểm chứng điều này. Do đó:
+
+- Độ phức tạp thời gian:
+  Best case: $O(nlog_2(n))$.
+  Worst case: $O(n^2)$.
+- Độ phức tạp không gian: $O(n)$ (Lưu giữ các lời gọi đệ quy).
+
+## Method 2
+
 Ngoài ra cũng còn một cách kiểm tra nữa sử dụng một mảng phụ. Ta tiến hành duyệt giữa cây, mỗi lần đến một node thì lưu node đó vào mảng. Nếu mảng của chúng ta giảm dần (đệ quy cho ra mảng ngược) hoặc tăng dần (duyệt mảng ngược) thì là BST. Cách này cũng có thể kiểm tra phần tử trùng trong cây bằng cách xét hai phần tử liền kề.
+
+### Code
 
 **Code duyệt giữa và thêm vào mảng phụ:**
 
@@ -300,27 +368,41 @@ bool isBST2(NODE *pRoot)
 }
 ```
 
+Có thể kiểm tra hai phần tử liền kề có tăng dần (giảm dần) mà không cần sử dụng mảng phụ:
+
+```c++
+bool isBST(NODE *root, NODE *&prev)
+{
+    // Nếu có thể chạm đến node lá, nghĩa là một số node ở trên đường đi đến nó đã thỏa mãn BST
+    if (root == nullptr)
+        return true;
+
+    // Nếu như cây con trái không là BST thì return false
+    // Nếu là BST thì xét tại node đó rồi xét con phải
+    if (isBST(root->left, prev) == false)
+        return false;
+
+    // Nếu vi phạm BST thì phát hiện
+    if (prev != nullptr && root->key <= prev->key)
+        return false;
+    prev = root;
+
+    // Cây con phải thì return và duyệt tiếp.
+    return isBST(root->right, prev);
+}
+```
+
+### Complexity
+
+Do duyệt qua mọi phần tử trong cây nên độ phức tạp luôn là $O(n)$ trong cả ba case. Mảng phụ có thể triệt tiêu trong cách xây dựng code thứ hai. Do đó:
+
+Time Complexity: $O(n)$.
+Space Complexity: $O(1)$.
+
 # Is Full BST ?
 
 Để chứng minh một cây nhị phân tìm kiếm là đầy đủ thì cần hai điều kiện: nó là BST và nó là cây nhị phân đầy đủ.
+Thuật toán chứng minh cây nhị phân là đầy đủ có trong bài Binary Tree.
 
-Để chứng minh nó là BST thì ta gọi hàm isBST ở trên. Để chứng minh nó là cây nhị phân đầy đủ thì cần viết hàm kiểm tra xem mỗi node có thỏa mãn tính chất sở hữu 0 hoặc 2 con không. Nếu node nào có 1 con thì không phải là cây nhị phân đầy đủ.
-
-**Code:**
-
-```c++
-bool isFull(NODE* pRoot)
-{
-    if(pRoot != nullptr)
-    {
-        if((pRoot->left == pRoot->right) || (pRoot->left != nullptr && pRoot->right != nullptr))
-            return isFull(pRoot->left) && isFull(pRoot->right);
-        else
-            return false;
-    }
-    else
-    {
-        return true;
-    }
-}
-```
+Tổng độ phức tạp thời gian sẽ là $O(n + n) = O(n)$.
+Độ phức tạp không gian là $O(1)$.

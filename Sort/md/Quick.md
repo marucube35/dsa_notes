@@ -151,6 +151,14 @@ Suy ra độ phức tạp thuật toán trong trường hợp xấu nhất là $
 **Average case**
 Phân tích chi tiết ở [opengenus](https://iq.opengenus.org/time-and-space-complexity-of-quick-sort/) và [khan academy](https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort).
 
+**Space Complexity**
+
+Ta xây dựng các mảng phân hoạch của Quick Sort thành cây phân hoạch như ở trên. Số lần lưu Stack tối đa cũng chính là chiều cao của cây nhị phân (sẽ được ghi chú trong bài cấu trúc cây nhị phân). 
+
+Mà chiều cao này là $log_2(n)$. Suy ra độ phức tạp không gian sẽ là $O(log_2(n))$.
+
+Tuy nhiên Quick Sort vẫn là thuật toán In-Place không sử dụng bộ nhớ thêm (ngoại trừ Stack đệ quy).
+
 ## Độ phức tạp thuật toán
 
 | Cases        | Complexity     |
@@ -159,7 +167,7 @@ Phân tích chi tiết ở [opengenus](https://iq.opengenus.org/time-and-space-c
 | Worst case   | $O(n^2)$       |
 | Average case | $O(nlog_2(n))$ |
 
-Space Complexity: $O(1)$.
+Space Complexity: $O(log_2(n))$.
 
 ## Giải thuật mẫu
 

@@ -1,6 +1,13 @@
-<link rel="stylesheet" href="main.css">
+---
+title: Binary Tree
+---
 
-# Definiton
+<link rel="stylesheet" href="main.css">
+<div class="bg">
+      <center><h1 class="bigtitle">Binary Tree</h1></center>
+</div>
+
+# Definition
 
 > Là cây mà mỗi đỉnh có tối đa 2 con (bậc tối đa là 2) và các giá trị của đỉnh không được trùng nhau.
 
@@ -14,7 +21,57 @@
 - Cây biểu thức số học, cây cú pháp
 - Sử dụng trong các thuật toán định tuyến.
 
-# Classification
+# General Properties
+
+**Số đỉnh ở mức i** tối đa là $2^i$, tối thiểu là 1.
+
+$$
+\begin{align*}
+    1 \leq N_i &\leq 2^i\\
+\end{align*}
+$$
+
+Một cây nhị phân với **L lá** có **ít nhất $log_2(L) + 1$ mức**.
+
+$$
+    i \geq log_2(L) + 1
+$$
+
+**Số đỉnh tối đa của cây** là $2^H –\ 1$ (nhiều nhất khi là cây nhị phân hoàn hảo)
+
+$$
+    N \leq 2^H -\ 1
+$$
+
+**Số đỉnh tối thiểu của cây** là $H$ trong trường hợp cây đó là một cây thẳng (suy thoái trở thành DSLK). Với một cây có $N$ đỉnh thì:
+
+$$
+    N \geq H
+$$
+
+**Chiều cao của cây tối đa** trong trường hợp cây thẳng (suy thoái trở thành DSLK). Vối một cây có $N$ đỉnh thì:
+
+$$
+    H \leq N
+$$
+
+**Chiều cao của cây tối thiểu** là $log_2(N\ +\ 1)$ với $N$ là số đỉnh trong cây.
+
+$$
+    H \geq log_2(N\ +\ 1)
+$$
+
+Trong cây nhị phân đầy đủ, số đỉnh có 0 con luôn lớn hơn một đỉnh so với số đỉnh có 2 con. Ta gọi số đỉnh có 2 con là `T`. Ta có:
+
+$$
+L = T + 1
+$$
+
+Tính chất này có thể chứng minh bằng bổ đề bắt tay (Handshaking Lemma), là một bổ đề nói rằng tổng số bậc của đồ thị bằng hai lần số cạnh.
+
+(Tham khảo [geeksforgeeks](https://www.geeksforgeeks.org/binary-tree-set-2-properties/?ref=lbp))
+
+# Types of Binary Tree
 
 Ta gọi số đỉnh là `N`, chiều cao là `H`, `L` là số đỉnh lá và `i` là mức. Thuật ngữ "node" đôi khi dùng thay thế cho "đỉnh". Có các loại cây nhị phân phổ biến sau:
 
@@ -73,7 +130,7 @@ bool isFull(NODE *root)
 }
 ```
 
-Độ phức tạp thời gian $O(n)$, không gian $O(1)$.
+Độ phức tạp thời gian $O(n)$, không gian $O(n)$ (lưu giữ các lời gọi đệ quy).
 
 ## Perfect Binary Tree
 
@@ -119,7 +176,7 @@ bool isPerfect(NODE *root)
 }
 ```
 
-Độ phức tạp thời gian $O(n)$, không gian $O(1)$.
+Độ phức tạp thời gian $O(n)$, không gian $O(n)$ (lưu giữ các lời gọi đệ quy).
 
 ## Complete Binary Tree
 
@@ -196,9 +253,20 @@ Nói cách khác, node null phải là node cuối cùng trong cây khi duyệt 
 Độ phức tạp thời gian $O(n)$.
 Độ phức tạp không gian $O(n)$.
 
-- Bởi vì kích thước mảng phụ phụ thuộc vào số node lá của cây . Mà số node lá của cây tối đa là $2^{H - 1}$ Với $H$ là chiều cao của cây.
-- Do tiệm cận Perfect Binary Tree nên $H$ có thể xem như nhỏ nhất, tức là $H = O(log_2(N + 1))$.
-- Thay vào ta có độ phức tạp không gian là $O((N + 1)/2) = O(n)$.
+- Bởi vì kích thước Queue phụ thuộc vào số node lá của cây . Mà số node lá của cây tối đa là
+  $$
+  2^{H - 1}
+  $$
+  Với $H$ là chiều cao của cây.
+- Do tiệm cận Perfect Binary Tree nên $H$ có thể xem như nhỏ nhất, tức là
+  $$
+  H = O(log_2(N + 1))
+  $$
+- Thay vào ta có độ phức tạp không gian cho Queue là
+  $$
+  O((N + 1)/2) = O(n)
+  $$
+- Ngoài ra còn có độ phức phức tạp không gian cho các lời gọi đệ quy: $O(n)$. Tính tổng vẫn được kết quả $O(n)$.
 
 ### Heap
 
@@ -208,7 +276,7 @@ Cấu trúc Heap chính là một ứng dụng của cây nhị phân hoàn ch�
 
 **Min Heap** là ngược lại, mỗi đỉnh luôn bé hơn các đỉnh con của nó.
 
-> Trong tất cả các cây nhị phân có N đỉnh, thì CBT là cây có chiều cao thấp nhất và PBT là cây có chiều cao cao nhất.
+> Trong tất cả các cây nhị phân có N đỉnh, thì CBT là cây có chiều cao thấp nhất và SBT (Skewed Binray Tree) là cây có chiều cao cao nhất.
 
 ## Balanced Binary Tree
 
@@ -242,56 +310,6 @@ bool isBalanced(NODE *root)
 <img src="../img/Tree27.png">
 
 (Hình ảnh tham khảo từ [programmingquiz](https://www.programiz.com/dsa/binary-tree))
-
-# General Properties
-
-**Số đỉnh ở mức i** tối đa là $2^i$, tối thiểu là 1.
-
-$$
-\begin{align*}
-    1 \leq N_i &\leq 2^i\\
-\end{align*}
-$$
-
-Một cây nhị phân với **L lá** có **ít nhất $log_2(L) + 1$ mức**.
-
-$$
-    i \geq log_2(L) + 1
-$$
-
-**Số đỉnh tối đa của cây** là $2^H –\ 1$ (nhiều nhất khi là cây nhị phân hoàn hảo)
-
-$$
-    N \leq 2^H -\ 1
-$$
-
-**Số đỉnh tối thiểu của cây** là $H$ trong trường hợp cây đó là một cây thẳng (suy thoái trở thành DSLK). Với một cây có $N$ đỉnh thì:
-
-$$
-    N \geq H
-$$
-
-**Chiều cao của cây tối đa** trong trường hợp cây thẳng (suy thoái trở thành DSLK). Vối một cây có $N$ đỉnh thì:
-
-$$
-    H \leq N
-$$
-
-**Chiều cao của cây tối thiểu** là $log_2(N\ +\ 1)$ với $N$ là số đỉnh trong cây.
-
-$$
-    H \geq log_2(N\ +\ 1)
-$$
-
-Trong cây nhị phân đầy đủ, số đỉnh có 0 con luôn lớn hơn một đỉnh so với số đỉnh có 2 con. Ta gọi số đỉnh có 2 con là `T`. Ta có:
-
-$$
-L = T + 1
-$$
-
-Tính chất này có thể chứng minh bằng bổ đề bắt tay (Handshaking Lemma), là một bổ đề nói rằng tổng số bậc của đồ thị bằng hai lần số cạnh.
-
-(Tham khảo [geeksforgeeks](https://www.geeksforgeeks.org/binary-tree-set-2-properties/?ref=lbp))
 
 # Enumerate the Binary Tree
 
@@ -340,19 +358,7 @@ Cũng là số cấu hình cây nhị phân có thể có tạo thành từ N đ
 
 (Tham khảo [geeksforgeeks](https://www.geeksforgeeks.org/enumeration-of-binary-trees/))
 
-
-
-# Binary Tree Structure
-
-```c++
-struct NODE{
-    int key;
-    NODE* left;
-    NODE* right;
-};
-```
-
-# Binary Tree Traversal
+# Traversal
 
 ## Idea
 
@@ -387,8 +393,7 @@ Chẳng hạn ta có cây như hình dưới.
 
 **Duyệt theo mức** (Level Order Traveral). Chúng ta duyệt cây bằng cách duyệt theo thứ tự từ trên xuống, từ trái qua. Ở cây trên, kết quả sau khi duyệt là: $2–7–5–2–6–9–5–11–4$
 
-
-## Implementation
+## Code
 
 **Duyệt trước**
 
@@ -437,7 +442,6 @@ void inOrder(node *root)
     inOrder(root->pRight);
 }
 ```
-
 
 # Counting
 
