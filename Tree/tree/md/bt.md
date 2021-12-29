@@ -18,13 +18,13 @@
 
 Ta gọi số đỉnh là `N`, chiều cao là `H`, `L` là số đỉnh lá và `i` là mức. Thuật ngữ "node" đôi khi dùng thay thế cho "đỉnh". Có các loại cây nhị phân phổ biến sau:
 
-## Pathological or Degenerate Tree 
+## Pathological or Degenerate Tree
 
 > Cây nhị phân suy thoái, là một cây chỉ có một con trái hoặc con phải.
 
 <img src="../img/Tree25.png">
 
-## Skewed Binary Tree 
+## Skewed Binary Tree
 
 > Cây nhị phân lệch hay thẳng, là cây nhị phân suy thoái mà các đỉnh con của nó toàn bộ là con trái hoặc con phải.
 
@@ -39,7 +39,9 @@ Tức là nếu đỉnh đó có đỉnh con, thì phải có đầy đủ 2 đ�
 <img src="../img/Tree10.png">
 
 ### Properties
+
 Gọi `I` là tổng số đỉnh trong. Số đỉnh:
+
 - Lá: $I + 1$
 - Lá: $(n + 1) / 2$
 - Lá tối đa: $2^i - 1$
@@ -91,7 +93,7 @@ $$
 H = log_2(N + 1)
 $$
 
-**Tổng số đỉnh lá** của cây nhị phân hoàn hảo chiều cao H là 
+**Tổng số đỉnh lá** của cây nhị phân hoàn hảo chiều cao H là
 
 $$
 L = 2^{H - 1}
@@ -136,21 +138,54 @@ Do node 2 chỉ có một con nên không phải FBT.
 Thỏa mãn điều kiện mỗi node có 0 hoặc 2 con đồng thời các node được dồn sang trái hết mức có thể.
 
 > Perfect Binary Tree là một Full Binary Tree và cũng là một Complete Binary Tree.
+
 ### Implementation
 
+```c++
+bool isComplete(NODE *root)
+{
+    if (root == nullptr)
+        return false;
 
-Ánh xạ mảng sang cây nhị phân: phần tử thứ `i` trong mảng sẽ có hai đỉnh con ở vị trí `2i + 1` và `2i + 2`.
+    queue<NODE *> q;
+    q.push(root);
+    bool end = false;
 
-Ý tưởng kiểm tra là chúng ta dựa trên tính chất các node lá dồn hết mức sang phải nếu có thể. 
+    while (q.size() > 0)
+    {
+        NODE *curr = q.front();
+        q.pop();
 
-Có các trường hợp sau: 
-1. Không có cả bên trái và phải, thỏa mãn CBT.
-2. Có node lá bên trái và không có bên phải, thỏa mãn CBT.
-3. Có node lá bên phải nhưng không có bên trái, không thỏa mãn CBT.
+        if (curr->left != nullptr)
+            q.push(curr->left);
 
-Nếu duyệt đến một node, nếu con trái là rỗng và con phải là rỗng, thì là trường hợp 1 thỏa mãn CBT. Nên ở đây khi một node là rỗng ta sẽ return về true. 
+        // Nếu có con trái bị null thì đánh dấu
+        else
+            end = true;
+        if (curr->right != nullptr)
+        {
+            // Con phải khác null mà con trái null
+            // Thì không phải là CBT
+            if (end == true)
+                return false;
+            q.push(curr->right);
+        }
+    }
 
-Ngược lại nếu một node là rỗng, node còn lại sẽ có 
+    // Pass hết sau khi duyệt thì là CBT
+    return true;
+}
+```
+
+(Tham khảo [Nick White](https://www.youtube.com/watch?v=j16cwbLEf9w&t=191s) )
+
+### The story behind
+
+Nếu một node có con trái là null, thì con phải của nó bắt buộc phải null. Hoặc con trái không null thì con phải có thể null hoặc không.
+
+Nói cách khác, node null phải là node cuối cùng trong cây khi duyệt theo mức. Nếu tồn tại node khác null sau khi có node null, thì là vi phạm CBT.
+
+Áp dụng tính chất này chúng ta sử dụng duyệt theo mức để xét hai node con của một node bất kỳ để kiểm tra CBT.
 
 ### Heap
 
@@ -162,10 +197,34 @@ Cấu trúc Heap chính là một ứng dụng của cây nhị phân hoàn ch�
 
 > Trong tất cả các cây nhị phân có N đỉnh, thì CBT là cây có chiều cao thấp nhất và PBT là cây có chiều cao cao nhất.
 
-
 ## Balanced Binary Tree
 
-Cây nhị phân cân bằng là cây nhị phân mà mỗi đỉnh có sự khác biệt giữa chiều cao cây con trái và cây con phải không quá 1.
+Cây nhị phân cân bằng là cây nhị phân mà mỗi đỉnh có sự khác biệt giữa chiều cao cây con trái và cây con phải không quá 1. Đồng thời cây con trái và cây con phải đều phải là cây nhị phân cân bằng.
+
+### Implementation
+
+```c++
+bool isBalanced(NODE *root)
+{
+    if (root != nullptr)
+    {
+        // Tính chiều cao của hai cây con
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+        int delta = leftHeight - rightHeight;
+
+        // Nếu chênh lệch quá 1 thì không cân bằng
+        if (delta > 1 or delta < -1)
+            return false;
+
+        // Tiếp tục xét cho các cây con
+        return isBalanced(root->left) and isBalanced(root->right);
+    }
+    // Nếu pass hết sau khi duyệt thì là cân bằng
+    else
+        return true;
+}
+```
 
 <img src="../img/Tree27.png">
 
@@ -388,7 +447,7 @@ int countLeaf(NODE *pRoot)
 {
     if (pRoot == nullptr)
         return 0;
-    
+
     //Chỉ bằng nhau khi cả hai đều là null
     if (pRoot->left == pRoot->right)
         return 1;
@@ -396,21 +455,39 @@ int countLeaf(NODE *pRoot)
 }
 ```
 
-**Đo chiều cao của node**
+**Đo chiều cao của cây**
 
 ```c++
-int height(NODE *pRoot)
+int height(NODE *root)
 {
-    if (pRoot == nullptr)
+    if (root == nullptr)
         return 0;
 
-    // Là chiều cao lớn nhất giữa hai cây con
-    // Node lá có chiều cao là 0.
-    int leftHeight = Height(pRoot->left);
-    int rightHeight = Height(pRoot->right);
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
     if (leftHeight > rightHeight)
         return 1 + leftHeight;
     else
         return 1 + rightHeight;
+}
+```
+
+**Đo chiều cao của node**
+
+```c++
+int heightNode(NODE *root, int value)
+{
+    if (root == nullptr)
+        return -1;
+
+    if (value < root->key)
+        return heightNode(root->left, value);
+    else if (value > root->key)
+        return heightNode(root->right, value);
+
+    // Xem node đó như một cây nhị phân và tính chiều cao của cây
+    // Bởi vì chiều cao của node gốc chính là chiều cao của cây.
+    else
+        return height(root);
 }
 ```
