@@ -50,7 +50,7 @@ Gọi `I` là tổng số đỉnh trong. Số đỉnh:
 - Tổng số đỉnh: $2I + 1$
 - Tổng số đỉnh: $2L - 1$
 
-### Implementation
+### Check Full Binary Tree
 
 ```c++
 bool isFull(NODE *root)
@@ -72,6 +72,8 @@ bool isFull(NODE *root)
         return true;
 }
 ```
+
+Độ phức tạp thời gian $O(n)$, không gian $O(1)$.
 
 ## Perfect Binary Tree
 
@@ -101,7 +103,7 @@ $$
 
 **Độ sâu trung bình** của một đỉnh trong cây nhị phân hoàn hảo là $O(log_2(n))$.
 
-### Implementation
+### Check Perfect Binary Tree
 
 ```c++
 bool isPerfect(NODE *root)
@@ -109,13 +111,15 @@ bool isPerfect(NODE *root)
     // Đếm số node trong cây O(n)
     int nodes = countNode(root);
 
-    // Tính chiều cao của cây
+    // Tính chiều cao của cây O(n)
     int h = height(root);
 
     // Dùng biểu thức liên hệ giữa chiều cao và số node
     return (nodes == power(2,h) - 1);
 }
 ```
+
+Độ phức tạp thời gian $O(n)$, không gian $O(1)$.
 
 ## Complete Binary Tree
 
@@ -139,7 +143,7 @@ Thỏa mãn điều kiện mỗi node có 0 hoặc 2 con đồng thời các nod
 
 > Perfect Binary Tree là một Full Binary Tree và cũng là một Complete Binary Tree.
 
-### Implementation
+### Check Complete Binary Tree
 
 ```c++
 bool isComplete(NODE *root)
@@ -177,8 +181,6 @@ bool isComplete(NODE *root)
 }
 ```
 
-(Tham khảo [Nick White](https://www.youtube.com/watch?v=j16cwbLEf9w&t=191s) )
-
 ### The story behind
 
 Nếu một node có con trái là null, thì con phải của nó bắt buộc phải null. Hoặc con trái không null thì con phải có thể null hoặc không.
@@ -186,6 +188,17 @@ Nếu một node có con trái là null, thì con phải của nó bắt buộc 
 Nói cách khác, node null phải là node cuối cùng trong cây khi duyệt theo mức. Nếu tồn tại node khác null sau khi có node null, thì là vi phạm CBT.
 
 Áp dụng tính chất này chúng ta sử dụng duyệt theo mức để xét hai node con của một node bất kỳ để kiểm tra CBT.
+
+(Tham khảo [Nick White](https://www.youtube.com/watch?v=j16cwbLEf9w&t=191s) )
+
+### Complexity
+
+Độ phức tạp thời gian $O(n)$.
+Độ phức tạp không gian $O(n)$.
+
+- Bởi vì kích thước mảng phụ phụ thuộc vào số node lá của cây . Mà số node lá của cây tối đa là $2^{H - 1}$ Với $H$ là chiều cao của cây.
+- Do tiệm cận Perfect Binary Tree nên $H$ có thể xem như nhỏ nhất, tức là $H = O(log_2(N + 1))$.
+- Thay vào ta có độ phức tạp không gian là $O((N + 1)/2) = O(n)$.
 
 ### Heap
 
@@ -201,7 +214,7 @@ Cấu trúc Heap chính là một ứng dụng của cây nhị phân hoàn ch�
 
 Cây nhị phân cân bằng là cây nhị phân mà mỗi đỉnh có sự khác biệt giữa chiều cao cây con trái và cây con phải không quá 1. Đồng thời cây con trái và cây con phải đều phải là cây nhị phân cân bằng.
 
-### Implementation
+### Check Balanced Binary Tree
 
 ```c++
 bool isBalanced(NODE *root)
@@ -327,9 +340,9 @@ Cũng là số cấu hình cây nhị phân có thể có tạo thành từ N đ
 
 (Tham khảo [geeksforgeeks](https://www.geeksforgeeks.org/enumeration-of-binary-trees/))
 
-# Operation
 
-## Binary Tree Structure
+
+# Binary Tree Structure
 
 ```c++
 struct NODE{
@@ -339,9 +352,43 @@ struct NODE{
 };
 ```
 
-## Binary Tree Traversal
+# Binary Tree Traversal
 
-### Implementation
+## Idea
+
+Duyệt cây là đi qua tất cả các node, mỗi node một lần.
+
+Có ba phép duyệt cây là:
+
+- Pre-order (Duyệt trước)
+- Post-order (Duyệt sau)
+- In-order (Duyệt giữa)
+
+**Duyệt trước** là duyệt node gốc trước, sau đó tới các node con từ trái sang phải.
+
+**Duyệt sau** là duyệt các node con từ trái sang phải, rồi mới tới node gốc.
+
+**Duyệt giữa** là duyệt node gốc sau khi duyệt node đầu và trước khi duyệt node cuối.
+
+Tức là sau khi duyệt con đầu tiên, ta mới duyệt đến node gốc, rồi duyệt tiếp các con còn lại.
+Nếu không tồn tại node con đầu tiên, thì node gốc sẽ ở vị trí đầu tiên trong danh sách kết quả, mặc dù thứ tự duyệt của nó là thứ 2.
+
+Chẳng hạn ta có cây như hình dưới.
+
+<img src="../img/Tree13.png">
+
+**Duyệt trước** : $2-7-2-6-5-11-5-9-4$
+
+**Duyệt giữa** : $2-7-5-6-11-2-5-4-9$
+
+**Duyệt sau** : $2-5-11-6-7-2-5-4-9$
+
+> Kết quả duyệt giữa của Search Tree (không chỉ có BST – Binary Search Tree) sẽ có dạng dãy số được sắp xếp tăng dần.
+
+**Duyệt theo mức** (Level Order Traveral). Chúng ta duyệt cây bằng cách duyệt theo thứ tự từ trên xuống, từ trái qua. Ở cây trên, kết quả sau khi duyệt là: $2–7–5–2–6–9–5–11–4$
+
+
+## Implementation
 
 **Duyệt trước**
 
@@ -391,40 +438,8 @@ void inOrder(node *root)
 }
 ```
 
-### The story behind
 
-Duyệt cây là đi qua tất cả các node, mỗi node một lần.
-
-Có ba phép duyệt cây là:
-
-- Pre-order (Duyệt trước)
-- Post-order (Duyệt sau)
-- In-order (Duyệt giữa)
-
-**Duyệt trước** là duyệt node gốc trước, sau đó tới các node con từ trái sang phải.
-
-**Duyệt sau** là duyệt các node con từ trái sang phải, rồi mới tới node gốc.
-
-**Duyệt giữa** là duyệt node gốc sau khi duyệt node đầu và trước khi duyệt node cuối.
-
-Tức là sau khi duyệt con đầu tiên, ta mới duyệt đến node gốc, rồi duyệt tiếp các con còn lại.
-Nếu không tồn tại node con đầu tiên, thì node gốc sẽ ở vị trí đầu tiên trong danh sách kết quả, mặc dù thứ tự duyệt của nó là thứ 2.
-
-Chẳng hạn ta có cây như hình dưới.
-
-<img src="../img/Tree13.png">
-
-**Duyệt trước** : $2-7-2-6-5-11-5-9-4$
-
-**Duyệt giữa** : $2-7-5-6-11-2-5-4-9$
-
-**Duyệt sau** : $2-5-11-6-7-2-5-4-9$
-
-> Kết quả duyệt giữa của Search Tree (không chỉ có BST – Binary Search Tree) sẽ có dạng dãy số được sắp xếp tăng dần.
-
-**Duyệt theo mức** (Level Order Traveral). Chúng ta duyệt cây bằng cách duyệt theo thứ tự từ trên xuống, từ trái qua. Ở cây trên, kết quả sau khi duyệt là: $2–7–5–2–6–9–5–11–4$
-
-## Counting
+# Counting
 
 **Đếm tổng số node trong cây**
 

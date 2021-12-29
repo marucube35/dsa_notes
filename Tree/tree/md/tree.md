@@ -1,14 +1,12 @@
 <link rel="stylesheet" href="main.css">
 
-# Tree
-
 > Cây là một cấu trúc không tuyến tính có thứ bậc bao gồm nhiều đỉnh liên kết với nhau bằng các cạnh.
 
 Cấu trúc tuyến tính ở đây là các cấu trúc không rẽ nhánh như mảng hoặc danh sách liên kết.
 
 <img src="../img/Tree1.png">
 
-## Terminologies
+# Terminologies
 
 **Đỉnh** (Vertex ~ Node)
 Đỉnh (hay node) là một thành phần trong cây nắm giữ giá trị nào đó và một cạnh hoặc nhiều cạnh nối đến đỉnh khác. Cấu trúc cây không giống như đồ thị, không thể có đỉnh cô lập.
@@ -45,7 +43,7 @@ Các đỉnh chỉ có duy nhất một đỉnh cha và có thể có nhiều đ
 
 Tham khảo các khái niệm và thuật ngữ khác bằng [Tiếng Việt](https://vi.wikipedia.org/wiki/Thu%E1%BA%ADt_ng%E1%BB%AF_l%C3%BD_thuy%E1%BA%BFt_%C4%91%E1%BB%93_th%E1%BB%8B) hoặc [Tiếng Anh](https://en.wikipedia.org/wiki/Glossary_of_graph_theory).
 
-## Application
+# Application
 
 - Một phiên bản khác của cây gọi là Tries được dùng để lưu các thông tin định tuyến trong Router.
 - Đa số các cơ sở dữ liệu sử dụng B - Tree và T - Tree để tổ chức dữ liệu.
@@ -53,7 +51,7 @@ Tham khảo các khái niệm và thuật ngữ khác bằng [Tiếng Việt](ht
 
 (Hình ảnh ở trên và phần ứng dụng tham khảo của [programmingquiz](https://www.programiz.com/dsa/trees))
 
-## Properties
+# Properties
 
 Trong cây k – phân khi mọi đỉnh có 0 hoặc k con , thì ta có phương trình sau:
 
@@ -63,7 +61,7 @@ $$
 
 Với L là số đỉnh lá và I là số đỉnh trong (mỗi đỉnh có k con).
 
-## Representation
+# Representation
 
 Chúng ta có thể biểu diễn cây theo cách tường minh. Tức là một node sẽ lưu giữ giá trị của bản thân nó đồng thời lưu giữ các con trỏ trỏ đến các node con.
 

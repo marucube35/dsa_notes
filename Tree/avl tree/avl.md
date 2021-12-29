@@ -39,6 +39,65 @@ Ví dụ về cây AVL:
 <img src="img/Tree29.png">
 </center>
 
+# Rotation
+
+Thuật toán xoay cây là
+
+BST có hai thao tác quan trọng là xoay cây trái và phải. Nếu ta xoay cây theo chiều bất kỳ, rồi xoay cây theo chiều ngược lại, thì ta sẽ được một cây nhị phân tìm kiếm như ban đầu. Chẳng hạn nếu xoay trái, rồi xoay phải, cây sẽ không đối.
+
+Thuật toán xoay cây là một thuật toán local, nó chỉ thao tác xung quanh một node nào đó và các node con của nó, chứ không ảnh hưởng đến parent hoặc sibling của nó. Vì tính chất này mà Rotation mới giữ được tính chất của BST sau khi xoay cây.
+
+## Left Rotation
+
+Thuật toán xoay cây trái sẽ bắt đầu quanh một node nào đó. Chúng ta sẽ xét thêm cả node con phải của node đó. Ta gọi node đang xét là A, và node con phải là B.
+
+Đầu tiên, ta thay A bằng B, và A thành con trái của B. Điều này vẫn giúp chúng ta maintain được tính chất của BST. Tiếp theo, con trái của A thì vẫn là con trái của A. Con phải của B vẫn là con phải của B. Hai cây/node con này vẫn nằm ở vị trí mà nó vốn có, không vi phạm tính chất của BST. Tuy nhiên vẫn còn một con nữa chưa sắp, đó là con trái của B, gọi là C. Node này có giá trị lớn hơn A và bé hơn B.
+Tức là A $<$ C $<$ B.
+
+Do nó lớn hơn A, ta đặt nó là con phải của A trong phép xoay cây ở trên.
+
+> Điều kiện của phép xoay trái là node cần xoay phải có con phải.
+
+<img src="../img/Tree20.png">
+
+**Code:**
+
+```c++
+void LR(NODE *&pRoot)
+{
+    NODE *temp = pRoot->right;
+    pRoot->right = temp->left;
+    temp->left = pRoot;
+    pRoot = temp;
+}
+```
+
+## Right Rotation
+
+Để xoay phải cây ta cũng xét tương tự xoay trái tại một node nào đó. Và ta sẽ xét thêm node con trái của node cần xoay. Ta gọi node đang xét là A và node con trái là B.
+
+Tương tự xoay trái, ta thay A bằng B. Con trái của A vẫn là con trái của A, con phải của B vẫn là con phải của B. Tuy nhiên con phải của A sẽ trở thành con trái của B. Tức là T2 trong hình sẽ thành con trái của B.
+
+> Điều kiện của phép xoay phải là node cần xoay phải có con trái.
+
+<img src="../img/Tree21.png">
+
+**Code:**
+
+```c++
+void RR(NODE *&pRoot)
+{
+    NODE *temp = pRoot->left;
+    pRoot->left = temp->right;
+    temp->right = pRoot;
+    pRoot = temp;
+}
+```
+
+Độ phức tạp của các thuật toán xoay cây là $O(1)$.
+
+
+
 # Unbalanced Cases
 
 ## Left left case

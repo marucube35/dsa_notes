@@ -1,145 +1,137 @@
+---
+title: Binary Search Tree
+---
+
 <link rel="stylesheet" href="main.css">
+
+# Search Tree
+
+Cây tìm kiếm có tính chất sau:
+
+> Giá trị của key bất kỳ luôn lớn hơn giá trị của các key trong node bên trái và nhỏ hơn giá trị của các key trong node bên phải.
+
+<img src="../img/Tree31.png">
+
+Ở đây dùng từ "key" (khóa) bởi vì key và node là khác nhau, một node có thể có nhiều key (sẽ được nhắc lại trong phần cây 2 - 3 - 4).
+
+Không được có hai node có key trùng nhau. (Giống như là khóa
+chính trong SQL, chúng là unique và có thể có nhiều trường).
 
 # Binary Search Tree
 
-## General
+Cây nhị phân tìm kiếm là cây nhị phân mà thỏa tính chất của cây tìm kiếm ở trên. Tức là:
 
-Cây tìm kiếm:
+- Mỗi node phải có giá trị lớn hơn giá trị của node con bên trái và bé hơn giá trị của node con bên phải.
+- Hai cây con của một node bất kỳ cũng phải là cây nhị phân tìm kiếm.
 
-Cây nhị phân tìm kiếm là cây có các tính chất sau:
-
-- Node con trái của một node n bất kỳ luôn có khóa nhỏ hơn node n đó.
-- Node con phải của một node n bất kỳ luôn có khóa lớn hơn node n đó.
-- Node con trái và phải của node bất kỳ, nếu là một cây nhị phân, thì cây đó cũng phải là cây nhị phân tìm kiếm (thỏa hai tính chất trên). Và mọi key của cả cây con trái, sẽ bé hơn root, cũng như mọi key của cả cây con phải sẽ lớn hơn root.
-
-Ngoài ra, nó còn là một Full Binary Tree.
-
-Không được có hai node có khóa trùng nhau. (Giống như là khóa chính trong SQL, chúng là unique và có thể có nhiều trường).
-
-Cây nhị phân tìm kiếm phụ thuộc vào dữ liệu đầu vào, nếu như dữ liệu ấy là xấu thì sẽ dẫn đến các operation thực hiện trên nó sẽ có chi phí cao.
+Cây nhị phân tìm kiếm phụ thuộc vào dữ liệu đầu vào, nếu như dữ liệu ấy là xấu thì các thao tác thực hiện sẽ có chi phí cao.
 
 <img src="../img/Tree16.png">
 
-Do nó được sắp xếp theo thứ tự như vậy mà các công việc như tìm kiếm, tìm max, min được thực hiện nhanh chóng hơn trong đa số các trường hợp. Nếu không được sắp xếp, mỗi lần tìm kiếm khóa nào đó ta phải đi so sánh rất mất thời gian.
+**Fact thú vị**: khi duyệt giữa cây nhị phân tìm kiếm, do cấu trúc của nó được sắp theo thứ tự là left root right nên kết quả của phép duyệt sẽ là một danh sách các số có thứ tự.
 
-Fact thú vị: khi duyệt giữa cây nhị phân tìm kiếm, do cấu trúc của nó được sắp theo thứ tự là left root right nên kết quả của phép duyệt sẽ là một danh sách các số có thứ tự.
+# Operation
 
-Tìm kiếm một phần tử trong cây nhị phân cũng tương tự như tìm kiếm nhị phân trên mảng. Chúng ta sẽ so sánh phần tử root so với phần tử cần tìm, nếu nó bằng thì tại root chính là phần tử ta đang tìm kiếm. Nếu nó bé hơn thì ta duyệt cây con bên trái, ngược lại ta duyệt cây con bên phải. Mỗi lần so sánh là chúng ta chọn đi sang trái hoặc phải, có nghĩa là ta bỏ một trong hai cây con và các bước duyệt qua chúng. Điều này làm giảm đáng kể số lần duyệt và so sánh của thuật toán tìm kiếm.
+## Search
 
-**Question** : Nếu nó giống nhau vậy thì tìm kiếm trên BST và tìm kiếm nhị phân trên mảng cái nào nhanh hơn cho một danh sách dữ liệu giống nhau.
+### Idea
 
-**Answer:** BST sẽ nhanh hơn trong đa số trường hợp, nhưng đôi khi vẫn có trường hợp xấu.
+Ta bắt đầu duyệt từ node gốc. Nếu giá trị cần tìm nhỏ hơn node gốc, tìm bên cây con trái. Ngược lại tìm bên cây con phải. Trường hợp node đó rỗng hoặc là node cần tìm thì trả về.
 
-## Implementation
-
-### Search
+### Implementation
 
 ```c++
-NODE *search(NODE *pRoot, int x)
+NODE *Search(NODE *root, int x)
 {
-    //base case
-    if (pRoot == nullptr)
-        return nullptr;
-
-    if (x < pRoot->key)
-        Search(pRoot->left, x);
-    else if (x > pRoot->key)
-        Search(pRoot->right, x);
+    if (root == nullptr)
+        return root;
+    if (x < root->key)
+        return Search(root->left, x);
+    else if (x > root->key)
+        return Search(root->right, x);
     else
-        return pRoot;
+        return root;
 }
 ```
 
-Ta bắt đầu duyệt từ node gốc nào đó (thường thì ta sẽ giữa một node làm node giữa của BST). Nếu giá trị cần tìm nhỏ hơn nút gốc, tìm bên cây con trái. Ngược lại tìm bên cây con phải. Trường hợp suy biến là trả về giá trị node gốc khi node đó rỗng (node lá) hoặc là node cần tìm.
+## Insert
 
-Độ phức tạp dễ thấy là $O(log_2n)$. Worst cây là khi nó là một cây thẳng, dẫn đến $O(n)$.
+### Idea
 
-### Insert
+Tiến hành duyệt trước qua các phần tử trong cây. Mỗi lần duyệt ta sẽ kiểm tra node cần thêm, nếu nó nhỏ hơn node gốc thì ta duyệt cây con bên trái, ngược lại duyệt cây con bên phải. Nếu tại node đó rỗng, ta sẽ tạo một node mới và thêm vào cây.
 
-Ý tưởng của thuật toán là ta sẽ luôn thêm node ở các lá. Do đó mà ta sẽ đào cây đến khi gặp một node rỗng (node lá) thì ta thêm tại đó. Mỗi lần duyệt ta sẽ kiểm tra node cần thêm, nếu nó nhỏ hơn node gốc thì ta duyệt cây con bên trái, ngược lại duyệt cây con bên phải. Nếu tại node đó rỗng, ta sẽ tạo một node mới. Cuối cùng, sau khi duyệt xong node, ta trả về node gốc để quay ngược lại node bắt đầu.
-**Code:**
+Giá trị trả về nên là int. Với 1 là thêm thành công và 0 là thêm thất bại.
+
+### Implementation
 
 ```c++
-void Insert(NODE *&pRoot, int x)
+void Insert(NODE *&root, int x)
 {
-    //base case
-    if (pRoot == nullptr)
-    {
-        pRoot = createNode(x);
-        return;
-    }
+    if (root == nullptr)
+        root = createNODE(x);
 
-    //traverse to sub left tree
-    if (x < pRoot->key)
-    {
-        Insert(pRoot->left, x);
-    }
-    //traverse to right left tree
-    else if (x > pRoot->key)
-    {
-        Insert(pRoot->right, x);
-    }
+    if (x < root->key)
+        Insert(root->left, x);
+    else if (x > root->key)
+        Insert(root->right, x);
+    else
+        return;
 }
 ```
 
-Để implement một cách tự nhiên nhất, giá trị trả về nên là int. Với 1 là thêm thành công và 0 là thêm thất bại.
+## Remove
 
-**Question** : hàm trong slide HCMUS không trả về root.
+### Idea
 
-**Answer** : Một số phiên bản return về root để hoàn trả lại node hiện tại hoặc node vừa được thêm.
+Có ba khả năng xảy ra khi remove một node trong BST.
 
-Độ phức tạp của thuật toán này là $O(n)$ cho trường hợp xấu nhất. Trường hợp xấu nhất xảy ra khi cây là một cây thẳng tuyến tính. Trong trường hợp thông thường thì độ phức tạp là $O(log_2n)$.
-
-### Delete
-
-Có ba khả năng xảy ra khi delete một node trong BST:
-
-#### Node đó là một lá
-
-Chúng ta chỉ đơn giản xóa nó ra khỏi cây.
+1. Node đó là một lá:
+   Chúng ta chỉ đơn giản xóa nó ra khỏi cây.
 
 <img src="../img/Tree17.png">
 
-#### Node đó có duy nhất một con
-
-Sao chép con đó cho node cần xóa và xóa node con.
+2. Node đó có duy nhất một con:
+   Sao chép con đó cho node cần xóa và xóa node con.
 
 <img src="../img/Tree18.png">
 
-#### Node có 2 con.
+3. Node có 2 con:
 
-Ta đi tìm node con nhỏ nhất trong cây con phải của node cần xóa hoặc node con lớn nhất trong cây con trái. Sau đó swap node cần xóa với node con vừa tìm, rồi xóa node con.
+- Tìm node lớn nhất cây con trái hoặc node nhỏ nhất cây con phải của node hiện tại, tạm gọi là C.
+- Tạo một node tạm để lưu node cha của C.
+- Hoán đổi giá trị của node cần xóa với C.
+- Nếu C là node lớn nhất cây con trái thì xóa con phải của node cha. Ngược lại nếu C là node nhỏ nhất cây con phải thì xóa con trái của node cha.
 
-Về độ phức tạp thuật toán, trường hợp thường gặp là $O(h)$ với h là chiều cao của cây và có giá trị $\geq log_2(n + 1)$, khi đó ta phải duyệt qua mọi node để đến node lá. Nếu cây là một cây thẳng, thì độ phức tạp trở thành $O(n)$.
+### Implement
 
-**Code tìm phần tử nhỏ nhất cây con phải:**
+**Code tìm node cha của node nhỏ nhất bên cây con phải:**
 
 ```c++
 NODE *searchRightMin(NODE *&curr)
 {
     NODE *parent = curr;
-    //search in right subtree
+    // Search in right subtree
     curr = curr->right;
     while (curr->left != nullptr)
     {
-        parent = curr; //parent be prev root
+        parent = curr; // Parent be prev root
         curr = curr->left;
     }
     return parent;
 }
 ```
 
-**Code tìm phần tử lớn nhất cây con trái:**
+**Code tìm node cha của node lớn nhất bên cây con trái:**
 
 ```c++
 NODE *searchLeftMax(NODE *&curr)
 {
     NODE *parent = curr;
-    //search in left subtree
+    // Search in left subtree
     curr = curr->left;
     while (curr->right != nullptr)
     {
-        parent = curr; //parent be prev root
+        parent = curr; // Parent be prev root
         curr = curr->right;
     }
     return parent;
@@ -160,8 +152,7 @@ void Remove(NODE *&pRoot, int x)
         Remove(pRoot->right, x);
     else
     {
-        NODE *temp = pRoot;
-        //zero and one children
+        // Trường hợp có không hoặc một con xử lý đồng thời
         if (pRoot->left == nullptr)
         {
             pRoot = pRoot->right;
@@ -170,87 +161,74 @@ void Remove(NODE *&pRoot, int x)
         {
             pRoot = pRoot->left;
         }
-        //two children
+
+        // Trường hợp có hai con
         else
         {
-            //search for min in right subtree
+            // Tìm node cha của thế mạng
             NODE *move = pRoot;
             NODE *parent = searchRightMin(move);
-            //overwrite on root
+
+            // Ghi đè giá trị
             pRoot->key = move->key;
-            //delete old IS
-            if (parent->left == move)
-            {
-                temp = parent->left;
-                parent->left = nullptr;
-            }
-            else if (parent->right == move)
-            {
-                temp = parent->right;
-                parent->right = nullptr;
-            }
+
+            // Xóa node con thế mạng
+            NODE *temp = parent->left;
+            parent->left = nullptr;
+            delete temp;
         }
-        delete temp;
     }
 }
 ```
 
-### Rotation
+## Complexity of Search, Insert and Remove
 
-BST có hai thao tác quan trọng là xoay cây trái và phải. Mỗi khi ta xoay cây theo chiều nào, rồi xoay cây theo chiều ngược lại, thì ta sẽ được một cây nhị phân tìm kiếm như ban đầu. Tức là nếu xoay trái, rồi xoay phải, cây sẽ không đối.
+- Độ phức tạp thời gian:
+  Best case: $O(log_2(n))$, xảy ra khi cây có chiều cao tối thiểu.
+  Worst case: $O(n)$, xảy ra khi nó là một cây lệch.
+  Average case: $O(log_2(n))$.
+- Độ phức tạp không gian: $O(n)$ (Các lời gọi đệ quy).
 
-Thuật toán xoay cây là một thuật toán local, nó chỉ thao tác xung quanh một node nào đó và các node con của nó, chứ không ảnh hưởng đến parent hoặc sibling của nó. Vì tính chất này mà Rotation mới giữ được tính chất của BST sau khi xoay cây.
 
-#### Left Rotation
+# Counting
+## Count less
 
-Thuật toán xoay cây trái sẽ bắt đầu quanh một node nào đó. Chúng ta sẽ xét thêm cả node con phải của node đó. Ta gọi node đang xét là A, và node con phải là B.
-
-Đầu tiên, ta thay A bằng B, và A thành con trái của B. Điều này vẫn giúp chúng ta maintain được tính chất của BST. Tiếp theo, con trái của A thì vẫn là con trái của A. Con phải của B vẫn là con phải của B. Hai cây/node con này vẫn nằm ở vị trí mà nó vốn có, không vi phạm tính chất của BST. Tuy nhiên vẫn còn một con nữa chưa sắp, đó là con trái của B, gọi là C. Node này có giá trị lớn hơn A và bé hơn B.
-Tức là A $<$ C $<$ B.
-
-Do nó lớn hơn A, ta đặt nó là con phải của A trong phép xoay cây ở trên.
-
-> Điều kiện của phép xoay trái là node cần xoay phải có con phải.
-
-<img src="../img/Tree20.png">
-
-**Code:**
+Đếm số node mà bé hơn một giá trị cho trước trong cây.
 
 ```c++
-void LR(NODE *&pRoot)
+int countLess(NODE* pRoot, int x)
 {
-    NODE *temp = pRoot->right;
-    pRoot->right = temp->left;
-    temp->left = pRoot;
-    pRoot = temp;
+    if(pRoot == nullptr)
+        return 0;
+    if(x > pRoot->key)
+        return 1 + countNode(pRoot->left) + countLess(pRoot->right,x);
+    else if (x < pRoot->key)
+        return countLess(pRoot->left,x);
+    else
+        return countNode(pRoot->left);
 }
 ```
 
-#### Right Rotation
+## Count Greater
 
-Để xoay phải cây ta cũng xét tương tự xoay trái tại một node nào đó. Và ta sẽ xét thêm node con trái của node cần xoay. Ta gọi node đang xét là A và node con trái là B.
-
-Tương tự xoay trái, ta thay A bằng B. Con trái của A vẫn là con trái của A, con phải của B vẫn là con phải của B. Tuy nhiên con phải của A sẽ trở thành con trái của B. Tức là T2 trong hình sẽ thành con trái của B.
-
-> Điều kiện của phép xoay phải là node cần xoay phải có con trái.
-
-<img src="../img/Tree21.png">
-
-**Code:**
+Đếm số node lớn hơn một giá trị cho trước
 
 ```c++
-void RR(NODE *&pRoot)
+int countGreater(NODE *pRoot, int x)
 {
-    NODE *temp = pRoot->left;
-    pRoot->left = temp->right;
-    temp->right = pRoot;
-    pRoot = temp;
+    if (pRoot == nullptr)
+        return 0;
+    if (x < pRoot->key)
+        return 1 + countNode(pRoot->right) + countGreater(pRoot->left,x);
+    else if (x > pRoot->key)
+        return countGreater(pRoot->right, x);
+    else
+        return countNode(pRoot->right);
 }
+
 ```
 
-Độ phức tạp của các thuật toán xoay cây là $O(1)$.
-
-### Is BST ?
+# Is BST ?
 
 Thuật toán chứng minh một cây là cây nhị phân tìm kiếm có hai phần.
 
@@ -322,7 +300,7 @@ bool isBST2(NODE *pRoot)
 }
 ```
 
-### Is Full BST ?
+# Is Full BST ?
 
 Để chứng minh một cây nhị phân tìm kiếm là đầy đủ thì cần hai điều kiện: nó là BST và nó là cây nhị phân đầy đủ.
 
@@ -346,43 +324,3 @@ bool isFull(NODE* pRoot)
     }
 }
 ```
-
-### Count less
-
-Đếm số node mà bé hơn một giá trị cho trước trong cây.
-
-```c++
-int countLess(NODE* pRoot, int x)
-{
-    if(pRoot == nullptr)
-        return 0;
-    if(x > pRoot->key)
-        return 1 + countNode(pRoot->left) + countLess(pRoot->right,x);
-    else if (x < pRoot->key)
-        return countLess(pRoot->left,x);
-    else
-        return countNode(pRoot->left);
-}
-```
-
-### Count Greater
-
-Đếm số node lớn hơn một giá trị cho trước
-
-```c++
-int countGreater(NODE *pRoot, int x)
-{
-    if (pRoot == nullptr)
-        return 0;
-    if (x < pRoot->key)
-        return 1 + countNode(pRoot->right) + countGreater(pRoot->left,x);
-    else if (x > pRoot->key)
-        return countGreater(pRoot->right, x);
-    else
-        return countNode(pRoot->right);
-}
-
-```
-# Complexity
-
-<img src="../img/Tree22.png">
