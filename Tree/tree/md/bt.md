@@ -77,17 +77,43 @@ bool isFull(NODE *root)
 
 <img src="../img/Tree11.png">
 
-Tổng số đỉnh của cây nhị phân hoàn hảo là:
+### Properties
+
+**Tổng số đỉnh** của cây nhị phân hoàn hảo là:
 
 $$
 N = 2^H –\ 1
 $$
 
-Khi biết được tổng số đỉnh, ta lấy $log_2$ sẽ có được chiều cao của cây:
+Khi biết được tổng số đỉnh, ta lấy $log_2$ sẽ có được **chiều cao** của cây:
 
 $$
 H = log_2(N + 1)
 $$
+
+**Tổng số đỉnh lá** của cây nhị phân hoàn hảo chiều cao H là 
+
+$$
+L = 2^{H - 1}
+$$
+
+**Độ sâu trung bình** của một đỉnh trong cây nhị phân hoàn hảo là $O(log_2(n))$.
+
+### Implementation
+
+```c++
+bool isPerfect(NODE *root)
+{
+    // Đếm số node trong cây O(n)
+    int nodes = countNode(root);
+
+    // Tính chiều cao của cây
+    int h = height(root);
+
+    // Dùng biểu thức liên hệ giữa chiều cao và số node
+    return (nodes == power(2,h) - 1);
+}
+```
 
 ## Complete Binary Tree
 
@@ -95,15 +121,47 @@ $$
 
 <img src="../img/Tree12.png">
 
-_Perfect Binary Tree là một Full Binary Tree và cũng là một Complete Binary Tree._
+**So sánh giữa FBT và CBT**:
 
-> Cấu trúc Heap chính là một ứng dụng của cây nhị phân hoàn chỉnh (CBT). Có hai dạng: Max Heap và Min Heap.
+<img src="../img/Tree28.png">
+
+Do bị dồn sang phải nên không phải CBT.
+
+<img src="../img/Tree29.png">
+
+Do node 2 chỉ có một con nên không phải FBT.
+
+<img src="../img/Tree30.png">
+
+Thỏa mãn điều kiện mỗi node có 0 hoặc 2 con đồng thời các node được dồn sang trái hết mức có thể.
+
+> Perfect Binary Tree là một Full Binary Tree và cũng là một Complete Binary Tree.
+### Implementation
+
+
+Ánh xạ mảng sang cây nhị phân: phần tử thứ `i` trong mảng sẽ có hai đỉnh con ở vị trí `2i + 1` và `2i + 2`.
+
+Ý tưởng kiểm tra là chúng ta dựa trên tính chất các node lá dồn hết mức sang phải nếu có thể. 
+
+Có các trường hợp sau: 
+1. Không có cả bên trái và phải, thỏa mãn CBT.
+2. Có node lá bên trái và không có bên phải, thỏa mãn CBT.
+3. Có node lá bên phải nhưng không có bên trái, không thỏa mãn CBT.
+
+Nếu duyệt đến một node, nếu con trái là rỗng và con phải là rỗng, thì là trường hợp 1 thỏa mãn CBT. Nên ở đây khi một node là rỗng ta sẽ return về true. 
+
+Ngược lại nếu một node là rỗng, node còn lại sẽ có 
+
+### Heap
+
+Cấu trúc Heap chính là một ứng dụng của cây nhị phân hoàn chỉnh (CBT). Có hai dạng: Max Heap và Min Heap.
 
 **Max Heap** là cây nhị phân hoàn chỉnh mà ở đó mỗi đỉnh đều lớn hơn các đỉnh con của nó.
 
 **Min Heap** là ngược lại, mỗi đỉnh luôn bé hơn các đỉnh con của nó.
 
-Trong tất cả các cây nhị phân có N đỉnh, thì CBT là cây có chiều cao thấp nhất và PBT là cây có chiều cao cao nhất.
+> Trong tất cả các cây nhị phân có N đỉnh, thì CBT là cây có chiều cao thấp nhất và PBT là cây có chiều cao cao nhất.
+
 
 ## Balanced Binary Tree
 

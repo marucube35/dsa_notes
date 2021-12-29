@@ -31,11 +31,13 @@ Các đỉnh chỉ có duy nhất một đỉnh cha và có thể có nhiều đ
 
 **Bậc của cây** (Order of tree) là bậc lớn nhất trong số các bậc của đỉnh trong cây.
 
-**Chiều cao của đỉnh** (Height of node) là số đỉnh trên đường đi dài nhất tính từ đỉnh đang xét đến đỉnh lá. Chiều cao của đỉnh lá là 1, của cây rỗng là 0.
+**Chiều cao của đỉnh** (Height of node) là số đỉnh trên đường đi dài nhất tính từ đỉnh đang xét đến đỉnh lá. Chiều cao của đỉnh lá là 0.
 
 <img src="../img/Tree23.png">
 
 **Chiều cao của cây** là số mức lớn nhất mà cây có được. Chiều cao của cây khác rỗng tối thiểu là 1, để phân biệt trường hợp cây rỗng thì height là 0.
+
+> Chiều cao của đỉnh và chiều cao của cây là khác nhau. Chiều cao của đỉnh dựa vào số đỉnh đi từ đỉnh đó đến đỉnh lá. Còn chiều cao của cây dựa vào mức, là số đỉnh lớn nhất  đi từ đỉnh gốc đến đỉnh nào đó trong cây.
 
 **Rừng** (Forest) là một tập hợp nhiều cây. Có thể cắt đỉnh gốc ra để tạo thành một rừng từ một cây.
 
