@@ -48,6 +48,8 @@ Có bốn loại internal sorting đó là
 - Lựa chọn (Selection Sort) gồm Simple Selection Sort, Heap Sort,…
 
 Trong đó Shell Sort, Heap Sort, Quick Sort, Merge Sort và Radix Sort là các thuật toán phức tạp nhưng chi phí thấp. Các thuật toán còn lại đơn giản nhưng chi phí cao.
+
+Ý tưởng của Bubble, Selection, Insertion và Heap Sort đều chia mảng thành hai phần đã sắp xếp và chưa sắp xếp.
 # So sánh giữa các thuật toán
 
 <img src = "../img/Sort8.png">

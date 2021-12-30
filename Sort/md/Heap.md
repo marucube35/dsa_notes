@@ -124,7 +124,7 @@ Space Complexity: $O(1)$.
 ```c++
 void heapify(int* arr, int n, int i)
 {
-    int largest = i; // Initialize largest as root
+    int largest = i; // Khởi tạo phần tử lớn nhất tại i
     int l = 2 * i + 1; // left = 2*i + 1
     int r = 2 * i + 2; // right = 2*i + 2
 

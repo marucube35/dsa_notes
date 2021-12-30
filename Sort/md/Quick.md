@@ -161,13 +161,22 @@ Tuy nhiên Quick Sort vẫn là thuật toán In-Place không sử dụng bộ n
 
 ## Độ phức tạp thuật toán
 
+Time Complexity:
+
 | Cases        | Complexity     |
 | :----------- | :------------- |
 | Best case    | $O(nlog_2(n))$ |
 | Worst case   | $O(n^2)$       |
 | Average case | $O(nlog_2(n))$ |
 
-Space Complexity: $O(log_2(n))$.
+Space Complexity: 
+
+| Cases        | Complexity     |
+| :----------- | :------------- |
+| Best case    | $O(log_2(n))$ |
+| Worst case   | $O(n)$       |
+
+
 
 ## Giải thuật mẫu
 
