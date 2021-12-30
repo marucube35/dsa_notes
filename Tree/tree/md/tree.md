@@ -1,4 +1,11 @@
+---
+title: Tree Data Structures
+---
+
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+      <center><h1 class="bigtitle">Tree Data Structures</h1></center>
+</div>
 
 > Cây là một cấu trúc không tuyến tính có thứ bậc bao gồm nhiều đỉnh liên kết với nhau bằng các cạnh.
 

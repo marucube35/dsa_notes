@@ -23,6 +23,8 @@ title: Binary Tree
 
 # General Properties
 
+Ta gọi số đỉnh là `N`, chiều cao là `H`, `L` là số đỉnh lá và `i` là mức. Thuật ngữ "node" đôi khi dùng thay thế cho "đỉnh". Có các loại cây nhị phân phổ biến sau:
+
 **Số đỉnh ở mức i** tối đa là $2^i$, tối thiểu là 1.
 
 $$
@@ -73,8 +75,6 @@ Tính chất này có thể chứng minh bằng bổ đề bắt tay (Handshakin
 
 # Types of Binary Tree
 
-Ta gọi số đỉnh là `N`, chiều cao là `H`, `L` là số đỉnh lá và `i` là mức. Thuật ngữ "node" đôi khi dùng thay thế cho "đỉnh". Có các loại cây nhị phân phổ biến sau:
-
 ## Pathological or Degenerate Tree
 
 > Cây nhị phân suy thoái, là một cây chỉ có một con trái hoặc con phải.
@@ -99,13 +99,12 @@ Tức là nếu đỉnh đó có đỉnh con, thì phải có đầy đủ 2 đ�
 
 Gọi `I` là tổng số đỉnh trong. Số đỉnh:
 
-- Lá: $I + 1$
-- Lá: $(n + 1) / 2$
-- Lá tối đa: $2^i - 1$
-- Trong: $L - 1$
-- Trong: $(n - 1) / 2$
-- Tổng số đỉnh: $2I + 1$
-- Tổng số đỉnh: $2L - 1$
+- $L = I + 1$
+- $L = (n + 1) / 2$
+- $I = L - 1$
+- $I = (n - 1) / 2$
+- $N = 2I + 1$
+- $N = 2L - 1$
 
 ### Check Full Binary Tree
 
@@ -255,16 +254,19 @@ Nói cách khác, node null phải là node cuối cùng trong cây khi duyệt 
 
 - Bởi vì kích thước Queue phụ thuộc vào số node lá của cây . Mà số node lá của cây tối đa là
   $$
-  2^{H - 1}
+  L  \leq 2^{H - 1}
   $$
-  Với $H$ là chiều cao của cây.
-- Do tiệm cận Perfect Binary Tree nên $H$ có thể xem như nhỏ nhất, tức là
+- Cây CBT có chiều cao tiệm cận chiều cao nhỏ nhất, nên
   $$
-  H = O(log_2(N + 1))
+  H = log_2(N + 1)
+  $$
+- Suy ra số node lá của cây tối đa là
+  $$
+  L \leq (N + 1)/2
   $$
 - Thay vào ta có độ phức tạp không gian cho Queue là
   $$
-  O((N + 1)/2) = O(n)
+  O((N + 1)/2) \sim O(n)
   $$
 - Ngoài ra còn có độ phức phức tạp không gian cho các lời gọi đệ quy: $O(n)$. Tính tổng vẫn được kết quả $O(n)$.
 

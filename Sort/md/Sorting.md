@@ -1,8 +1,12 @@
 ---
-title: "Sorting Algorithms"
+title: Sorting Algorithms
 ---
 
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+      <center><h1 class="bigtitle">Sorting Algorithms</h1></center>
+</div>
+
 
 # Các thuật toán sắp xếp
 

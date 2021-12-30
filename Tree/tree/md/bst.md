@@ -176,8 +176,16 @@ void Remove(NODE *&pRoot, int x)
             pRoot->key = move->key;
 
             // Xóa node con thế mạng
-            NODE *temp = parent->left;
-            parent->left = nullptr;
+            if (parent->left == move)
+            {
+                temp = parent->left;
+                parent->left = nullptr;
+            }
+            else if (parent->right == move)
+            {
+                temp = parent->right;
+                parent->right = nullptr;
+            }
             delete temp;
         }
     }
@@ -404,5 +412,5 @@ Space Complexity: $O(1)$.
 Để chứng minh một cây nhị phân tìm kiếm là đầy đủ thì cần hai điều kiện: nó là BST và nó là cây nhị phân đầy đủ.
 Thuật toán chứng minh cây nhị phân là đầy đủ có trong bài Binary Tree.
 
-Tổng độ phức tạp thời gian sẽ là $O(n + n) = O(n)$.
+Tổng độ phức tạp thời gian sẽ là $O(n + n) \sim O(n)$.
 Độ phức tạp không gian là $O(1)$.

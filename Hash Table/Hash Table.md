@@ -1,4 +1,13 @@
-# Hash Table
+---
+title: Hash Table
+---
+
+<link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Hash Table</h1></center>
+</div>
+
+# Definition
 
 Hash Table là một cấu trúc dữ liệu dùng lưu trữ dữ liệu tương ứng với các key. Nói cách khác, hash table chính là một mảng mà chỉ số index có thể là số thực, chuỗi, một struct,... Các dữ liệu được lưu theo cặp gồm một key và một giá trị. Ví dụ đời thực là từ điển, với chữ cái đầu là key và giá trị theo sau là từ ngữ.
 
