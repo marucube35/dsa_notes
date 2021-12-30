@@ -9,7 +9,11 @@ title: Hash Table
 
 # Definition
 
-Hash Table là một cấu trúc dữ liệu dùng lưu trữ dữ liệu tương ứng với các key. Nói cách khác, hash table chính là một mảng mà chỉ số index có thể là số thực, chuỗi, một struct,... Các dữ liệu được lưu theo cặp gồm một key và một giá trị. Ví dụ đời thực là từ điển, với chữ cái đầu là key và giá trị theo sau là từ ngữ.
+Hash Table là một cấu trúc dữ liệu indexing các phần tử dựa vào key của nó.
+
+Nói cách khác, hash table chính là một mảng mà chỉ số index là ánh xạ của số thực, chuỗi, struct,...
+
+Các dữ liệu được lưu theo cặp gồm một key và một giá trị. Ví dụ đời thực là từ điển, với chữ cái đầu là key và giá trị theo sau là từ ngữ.
 
 Mục đích tạo ra cấu trúc dữ liệu này là để truy xuất dữ liệu dựa trên key một cách nhanh chóng (ngẫu nhiên). Với bài toán tìm một phần tử gắn liền với một thông tin nào đó, ví dụ như tìm một sinh viên có tên Nguyễn Văn A thì việc sử dụng bảng băm (hash table) là rất hiệu quả.
 
@@ -17,9 +21,9 @@ Mục đích tạo ra cấu trúc dữ liệu này là để truy xuất dữ li
     <img src = "img/hash1.png">
 </center>
 
-Miễn là chúng ta có một hàm băm (hash function) tối ưu để chuyển đổi key từ một số thực hay chuỗi thành một số mã (gọi là hash code). Rồi để từ đó chuyển thành index trong mảng.
+Miễn là chúng ta có một hàm băm (hash function) tối ưu để chuyển đổi key từ một số thực hay chuỗi thành một mã băm (gọi là hash code). Rồi để từ đó chuyển thành index trong mảng.
 
-Điểm khác biệt giữa bảng băm và mảng là dữ liệu của bảng băm phân bố rời rạc nhau tùy thuộc vào giá trị của hash code. Còn dữ liệu của mảng thì phân bố liên tục kề cạnh nhau trên vùng nhớ.
+Điểm khác biệt giữa bảng băm và mảng là dữ liệu của bảng băm phân bố rời rạc tùy thuộc vào giá trị của hash code. Còn dữ liệu của mảng thì phân bố liên tục kề cạnh nhau trên vùng nhớ.
 
 Do đó chi phí không gian của bảng băm là khá lãng phí. Tuy nhiên ta trade - off để đổi lấy sự hiệu quả về mặt thời gian. Nếu ta cần tiết kiệm độ phức tạp không gian thì nên sử dụng cấu trúc cây hoặc mảng có thứ tự.
 
@@ -92,6 +96,8 @@ Dưới đây là một hàm hash mẫu có công thức như sau:
 
 <center><img src="img/hash13.png"></center>
 
+<center><img src="img/hash14.png"></center>
+
 ```c++
 long long HashString(string company_name)
 {
@@ -148,7 +154,7 @@ Tổng quát hơn gọi là **Seperate Chaining** (chuỗi riêng biệt) là m�
 
 **Điểm mạnh** của phương pháp này là có thể không cần biết số lượng phần tử, việc thêm phần tử được xử lý dễ dàng và lượng phần tử thêm vào cũng không giới hạn.
 
-**Hạn chế** của nó là nếu xảy ra quá nhiều sự đụng độ dẫn đến phải xây dựng danh sách liên kết nào đó quá dài, thì khi tìm kiếm phần tử thì phải tìm kiếm tuyến tính, độ phức tạp có thể lên O(n).
+**Điểm yếu** của nó là nếu xảy ra quá nhiều sự đụng độ dẫn đến phải xây dựng danh sách liên kết nào đó quá dài, thì khi tìm kiếm phần tử thì phải tìm kiếm tuyến tính, độ phức tạp có thể lên đến $O(n)$.
 
 ## Open Adressing
 
@@ -162,11 +168,11 @@ Khi xảy ra đụng độ, chỉ số index sẽ tăng tuần tự lên đến 
     <img src = "img/hash7.png">
 </center>
 
-Trong trường hợp cần thêm phần tử vào vị trí x, nhưng chỉ còn vị trí trống từ x - 1 trở về trước. Khi đó chi phí dò tìm có thể tăng lên thành O(n) vì cần duyệt lại cả mảng.
+Trong trường hợp cần thêm phần tử vào vị trí `x`, nhưng chỉ còn vị trí trống từ `x - 1` trở về trước. Khi đó chi phí dò tìm có thể tăng lên thành $O(n)$ vì cần duyệt lại cả mảng.
 
-Nếu sử dụng dò tìm không cho ra một phân bố đều (Uniform Distribution), các dữ liệu phân bố thành cụm (skewed) (vì dò tuần tự), thì chi phí để dò tìm vị trí mà thoát khỏi các cụm đó sẽ trở thành tuyến tính, tức O(n).
+Nếu sử dụng dò tìm không cho ra một phân bố đều (Uniform Distribution), các dữ liệu phân bố thành cụm (skewed) (vì dò tuần tự), thì chi phí để dò tìm vị trí mà thoát khỏi các cụm đó sẽ trở thành tuyến tính, tức $O(n)$.
 
-**Code:**
+**Code**
 
 Một ví dụ của dò tìm tuyến tính cho bảng băm có giới hạn là 2000 phần tử. Nếu bảng băm đầy thì trả về giá trị -1.
 
@@ -212,7 +218,7 @@ Lưu ý là hàm băm thứ hai vẫn dựa trên khóa, không dựa trên inde
 
 # Create Hash Table
 
-**Code:**
+**Code**
 Đoạn code ví dụ bên dưới tạo một bảng băm có kiểu dữ liệu là cấu trúc Company và sử dụng phương pháp dò tìm tuyến tính.
 
 ```c++
@@ -239,9 +245,9 @@ Company *CreateHashTable(vector<Company> list_company)
 
 Cần chú ý rằng, khi ta thêm phần tử bị nhảy như thế nào, thì lúc ta tìm kiếm cũng nhảy như thế ấy. Tức là ta lặp lại thao tác thêm một lần nữa.
 
-**Code:**
+**Code**
 
-Dưới đây là ví dụ cho đoạn code tìm kiếm trong bảng băm có 2000 phần tử và sử dụng thuật toán dò tím tuyến tính.
+Dưới đây là ví dụ cho đoạn code tìm kiếm trong bảng băm có 2000 phần tử và sử dụng thuật toán dò tìm tuyến tính.
 
 ```c++
 Company *Search(Company *hash_table, string company_name)
@@ -277,7 +283,7 @@ Company *Search(Company *hash_table, string company_name)
 
 Khi tìm kiếm một phần tử, ta có thể gặp vấn đề không tồn tại phần tử cần tìm. Vậy làm sao ta biết không tồn tại phần tử? Ta có thể nhận biết khi ô đang tìm kiếm là ô trống, vì nếu phần tử có tồn tại thì ô đó phải có phần tử.
 
-Như vậy thì tiếp tục xảy ra một vấn đề, nếu chúng ta có 3 khóa A, B và C ở các vị trí tăng dần trong mảng và ba khóa này có kết quả đầu ra hàm băm là như nhau. Trong quá trình sử dụng ta xóa khóa B đi. Thì khi tìm kiếm khóa C, làm sao ta biết khóa C tồn tại khi ta đến vị trí khóa B thì đã bị xóa đi rồi (biết rằng 3 khóa này chung kết quả đầu ra hàm băm).
+Như vậy thì tiếp tục xảy ra một vấn đề, nếu chúng ta có 3 khóa A, B và C ở các vị trí tăng dần trong mảng và ba khóa này có kết quả đầu ra hàm băm là như nhau. Trong quá trình sử dụng ta xóa khóa B đi. Thì khi tìm kiếm khóa C, làm sao ta biết khóa C tồn tại khi ta đến vị trí khóa B thì đã bị xóa đi rồi.
 
 Câu trả lời là gắn một cái cờ cho slot của khóa B hồi nãy. Cờ này sẽ có ba trạng thái: thật sự rỗng, đang có khóa và đã từng có khóa. Như vậy các vị trí trong bảng băm nên được đặt một trong ba trạng thái trên.
 
@@ -287,10 +293,10 @@ Trong trường hợp linear probing, nếu bảng băm có tất cả các ph�
 
 # Complexity
 
-## Worst Case:
+**Worst Case**
 
-Trong trường hợp khi xảy ra quá nhiều xung đột khiến hash table phải xây dựng nhiều danh sách liên kết. Dẫn đến chi phí cho các thao tác là O(n).
+Trong trường hợp khi xảy ra quá nhiều xung đột khiến hash table phải xây dựng nhiều danh sách liên kết. Dẫn đến chi phí cho các thao tác là $O(n)$.
 
-## Best Case:
+**Best Case**
 
-Trong trường hợp không xảy ra bất kỳ sự xung đột nào, các phần tử có thể truy xuất ngẫu nhiên nhờ vào tính chất của mảng. Độ phức tạp khi đó trở thành O(1).
+Trong trường hợp không xảy ra bất kỳ sự xung đột nào, các phần tử có thể truy cập ngẫu nhiên nhờ vào tính chất của mảng. Độ phức tạp khi đó trở thành $O(1)$.
