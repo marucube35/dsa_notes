@@ -59,11 +59,11 @@ Nếu theo quy luật áp đảo khi n trở nên rất lớn, bậc lớn nhấ
 
 Khi vẽ hai đồ thị này lên hình, ta sẽ có hình ảnh như sau:
 
-<img src = "../imgs/BigO1.png">
+<img src = "../img/BigO1.png">
 
 Với đường màu đỏ là $F(n)$ và màu xanh là $G(n)$. Dễ dàng tìm được một hằng số C bất kỳ làm cho $G(n) \geq F(n)$ khi n tiến ra vô cùng. Hằng số đó có thể là 20, cho ra kết quả như hình dưới đây.
 
-<img src = "../imgs/BigO2.png">
+<img src = "../img/BigO2.png">
 
 Ta có thể dùng công thức giới hạn để chứng minh hàm Big O tồn tại.
 
@@ -81,7 +81,7 @@ $$
 
 Do C không lớn hơn 0 nên hàm Big O không tồn tại. Ngụ ý rằng, hàm $G(n) = n$ không có cách nào có thể nhanh hơn hàm $F(n)$ khi n tiến ra vô cùng được, nên vì thế hàm $F(n)$ sẽ áp đảo và độ phức tạp sẽ là $O(n)$.
 
-<img src = "../imgs/BigO3.png">
+<img src = "../img/BigO3.png">
 
 Có thể thấy hình trên, ban đầu $G(n) = n$ có thể lớn hơn, nhưng khi n tiến về vô cùng, cụ thể là từ $n = 13$ trở đi, hàm $G(n)$ luôn tăng chậm hơn hàm $F(n)$.
 
@@ -113,4 +113,4 @@ Complexity chia thành ba trường hợp: Worst Case – xấu nhất, Best Cas
 
 # Order of Big O
 
-<img src="../imgs/bigO4.png">
+<img src="../img/bigO4.png">
