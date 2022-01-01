@@ -1,25 +1,19 @@
 ---
-title: "Interchange Sort"
+title: Interchange Sort
 ---
 
 <link rel="stylesheet" href="main.css">
-
-# Interchange Sort
+<div class="bg">
+     <center><h1 class="bigtitle">Interchange Sort</h1></center>
+</div>
 
 **Nghịch thế** là một cặp giá trị $(a_i,a_j)$ khi $a_i$ và $a_j$ không thỏa điều kiện sắp thứ tự. Ví dụ nếu mảng một chiều có các phần tử tăng dần mà có một cặp $(a_i,a_j)$ nào đó giảm dần thì cặp đó được gọi là **nghịch thế**.
 
-## Ý tưởng
+# Idea
 
 Thuật toán Interchange Sort sẽ duyệt qua tất cả các cặp giá trị trong mảng và hoán vị hai giá trị trong một cặp nếu cặp giá trị đó là **nghịch thế**.
 
-## Đầu vào – Đầu ra
-
-- Input: Mảng A gồm n phần tử chưa sắp xếp.
-- Output: Mảng A đã sắp xếp.
-
-Thuật toán nào không nêu cụ thể đầu vào đầu ra ngầm hiểu có đầu vào đầu ra là một mảng chưa sắp xếp.
-
-## Phân tích độ phức tạp thuật toán
+# Complexity Analysis
 
 Ở mỗi lần lặp theo biến, có n - i lần so sánh (do các số phía trước đã sắp xếp).
 
@@ -33,9 +27,9 @@ Trong trường hợp tốt nhất, chuỗi đã được sắp xếp thì chỉ
 
 Còn trong trường hợp xấu nhất khi chuỗi bị đảo ngược thì mỗi lần so sánh đều phải hoán vị.
 
-> Dựa vào số lần thực hiện các toán tử cơ bản như so sánh và hoán vị, ta kết luận được độ phức tạp thuật toán của một thuật toán bất kỳ. Riêng trường hợp trung bình thì thường khá khó để tính và phải dựa trên sự hiểu biết cùng thông tin về phân bố của dữ liệu đầu vào.
+> Dựa vào số lần thực hiện các toán tử cơ bản như so sánh và hoán vị, ta kết luận được Complexity của một thuật toán bất kỳ. Riêng trường hợp trung bình thì thường khá khó để tính và phải dựa trên sự hiểu biết cùng thông tin về phân bố của dữ liệu đầu vào.
 
-## Độ phức tạp thuật toán
+# Complexity
 
 | Cases        | Complexity |
 | :----------- | :--------- |
@@ -45,7 +39,7 @@ Còn trong trường hợp xấu nhất khi chuỗi bị đảo ngược thì m�
 
 Space Complexity: $O(1)$.
 
-## Giải thuật mẫu
+# Code
 
 ```c++
 void interchangeSort(int* a,int n)

@@ -7,8 +7,7 @@ title: Sorting Algorithms
       <center><h1 class="bigtitle">Sorting Algorithms</h1></center>
 </div>
 
-
-# Các thuật toán sắp xếp
+# Sorting Algorithms
 
 Các thuật toán sắp xếp gồm hai loại: sắp xếp nội (internal sorting), đưa toàn bộ dữ liệu vào bộ nhớ trong. Sắp xếp nội có kích thước dữ liệu không lớn và thời gian thực hiện thuật toán nhanh. Loại thứ hai là sắp xếp ngoại (external sorting), chỉ có một phần dữ liệu được đưa vào bộ nhớ trong, phần còn lại lưu ở bộ nhớ ngoài. Sắp xếp ngoại có kích thước dữ liệu rất lớn và thời gian thực hiện chậm.
 
@@ -49,7 +48,9 @@ Có bốn loại internal sorting đó là
 
 Trong đó Shell Sort, Heap Sort, Quick Sort, Merge Sort và Radix Sort là các thuật toán phức tạp nhưng chi phí thấp. Các thuật toán còn lại đơn giản nhưng chi phí cao.
 
-Ý tưởng của Bubble, Selection, Insertion và Heap Sort đều chia mảng thành hai phần đã sắp xếp và chưa sắp xếp.
-# So sánh giữa các thuật toán
+Idea của Bubble, Selection, Insertion và Heap Sort đều chia mảng thành hai phần đã sắp xếp và chưa sắp xếp.
+Thuật toán nào không nêu cụ thể đầu vào đầu ra ngầm hiểu có đầu vào đầu ra là một mảng chưa sắp xếp.
+
+# Comparision
 
 <img src = "../img/Sort8.png">

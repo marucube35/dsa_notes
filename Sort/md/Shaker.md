@@ -1,25 +1,26 @@
 ---
-title: "Shaker Sort"
+title: Shaker Sort
 ---
 
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Shaker Sort</h1></center>
+</div>
 
-# Shaker Sort (Cocktail Sort)
-
-## Ý tưởng
+# Idea
 
 Trong mỗi lần sắp xếp, duyệt mảng theo 2 lượt từ hai phía khác nhau.
 Lượt đi: đẩy phần tử nhỏ về đầu mảng.
 Lượt về: đẩy phần tử lớn về cuối mảng.
 Ghi nhận lại các đoạn đã sắp xếp nhằm tiết kiệm các phép so sánh thừa.
 
-## Phân tích thuật toán
+# Properties
 
 Shaker Sort là một dạng nâng cao của Bubble Sort nên nó có thể nhận diện được mảng đã sắp xếp. Đồng thời Shaker Sort sẽ tối ưu hơn Bubble Sort trong trường hợp dãy đã gần như có thứ tự.
 
 Ví dụ {2,3,4,5,1} thì Shaker Sort cần 2 lần đi và về, Bubble Sort cần 4 lần duyệt. Tuy nhiên trong trường hợp mảng phân bố ngẫu nhiên thì Shaker Sort có thời gian thực hiện ngang với Bubble Sort
 
-## Độ phức tạp thuật toán
+# Complexity
 
 Best case và Worst case xảy ra với mảng đầu vào tương tự như Bubble Sort.
 
@@ -31,7 +32,7 @@ Best case và Worst case xảy ra với mảng đầu vào tương tự như Bub
 
 Space Complexity: $O(1)$.
 
-## Giải thuật mẫu
+# Code
 
 ```c++
 void shakerSort(int *a, int n)

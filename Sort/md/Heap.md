@@ -1,12 +1,15 @@
 ---
-title: "Heap Sort"
+title: Heap Sort
 ---
 
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Heap Sort</h1></center>
+</div>
 
-# Heap Sort
 
-## Ý tưởng
+
+# Idea
 
 Thuật toán Heap Sort được chia làm hai phần là xây dựng Max Heap và sắp xếp.
 
@@ -59,7 +62,7 @@ Nhận thấy node này đã được vun đống sẵn rồi nên bỏ qua và 
 - Tiến hành vun đống cho vị trí đầu tiên trong mảng, do các vị trí còn lại đều đã được vun đống.
 - Lặp lại quá trình này khi chỉ còn một phần tử trong mảng hay nói cách khác là tất cả các phần tử đều đã chuyển đến cuối mảng và được sắp xếp.
 
-## Phân tích thuật toán
+# Properties
 
 Heap Sort là một thuật toán **cải tiến của Selection Sort**. Nhờ sử dụng cấu trúc Heap mà Heap Sort có số lần so sánh ít hơn Selection, nó chỉ tốn O(nlog(n)) chi phí so sánh.
 
@@ -83,7 +86,7 @@ Ví dụ: "been" > "ant", "been" < "boy", "Been" < "been".
 
 - Không gian bộ nhớ bị giới hạn.
 
-## Phân tích độ phức tạp thuật toán
+# Complexity Analysis
 
 Ta đã biết chiều cao của cây nhị phân có n nodes là $log_2(n)$. Để vun đống tại node bất kỳ thì thuật toán luôn phải so sánh nó với hai node con. Việc so sánh này sẽ đào sâu đến khi nào chạm node lá, nên chi phí cho việc so sánh sẽ là $O(log_2(n))$.
 
@@ -107,7 +110,7 @@ Mặc dù vậy, máy tính có thể tối ưu thời gian thuật toán của 
 
 (Tham khảo [programmingquiz](https://www.programiz.com/dsa/heap-sort) và [happycoders](https://www.happycoders.eu/algorithms/heapsort/))
 
-## Độ phức tạp thuật toán
+# Complexity
 
 | Cases        | Complexity     |
 | :----------- | :------------- |
@@ -117,9 +120,9 @@ Mặc dù vậy, máy tính có thể tối ưu thời gian thuật toán của 
 
 Space Complexity: $O(1)$.
 
-## Giải thuật mẫu
+# Code
 
-### Phần Heapify (vun đống)
+## Heapify
 
 ```c++
 void heapify(int* arr, int n, int i)
@@ -142,7 +145,7 @@ void heapify(int* arr, int n, int i)
 }
 ```
 
-### Phần sắp xếp
+## Sort
 
 ```c++
 void heapSort(int* arr, int n)
@@ -162,6 +165,6 @@ void heapSort(int* arr, int n)
 }
 ```
 
-## Biến thể
+# Variants
 
 Có một biến thể của Heap Sort gọi là [Bottom - Up Heap Sort](https://www.happycoders.eu/algorithms/heapsort/), được tinh chỉnh phần build Max Heap để giảm số lần so sánh so với Heap Sort thông thường.

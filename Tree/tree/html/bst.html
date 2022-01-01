@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>bst.md</title>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+  
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
+<style>
+/*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #abb2bf;
+  background: #282c34;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #c678dd;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75;
+}
+
+.hljs-literal {
+  color: #56b6c2;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #98c379;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #e6c07b;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #d19a66;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #61aeee;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+ <script src=""></script>
+</head>
+
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains("vscode-dark") ||
+        document.body.classList.contains("vscode-high-contrast") ?
+        "dark" : "default",
+    });
+  </script>
+
+  <link rel="stylesheet" href="main.css">
+<div class="bg">
+      <center><h1 class="bigtitle">Binary Search Tree</h1></center>
+</div>
+<h1 id="search-tree">Search Tree</h1>
+<p>Cây tìm kiếm có tính chất sau:</p>
+<blockquote>
+<p>Giá trị của key bất kỳ luôn lớn hơn giá trị của các key trong node bên trái và nhỏ hơn giá trị của các key trong node bên phải.</p>
+</blockquote>
+<img src="../img/Tree31.png">
+<p>Ở đây dùng từ &quot;key&quot; (khóa) bởi vì key và node là khác nhau, một node có thể có nhiều key (sẽ được nhắc lại trong phần cây 2 - 3 - 4).</p>
+<p>Không được có hai node có key trùng nhau. (Giống như là khóa
+chính trong SQL, chúng là unique và có thể có nhiều trường).</p>
+<h1 id="binary-search-tree">Binary Search Tree</h1>
+<p>Cây nhị phân tìm kiếm là cây nhị phân mà thỏa tính chất của cây tìm kiếm ở trên. Tức là:</p>
+<ul>
+<li>Mỗi node phải có giá trị lớn hơn giá trị của node con bên trái và bé hơn giá trị của node con bên phải.</li>
+<li>Hai cây con của một node bất kỳ cũng phải là cây nhị phân tìm kiếm.</li>
+</ul>
+<p>Cây nhị phân tìm kiếm phụ thuộc vào dữ liệu đầu vào, nếu như dữ liệu ấy là xấu thì các thao tác thực hiện sẽ có chi phí cao.</p>
+<img src="../img/Tree16.png">
+<p><strong>Fact thú vị</strong>: khi duyệt giữa cây nhị phân tìm kiếm, do cấu trúc của nó được sắp theo thứ tự là left root right nên kết quả của phép duyệt sẽ là một danh sách các số có thứ tự.</p>
+<h1 id="operation">Operation</h1>
+<h2 id="search">Search</h2>
+<h3 id="idea">Idea</h3>
+<p>Ta bắt đầu duyệt từ node gốc. Nếu giá trị cần tìm nhỏ hơn node gốc, tìm bên cây con trái. Ngược lại tìm bên cây con phải. Trường hợp node đó rỗng hoặc là node cần tìm thì trả về.</p>
+<h3 id="code">Code</h3>
+<pre class="hljs"><code><div><span class="hljs-function">NODE *<span class="hljs-title">Search</span><span class="hljs-params">(NODE *root, <span class="hljs-keyword">int</span> x)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">nullptr</span>)
+        <span class="hljs-keyword">return</span> root;
+    <span class="hljs-keyword">if</span> (x &lt; root-&gt;key)
+        <span class="hljs-keyword">return</span> Search(root-&gt;left, x);
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x &gt; root-&gt;key)
+        <span class="hljs-keyword">return</span> Search(root-&gt;right, x);
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> root;
+}
+</div></code></pre>
+<h2 id="insert">Insert</h2>
+<h3 id="idea">Idea</h3>
+<p>Tiến hành duyệt trước qua các phần tử trong cây. Mỗi lần duyệt ta sẽ kiểm tra node cần thêm, nếu nó nhỏ hơn node gốc thì ta duyệt cây con bên trái, ngược lại duyệt cây con bên phải. Nếu tại node đó rỗng, ta sẽ tạo một node mới và thêm vào cây.</p>
+<p>Giá trị trả về nên là int. Với 1 là thêm thành công và 0 là thêm thất bại.</p>
+<h3 id="code">Code</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(NODE *&amp;root, <span class="hljs-keyword">int</span> x)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">nullptr</span>)
+        root = createNODE(x);
+
+    <span class="hljs-keyword">if</span> (x &lt; root-&gt;key)
+        Insert(root-&gt;left, x);
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x &gt; root-&gt;key)
+        Insert(root-&gt;right, x);
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span>;
+}
+</div></code></pre>
+<h2 id="remove">Remove</h2>
+<h3 id="idea">Idea</h3>
+<p>Có ba khả năng xảy ra khi remove một node trong BST.</p>
+<ol>
+<li>Node đó là một lá:
+Chúng ta chỉ đơn giản xóa nó ra khỏi cây.</li>
+</ol>
+<img src="../img/Tree17.png">
+<ol start="2">
+<li>Node đó có duy nhất một con:
+Sao chép con đó cho node cần xóa và xóa node con.</li>
+</ol>
+<img src="../img/Tree18.png">
+<ol start="3">
+<li>Node có 2 con:</li>
+</ol>
+<ul>
+<li>Tìm node lớn nhất cây con trái hoặc node nhỏ nhất cây con phải của node hiện tại, tạm gọi là C.</li>
+<li>Tạo một node tạm để lưu node cha của C.</li>
+<li>Hoán đổi giá trị của node cần xóa với C.</li>
+<li>Nếu C là node lớn nhất cây con trái thì xóa con phải của node cha. Ngược lại nếu C là node nhỏ nhất cây con phải thì xóa con trái của node cha.</li>
+</ul>
+<h3 id="code">Code</h3>
+<p><strong>Code tìm node cha của node nhỏ nhất bên cây con phải:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function">NODE *<span class="hljs-title">searchRightMin</span><span class="hljs-params">(NODE *&amp;curr)</span>
+</span>{
+    NODE *parent = curr;
+    <span class="hljs-comment">// Search in right subtree</span>
+    curr = curr-&gt;right;
+    <span class="hljs-keyword">while</span> (curr-&gt;left != <span class="hljs-literal">nullptr</span>)
+    {
+        parent = curr; <span class="hljs-comment">// Parent be prev root</span>
+        curr = curr-&gt;left;
+    }
+    <span class="hljs-keyword">return</span> parent;
+}
+</div></code></pre>
+<p><strong>Code tìm node cha của node lớn nhất bên cây con trái:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function">NODE *<span class="hljs-title">searchLeftMax</span><span class="hljs-params">(NODE *&amp;curr)</span>
+</span>{
+    NODE *parent = curr;
+    <span class="hljs-comment">// Search in left subtree</span>
+    curr = curr-&gt;left;
+    <span class="hljs-keyword">while</span> (curr-&gt;right != <span class="hljs-literal">nullptr</span>)
+    {
+        parent = curr; <span class="hljs-comment">// Parent be prev root</span>
+        curr = curr-&gt;right;
+    }
+    <span class="hljs-keyword">return</span> parent;
+}
+</div></code></pre>
+<p><strong>Code xóa một node trong BST:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Remove</span><span class="hljs-params">(NODE *&amp;pRoot, <span class="hljs-keyword">int</span> x)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (pRoot == <span class="hljs-literal">nullptr</span>)
+        <span class="hljs-keyword">return</span>;
+
+    <span class="hljs-keyword">if</span> (x &lt; pRoot-&gt;key)
+        Remove(pRoot-&gt;left, x);
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x &gt; pRoot-&gt;key)
+        Remove(pRoot-&gt;right, x);
+    <span class="hljs-keyword">else</span>
+    {
+        <span class="hljs-comment">// Trường hợp có không hoặc một con xử lý đồng thời</span>
+        <span class="hljs-keyword">if</span> (pRoot-&gt;left == <span class="hljs-literal">nullptr</span>)
+        {
+            pRoot = pRoot-&gt;right;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pRoot-&gt;right == <span class="hljs-literal">nullptr</span>)
+        {
+            pRoot = pRoot-&gt;left;
+        }
+
+        <span class="hljs-comment">// Trường hợp có hai con</span>
+        <span class="hljs-keyword">else</span>
+        {
+            <span class="hljs-comment">// Tìm node cha của thế mạng</span>
+            NODE *<span class="hljs-built_in">move</span> = pRoot;
+            NODE *parent = searchRightMin(<span class="hljs-built_in">move</span>);
+
+            <span class="hljs-comment">// Ghi đè giá trị</span>
+            pRoot-&gt;key = <span class="hljs-built_in">move</span>-&gt;key;
+
+            <span class="hljs-comment">// Xóa node con thế mạng</span>
+            <span class="hljs-keyword">if</span> (parent-&gt;left == <span class="hljs-built_in">move</span>)
+            {
+                temp = parent-&gt;left;
+                parent-&gt;left = <span class="hljs-literal">nullptr</span>;
+            }
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (parent-&gt;right == <span class="hljs-built_in">move</span>)
+            {
+                temp = parent-&gt;right;
+                parent-&gt;right = <span class="hljs-literal">nullptr</span>;
+            }
+            <span class="hljs-keyword">delete</span> temp;
+        }
+    }
+}
+</div></code></pre>
+<h2 id="complexity-of-search-insert-and-remove">Complexity of Search, Insert and Remove</h2>
+<p><strong>Worst case</strong>
+Xảy ra khi đây là một cây lệch, lúc này cần duyệt qua $N$ phần tử để có thể thực hiện thao tác.</p>
+<p><strong>Best case</strong>
+Khi cây là gần như hoàn hảo hoặc hoàn hảo. Lúc này chiều cao của cây là tối thiểu $log_2(N + 1)$ nên các thao tác thêm và xóa sẽ tốn ít chi phí nhất.</p>
+<p>Đối với thao tác xóa, nếu phần tử cần xóa nằm ở đầu thì chi phí cho việc tìm kiếm phần tử cần xóa là $O(1)$. Tuy nhiên chi phí để tìm kiếm phần tử thế mạng sẽ là $O(log_2(n))$ nên tổng độ phức tạp thời gian vẫn là $O(log_2(n))$.
+Nói cách khác, chi phí tìm kiếm phần tử cần xóa và phần tử thế mạng là bù trừ cho nhau.</p>
+<p><strong>Best case of search</strong>
+Trường hợp tốt nhất xảy ra khi tìm kiếm là phần tử cần tìm nằm ở node gốc, nên có độ phức tạp thời gian $O(1)$.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Cases</th>
+<th style="text-align:left">Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Best case</td>
+<td style="text-align:left">$O(log_2(n))$</td>
+</tr>
+<tr>
+<td style="text-align:left">Best case of Search</td>
+<td style="text-align:left">$O(1)$</td>
+</tr>
+<tr>
+<td style="text-align:left">Worst case</td>
+<td style="text-align:left">$O(n)$</td>
+</tr>
+<tr>
+<td style="text-align:left">Average case</td>
+<td style="text-align:left">$O(log_2(n))$</td>
+</tr>
+</tbody>
+</table>
+<p>Space Complexity: $O(n)$ (Lưu giữ các lời gọi đệ quy).</p>
+<h1 id="counting">Counting</h1>
+<h2 id="count-less">Count less</h2>
+<p>Đếm số node bé hơn một giá trị cho trước.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countLess</span><span class="hljs-params">(NODE *root, <span class="hljs-keyword">int</span> x)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">nullptr</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+
+    <span class="hljs-comment">// Nếu lớn hơn node hiện tại, cộng tất cả các node bên cây con trái và node hiện tại.</span>
+    <span class="hljs-comment">// Sau đó duyệt sang cây con phải.</span>
+    <span class="hljs-keyword">if</span> (x &gt; root-&gt;key)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + countNode(root-&gt;left) + countLess(root-&gt;right, x);
+
+    <span class="hljs-comment">// Hoặc có thể dùng cách khác, duyệt sang cả hai bên của cây khi x &gt; root-&gt;key.</span>
+    <span class="hljs-comment">// return 1 + countLess(root-&gt;left,x) + countLess(root-&gt;right, x);</span>
+
+    <span class="hljs-comment">// Nếu nhỏ hơn hoặc bằng thì chỉ duyệt sang cây con trái.</span>
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> countLess(root-&gt;left, x);
+}
+</div></code></pre>
+<h2 id="count-greater">Count Greater</h2>
+<p>Đếm số node lớn hơn một giá trị cho trước. Idea ngược lại với Count Less.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countGreater</span><span class="hljs-params">(NODE *root, <span class="hljs-keyword">int</span> x)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">nullptr</span>)
+    {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-comment">// Nếu nhỏ hơn, đếm tất cả các node bên cây con phải và node hiện tại.</span>
+    <span class="hljs-comment">// Sau đó duyệt sang cây con trái.</span>
+    <span class="hljs-keyword">if</span> (x &lt; root-&gt;key)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + countNode(root-&gt;right) + countGreater(root-&gt;left, x);
+
+    <span class="hljs-comment">// Nếu lớn hơn hoặc bằng thì chỉ duyệt sang cây con phải.</span>
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> countGreater(root-&gt;right, x);
+}
+</div></code></pre>
+<h1 id="is-bst">Is BST ?</h1>
+<h2 id="method-1">Method 1</h2>
+<h3 id="idea">Idea</h3>
+<p>Thuật toán chứng minh một cây là cây nhị phân tìm kiếm có hai phần.</p>
+<p>Phần đầu tiên là chứng minh nó là cây nhị phân tìm kiếm cục bộ, tức là xét với mỗi node thì nó đều lớn hơn con trái và nhỏ hơn con phải.</p>
+<p>Phần thứ hai là xét toàn cục, với mỗi node thì tìm node nhỏ nhất của cây con bên phải so với nó, nếu lớn hơn thì là BST. Tương tự tìm node lớn nhất của cây con bên trái, nếu nhỏ hơn thì là BST.</p>
+<h3 id="code">Code</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isBST</span><span class="hljs-params">(NODE *pRoot)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (pRoot != <span class="hljs-literal">nullptr</span>)
+    {
+        NODE *rightMin = pRoot;
+        NODE *leftMax = pRoot;
+
+        <span class="hljs-comment">// Tìm phần tử lớn nhất cây con trái</span>
+        <span class="hljs-keyword">if</span> (pRoot-&gt;left != <span class="hljs-literal">nullptr</span>)
+            searchLeftMax(leftMax);
+        <span class="hljs-comment">// và nhỏ nhất cây con phải</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pRoot-&gt;right != <span class="hljs-literal">nullptr</span>)
+            searchRightMin(rightMin);
+
+        <span class="hljs-comment">// So sánh điều kiện 1</span>
+        <span class="hljs-keyword">if</span> ((pRoot-&gt;left != <span class="hljs-literal">nullptr</span> &amp;&amp; pRoot-&gt;left-&gt;key &gt; pRoot-&gt;key)
+        || (pRoot-&gt;right != <span class="hljs-literal">nullptr</span> &amp;&amp; pRoot-&gt;right-&gt;key &lt; pRoot-&gt;key))
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+        <span class="hljs-comment">// So sánh điều kiện 2</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rightMin-&gt;key &lt; pRoot-&gt;key || leftMax-&gt;key &gt; pRoot-&gt;key)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+        <span class="hljs-comment">// Xét các cây con</span>
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> isBST(pRoot-&gt;left) &amp;&amp; isBST(pRoot-&gt;right);
+    }
+    <span class="hljs-comment">//if it's null, it means it's parent is satisfy BST</span>
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+</div></code></pre>
+<h3 id="complexity">Complexity</h3>
+<p>Ở mỗi node, cần phải đi tìm phần tử lớn nhất cây con trái (maxLeft) và nhỏ nhất cây con phải (minRight) nên tốn chi phí $O(log_2(n))$.</p>
+<p>Chẳng hạn khi ở node gốc, cần phải lặp $H$ vòng lặp để tìm được maxLeft và minRight . Node ở mức 1 thì cần $H - 1$, tương tự ở mức i bất kỳ thì cần $H - i$ lần lặp.</p>
+<p>Tuy nhiên tối đa vẫn là $H$ vòng lặp.</p>
+<p>Ta đã biết</p>
+<p>$$
+log_2(N + 1) \leq H \leq N
+$$</p>
+<p>Từ đó suy ra chi phí cho các vòng lặp sẽ là:
+Worst case: $O(n)$
+Best case: $O(log_2(n))$</p>
+<p>Mà cần phải duyệt qua $N$ node trong cây để kiểm chứng điều này. Do đó:</p>
+<ul>
+<li>Độ phức tạp thời gian:
+Best case: $O(nlog_2(n))$.
+Worst case: $O(n^2)$.</li>
+<li>Độ phức tạp không gian: $O(n)$ (Lưu giữ các lời gọi đệ quy).</li>
+</ul>
+<h2 id="method-2">Method 2</h2>
+<p>Ngoài ra cũng còn một cách kiểm tra nữa sử dụng một mảng phụ. Ta tiến hành duyệt giữa cây, mỗi lần đến một node thì lưu node đó vào mảng. Nếu mảng của chúng ta giảm dần (đệ quy cho ra mảng ngược) hoặc tăng dần (duyệt mảng ngược) thì là BST. Cách này cũng có thể kiểm tra phần tử trùng trong cây bằng cách xét hai phần tử liền kề.</p>
+<h3 id="code">Code</h3>
+<p><strong>Code duyệt giữa và thêm vào mảng phụ:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">inorderToArray</span><span class="hljs-params">(NODE *pRoot, <span class="hljs-keyword">int</span> *a, <span class="hljs-keyword">int</span> &amp;n)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (pRoot == <span class="hljs-literal">nullptr</span>)
+        <span class="hljs-keyword">return</span>;
+
+    inorderToArray(pRoot-&gt;left, a, n);
+    a[--n] = pRoot-&gt;key;
+    inorderToArray(pRoot-&gt;right, a, n);
+}
+</div></code></pre>
+<p><strong>Code chứng minh BST:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isBST2</span><span class="hljs-params">(NODE *pRoot)</span>
+</span>{
+    <span class="hljs-keyword">int</span> n = countNode(pRoot);
+    <span class="hljs-keyword">int</span> temp = n;
+    <span class="hljs-keyword">int</span> *a = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n];
+    inorderToArray(pRoot, a, temp);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)
+    {
+        <span class="hljs-keyword">if</span> (a[i] &lt;= a[i + <span class="hljs-number">1</span>])
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+</div></code></pre>
+<p>Có thể kiểm tra hai phần tử liền kề có tăng dần (giảm dần) mà không cần sử dụng mảng phụ:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isBST</span><span class="hljs-params">(NODE *root, NODE *&amp;prev)</span>
+</span>{
+    <span class="hljs-comment">// Nếu có thể chạm đến node lá, nghĩa là một số node ở trên đường đi đến nó đã thỏa mãn BST</span>
+    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">nullptr</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+
+    <span class="hljs-comment">// Nếu như cây con trái không là BST thì return false</span>
+    <span class="hljs-comment">// Nếu là BST thì xét tại node đó rồi xét con phải</span>
+    <span class="hljs-keyword">if</span> (isBST(root-&gt;left, prev) == <span class="hljs-literal">false</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+    <span class="hljs-comment">// Nếu vi phạm BST thì phát hiện</span>
+    <span class="hljs-keyword">if</span> (prev != <span class="hljs-literal">nullptr</span> &amp;&amp; root-&gt;key &lt;= prev-&gt;key)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    prev = root;
+
+    <span class="hljs-comment">// Cây con phải thì return và duyệt tiếp.</span>
+    <span class="hljs-keyword">return</span> isBST(root-&gt;right, prev);
+}
+</div></code></pre>
+<h3 id="complexity">Complexity</h3>
+<p>Do duyệt qua mọi phần tử trong cây nên độ phức tạp luôn là $O(n)$ trong cả ba case. Mảng phụ có thể triệt tiêu trong cách xây dựng code thứ hai. Do đó:</p>
+<p>Time Complexity: $O(n)$.
+Space Complexity: $O(1)$.</p>
+<h1 id="is-full-bst">Is Full BST ?</h1>
+<p>Để chứng minh một cây nhị phân tìm kiếm là đầy đủ thì cần hai điều kiện: nó là BST và nó là cây nhị phân đầy đủ.
+Thuật toán chứng minh cây nhị phân là đầy đủ có trong bài Binary Tree.</p>
+<p>Tổng độ phức tạp thời gian sẽ là $O(n + n) \sim O(n)$.
+Độ phức tạp không gian là $O(1)$.</p>
+
+</body>
+
+</html>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$', '$']],displayMath: [ ['$$','$$'], ["\\[","\\]"] ],}, 
+  messageStyle: "none" ,
+});
+</script>

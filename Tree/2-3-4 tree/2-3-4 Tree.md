@@ -285,7 +285,7 @@ Việc này dẫn đến làm giảm chiều cao của cây.
 
 # Complexity
 
-Độ phức tạp thuật toán của các thao tác là:
+Complexity của các thao tác là:
 
 1. Độ phức tạp thời gian
    - Truy cập: $O(log_2n)$

@@ -1,27 +1,44 @@
-# Các thuật toán tìm kiếm
+---
+title: Hash Table
+---
+
+<link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Hash Table</h1></center>
+</div>
+
+# Searching Algorithms
+
+**Không gian tìm kiếm**
+
+Là đối tượng mà thuật toán tìm kiếm thực hiện lên, thường là mảng, đoạn giá trị nào đó, danh sách liên kết, cây,...
+
+**Điều kiện tìm kiếm**
+
+Là tiêu chuẩn tìm kiếm trình bày dưới dạng phát biểu không hình thức và lập trình viên cần hình thức hóa nó thành một biểu thức logic.
 
 # Linear Search
 
-## Ý tưởng
+## Idea
 
 Duyệt toàn bộ danh sách A để xác định phần tử $a_i$ cần tìm và trả về vị trí i của nó.
 
-## Đầu vào – Đầu ra
+## Input - Output
 
 - **Input** : Danh sách A có n phần tử, giá trị khóa x cần tìm.
 - **Output** : Chỉ số i của phần tử $a _i$ trong A có giá trị khóa là x.
 
-## Độ phức tạp thuật toán
+## Complexity
 
 - **Best case** : $a_0$ chứa khóa x - số lần lặp lại là 1 - độ phức tạp hằng số $O(1)$.
 - **Worst case** : A không chứa phần tử có khóa x - số lần lặp là n - độ phức tạp tuyến tính $O(n)$.
 - **Average case** : Độ phức tạp tuyến tính $O(n)$.
 
-## Lưu ý
+## Note
 
 Linear Search sẽ duyệt toàn bộ không gian tìm kiếm nên các đối tượng tìm kiếm không cần được sắp xếp, có thể nói là dữ liệu không cần được tổ chức.
 
-## Giải thuật mẫu
+## Code
 
 ```c++
 int linearSearch(int *a,int n,int x)
@@ -37,17 +54,9 @@ int linearSearch(int *a,int n,int x)
 }
 ```
 
-# Không gian tìm kiếm
-
-Là đối tượng mà thuật toán tìm kiếm thực hiện lên, thường là mảng, đoạn giá trị nào đó, danh sách liên kết, cây,...
-
-# Điều kiện tìm kiếm
-
-Là tiêu chuẩn tìm kiếm trình bày dưới dạng phát biểu không hình thức và lập trình viên cần hình thức hóa nó thành một biểu thức logic.
-
 # Binary Search
 
-## Ý tưởng
+## Idea
 
 Chọn $a_M$ ở giữa A để so sánh với khóa x. A được chia thành hai phần trước và sau $a_M$. Chỉ số bắt đầu và kết thúc của A là L và R.
 
@@ -61,22 +70,22 @@ So sánh x và $a_M$:
 
 Mảng giảm dần thì làm ngược lại.
 
-## Đầu vào – Đầu ra
+## Input - Output
 
 - **Input** : Danh sách A có n phần tử đã sắp xếp theo thứ tự _P_ (tăng dần hoặc giảm dần), giá trị khóa x cần tìm.
 - **Output** : Chỉ số i của phần tử $a_i$ trong A có giá trị khóa là x. Không tìm thấy trả về i = -1.
 
-## Độ phức tạp thuật toán
+## Complexity
 
 - **Best case** : Phần tử cần tìm nằm ở vị trí (L + R)/2 – Số lần lặp là 1 – Độ phức tạp hằng số $O(1)$.
 - **Worst case** : Số lần tìm là số lần chia đôi đến khi dãy tìm kiếm còn 1 phần tử - Lặp khoảng $log_2(n) + 1$ lần – Độ phức tạp logarithm $O(log_2(n))$.
 - **Average case** : Độ phức tạp là $O(log_2(n))$.
 
-## Lưu ý
+## Note
 
 Điều kiện tìm kiếm là không gian tìm kiếm phải được sắp xếp theo một thứ tự nào đó và ta sẽ dựa theo thứ tự này để tìm kiếm.
 
-## Giải thuật mẫu
+## Code
 
 **Đệ quy**
 
@@ -124,7 +133,7 @@ int binarySearch(int *a,int n,int x)
 
 # Interpolation Search
 
-## Ý tưởng
+## Idea
 
 Thay vì xác định điểm M = (L+R)/2 thì xác định M như sau:
 
@@ -134,23 +143,23 @@ $$
 
 Các bước còn lại như Binary Search. Đây là một phương pháp trong xác suất thống kê, bởi vì vậy nên nó mới áp dụng cho phân bố dữ liệu ngẫu nhiên đồng đều.
 
-## Đầu vào – Đầu ra
+## Input - Output
 
 **Input** : Danh sách A có n phần tử đã có thứ tự _P_ (tăng dần hoặc giảm dần), giá trị x cần tìm.
 
 **Output** : Chỉ số i của phần tử $a_i$ trong A có giá trị khóa là x. Không tìm thấy trả về i = -1.
 
-## Độ phức tạp thuật toán
+## Complexity
 
 - **Best case** : Tương tự Binary Search khi mà $a_M = x$ thì số lần lặp là 1, độ phức tạp sẽ là hằng số $O(1)$.
 - **Worst case** : Trong trường hợp giá trị số của khóa tăng theo cấp số nhân thì độ phức tạp là $O(n)$.
 - **Average case** : Nếu như dữ liệu được phân bố liên tục thì độ phức tạp sẽ là $log_2(log_2(n))$.
 
-## Lưu ý
+## Note
 
 Thuật toán Interpolation Search áp dụng trong trường hợp không gian tìm kiếm đã được tổ chức theo một thứ tự (tăng dần hoặc giảm dần) và khóa cần tìm được phân bố liên tục trong không gian tìm kiếm (rải đều).
 
-## Giải thuật mẫu
+## Code
 
 ```c++
 int interpolationSearch(int *a,int n,int x)

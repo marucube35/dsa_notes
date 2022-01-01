@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Quick.md</title>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+  
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+<link rel="stylesheet" href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css" type="text/css">
+<style>
+/*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #abb2bf;
+  background: #282c34;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #c678dd;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75;
+}
+
+.hljs-literal {
+  color: #56b6c2;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #98c379;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #e6c07b;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #d19a66;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #61aeee;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+ <script src=""></script>
+</head>
+
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains("vscode-dark") ||
+        document.body.classList.contains("vscode-high-contrast") ?
+        "dark" : "default",
+    });
+  </script>
+
+  <link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Quick Sort</h1></center>
+</div>
+<h1 id="idea">Idea</h1>
+<p>Gồm hai phần: <em>phân hoạch</em> và <em>sắp xếp</em>, dựa trên Idea chia để trị.</p>
+<ul>
+<li>
+<p><strong>Bước 1</strong> : Chọn tùy ý một phần tử a[pivot] trong dãy là phần tử nút trục (pivot), Idea trình bày ở đây chọn ở giữa.</p>
+</li>
+<li>
+<p><strong>Bước 2</strong> : Tạo vòng lặp phát hiện và hiệu chỉnh cặp phần tử a[i], a[j] nằm sai chỗ. Tức là tìm phần tử nhỏ hơn pivot và lớn hơn pivot để swap với nhau.
+Mục đích là để chuyển các phần tử nhỏ hơn pivot về bên trái pivot và lớn hơn pivot về bên phải pivot. Hay nói cách khác là thiết lập điểm phân hoạch.</p>
+</li>
+<li>
+<p><strong>Bước 3</strong> Phân hoạch bằng đệ qui:
+Gọi đệ qui đoạn bên trái pivot và đoạn bên phải pivot.
+Bên trong các hàm đệ qui tiếp tục thực hiện từ bước 1 đến bước 2.</p>
+</li>
+</ul>
+<blockquote>
+<p>Bước gọi đệ qui cho các mảng nhỏ hơn chính là bước trị, khi đi vào bước trị thì tiếp tục CẢ HAI bước chia và trị.</p>
+</blockquote>
+<h1 id="input">Input</h1>
+<p>Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc mảng con cần sắp xếp.</p>
+<h1 id="properties">Properties</h1>
+<p><strong>Lưu ý</strong> : Việc chọn pivot là ngẫu nhiên, có thể chọn đầu, cuối hoặc ở giữa. Tuy nhiên chọn pivot ở đầu hoặc cuối trong một số trường hợp mảng gần như được sắp sẽ dẫn đến Worst case. Do đó chọn pivot ở giữa là chấp nhận được trong phần lớp các trường hợp. Mặc dù vậy, nếu chọn pivot ở cuối (hoặc đầu) thì việc phân hoạch có đôi chút sửa đổi. Có thể tham khảo ở <a href="https://nguyenvanhieu.vn/thuat-toan-sap-xep-quick-sort/">đây</a>.</p>
+<p>Ngoài ra, không phải lúc nào cũng nên chọn phần tử có GIÁ TRỊ trung bình (average). Vì giá trị trung bình này không đại diện cho sự phân phối đồng đều của các phần tử trong mảng. Mà phần tử tốt nhất là phần tử trung vị (median) (vị trí ở giữa). Dẫu vậy, tìm trung vị của một dãy không hề đơn giản, nên chúng ta không tiếp cận theo hướng này.</p>
+<p>Do đó, chúng ta lost - tolerant chọn ba phần tử đầu, cuối và giữa. Nếu dính vào trường hợp xấu nhất thì phải chấp nhận mặc dù xác suất xảy ra worst case là rất thấp. Thêm nữa, có thể sử dụng một trick là: so sánh ba phần tử đầu, cuối và giữa rồi lấy Median của ba vị trí này và chọn làm pivot.</p>
+<blockquote>
+<p><strong>Sự khác biệt giữa Quick và Merge</strong> : Merge mấu chốt ở bước trộn, bước chia rất đơn giản. Tuy nhiên bước chia của Quick Sort rất phức tạp và quan trọng nhưng bước trộn lại cực kì đơn giản.</p>
+</blockquote>
+<blockquote>
+<p><strong><a href="https://en.wikipedia.org/wiki/Median_of_medians">Median of Medians</a></strong>: Là một phương pháp để chọn pivot nhằm tránh rơi vào trường hợp Worst Case của Quick Sort.</p>
+</blockquote>
+<p><strong>Điểm mạnh</strong></p>
+<ul>
+<li>Không sử dụng bộ nhớ phụ.</li>
+<li>Stack sử dụng khá nhỏ.</li>
+<li>Là một thuật toán sử dụng hàm có đệ quy đuôi, đệ quy đuôi là đệ quy mà lời gọi đệ quy là thứ cuối cùng mà hàm thực hiện. Hàm sử dụng đệ quy đuôi có thể được tối ưu hóa bởi compiler nên nó hiệu quả hơn hàm không dùng đệ quy đuôi</li>
+</ul>
+<p><strong>Điểm yếu</strong></p>
+<ul>
+<li>Unstable Sort</li>
+<li>Trường hợp xấu nhất có thể dẫn đến độ phức tạp bình phương.</li>
+<li>Khá khó để cài đặt, đặc biệt là cài đặt mà không dùng đệ quy.</li>
+</ul>
+<blockquote>
+<p>Khi nào nên sử dụng?</p>
+</blockquote>
+<ul>
+<li>Hiệu quả với kích thước dữ liệu mà bộ nhớ chứa được (bộ nhớ trong), hoạt động tốt hơn đối với kích thước dữ liệu nhỏ.</li>
+<li>Kích thước dữ liệu lớn thì không tốt bằng Merge Sort.</li>
+</ul>
+<h1 id="complexity-analysis">Complexity Analysis</h1>
+<p>Tham khảo <a href="https://iq.opengenus.org/time-and-space-complexity-of-quick-sort/">opengenus</a> và <a href="https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort">khan academy</a>.</p>
+<p><strong>Best case</strong>
+Trường hợp này xảy ra khi các mảng phân hoạch có kích thước đồng đều nhất có thể, kích thước của chúng bằng nhau hoặc hơn kém nhau một phần tử. Đồng thời pivot luôn có khả năng là phần tử giữa mảng sau khi phân hoạch.</p>
+<p>Trường hợp bằng nhau xảy ra khi số phần tử trong phân hoạch là lẻ và pivot nằm ngay vị trí ở giữa sau khi thực hiện phân hoạch. Lúc đó mỗi phân hoạch sẽ có $\cfrac{n - 1}{2}$ phần tử.</p>
+<p>Trường hợp hơn kém một phần tử xảy ra khi số phần tử trong phân hoạch là chẵn và hai phân hoạch có kích thước lần lượt là $n/2$ và $n/2 - 1$.</p>
+<p>Cả hai trường hợp trên thì kích thước của các phân hoạch tối đa là n/2, và cây phân hoạch tương tự như cây phân hoạch của Merge Sort (cây nhị phân đầy đủ). Nói cách khác, chiều cao của cây là tối thiểu và tiết kiệm được nhiều chi phí duyệt qua các mức thừa.</p>
+<img src = "../img/Sort15.png">
+<p>Giả sử T(n) là độ phức tạp thời gian cho trường hợp tốt nhất và n là số phần tử của mảng.
+Ở bước đầu tiên khi ta chia mảng làm đôi:</p>
+<p>$$
+T(n) = 2 * T(n/2) + c * n
+$$</p>
+<p>$2 * T(n/2)$ vì ta chia mảng thành hai mảng con bằng nhau (xét trường hợp mảng lẻ).
+Còn <strong>c</strong> là một hằng số nào đó bé hơn 1 đặc trưng cho số lần duyệt qua các phần tử ở mỗi mức (không phải lúc nào cũng duyệt hết n phần tử).</p>
+<p>Bước thứ hai, ta lại chia hai mảng con này thành 4 mảng con khác:</p>
+<p>$$
+T(n) = 2 * (2 * T(n/4) + c* n/2) + c * n\
+= 4* T(n/4) + 2* c* n
+$$</p>
+<p>Một cách tổng quát, ở bước thứ k, ta có:</p>
+<p>$$
+T(n) = 2^k * T(n/(2^k)) + k * c * n
+$$</p>
+<p>Mà k đồng thời cũng là số lần chia mảng, nên $2^k = n$ (giống vòng lặp có bước nhảy là 2 ở bài Complexity Analysis). Do đó $k = \log_2(n)$. Suy ra</p>
+<p>$$
+T(n) = n * T(1) + n * log_2(n)
+$$</p>
+<p>Vậy Complexity trong trường hợp tốt nhất là $O(nlog_2(n))$.</p>
+<p><strong>Worst case</strong>
+Worst case xảy ra khi mảng đã được sắp xếp tăng dần hoặc giảm dần, đồng thời ta chọn pivot là phần tử ở hai đầu mảng. Lúc đó cây phân hoạch trở thành một cây mất cân bằng và suy biến về một cây thẳng đứng, khiến cho chiều cao của cây là tối đa (n).</p>
+<img src = "../img/Sort16.png">
+<p>Ở mỗi lần chia ta phải duyệt qua $c * n$ phần tử, đồng thời có n lần chia như vậy, dễ thấy độ phức tạp của trường hợp xấu nhất là bình phương.</p>
+<p>Ta giả sử T(n) là độ phức tạp thời gian của thuật toán.</p>
+<p>Ở lần đầu tiên chia mảng, ta chỉ loại bỏ bớt phần tử pivot nên mảng còn n - 1 phần tử, và cần duyệt qua $c * n$ phần tử trong mảng đó để phân hoạch.</p>
+<p>$$
+T(n) = T(n - 1) + c * n
+$$</p>
+<p>Ở lần chia thứ hai và thứ ba:</p>
+<p>$$
+T(n) = T(n - 2) + c * (n - 1) + c * n\
+= T(n - 2) + 2 * c * n - c\
+T(n) = T(n - 3)  + 3 * c * n - 2 * c - c
+$$</p>
+<p>Tổng quát hóa:</p>
+<p>$$
+\begin{align*}
+T(n) &amp;= T(n - k) + k * c * n - (k - 1) * c\ ... - 2 * c - c\
+&amp;= T(n - k) + k * c * n - c * ((k - 1) + ... + 3 + 2 + 1)\
+&amp;= T(n - k) + k * n * c - c * (k(k - 1)/2)
+\end{align*}
+$$</p>
+<p>Do có n lần chia tương ứng với k lần lặp, cho $n = k$, ta có:</p>
+<p>$$
+T(n) = T(0) + c * n * n - c * (n(n - 1)/2)
+$$</p>
+<p>Loại bỏ hằng số, ta có</p>
+<p>$$
+T(n) = n<em>n  - n</em>(n - 1)/2
+$$</p>
+<p>Suy ra Complexity trong trường hợp xấu nhất là $O(n^2)$.</p>
+<p><strong>Average case</strong>
+Phân tích chi tiết ở <a href="https://iq.opengenus.org/time-and-space-complexity-of-quick-sort/">opengenus</a> và <a href="https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort">khan academy</a>.</p>
+<p><strong>Space Complexity</strong></p>
+<p>Ta xây dựng các mảng phân hoạch của Quick Sort thành cây phân hoạch như ở trên. Số lần lưu Stack tối đa cũng chính là chiều cao của cây nhị phân (sẽ được ghi chú trong bài cấu trúc cây nhị phân).</p>
+<p>Mà chiều cao này là $log_2(n)$. Suy ra độ phức tạp không gian sẽ là $O(log_2(n))$.</p>
+<p>Tuy nhiên Quick Sort vẫn là thuật toán In-Place không sử dụng bộ nhớ thêm (ngoại trừ Stack đệ quy).</p>
+<h1 id="complexity">Complexity</h1>
+<p>Time Complexity:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Cases</th>
+<th style="text-align:left">Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Best case</td>
+<td style="text-align:left">$O(nlog_2(n))$</td>
+</tr>
+<tr>
+<td style="text-align:left">Worst case</td>
+<td style="text-align:left">$O(n^2)$</td>
+</tr>
+<tr>
+<td style="text-align:left">Average case</td>
+<td style="text-align:left">$O(nlog_2(n))$</td>
+</tr>
+</tbody>
+</table>
+<p>Space Complexity:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Cases</th>
+<th style="text-align:left">Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Best case</td>
+<td style="text-align:left">$O(log_2(n))$</td>
+</tr>
+<tr>
+<td style="text-align:left">Worst case</td>
+<td style="text-align:left">$O(n)$</td>
+</tr>
+</tbody>
+</table>
+<h1 id="code">Code</h1>
+<p>Trường hợp chọn pivot ở giữa</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *a,<span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span>
+</span>{
+    <span class="hljs-comment">//Chọn phần tử ở giữa làm phần tử pivot (nút trục)</span>
+    <span class="hljs-keyword">int</span> pivot = a[(left + right) / <span class="hljs-number">2</span>];
+    <span class="hljs-keyword">int</span> i = left, j = right;
+
+    <span class="hljs-comment">//Đưa các phần tử về đúng phía so với pivot</span>
+    <span class="hljs-keyword">while</span>(i &lt; j)
+    {
+        <span class="hljs-keyword">while</span>(a[i] &lt; pivot) i++;
+        <span class="hljs-keyword">while</span>(a[j] &gt; pivot) j--;
+        <span class="hljs-keyword">if</span>(i &lt;= j)
+            swap(a[i++],a[j--]);
+    }
+
+    <span class="hljs-comment">//Gọi đệ qui phân hoạch và sắp xếp</span>
+    <span class="hljs-keyword">if</span>(j &gt; left) quickSort(a, left, j);
+    <span class="hljs-keyword">if</span>(i &lt; right) quickSort(a, i, right);
+}
+</div></code></pre>
+<p>Trường hợp chọn pivot ở cuối</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arr[], <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span>
+</span>{
+    <span class="hljs-keyword">int</span> pivot = arr[right]; <span class="hljs-comment">// pivot</span>
+    <span class="hljs-keyword">int</span> i = left;
+    <span class="hljs-keyword">int</span> j = right - <span class="hljs-number">1</span>;
+
+    <span class="hljs-keyword">while</span> (i &lt; j)
+    {
+        <span class="hljs-keyword">while</span> (i &lt;= j &amp;&amp; arr[i] &lt; pivot)
+            i++; <span class="hljs-comment">// Tìm phần tử &gt;= arr[pivot]</span>
+        <span class="hljs-keyword">while</span> (j &gt;= i &amp;&amp; arr[j] &gt; pivot)
+            j--; <span class="hljs-comment">// Tìm phần tử &lt;= arr[pivot]</span>
+        <span class="hljs-keyword">if</span> (i &lt;= j)
+            swap(arr[i++], arr[j--]);
+    }
+
+    swap(arr[i], arr[right]);
+    <span class="hljs-keyword">return</span> i; <span class="hljs-comment">// Trả về chỉ số dùng để phân hoạch</span>
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arr[], <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (left &lt; right)
+    {
+        <span class="hljs-comment">// Tìm vị trí của pivot</span>
+        <span class="hljs-comment">// (do trước và sau khi phân hoạch pivot có thể thay đổi vị trí)</span>
+        <span class="hljs-keyword">int</span> pi = partition(arr, left, right);
+
+        <span class="hljs-comment">// Gọi đệ qui sắp xếp cho hai phân hoạch hai bên pivot</span>
+        <span class="hljs-comment">// (pivot nếu đã tìm được thì cố định ở vị trí đó luôn)</span>
+        quickSort(arr, left, pi - <span class="hljs-number">1</span>);
+        quickSort(arr, pi + <span class="hljs-number">1</span>, right);
+    }
+}
+</div></code></pre>
+
+</body>
+
+</html>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$', '$']],displayMath: [ ['$$','$$'], ["\\[","\\]"] ],}, 
+  messageStyle: "none" ,
+});
+</script>

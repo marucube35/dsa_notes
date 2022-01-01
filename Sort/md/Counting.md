@@ -1,13 +1,17 @@
 ---
-title: "Counting Sort"
+title: Counting Sort
 ---
-<link rel="stylesheet" href="main.css">
 
-# Counting Sort
+<link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Counting Sort</h1></center>
+</div>
+
+
 
 (Hình ảnh và nội dung tham khảo từ [programmingquiz](https://www.programiz.com/dsa/counting-sort) và [journaldev](https://www.journaldev.com/42355/counting-sort-algorithm)).
 
-## Ý tưởng
+# Idea
 
 Counting Sort là thuật toán sắp xếp mảng bằng cách đếm số lần xuất hiện của những phần tử riêng biệt có trong mảng. Số lần đếm được này được lưu trong mảng phụ và thuật toán kết thúc khi ánh xạ các số lần đếm này thành index của mảng.
 
@@ -51,7 +55,7 @@ Chú ý rằng giá trị cuối mảng `count[]` sau khi tính tích lũy luôn
 
 - Độ phức tạp thời gian $O(n)$, không gian $O(1)$.
 
-## Phân tích thuật toán
+# Properties
 
 Không dựa vào các phép so sánh như các thuật toán thông thường.
 
@@ -65,12 +69,12 @@ Không dựa vào các phép so sánh như các thuật toán thông thường.
 
 - Cả độ phức tạp thời gian và không gian tăng đáng kể nếu dữ liệu đầu vào lớn và khoảng giá trị rộng.
 - Chỉ hoạt động cho các giá trị rời rạc như số nguyên.
-- Nếu dùng cho số âm thì độ phức tạp thuật toán và cài đặt đều tăng.
+- Nếu dùng cho số âm thì Complexity và cài đặt đều tăng.
 - Tiêu tốn nhiều bộ nhớ không cần thiết nếu dữ liệu phân bố thành cụm (chẳng hạn như dữ liệu có 1000 phần tử và có 1000 phần tử giá trị 1. Lúc này mảng đếm có 1000 vị trí nhưng 999 vị trí trong số đó là trống).
 
-## Phân tích độ phức tạp thuật toán
+# Complexity Analysis
 
-Như đã ghi chú ở phần ý tưởng, các vòng for ở mỗi có độ phức tạp thời gian lần lượt là:
+Như đã ghi chú ở phần Idea, các vòng for ở mỗi có độ phức tạp thời gian lần lượt là:
 
 1. $O(n)$
 2. $O(max)$
@@ -83,7 +87,7 @@ Tổng độ phức tạp thời gian là $O(n + max)$. Cả ba cases đều có
 
 Tuy nhiên độ phức tạp không gian là khá cao, $O(max)$.
 
-## Độ phức tạp thuật toán
+# Complexity
 
 | Cases        | Complexity   |
 | :----------- | :----------- |
@@ -95,7 +99,7 @@ Space Complexity: $O(max)$.
 
 với max là giá trị lớn nhất của các phần tử.
 
-## Giải thuật mẫu
+# Code
 
 ```c++
 void countSort(int array[], int size)

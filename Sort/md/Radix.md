@@ -1,14 +1,15 @@
 ---
-title: "Radix Sort"
+title: Radix Sort
 ---
 
 <link rel="stylesheet" href="main.css">
-
-# Radix Sort
+<div class="bg">
+     <center><h1 class="bigtitle">Radix Sort</h1></center>
+</div>
 
 **Radix – cơ số**: Thuật toán này sắp xếp dựa trên cơ số (2, 8, 10, 16), mỗi cơ số có một cách biểu diễn riêng cho các giá trị phụ thuộc vào số lượng ký số (số ký tự để biểu diễn giá trị). Do đó nếu giá trị không thể hiện dưới dạng một số cơ số nhất định nào đó (chẳng hạn số thực hoặc số âm) thì việc sắp xếp sẽ khá khó khăn.
 
-## Ý tưởng
+# Idea
 
 Radix sort gồm hai bước là phân loại và sắp xếp. Đầu tiên phân loại các phần tử về đúng phân lớp, sau đó tiến hành sắp xếp các phần tử trong cùng một phân lớp. Hai bước này được thực hiện song song nhau. Radix Sort có thể sử dụng Counting Sort (là một Stable Sort) làm hàm con của nó.
 
@@ -43,7 +44,8 @@ Cuối cùng là hàng trăm và kết thúc thuật toán
 <img src = "../img/Sort33.png">
 
 (Hình ảnh tham khảo từ [programmingquiz](https://www.programiz.com/dsa/radix-sort))
-## Phân tích thuật toán
+
+# Properties
 
 **Điểm mạnh**
 
@@ -62,15 +64,17 @@ Cuối cùng là hàng trăm và kết thúc thuật toán
 - Sắp xếp thư từ dựa trên mã bưu chính (Postal Code hoặc ZIP Code)
 
 > Khi nào nên sử dụng?
+
 - Tập dữ liệu lớn có khoảng giá trị nhỏ lặp lại liên tục, chẳng hạn như một triệu phần tử có giá trị từ 0 đến 100.
 - Tập dữ liệu không lặp lại nhưng lại có cùng số ký số (Best case), chẳng hạn như sắp xếp một triệu tài khoản ngân hàng đều có 14 ký số.
 
 (Tham khảo [quora](https://www.quora.com/When-should-we-use-radix-sort-Counting-sort-and-bucket-sort-for-sorting-purpose)).
-## Phân tích độ phức tạp thuật toán
+
+# Complexity Analysis
 
 Bước tìm Max luôn được thực hiện, có chi phí $O(n)$.
 
-Bước gọi Counting Sort thì được thực hiện `d` lần tương ứng với số chữ số của `max`. Số chữ số `d` là $O(log_b(max))$. Mỗi lần lặp tốn chi phí của Counting Sort là $O(n + k)$. 
+Bước gọi Counting Sort thì được thực hiện `d` lần tương ứng với số chữ số của `max`. Số chữ số `d` là $O(log_b(max))$. Mỗi lần lặp tốn chi phí của Counting Sort là $O(n + k)$.
 
 Với `k` ở đây là giá trị lớn nhất của các phần tử trong một lần gọi Counting Sort. Nhưng do ta sort theo từng hàng số nên giá trị `k` chỉ có trong khoảng `[0;9]` (nếu chọn hệ cơ số thập phân). Tổng quát hơn, giá trị `k` phụ thuộc vào hệ cơ số, nên ta thay nó thành `b` (base).
 
@@ -89,7 +93,7 @@ Phân tích dựa vào phân bố của số chữ số, chi tiết ở [opengen
 
 **Độ phức tạp không gian**: Thuật toán sử dụng mảng phụ có `b` phần tử dựa trên cơ số và mảng phụ `n` phần tử để lưu tạm giá trị. Đôi khi `b` có thể lớn hơn `n`, không phải lúc nào `n` cũng lớn nhất.
 
-## Độ phức tạp thuật toán
+# Complexity
 
 | Cases        | Complexity       |
 | :----------- | :--------------- |
@@ -99,9 +103,9 @@ Phân tích dựa vào phân bố của số chữ số, chi tiết ở [opengen
 
 Space Complexity: $O(n + b)$.
 
-## Giải thuật mẫu
+# Code
 
-### Counting Sort chỉnh sửa
+## Counting Sort chỉnh sửa
 
 ```c++
 void countingSort(int array[], int size, int place)
@@ -130,7 +134,7 @@ void countingSort(int array[], int size, int place)
 }
 ```
 
-### Radix Sort
+## Radix Sort
 
 ```c++
 int getMax(int arr[], int n)

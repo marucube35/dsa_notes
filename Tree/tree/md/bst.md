@@ -243,7 +243,7 @@ int countLess(NODE *root, int x)
 
 ## Count Greater
 
-Đếm số node lớn hơn một giá trị cho trước. Ý tưởng ngược lại với Count Less.
+Đếm số node lớn hơn một giá trị cho trước. Idea ngược lại với Count Less.
 
 ```c++
 int countGreater(NODE *root, int x)

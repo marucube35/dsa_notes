@@ -1,12 +1,13 @@
 ---
-title: "Insertion Sort"
+title: Insertion Sort
 ---
 
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Insertion Sort</h1></center>
+</div>
 
-# Insertion Sort
-
-## Ý tưởng
+# Idea
 
 Thuật toán Insertion Sort sắp xếp dựa trên tư tưởng là không gian cần sắp xếp đã được sắp xếp một đoạn và ta chỉ cần thêm giá trị mới vào không gian này sao cho không gian mới được sắp xếp.
 
@@ -32,7 +33,7 @@ Có n – 1 lần chèn tương đương n - 1 lần lặp, ở mỗi lần chè
 - Cần sự stable cho dữ liệu vì đây là thuật toán Stable.
 - Bộ nhớ sử dụng bị hạn chế
 
-## Phân tích độ phức tạp thuật toán
+# Complexity Analysis
 
 Tham khảo ở [happycoders](https://www.happycoders.eu/algorithms/insertion-sort/).
 
@@ -78,7 +79,7 @@ Lúc đó sẽ có $\cfrac{n(n - 1)}{2}$ lần dời chỗ dẫn đến độ ph
 **Best case**
 Trường hợp tốt nhất xảy ra khi mảng đã sắp xếp, lúc đó chỉ cần một lần so sánh trong mỗi vòng lặp và không có phép hoán vị nào. Dẫn đến tổng phép so sánh là n - 1 (bỏ qua phần tử đầu). Do đó độ phức tạp là tuyến tính $O(n)$.
 
-## Độ phức tạp thuật toán
+# Complexity
 
 | Cases        | Complexity |
 | :----------- | :--------- |
@@ -88,7 +89,7 @@ Trường hợp tốt nhất xảy ra khi mảng đã sắp xếp, lúc đó ch�
 
 Space Complexity: $O(1)$.
 
-## Giải thuật mẫu
+# Code
 
 ```c++
 void insertionSort(int *a,int n)

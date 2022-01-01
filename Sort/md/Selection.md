@@ -1,16 +1,17 @@
 ---
-title: "Selection Sort"
+title: Selection Sort
 ---
 
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Selection Sort</h1></center>
+</div>
 
-# Selection Sort
-
-## Ý tưởng
+# Idea
 
 Lặp qua các vị trí từ 0 đến n - 1. Ở mỗi lần lặp i tìm phần tử cực trị (nhỏ nhất hoặc lớn nhất) trong khoảng từ i đến n - 1. Sau đó thay thế phần tử $a_i$ với phần tử cực trị vừa tìm. Trong trường hợp xếp mảng tăng dần thì phần tử cực trị là phần tử nhỏ nhất.
 
-## Phân tích thuật toán
+# Properties
 
 Điểm thú vị của selection là có thể sort trong khoảng từ 0 đến k (k < n). Ví dụ khi tuyển sinh, ta chỉ tuyển 500 học sinh đầu trong 1000 học sinh. Chúng ta sắp xếp theo tên của các học sinh, khi sắp xếp đến số lượng 500 thì ngừng, không cần duyệt qua toàn bộ dữ liệu đầu vào. Vậy Selection Sort nó có thể ngừng sort tại vị trí mong muốn nào đó trong quá trình sort, giúp tiết kiệm chi phí.
 
@@ -27,7 +28,7 @@ Mảng dữ liệu lớn và phân bố có gần như có thứ tự sẽ làm 
 - Khi danh sách đầu vào là nhỏ
 - Bộ nhớ bị giới hạn
 
-## Phân tích độ phức tạp thuật toán
+# Complexity Analysis
 
 Tham khảo [opengenus](https://iq.opengenus.org/time-complexity-of-selection-sort/).
 
@@ -83,7 +84,7 @@ $\cfrac{n(n\ +\ 1)}{2}$ số lần so sánh.
 **Average case**
 Pân tích chi tiết độ phức tạp trung bình ở [đây](https://iq.opengenus.org/time-complexity-of-selection-sort/).
 
-## Độ phức tạp thuật toán
+# Complexity
 
 | Cases        | Complexity |
 | :----------- | :--------- |
@@ -93,7 +94,7 @@ Pân tích chi tiết độ phức tạp trung bình ở [đây](https://iq.open
 
 Space Complexity: $O(1)$.
 
-## Giải thuật mẫu
+# Code
 
 ```c++
 void selectionSort(int *a, int n)

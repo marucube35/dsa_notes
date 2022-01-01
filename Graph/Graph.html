@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Graph.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+    <style>
+      /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+      /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+      body {
+        font-family: var(
+          --vscode-markdown-font-family,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe WPC",
+          "Segoe UI",
+          "Ubuntu",
+          "Droid Sans",
+          sans-serif
+        );
+        font-size: var(--vscode-markdown-font-size, 14px);
+        padding: 0 26px;
+        line-height: var(--vscode-markdown-line-height, 22px);
+        word-wrap: break-word;
+      }
+
+      #code-csp-warning {
+        position: fixed;
+        top: 0;
+        right: 0;
+        color: white;
+        margin: 16px;
+        text-align: center;
+        font-size: 12px;
+        font-family: sans-serif;
+        background-color: #444444;
+        cursor: pointer;
+        padding: 6px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+      }
+
+      #code-csp-warning:hover {
+        text-decoration: none;
+        background-color: #007acc;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+      }
+
+      body.scrollBeyondLastLine {
+        margin-bottom: calc(100vh - 22px);
+      }
+
+      body.showEditorSelection .code-line {
+        position: relative;
+      }
+
+      body.showEditorSelection .code-active-line:before,
+      body.showEditorSelection .code-line:hover:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -12px;
+        height: 100%;
+      }
+
+      body.showEditorSelection li.code-active-line:before,
+      body.showEditorSelection li.code-line:hover:before {
+        left: -30px;
+      }
+
+      .vscode-light.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(0, 0, 0, 0.15);
+      }
+
+      .vscode-light.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(0, 0, 0, 0.4);
+      }
+
+      .vscode-light.showEditorSelection .code-line .code-line:hover:before {
+        border-left: none;
+      }
+
+      .vscode-dark.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .vscode-dark.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(255, 255, 255, 0.6);
+      }
+
+      .vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+        border-left: none;
+      }
+
+      .vscode-high-contrast.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(255, 160, 0, 0.7);
+      }
+
+      .vscode-high-contrast.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(255, 160, 0, 1);
+      }
+
+      .vscode-high-contrast.showEditorSelection
+        .code-line
+        .code-line:hover:before {
+        border-left: none;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      a:focus,
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: 1px solid -webkit-focus-ring-color;
+        outline-offset: -1px;
+      }
+
+      hr {
+        border: 0;
+        height: 2px;
+        border-bottom: 2px solid;
+      }
+
+      h1 {
+        padding-bottom: 0.3em;
+        line-height: 1.2;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-weight: normal;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table > thead > tr > th {
+        text-align: left;
+        border-bottom: 1px solid;
+      }
+
+      table > thead > tr > th,
+      table > thead > tr > td,
+      table > tbody > tr > th,
+      table > tbody > tr > td {
+        padding: 5px 10px;
+      }
+
+      table > tbody > tr + tr > td {
+        border-top: 1px solid;
+      }
+
+      blockquote {
+        margin: 0 7px 0 5px;
+        padding: 0 16px 0 10px;
+        border-left-width: 5px;
+        border-left-style: solid;
+      }
+
+      code {
+        font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New",
+          monospace, "Droid Sans Fallback";
+        font-size: 1em;
+        line-height: 1.357em;
+      }
+
+      body.wordWrap pre {
+        white-space: pre-wrap;
+      }
+
+      pre:not(.hljs),
+      pre.hljs code > div {
+        padding: 16px;
+        border-radius: 3px;
+        overflow: auto;
+      }
+
+      pre code {
+        color: var(--vscode-editor-foreground);
+        tab-size: 4;
+      }
+
+      /** Theming */
+
+      .vscode-light pre {
+        background-color: rgba(220, 220, 220, 0.4);
+      }
+
+      .vscode-dark pre {
+        background-color: rgba(10, 10, 10, 0.4);
+      }
+
+      .vscode-high-contrast pre {
+        background-color: rgb(0, 0, 0);
+      }
+
+      .vscode-high-contrast h1 {
+        border-color: rgb(0, 0, 0);
+      }
+
+      .vscode-light table > thead > tr > th {
+        border-color: rgba(0, 0, 0, 0.69);
+      }
+
+      .vscode-dark table > thead > tr > th {
+        border-color: rgba(255, 255, 255, 0.69);
+      }
+
+      .vscode-light h1,
+      .vscode-light hr,
+      .vscode-light table > tbody > tr + tr > td {
+        border-color: rgba(0, 0, 0, 0.18);
+      }
+
+      .vscode-dark h1,
+      .vscode-dark hr,
+      .vscode-dark table > tbody > tr + tr > td {
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="file:///g%3A/MATERIAL/Computer/CTDL%20%26%20GT/Note/Sort/md/main.css"
+      type="text/css"
+    />
+    <style>
+      /*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+
+      .hljs {
+        display: block;
+        overflow-x: auto;
+        padding: 0.5em;
+        color: #abb2bf;
+        background: #282c34;
+      }
+
+      .hljs-comment,
+      .hljs-quote {
+        color: #5c6370;
+        font-style: italic;
+      }
+
+      .hljs-doctag,
+      .hljs-keyword,
+      .hljs-formula {
+        color: #c678dd;
+      }
+
+      .hljs-section,
+      .hljs-name,
+      .hljs-selector-tag,
+      .hljs-deletion,
+      .hljs-subst {
+        color: #e06c75;
+      }
+
+      .hljs-literal {
+        color: #56b6c2;
+      }
+
+      .hljs-string,
+      .hljs-regexp,
+      .hljs-addition,
+      .hljs-attribute,
+      .hljs-meta-string {
+        color: #98c379;
+      }
+
+      .hljs-built_in,
+      .hljs-class .hljs-title {
+        color: #e6c07b;
+      }
+
+      .hljs-attr,
+      .hljs-variable,
+      .hljs-template-variable,
+      .hljs-type,
+      .hljs-selector-class,
+      .hljs-selector-attr,
+      .hljs-selector-pseudo,
+      .hljs-number {
+        color: #d19a66;
+      }
+
+      .hljs-symbol,
+      .hljs-bullet,
+      .hljs-link,
+      .hljs-meta,
+      .hljs-selector-id,
+      .hljs-title {
+        color: #61aeee;
+      }
+
+      .hljs-emphasis {
+        font-style: italic;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+
+      .hljs-link {
+        text-decoration: underline;
+      }
+    </style>
+
+    <style>
+      /*
+ * Markdown PDF CSS
+ */
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI",
+          "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+        padding: 0 12px;
+      }
+
+      pre {
+        background-color: #f8f8f8;
+        border: 1px solid #cccccc;
+        border-radius: 3px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+      }
+
+      pre:not(.hljs) {
+        padding: 23px;
+        line-height: 19px;
+      }
+
+      blockquote {
+        background: rgba(127, 127, 127, 0.1);
+        border-color: rgba(0, 122, 204, 0.5);
+      }
+
+      .emoji {
+        height: 1.4em;
+      }
+
+      code {
+        font-size: 14px;
+        line-height: 19px;
+      }
+
+      /* for inline code */
+      :not(pre):not(.hljs) > code {
+        color: #c9ae75; /* Change the old color so it seems less like an error */
+        font-size: inherit;
+      }
+
+      /* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+      .page {
+        page-break-after: always;
+      }
+    </style>
+    <script src=""></script>
+  </head>
+
+  <body>
+    <script>
+      mermaid.initialize({
+        startOnLoad: true,
+        theme:
+          document.body.classList.contains("vscode-dark") ||
+          document.body.classList.contains("vscode-high-contrast")
+            ? "dark"
+            : "default",
+      });
+    </script>
+
+    <link rel="stylesheet" href="main.css" />
+    <div class="bg">
+      <center><h1 class="bigtitle">Graph</h1></center>
+    </div>
+    <h1 id="terminologies">Terminologies</h1>
+    <p><strong>Loop</strong> - khuyên</p>
+    <p>
+      <strong>Cycle</strong> - Đồ thị chu trình, là chu trình mà đi qua mỗi cạnh
+      không quá một lần (không cần đi qua tất cả các cạnh).
+    </p>
+    <p><strong>Acyclic graph</strong> - Đồ thị không có Cycle.</p>
+    <p><strong>Trivial Graph</strong> - Đồ thị tầm thường, chỉ có một node.</p>
+    <p>
+      <strong>Connected Graph</strong> - Đồ thị liên thông, mọi node đều có
+      đường đi đến $N - 1$ node còn lại. Nói cách khác là giữa hai node bất kỳ
+      luôn tồn tại ít nhất một đường đi.
+    </p>
+    <p>
+      Phạm vi đồ thị xét đến trong DSA chỉ là đơn đồ thị, có thể có đa đồ thị.
+    </p>
+    <h1 id="graph-representation">Graph Representation</h1>
+    <h2 id="adjacency-matrix">Adjacency Matrix</h2>
+    <p><strong>Ma trận kề</strong></p>
+    <p>
+      Nếu đồ thị có trọng số thì mỗi phần tử trong mảng lưu trọng số của cạnh
+      nối hai đỉnh, trường hợp không có cạnh nối thì lưu vô cùng. Ngược lại
+      không có trọng số thì lưu giá trị 0 hoặc 1.
+    </p>
+    <img src="imgs/p1.png" />
+    <img src="imgs/p2.png" />
+    <p><strong>Điểm mạnh</strong></p>
+    <ul>
+      <li>
+        Dễ dàng truy xuất thông tin nhờ vào tính chất random accessibility của
+        mảng.
+      </li>
+    </ul>
+    <p><strong>Điểm yếu</strong></p>
+    <ul>
+      <li>
+        Tốn nhiều bộ nhớ khi đồ thị có nhiều đỉnh và ít cạnh (đồ thị thưa -
+        Sparse Graph).
+      </li>
+      <li>Tốn chi phí để tìm các đỉnh kề của cạnh bất kỳ $O(n)$.</li>
+    </ul>
+    <h2 id="adjacency-list">Adjacency List</h2>
+    <p><strong>Danh sách kề</strong></p>
+    <p>
+      Với $N$ đỉnh trong đồ thị sẽ có một mảng gồm $N$ danh sách liên kết. Mỗi
+      danh sách liên kết tượng trưng cho các cạnh kề của đỉnh bất kỳ.
+    </p>
+    <ul>
+      <li>Nếu đồ thị có trọng số thì mỗi node sẽ có biến lưu thêm trọng số.</li>
+      <li>
+        Nếu đồ thị là đa đồ thị và tồn tại cặp cạnh song song có trọng số khác
+        nhau thì có thể có hai node giống tên đỉnh nhưng khác trọng số trên cùng
+        một danh sách liên kết.
+      </li>
+    </ul>
+    <p>
+      Trong bài toán cụ thể, chẳng hạn như tìm đường đi ngắn nhất hoặc cây khung
+      ngắn nhất, thì có thể sắp xếp các đỉnh theo trong khi tạo danh sách kề.
+      Làm như vậy thì chi phi tìm đường đi ngắn nhất hoặc cây khung ngắn nhất sẽ
+      giảm đi.
+    </p>
+    <img src="imgs/p3.png" />
+    <img src="imgs/p4.png" />
+    <p><strong>Điểm mạnh</strong></p>
+    <ul>
+      <li>Tiết kiệm bộ nhớ khi đồ thị là thưa</li>
+      <li>
+        Tiết kiệm chi phí để tìm các đỉnh kề của đỉnh bất kỳ do các đỉnh kề nhau
+        nằm chung một danh sách liên kết.
+      </li>
+    </ul>
+    <p><strong>Điểm yếu</strong></p>
+    <ul>
+      <li>Truy xuất khó khăn do phải duyệt tuần tự.</li>
+    </ul>
+    <p><strong>Điểm chung</strong></p>
+    <ul>
+      <li>Thêm đỉnh hoặc cạnh ở hai dạng biểu diễn tốn chi phí như nhau.</li>
+    </ul>
+    <h2 id="edge-list">Edge List</h2>
+    <p><strong>Danh sách cạnh</strong>. Dùng trong trường hợp đồ thị thưa</p>
+    <h1 id="graph-traversal">Graph Traversal</h1>
+    <h2 id="dfs---depth-first-search">DFS - Depth First Search</h2>
+    <p><strong>Duyệt theo chiều sâu</strong></p>
+    <h3 id="idea">Idea</h3>
+    <p>
+      Đi xa nhất có thể trước khi trở về, có thể gọi là backtracking? Giống với
+      duyệt trước của cây nhị phân.
+    </p>
+    <p>
+      Có thể dùng để tìm thành phần liên thông. Idea là trong mỗi lần duyệt
+      (mỗi lần đào) thì ta sẽ đánh dấu các đỉnh đó thuộc một thành phần liên
+      thông. Khi trả về thì sẽ tiếp tục đánh dấu để tìm ra một thành phần liên
+      thông khác.
+    </p>
+    <p>
+      Việc đánh dấu này có thể sử dụng mảng. Nếu sau khi duyệt hết đồ thị mà
+      mảng được đánh dấu là 1 hết (cùng thành phần liên thông), thì đồ thị đó là
+      đồ thị liên thông.
+    </p>
+    <p>
+      DFS nếu được điều chỉnh cũng có thể dùng để chứng minh đồ thị có chu trình
+      hay không (Cycle Detection). Vì DFS có quay lại các đỉnh đã đi qua còn BFS
+      thì lan rộng ra mà không làm việc đó.
+    </p>
+    <h3 id="code">Code</h3>
+    <p>Thuật toán được xây dựng dựa trên đồ thị vô hướng</p>
+    <ul>
+      <li>Dùng Stack:</li>
+    </ul>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(NODE **<span class="hljs-built_in">list</span>, <span class="hljs-keyword">int</span> n)</span>
+</span>{
+    <span class="hljs-keyword">int</span> *visited = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n]{<span class="hljs-number">0</span>};
+    <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; s;
+    s.push(<span class="hljs-number">0</span>);
+    <span class="hljs-keyword">int</span> prev;
+
+    <span class="hljs-keyword">while</span> (s.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-keyword">int</span> curr = s.top();
+        <span class="hljs-keyword">if</span> (visited[curr] == <span class="hljs-number">0</span>)
+        {
+            <span class="hljs-built_in">cout</span> &lt;&lt; curr &lt;&lt; <span class="hljs-string">"  "</span>;
+            visited[curr] = <span class="hljs-number">1</span>;
+        }
+        prev = curr;
+
+        NODE *<span class="hljs-built_in">move</span> = <span class="hljs-built_in">list</span>[curr];
+        <span class="hljs-keyword">while</span> (<span class="hljs-built_in">move</span> != <span class="hljs-literal">nullptr</span>)
+        {
+            <span class="hljs-keyword">if</span> (visited[<span class="hljs-built_in">move</span>-&gt;vertex] == <span class="hljs-number">0</span>)
+            {
+                s.push(<span class="hljs-built_in">move</span>-&gt;vertex);
+                <span class="hljs-keyword">break</span>;
+            }
+            <span class="hljs-built_in">move</span> = <span class="hljs-built_in">move</span>-&gt;adjacent;
+        }
+        <span class="hljs-comment">// Không có sự thay đổi stack (bắt đầu quay lui)</span>
+        <span class="hljs-keyword">if</span> (prev == s.top())
+        {
+            s.pop();
+        }
+    }
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+</div></code></pre>
+    <ul>
+      <li>Đệ quy</li>
+    </ul>
+    <h2 id="bfs---breath-first-search">BFS - Breath First Search</h2>
+    <p><strong>Duyệt theo chiều rộng</strong></p>
+    <h3 id="idea">Idea</h3>
+    <p>Đi đến những đỉnh kề với đỉnh bất kỳ sao cho không tồn tại chu trình.</p>
+    <h3 id="code">Code</h3>
+    <ul>
+      <li>Dùng Queue (Idea giống Level Order):</li>
+    </ul>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(NODE** <span class="hljs-built_in">list</span>, <span class="hljs-keyword">int</span> n)</span>
+</span>{
+    <span class="hljs-keyword">int</span> *visited = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n]{<span class="hljs-number">0</span>};
+    <span class="hljs-built_in">queue</span>&lt;<span class="hljs-keyword">int</span>&gt; q;
+    q.push(<span class="hljs-number">0</span>);
+
+    <span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">0</span>)
+    {
+        <span class="hljs-keyword">int</span> curr = q.front();
+        <span class="hljs-keyword">if</span>(visited[curr]!= <span class="hljs-number">0</span>)
+        {
+            <span class="hljs-built_in">cout</span> &lt;&lt; curr&lt;&lt;<span class="hljs-string">" "</span>;
+            visited[curr] = <span class="hljs-number">1</span>;
+        }
+
+        NODE* <span class="hljs-built_in">move</span> =<span class="hljs-built_in">list</span>[curr];
+        <span class="hljs-keyword">while</span>(<span class="hljs-built_in">move</span>!=<span class="hljs-literal">nullptr</span>)
+        {
+            <span class="hljs-keyword">if</span>(visited[<span class="hljs-built_in">move</span>-&gt;vertex]!=<span class="hljs-number">0</span>)
+                q.push(<span class="hljs-built_in">move</span>-&gt;vertex);
+            <span class="hljs-built_in">move</span> = <span class="hljs-built_in">move</span>-&gt;adjacent;
+        }
+    }
+}
+</div></code></pre>
+    <h1 id="spanning-tree">Spanning Tree</h1>
+    <p>
+      Cây khung là một đồ thị không có chu trình và liên thông. Với đồ thị có
+      $N$ đỉnh thì cây khung sẽ có $N - 1$ cạnh.
+    </p>
+    <ul>
+      <li>
+        <p>
+          Một đồ thị sẽ <strong>có thể có nhiều cây khung</strong> nhưng chúng
+          đều phải có cùng số đỉnh và số cạnh.
+        </p>
+      </li>
+      <li>
+        <p>
+          Cây khung là đồ thị liên thông tối thiểu, nếu bỏ đi bất kỳ cạnh nào
+          thì đồ thị không còn liên thông.
+        </p>
+      </li>
+      <li>
+        <p>
+          Nó còn là đồ thị không có chu trình lớn nhất, nghĩa là giữa hai cạnh
+          bất kỳ nếu ta thêm một cạnh thì sẽ tạo thành một chu trình.
+        </p>
+      </li>
+    </ul>
+    <blockquote>
+      <p>Có thể tìm cây khung bằng cách dùng DFS hoặc BFS.</p>
+    </blockquote>
+    <h2 id="minumum-spanning-tree">Minumum Spanning Tree</h2>
+    <p>
+      Cây khung tối thiểu là cây khung mà có tổng trọng số bé nhất trong số các
+      cây khung của đồ thị. Bên cạnh đó cũng
+      <strong>có thể có nhiều cây khung tối thiểu</strong>, và chúng có cùng
+      trọng số.
+    </p>
+    <p>
+      Cây khung tối thiểu ứng dụng trong đời sống là để xây dựng các mạng lưới
+      mạng viễn thông, dây điện,... với chi phí kết nối ít nhất. Cây khung tối
+      thiểu mang tính toàn cục, hiểu theo nghĩa là chi phí thấp nhất để kết nối
+      tất cả các đỉnh lại với nhau.
+    </p>
+    <blockquote>
+      <p>
+        Cây khung tối thiểu khác với đường đi ngắn nhất vì đường đi ngắn nhất
+        chỉ mang tính cục bộ giữa một đỉnh này đến đỉnh khác.
+      </p>
+    </blockquote>
+    <img src="imgs/p5.png" />
+    <p>
+      Ví dụ trên, đường đi ngắn nhất có thể đi được từ a đến c theo cây khung
+      tối thiểu là a - f - g - d - c, tổng trọng số là 15. Tuy nhiên đường đi
+      ngắn nhất giữa a và c có trọng số nhỏ hơn. Cụ thể là a - b - c có trọng số
+      là 13.
+    </p>
+    <blockquote>
+      <p>
+        Do đó trên cây khung tối thiểu thì không chắc chắn tạo ra đường đi ngắn
+        nhất giữa hai đỉnh.
+      </p>
+    </blockquote>
+    <p>
+      Để tìm cây khung tối thiểu thì có thể dùng thuật toán Prim hoặc Kruskal. Ở
+      đây ta sẽ bàn về Prim.
+    </p>
+    <h2 id="prim-algorithm">Prim Algorithm</h2>
+    <p>
+      Idea của thuật toán Prim là chia các đỉnh của đồ thị thành hai tập đỉnh
+      gồm tập các đỉnh thuộc cây khung tối thiểu (gọi là tập A) và tập còn lại
+      là các đỉnh chưa thuộc cây khung tối thiểu (gọi là tập B).
+    </p>
+    <p>
+      Chúng ta sẽ đi xét các đỉnh nằm ngoài tập A và kiểm tra trọng số của chúng
+      đối với đỉnh bất kỳ trong tập A. Nếu trọng số đó là nhỏ nhất thì kết nạp
+      đỉnh đó. Cứ tiếp tục cho đến khi kết nạp được tất cả các đỉnh.
+    </p>
+    <p>
+      Ở các lần xét để kiểm tra xem đỉnh nào có trọng số nhỏ nhất, nếu xử lý
+      không khéo có thể dẫn đến bùng nổ tổ hợp (lấy mọi đỉnh tập B so sánh với
+      mọi đỉnh tập A). Do đó mà ta cần có một mảng lưu các node vừa được thêm
+      (parent) và một mảng lưu các trọng số nhỏ nhất trong các lần thêm
+      (length). Đồng thời cũng có một mảng đánh dấu node nào đã được thêm
+      (mark).
+    </p>
+    <h2 id="example">Example</h2>
+    <p>
+      Giả sử có đồ thị dưới đây và ta cần tìm cây khung tối thiểu bắt đầu từ
+      đỉnh S.
+    </p>
+    <img src="imgs/p7.png" />
+    <p>
+      Ở bước ban đầu thì mảng mark chỉ có đỉnh S. Đỉnh S nối với đỉnh A và C có
+      trọng số lần lượt là 7 và 8. Các đỉnh còn lại không có parent nên trọng số
+      là vô cùng, ta cho giá trị là <code>-1</code>.
+    </p>
+    <img src="imgs/p6.png" />
+    <p>
+      Ta tìm trong mảng length đường đi có trọng số nhỏ nhất, ở đây là tại A nên
+      ta sẽ đánh dấu A là <code>1</code>. Với việc thêm A vào thì chúng ta phải
+      cập nhật khoảng cách ở những chỗ còn lại.
+    </p>
+    <p>
+      Lúc này sẽ tồn tại cạnh từ A đến B có trọng số là 6, giá trị này nhỏ hơn
+      vô cùng nên cập nhật. Tương tự giữa C và A là 3, nhỏ hơn 8 nên vị trí
+      <code>length[3] = 3</code> và <code>parent[3] = A</code>. Các đỉnh còn lại
+      chưa có parent nên chưa cập nhật.
+    </p>
+    <img src="imgs/p8.png" />
+    <p>
+      Nhận thấy mảng length có giá trị tại C là nhỏ nhất nên sẽ kết nạp vào tập
+      các đỉnh thuộc cây khung tối thiểu, đồng thời <code>mark[3] = 1</code>.
+    </p>
+    <p>
+      Sau khi kết nạp thì cần cập nhật ở những chỗ khác, ta thấy từ C đến B là
+      4, nhỏ hơn 6 nên sẽ cập nhật <code>length[2] = 4</code>,
+      <code>parent[2] = C</code>. Tương tự C đến D là 3, nhỏ hơn vô cùng nên cập
+      nhật <code>length[4] = 3</code>, <code>parent[4] = C</code>. Đỉnh T vẫn
+      chưa cập nhật.
+    </p>
+    <img src="imgs/p9.png" />
+    <p>
+      Kết nạp D vào cây khung (C có length là 3 nhưng đã kết nạp rồi). Ta cập
+      nhật <code>mark[4] = 1</code>. D đến B là 2, nhỏ hơn 4 nên
+      <code>length[2] = 2</code>, <code>parent[2] = D</code>. Tiếp theo D đến T
+      là 2, nhỏ hơn vô cùng nên <code>length[5] = 2</code>,
+      <code>parent[5] = D</code>.
+    </p>
+    <img src="imgs/p10.png" />
+    <p>
+      Kết nạp B vào cây khung, <code>mark[2] = 1</code>. Xét đường đi từ B đến T
+      là 5, lớn hơn 2 nên sẽ không cập nhật. Cuối cùng thêm đỉnh T vào cây
+      khung, <code>mark[5] = 1</code> thì chúng ta hoàn thành thuật toán.
+    </p>
+    <img src="imgs/p11.png" />
+    <p>
+      Sau khi kết thúc thuật toán, ta sẽ rút ra các cặp đỉnh từ bảng trên và tạo
+      thành cây khung tối thiểu nối 6 đỉnh với nhau:
+    </p>
+    <blockquote>
+      <p>SA (7), DB (2), AC (3), CD (3), DT (5)</p>
+    </blockquote>
+    <p>Đồng thời ta cũng biết được trọng số của cây khung tối thiểu là</p>
+    <blockquote>
+      <p>7 + 2 + 3 + 3 + 5 = 17</p>
+    </blockquote>
+    <h1 id="prim-and-dijkstra">Prim and Dijkstra</h1>
+    <p>
+      Điểm khác biệt giữa Prim và Dijkstra là điều kiện kết nạp đỉnh. Trong khi
+      Prim chỉ xét khoảng cách giữa hai đỉnh, còn Dijkstra xét đường đi giữa hai
+      đỉnh. Đường đi thì có thể bao gồm nhiều khoảng cách cộng lại với nhau.
+    </p>
+    <p>
+      Sau khi xây dựng được thuật toán Prim thì sửa điều kiện kết nạp thì có thể
+      xây dựng được thuật toán Dijkstra.
+    </p>
+  </body>
+</html>
+
+<script
+  type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+></script>
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$', '$']],displayMath: [ ['$$','$$'], ["\\[","\\]"] ],},
+    messageStyle: "none" ,
+  });
+</script>

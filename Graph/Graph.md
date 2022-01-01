@@ -29,8 +29,8 @@ Phạm vi đồ thị xét đến trong DSA chỉ là đơn đồ thị, có th�
 
 Nếu đồ thị có trọng số thì mỗi phần tử trong mảng lưu trọng số của cạnh nối hai đỉnh, trường hợp không có cạnh nối thì lưu vô cùng. Ngược lại không có trọng số thì lưu giá trị 0 hoặc 1.
 
-<img src = "img/p1.png">
-<img src = "img/p2.png">
+<img src = "imgs/p1.png">
+<img src = "imgs/p2.png">
 
 **Điểm mạnh**
 
@@ -52,8 +52,8 @@ Với $N$ đỉnh trong đồ thị sẽ có một mảng gồm $N$ danh sách l
 
 Trong bài toán cụ thể, chẳng hạn như tìm đường đi ngắn nhất hoặc cây khung ngắn nhất, thì có thể sắp xếp các đỉnh theo trong khi tạo danh sách kề. Làm như vậy thì chi phi tìm đường đi ngắn nhất hoặc cây khung ngắn nhất sẽ giảm đi.
 
-<img src = "img/p3.png">
-<img src = "img/p4.png">
+<img src = "imgs/p3.png">
+<img src = "imgs/p4.png">
 
 **Điểm mạnh**
 
@@ -83,7 +83,7 @@ Dùng trong trường hợp đồ thị thưa
 
 Đi xa nhất có thể trước khi trở về, có thể gọi là backtracking? Giống với duyệt trước của cây nhị phân.
 
-Có thể dùng để tìm thành phần liên thông. Ý tưởng là trong mỗi lần duyệt (mỗi lần đào) thì ta sẽ đánh dấu các đỉnh đó thuộc một thành phần liên thông. Khi trả về thì sẽ tiếp tục đánh dấu để tìm ra một thành phần liên thông khác.
+Có thể dùng để tìm thành phần liên thông. Idea là trong mỗi lần duyệt (mỗi lần đào) thì ta sẽ đánh dấu các đỉnh đó thuộc một thành phần liên thông. Khi trả về thì sẽ tiếp tục đánh dấu để tìm ra một thành phần liên thông khác.
 
 Việc đánh dấu này có thể sử dụng mảng. Nếu sau khi duyệt hết đồ thị mà mảng được đánh dấu là 1 hết (cùng thành phần liên thông), thì đồ thị đó là đồ thị liên thông.
 
@@ -94,6 +94,7 @@ DFS nếu được điều chỉnh cũng có thể dùng để chứng minh đ�
 Thuật toán được xây dựng dựa trên đồ thị vô hướng
 
 - Dùng Stack:
+
 ```c++
 void DFS(NODE **list, int n)
 {
@@ -144,7 +145,8 @@ void DFS(NODE **list, int n)
 
 ### Code
 
-- Dùng Queue (Ý tưởng giống Level Order):
+- Dùng Queue (Idea giống Level Order):
+
 ```c++
 void BFS(NODE** list, int n)
 {
@@ -192,7 +194,7 @@ Cây khung tối thiểu ứng dụng trong đời sống là để xây dựng 
 
 > Cây khung tối thiểu khác với đường đi ngắn nhất vì đường đi ngắn nhất chỉ mang tính cục bộ giữa một đỉnh này đến đỉnh khác.
 
-<img src = "img/p5.png">
+<img src = "imgs/p5.png">
 
 Ví dụ trên, đường đi ngắn nhất có thể đi được từ a đến c theo cây khung tối thiểu là a - f - g - d - c, tổng trọng số là 15. Tuy nhiên đường đi ngắn nhất giữa a và c có trọng số nhỏ hơn. Cụ thể là a - b - c có trọng số là 13.
 
@@ -202,7 +204,7 @@ Ví dụ trên, đường đi ngắn nhất có thể đi được từ a đến
 
 ## Prim Algorithm
 
-Ý tưởng của thuật toán Prim là chia các đỉnh của đồ thị thành hai tập đỉnh gồm tập các đỉnh thuộc cây khung tối thiểu (gọi là tập A) và tập còn lại là các đỉnh chưa thuộc cây khung tối thiểu (gọi là tập B).
+Idea của thuật toán Prim là chia các đỉnh của đồ thị thành hai tập đỉnh gồm tập các đỉnh thuộc cây khung tối thiểu (gọi là tập A) và tập còn lại là các đỉnh chưa thuộc cây khung tối thiểu (gọi là tập B).
 
 Chúng ta sẽ đi xét các đỉnh nằm ngoài tập A và kiểm tra trọng số của chúng đối với đỉnh bất kỳ trong tập A. Nếu trọng số đó là nhỏ nhất thì kết nạp đỉnh đó. Cứ tiếp tục cho đến khi kết nạp được tất cả các đỉnh.
 
@@ -212,31 +214,31 @@ Chúng ta sẽ đi xét các đỉnh nằm ngoài tập A và kiểm tra trọng
 
 Giả sử có đồ thị dưới đây và ta cần tìm cây khung tối thiểu bắt đầu từ đỉnh S.
 
-<img src = "img/p7.png">
+<img src = "imgs/p7.png">
 
 Ở bước ban đầu thì mảng mark chỉ có đỉnh S. Đỉnh S nối với đỉnh A và C có trọng số lần lượt là 7 và 8. Các đỉnh còn lại không có parent nên trọng số là vô cùng, ta cho giá trị là `-1`.
 
-<img src = "img/p6.png">
+<img src = "imgs/p6.png">
 
 Ta tìm trong mảng length đường đi có trọng số nhỏ nhất, ở đây là tại A nên ta sẽ đánh dấu A là `1`. Với việc thêm A vào thì chúng ta phải cập nhật khoảng cách ở những chỗ còn lại.
 
 Lúc này sẽ tồn tại cạnh từ A đến B có trọng số là 6, giá trị này nhỏ hơn vô cùng nên cập nhật. Tương tự giữa C và A là 3, nhỏ hơn 8 nên vị trí `length[3] = 3` và `parent[3] = A`. Các đỉnh còn lại chưa có parent nên chưa cập nhật.
 
-<img src = "img/p8.png">
+<img src = "imgs/p8.png">
 
 Nhận thấy mảng length có giá trị tại C là nhỏ nhất nên sẽ kết nạp vào tập các đỉnh thuộc cây khung tối thiểu, đồng thời `mark[3] = 1`.
 
 Sau khi kết nạp thì cần cập nhật ở những chỗ khác, ta thấy từ C đến B là 4, nhỏ hơn 6 nên sẽ cập nhật `length[2] = 4`, `parent[2] = C`. Tương tự C đến D là 3, nhỏ hơn vô cùng nên cập nhật `length[4] = 3`, `parent[4] = C`. Đỉnh T vẫn chưa cập nhật.
 
-<img src = "img/p9.png">
+<img src = "imgs/p9.png">
 
 Kết nạp D vào cây khung (C có length là 3 nhưng đã kết nạp rồi). Ta cập nhật `mark[4] = 1`. D đến B là 2, nhỏ hơn 4 nên `length[2] = 2`, `parent[2] = D`. Tiếp theo D đến T là 2, nhỏ hơn vô cùng nên `length[5] = 2`, `parent[5] = D`.
 
-<img src = "img/p10.png">
+<img src = "imgs/p10.png">
 
 Kết nạp B vào cây khung, `mark[2] = 1`. Xét đường đi từ B đến T là 5, lớn hơn 2 nên sẽ không cập nhật. Cuối cùng thêm đỉnh T vào cây khung, `mark[5] = 1` thì chúng ta hoàn thành thuật toán.
 
-<img src = "img/p11.png">
+<img src = "imgs/p11.png">
 
 Sau khi kết thúc thuật toán, ta sẽ rút ra các cặp đỉnh từ bảng trên và tạo thành cây khung tối thiểu nối 6 đỉnh với nhau:
 

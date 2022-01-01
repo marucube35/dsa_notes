@@ -1,13 +1,16 @@
 ---
-title: "Flash Sort"
+title: Flash Sort
 ---
 
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Flash Sort</h1></center>
+</div>
 
-# Flash Sort
+
 
 Flash Sort là một thuật toán sắp xếp dựa trên sự phân bố của dữ liệu, cụ thể là phân bố đều, được Karl-Dietrich Neubert phát minh năm 1998. Nếu chúng ta không xác định được phân bố của một tập dữ liệu, khi dữ liệu có khả năng phân bố không đều, thì độ phức tạp có thể trở thành O(n2).
-## Ý tưởng
+# Idea
 
 Thuật toán Flash Sort gồm ba công việc: phân lớp, hoán vị và sắp xếp cục bộ. 
 
@@ -15,9 +18,9 @@ Thuật toán Flash Sort gồm ba công việc: phân lớp, hoán vị và sắ
 - Hoán vị giúp hoán vị các phần tử giữa các lớp này. 
 - Sắp xếp cục bộ để sắp xếp các phần tử trong cùng một lớp.
 
-Ý tưởng chung của Flash Sort là chia để trị, tương tự như Merge Sort hay Quick Sort. Thay vì chia thành hai mảng con đến khi nào không chia được nữa thì Flash Sort chia thành m phân lớp.
+Idea chung của Flash Sort là chia để trị, tương tự như Merge Sort hay Quick Sort. Thay vì chia thành hai mảng con đến khi nào không chia được nữa thì Flash Sort chia thành m phân lớp.
 
-### Phân lớp
+## Classification
 
 Giả sử các phần tử trong danh sách là `a[i]` và được phân bố đều rải rác. Chúng ta cần tìm vị trí của phần tử `a[i]` trong một lớp dữ liệu. Việc tính toán này có thể tính dựa trên giá trị của phần tử đó mà không cần thực hiện các phép so sánh. 
 
@@ -56,7 +59,7 @@ Ta cũng tiến hành đếm số lượng phần tử mỗi phân lớp trong l
 Khi đã có được số lượng phần tử này rồi thì ta cần tính vị trí cuối cùng của từng phân lớp (tính tích lũy tương tự Counting Sort). Vị trí cuối cùng này sẽ được lưu trong mảng phụ `L[m]`. Việc tính tích lũy này sẽ phục vụ cho việc chèn phần tử `a[i]` nằm sai phân lớp về đúng vị trí phân lớp của nó do `L[m]` quy định.
 
 - Độ phức tạp thời gian $O(m)$, độ phức tạp không gian $O(m)$.
-### Hoán vị
+## Permutation
 
 Bước này là bước quan trọng của thuật toán, nó sẽ kiểm tra giá trị `k` của phần tử `a[i]` bất kỳ. Nếu đúng chỗ thì xét tiếp phần tử tiếp theo, sai chỗ thì sẽ hoán vị với phần tử đang nằm ở phân lớp `k` mà nó đáng lẽ phải ở đó.
 

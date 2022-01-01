@@ -1,12 +1,13 @@
 ---
-title: "Merge Sort"
+title: Merge Sort
 ---
 
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Merge Sort</h1></center>
+</div>
 
-# Merge Sort
-
-## Ý tưởng
+# Idea
 
 Thuật toán Merge Sort là một thuật toán ứng dụng phương pháp chia để trị, thuật toán này gồm hai phần.
 
@@ -21,12 +22,11 @@ Trộn 2 mảng con được thực hiện như sau:
 
 <img src = "../img/Sort17.png">
 
-## Đầu vào – Đầu ra
+# Input
 
-- Input: Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc phân hoạch.
-- Output: Mảng A đã sắp xếp.
+Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc phân hoạch.
 
-## Phân tích thuật toán
+# Properties
 
 Không tối ưu bộ nhớ vì dùng mảng tạm trong quá trình trộn. Nhanh hơn Quick Sort vì thời gian thực hiện Merge Sort có bậc là $O(nlog_2(n))$, còn trong trường hợp tốt nhất hoặc trung bình Quick Sort mới có độ phức tạp là $O(nlog_2(n))$. Thường dùng Merge Sort để sắp lượng dữ liệu lớn ở bộ nhớ ngoài.
 
@@ -51,7 +51,7 @@ Do tính chất Non - inplace, thuật toán Merge Sort thường cần dùng b�
 - Sắp xếp ở bộ nhớ ngoài, khi truy cập trực tiếp hao phí rất nhiều so với truy cập tuần tự ?.
 - Cần tính ổn định.
 
-## Phân tích độ phức tạp thuật toán
+# Complexity Analysis
 
 Ta đã biết trong các bài toán chia đôi không gian thuật toán làm hai như Binary Search hoặc Quick Sort thì độ phức tạp của việc chia ra như vậy là $O(log_2(n))$. Nói cách khác, ta cần $k = O(log_2(n)$ bước để chia một mảng n phần tử thành các mảng có 1 phần tử. Ngược lại cũng cần $k = O(log_2(n))$ lần nhân đôi một phần tử để trở thành mảng có n phần tử.
 
@@ -95,13 +95,13 @@ T(n) = n * T(1)  + n * log_2(n)\\
 = n * (log_2(n) + 1)
 $$
 
-Kết luận độ phức tạp thuật toán là $O(nlog_2(n))$.
+Kết luận Complexity là $O(nlog_2(n))$.
 
 Ba trường hợp của Merge Sort là như nhau bởi vì Merge Sort luôn chia đôi mảng và quét hết qua n phần tử trong các lần trộn ở mỗi mức.
 
 Độ phức tạp không gian cũng thế, ở ba trường hợp đều là độ phức tạp tuyến tính.
 
-## Độ phức tạp thuật toán
+# Complexity
 
 | Cases        | Complexity     |
 | :----------- | :------------- |
@@ -111,9 +111,9 @@ Ba trường hợp của Merge Sort là như nhau bởi vì Merge Sort luôn chi
 
 Space Complexity: $O(n)$.
 
-## Giải thuật mẫu
+# Code
 
-### Phần chia mảng
+## Divide
 
 ```c++
 void mergeSort(int *a,int left, int right)
@@ -128,7 +128,7 @@ void mergeSort(int *a,int left, int right)
 }
 ```
 
-### Phần trộn mảng
+## Merge
 
 ```c++
 void merge(int *a, intleft, intmid, intright)
@@ -172,9 +172,9 @@ void merge(int *a, intleft, intmid, intright)
 }
 ```
 
-## Biến thể
+# Variants
 
-### Bottom - Up
+## Bottom - Up
 
 Một phiên bản khác của Merge Sort không dùng đến việc chia mảng là Bottom - Up Merge Sort. Thuật toán này sẽ trộn các phần tử liền kề với nhau rồi mở rộng ra. Chẳng hạn như nó sẽ trộn 2 phần tử liên tiếp thành mảng con 2 phần tử. Sau đó nó sẽ trộn tiếp 2 mảng gồm 2 phần tử với nhau thành mảng 4 phần tử. Cứ như thế cho đến khi trộn hết mảng cũng là lúc mảng đã được sắp xếp.
 
@@ -184,7 +184,7 @@ Một phiên bản khác của Merge Sort không dùng đến việc chia mảng
 
 (Hình ảnh tham khảo [interviewbit](https://www.interviewbit.com/tutorial/merge-sort-algorithm/))
 
-### Natural Merge Sort
+## Natural Merge Sort
 
 Tham khảo [wikipedia](https://en.wikipedia.org/wiki/Merge_sort#Natural_merge_sort).
 

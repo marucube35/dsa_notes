@@ -1,16 +1,17 @@
 ---
-title: "Quick Sort"
+title: Quick Sort
 ---
 
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Quick Sort</h1></center>
+</div>
 
-# Quick Sort
+# Idea
 
-## Ý tưởng
+Gồm hai phần: _phân hoạch_ và _sắp xếp_, dựa trên Idea chia để trị.
 
-Gồm hai phần: _phân hoạch_ và _sắp xếp_, dựa trên ý tưởng chia để trị.
-
-- **Bước 1** : Chọn tùy ý một phần tử a[pivot] trong dãy là phần tử nút trục (pivot), ý tưởng trình bày ở đây chọn ở giữa.
+- **Bước 1** : Chọn tùy ý một phần tử a[pivot] trong dãy là phần tử nút trục (pivot), Idea trình bày ở đây chọn ở giữa.
 
 - **Bước 2** : Tạo vòng lặp phát hiện và hiệu chỉnh cặp phần tử a[i], a[j] nằm sai chỗ. Tức là tìm phần tử nhỏ hơn pivot và lớn hơn pivot để swap với nhau.
   Mục đích là để chuyển các phần tử nhỏ hơn pivot về bên trái pivot và lớn hơn pivot về bên phải pivot. Hay nói cách khác là thiết lập điểm phân hoạch.
@@ -21,12 +22,11 @@ Gồm hai phần: _phân hoạch_ và _sắp xếp_, dựa trên ý tưởng chi
 
 > Bước gọi đệ qui cho các mảng nhỏ hơn chính là bước trị, khi đi vào bước trị thì tiếp tục CẢ HAI bước chia và trị.
 
-## Đầu vào – Đầu ra
+# Input
 
-- Input: Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc mảng con cần sắp xếp.
-- Output: Mảng A đã sắp xếp.
+Mảng A gồm n phần tử chưa sắp xếp, vị trí bên trái và vị trí bên phải của mảng hoặc mảng con cần sắp xếp.
 
-## Phân tích thuật toán
+# Properties
 
 **Lưu ý** : Việc chọn pivot là ngẫu nhiên, có thể chọn đầu, cuối hoặc ở giữa. Tuy nhiên chọn pivot ở đầu hoặc cuối trong một số trường hợp mảng gần như được sắp sẽ dẫn đến Worst case. Do đó chọn pivot ở giữa là chấp nhận được trong phần lớp các trường hợp. Mặc dù vậy, nếu chọn pivot ở cuối (hoặc đầu) thì việc phân hoạch có đôi chút sửa đổi. Có thể tham khảo ở [đây](https://nguyenvanhieu.vn/thuat-toan-sap-xep-quick-sort/).
 
@@ -55,7 +55,7 @@ Do đó, chúng ta lost - tolerant chọn ba phần tử đầu, cuối và gi�
 - Hiệu quả với kích thước dữ liệu mà bộ nhớ chứa được (bộ nhớ trong), hoạt động tốt hơn đối với kích thước dữ liệu nhỏ.
 - Kích thước dữ liệu lớn thì không tốt bằng Merge Sort.
 
-## Phân tích độ phức tạp thuật toán
+# Complexity Analysis
 
 Tham khảo [opengenus](https://iq.opengenus.org/time-and-space-complexity-of-quick-sort/) và [khan academy](https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort).
 
@@ -93,13 +93,13 @@ $$
 T(n) = 2^k * T(n/(2^k)) + k * c * n
 $$
 
-Mà k đồng thời cũng là số lần chia mảng, nên $2^k = n$ (giống vòng lặp có bước nhảy là 2 ở bài phân tích độ phức tạp thuật toán). Do đó $k = \log_2(n)$. Suy ra
+Mà k đồng thời cũng là số lần chia mảng, nên $2^k = n$ (giống vòng lặp có bước nhảy là 2 ở bài Complexity Analysis). Do đó $k = \log_2(n)$. Suy ra
 
 $$
 T(n) = n * T(1) + n * log_2(n)
 $$
 
-Vậy độ phức tạp thuật toán trong trường hợp tốt nhất là $O(nlog_2(n))$.
+Vậy Complexity trong trường hợp tốt nhất là $O(nlog_2(n))$.
 
 **Worst case**
 Worst case xảy ra khi mảng đã được sắp xếp tăng dần hoặc giảm dần, đồng thời ta chọn pivot là phần tử ở hai đầu mảng. Lúc đó cây phân hoạch trở thành một cây mất cân bằng và suy biến về một cây thẳng đứng, khiến cho chiều cao của cây là tối đa (n).
@@ -146,20 +146,20 @@ $$
 T(n) = n*n  - n*(n - 1)/2
 $$
 
-Suy ra độ phức tạp thuật toán trong trường hợp xấu nhất là $O(n^2)$.
+Suy ra Complexity trong trường hợp xấu nhất là $O(n^2)$.
 
 **Average case**
 Phân tích chi tiết ở [opengenus](https://iq.opengenus.org/time-and-space-complexity-of-quick-sort/) và [khan academy](https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort).
 
 **Space Complexity**
 
-Ta xây dựng các mảng phân hoạch của Quick Sort thành cây phân hoạch như ở trên. Số lần lưu Stack tối đa cũng chính là chiều cao của cây nhị phân (sẽ được ghi chú trong bài cấu trúc cây nhị phân). 
+Ta xây dựng các mảng phân hoạch của Quick Sort thành cây phân hoạch như ở trên. Số lần lưu Stack tối đa cũng chính là chiều cao của cây nhị phân (sẽ được ghi chú trong bài cấu trúc cây nhị phân).
 
 Mà chiều cao này là $log_2(n)$. Suy ra độ phức tạp không gian sẽ là $O(log_2(n))$.
 
 Tuy nhiên Quick Sort vẫn là thuật toán In-Place không sử dụng bộ nhớ thêm (ngoại trừ Stack đệ quy).
 
-## Độ phức tạp thuật toán
+# Complexity
 
 Time Complexity:
 
@@ -169,16 +169,14 @@ Time Complexity:
 | Worst case   | $O(n^2)$       |
 | Average case | $O(nlog_2(n))$ |
 
-Space Complexity: 
+Space Complexity:
 
-| Cases        | Complexity     |
-| :----------- | :------------- |
-| Best case    | $O(log_2(n))$ |
-| Worst case   | $O(n)$       |
+| Cases      | Complexity    |
+| :--------- | :------------ |
+| Best case  | $O(log_2(n))$ |
+| Worst case | $O(n)$        |
 
-
-
-## Giải thuật mẫu
+# Code
 
 Trường hợp chọn pivot ở giữa
 

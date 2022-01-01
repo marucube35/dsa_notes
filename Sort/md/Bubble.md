@@ -1,18 +1,21 @@
 ---
-title: "Bubble Sort"
+title: Bubble Sort
 ---
 
 <link rel="stylesheet" href="main.css">
+<div class="bg">
+     <center><h1 class="bigtitle">Bubble Sort</h1></center>
+</div>
 
-# Bubble Sort
 
-## Ý tưởng
+
+# Idea
 
 Xuất phát từ đầu dãy hoặc cuối dãy, đổi chỗ các cặp phần tử liền kề để đưa phần tử lớn hơn trong cặp phần tử đó về đúng cuối dãy hiện hành. Sau đó sẽ không xét đến nó ở bước tiếp theo, do vậy ở lần xử lý thứ i thì vị trí cuối dãy là n - i - 1.
 
 Cần phân biệt rõ ràng với Interchange Sort vì thuật toán Bubble Sort không so sánh tất cả các cặp tồn tại mà chỉ so sánh các cặp nghịch thế liền kề với nhau.
 
-## Phân tích thuật toán
+# Properties
 
 **Điểm mạnh**
 
@@ -26,7 +29,7 @@ Không hiệu quả đối với mảng có số lượng phần tử lớn, th�
 
 - Mảng đầu vào có kích thước cực nhỏ và hoặc gần như có thứ tự hoặc đã có thứ tự.
 
-## Phân tích độ phức tạp thuật toán
+# Complexity Analysis
 
 Tham khảo [happycoders](https://www.happycoders.eu/algorithms/bubble-sort/#Bubble_Sort_Time_Complexity).
 
@@ -48,13 +51,13 @@ $$
     \frac{n(n - 1)}{2}
 $$
 
-(Có thể xem lại bài phân tích thuật toán để biết lý do).
+(Có thể xem lại bài Properties để biết lý do).
 Do đó mà độ phức tạp sẽ là $O(n^2)$.
 
 **Average case**\
 Phân tích chi tiết ở [đây](https://de.wikipedia.org/wiki/Bubblesort#Durchschnittlicher_Fall).
 
-## Độ phức tạp thuật toán
+# Complexity
 
 | Cases        | Complexity |
 | :----------- | :--------- |
@@ -64,7 +67,7 @@ Phân tích chi tiết ở [đây](https://de.wikipedia.org/wiki/Bubblesort#Durc
 
 Space Complexity: $O(1)$.
 
-## Giải thuật mẫu
+## Code
 
 ```c++
 void bubbleSort(int *a,int n)
