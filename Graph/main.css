@@ -34,7 +34,6 @@ h3 {
   line-height: 1.4;
   margin: 10px 0 5px;
   padding-top: 10px;
-  color: black;
 }
 
 p {
@@ -85,7 +84,8 @@ code {
   margin: 0;
   line-height: 1em;
 }
+
 :not(pre):not(.hljs) > code {
-	color: #0c9aec; /* Change the old color so it seems less like an error */
-	font-size: inherit;
+  color: #0c9aec; 
+  font-size: inherit;
 }

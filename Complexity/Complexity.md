@@ -1,3 +1,12 @@
+---
+title: Complexity
+---
+
+<link rel="stylesheet" href="main.css">
+<div class="bg">
+      <center><h1 class="bigtitle">Complexity</h1></center>
+</div>
+
 # What is Algorithm ?
 
 ## Definition
@@ -77,15 +86,15 @@ Nếu theo quy luật áp đảo khi n trở nên rất lớn, bậc lớn nhấ
 
 Khi vẽ hai đồ thị này lên hình, ta sẽ có hình ảnh như sau:
 
-<center>
-    <img src = "Algorithm1.png">
-</center>
+
+<img src = "Algorithm1.png">
+
 
 Với đường màu đỏ là $F(n)$ và màu xanh là $G(n)$. Dễ dàng tìm được một hằng số C bất kỳ làm cho $G(n) \geq F(n)$ khi n tiến ra vô cùng. Hằng số đó có thể là 20, cho ra kết quả như hình dưới đây.
 
-<center>
-    <img src = "Algorithm2.png">
-</center>
+
+<img src = "Algorithm2.png">
+
 
 Ta có thể dùng công thức giới hạn để chứng minh hàm Big O tồn tại.
 
@@ -103,9 +112,9 @@ $$
 
 Do C không lớn hơn 0 nên hàm Big O không tồn tại. Ngụ ý rằng, hàm $G(n) = n$ không có cách nào có thể nhanh hơn hàm $F(n)$ khi n tiến ra vô cùng được, nên vì thế hàm $F(n)$ sẽ áp đảo và độ phức tạp sẽ là $O(n)$.
 
-<center>
-    <img src = "Algorithm3.png">
-</center>
+
+<img src = "Algorithm3.png">
+
 
 Có thể thấy hình trên, ban đầu $G(n) = n$ có thể lớn hơn, nhưng khi n tiến về vô cùng, cụ thể là từ $n = 13$ trở đi, hàm $G(n)$ luôn tăng chậm hơn hàm $F(n)$.
 
@@ -141,9 +150,9 @@ Lời gọi đệ quy (đây là đơn vị cơ bản cho các hàm đệ quy).
 
 ## Order of Big O
 
-<center>
-    <img src="Bảng đánh giá các độ phức tạp.png">
-</center>
+
+<img src="Bảng đánh giá các độ phức tạp.png">
+
 
 # Big O Notation Rules
 
