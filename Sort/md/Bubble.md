@@ -67,7 +67,7 @@ Phân tích chi tiết ở [đây](https://de.wikipedia.org/wiki/Bubblesort#Durc
 
 Space Complexity: $O(1)$.
 
-## Code
+# Code
 
 ```c++
 void bubbleSort(int *a,int n)

@@ -105,7 +105,7 @@ Space Complexity: $O(n + b)$.
 
 # Code
 
-## Counting Sort chỉnh sửa
+## Modified Counting Sort
 
 ```c++
 void countingSort(int array[], int size, int place)
