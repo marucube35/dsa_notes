@@ -2,7 +2,7 @@
 title: Big O Notation Rules
 ---
 
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="../../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">Big O Notation Rules</h1></center>
 </div>

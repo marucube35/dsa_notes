@@ -2,7 +2,7 @@
 title: Tree Data Structures
 ---
 
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="../../../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">Tree Data Structures</h1></center>
 </div>

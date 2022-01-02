@@ -2,7 +2,7 @@
 title: Radix Sort
 ---
 
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="../../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">Radix Sort</h1></center>
 </div>

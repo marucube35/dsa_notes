@@ -2,7 +2,7 @@
 title: Hash Table
 ---
 
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">Hash Table</h1></center>
 </div>

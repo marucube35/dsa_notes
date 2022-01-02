@@ -49,8 +49,8 @@ img {
   float: none;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
-  height: auto;
+  width: normal;
+  height: 250px;
 }
 
 a {
@@ -67,14 +67,6 @@ a:focus {
   outline-offset: -2px;
 }
 
-code {
-  color: #1a8ad4;
-  background-color: #f9f2f4;
-  border-radius: 4px;
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  padding: 2px 4px;
-  font-size: 90%;
-}
 .bigtitle {
   padding-top: 20%;
   color: rgb(226, 29, 183);
@@ -86,6 +78,9 @@ code {
 }
 
 :not(pre):not(.hljs) > code {
-  color: #0c9aec; 
-  font-size: inherit;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+  color: #0c9aec; /* Change the old color so it seems less like an error */
+  font-size: 90%;
+  padding: 2px 4px;
 }

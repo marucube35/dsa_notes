@@ -2,7 +2,7 @@
 title: 2 - 3 - 4 Tree
 ---
 
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="../../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">2 - 3 - 4 Tree</h1></center>
 </div>
