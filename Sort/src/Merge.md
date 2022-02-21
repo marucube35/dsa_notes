@@ -1,11 +1,22 @@
----
-title: Merge Sort
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">Merge Sort</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Idea](#idea)
+- [Input](#input)
+- [Properties](#properties)
+- [Complexity Analysis](#complexity-analysis)
+- [Complexity](#complexity)
+- [Code](#code)
+  - [Divide](#divide)
+  - [Merge](#merge)
+- [Variants](#variants)
+  - [Bottom - Up](#bottom---up)
+  - [Natural Merge Sort](#natural-merge-sort)
 
 # Idea
 

@@ -1,11 +1,15 @@
----
-title: Insertion Sort
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">Insertion Sort</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Idea](#idea)
+- [Complexity Analysis](#complexity-analysis)
+- [Complexity](#complexity)
+- [Code](#code)
 
 # Idea
 

@@ -1,11 +1,16 @@
----
-title: Big O Notation Rules
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">Big O Notation Rules</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Rule 1](#rule-1)
+- [Rule 2](#rule-2)
+- [Rule 3](#rule-3)
+- [Rule 4](#rule-4)
+- [Practices](#practices)
 
 Có bốn quy luật về Complexity như sau:
 

@@ -1,11 +1,15 @@
----
-title: Shaker Sort
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">Shaker Sort</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Idea](#idea)
+- [Properties](#properties)
+- [Complexity](#complexity)
+- [Code](#code)
 
 # Idea
 

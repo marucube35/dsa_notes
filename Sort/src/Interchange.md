@@ -1,11 +1,15 @@
----
-title: Interchange Sort
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">Interchange Sort</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Idea](#idea)
+- [Complexity Analysis](#complexity-analysis)
+- [Complexity](#complexity)
+- [Code](#code)
 
 **Nghịch thế** là một cặp giá trị $(a_i,a_j)$ khi $a_i$ và $a_j$ không thỏa điều kiện sắp thứ tự. Ví dụ nếu mảng một chiều có các phần tử tăng dần mà có một cặp $(a_i,a_j)$ nào đó giảm dần thì cặp đó được gọi là **nghịch thế**.
 

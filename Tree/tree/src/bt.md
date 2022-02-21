@@ -1,11 +1,35 @@
----
-title: Binary Tree
----
-
 <link rel="stylesheet" href="../../../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">Binary Tree</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Definition](#definition)
+- [Application](#application)
+- [General Properties](#general-properties)
+- [Types of Binary Tree](#types-of-binary-tree)
+  - [Pathological or Degenerate Tree](#pathological-or-degenerate-tree)
+  - [Skewed Binary Tree](#skewed-binary-tree)
+  - [Full Binary Tree](#full-binary-tree)
+    - [Properties](#properties)
+    - [Check Full Binary Tree](#check-full-binary-tree)
+  - [Perfect Binary Tree](#perfect-binary-tree)
+    - [Properties](#properties-1)
+    - [Check Perfect Binary Tree](#check-perfect-binary-tree)
+  - [Complete Binary Tree](#complete-binary-tree)
+    - [Check Complete Binary Tree](#check-complete-binary-tree)
+    - [The story behind](#the-story-behind)
+    - [Complexity](#complexity)
+    - [Heap](#heap)
+  - [Balanced Binary Tree](#balanced-binary-tree)
+    - [Check Balanced Binary Tree](#check-balanced-binary-tree)
+- [Enumerate the Binary Tree](#enumerate-the-binary-tree)
+- [Traversal](#traversal)
+  - [Idea](#idea)
+  - [Code](#code)
+- [Counting](#counting)
 
 # Definition
 

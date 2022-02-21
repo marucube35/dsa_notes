@@ -1,11 +1,28 @@
----
-title: Graph
----
-
 <link rel="stylesheet" href="../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">Graph</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Terminologies](#terminologies)
+- [Graph Representation](#graph-representation)
+  - [Adjacency Matrix](#adjacency-matrix)
+  - [Adjacency List](#adjacency-list)
+  - [Edge List](#edge-list)
+- [Graph Traversal](#graph-traversal)
+  - [DFS - Depth First Search](#dfs---depth-first-search)
+    - [Idea](#idea)
+    - [Code](#code)
+  - [BFS - Breath First Search](#bfs---breath-first-search)
+    - [Idea](#idea-1)
+    - [Code](#code-1)
+- [Spanning Tree](#spanning-tree)
+  - [Minumum Spanning Tree](#minumum-spanning-tree)
+  - [Prim Algorithm](#prim-algorithm)
+  - [Example](#example)
+- [Prim and Dijkstra](#prim-and-dijkstra)
 
 # Terminologies
 

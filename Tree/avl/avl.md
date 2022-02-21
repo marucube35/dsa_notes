@@ -1,11 +1,29 @@
----
-title: AVL Tree
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">AVL Tree</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Definition](#definition)
+- [Properties](#properties)
+- [Rotation](#rotation)
+  - [Left Rotation](#left-rotation)
+  - [Right Rotation](#right-rotation)
+- [Unbalanced Cases](#unbalanced-cases)
+  - [Left left case](#left-left-case)
+  - [Right Right case](#right-right-case)
+  - [Left Right case](#left-right-case)
+  - [Right left case](#right-left-case)
+  - [Examples](#examples)
+- [Operation](#operation)
+  - [Insert](#insert)
+  - [Remove](#remove)
+  - [Complexity](#complexity)
+  - [Example 1](#example-1)
+  - [Example 2](#example-2)
+- [Is AVL?](#is-avl)
 
 # Definition
 
@@ -198,13 +216,10 @@ void balanceTree(NODE *&pRoot)
     }
 }
 ```
+
 # Operation
 
 Thao tác thêm các node vào cây AVL tương tự như BST, nhưng có thể dẫn đến mất cân bằng. Vì vậy, sau khi thêm một node, ta cần kiểm tra cây AVL đã cân bằng hay chưa, nếu chưa thì cần cân bằng. Tương tự với thao tác xóa.
-
-
-
-
 
 Để viết code cho thuật toán thêm và xóa node trong cây AVL, ta chỉ cần tận dụng hàm thêm và xóa cây BST rồi gọi hàm cân bằng sau khi thêm hoặc xóa.
 
@@ -301,6 +316,7 @@ Các thao tác thêm, xóa và tìm kiếm trong AVL có độ phức tạp là 
 Có một sự đánh đổi là khi ta cần tìm kiếm nhiều lần, ta chấp nhận xây dựng cây AVL. Tức là tùy mục đích sử dụng mà ta chấp nhận chi phí để Insert và cân bằng để xây dựng cây.
 
 Thao tác duyệt cây thì vẫn cần độ phức tạp là $O(n)$.
+
 ## Example 1
 
 Giả sử ta cần thêm các node dưới đây vào cây AVL.
@@ -313,9 +329,9 @@ Ta sẽ thêm **node 9** là node gốc, sau đó thêm **node 1** là con trái
 
 Ta cân bằng cây bằng cách xoay trái tại **node 1** và xoay phải ở **node 9**.
 
-Sau đó, ta thêm vào cây **node 2** là con phải của **node 1**, **node 3** là con phải của **node 2**. 
+Sau đó, ta thêm vào cây **node 2** là con phải của **node 1**, **node 3** là con phải của **node 2**.
 
-Lúc này cây mất cân bằng ở **node 4** theo kiểu trái phải, hoặc cây mất cân bằng ở **node 1** theo kiểu phải phải. Ta chọn xử lý trường hợp mất cân bằng kiểu phải phải. 
+Lúc này cây mất cân bằng ở **node 4** theo kiểu trái phải, hoặc cây mất cân bằng ở **node 1** theo kiểu phải phải. Ta chọn xử lý trường hợp mất cân bằng kiểu phải phải.
 
 Bởi vì khi xét từ khía cạnh thêm node vào cây AVL, **node 1** là node gần node lá nhất, gần nơi mà chúng ta cần thêm node. Do đó ta cần cân bằng ở đó trước. Ta xoay trái ở **node 1** để cân bằng cây.
 
@@ -354,7 +370,7 @@ bool isAVL(NODE *pRoot)
         // Vi phạm AVL
         if (delta > 1 || delta < -1)
             return false;
-        
+
         // Duyệt đến hai cây con
         return isAVL(pRoot->left) && isAVL(pRoot->right);
     }

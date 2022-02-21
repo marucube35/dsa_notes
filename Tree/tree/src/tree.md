@@ -1,11 +1,15 @@
----
-title: Tree Data Structures
----
-
 <link rel="stylesheet" href="../../../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">Tree Data Structures</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Terminologies](#terminologies)
+- [Application](#application)
+- [Properties](#properties)
+- [Representation](#representation)
 
 > Cây là một cấu trúc không tuyến tính có thứ bậc bao gồm nhiều đỉnh liên kết với nhau bằng các cạnh.
 
@@ -42,7 +46,7 @@ Các đỉnh chỉ có duy nhất một đỉnh cha và có thể có nhiều đ
 
 **Chiều cao của cây** là số mức lớn nhất mà cây có được. Chiều cao của cây khác rỗng tối thiểu là 1, để phân biệt trường hợp cây rỗng thì height là 0.
 
-> Chiều cao của đỉnh và chiều cao của cây là khác nhau. Chiều cao của đỉnh dựa vào số đỉnh đi từ đỉnh đó đến đỉnh lá. Còn chiều cao của cây dựa vào mức, là số đỉnh lớn nhất  đi từ đỉnh gốc đến đỉnh nào đó trong cây.
+> Chiều cao của đỉnh và chiều cao của cây là khác nhau. Chiều cao của đỉnh dựa vào số đỉnh đi từ đỉnh đó đến đỉnh lá. Còn chiều cao của cây dựa vào mức, là số đỉnh lớn nhất đi từ đỉnh gốc đến đỉnh nào đó trong cây.
 
 **Rừng** (Forest) là một tập hợp nhiều cây. Có thể cắt đỉnh gốc ra để tạo thành một rừng từ một cây.
 
@@ -120,6 +124,3 @@ struct node{
 ```
 
 Tức là một node luôn chỉ có hai con trỏ, bất kể là cây nhị phân hay k – phân. Con trỏ đầu tiên trỏ đến con đầu tiên của node đó, con trỏ thứ hai sẽ trỏ đến anh em kế tiếp cùng mức với node đó.
-
-
-

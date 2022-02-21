@@ -1,11 +1,30 @@
----
-title: Hash Table
----
-
 <link rel="stylesheet" href="../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">Hash Table</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Searching Algorithms](#searching-algorithms)
+- [Linear Search](#linear-search)
+  - [Idea](#idea)
+  - [Input - Output](#input---output)
+  - [Complexity](#complexity)
+  - [Note](#note)
+  - [Code](#code)
+- [Binary Search](#binary-search)
+  - [Idea](#idea-1)
+  - [Input - Output](#input---output-1)
+  - [Complexity](#complexity-1)
+  - [Note](#note-1)
+  - [Code](#code-1)
+- [Interpolation Search](#interpolation-search)
+  - [Idea](#idea-2)
+  - [Input - Output](#input---output-2)
+  - [Complexity](#complexity-2)
+  - [Note](#note-2)
+  - [Code](#code-2)
 
 # Searching Algorithms
 

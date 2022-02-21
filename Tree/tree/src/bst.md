@@ -1,11 +1,36 @@
----
-title: Binary Search Tree
----
-
 <link rel="stylesheet" href="../../../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">Binary Search Tree</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Search Tree](#search-tree)
+- [Binary Search Tree](#binary-search-tree)
+- [Operation](#operation)
+  - [Search](#search)
+    - [Idea](#idea)
+    - [Code](#code)
+  - [Insert](#insert)
+    - [Idea](#idea-1)
+    - [Code](#code-1)
+  - [Remove](#remove)
+    - [Idea](#idea-2)
+    - [Code](#code-2)
+  - [Complexity of Search, Insert and Remove](#complexity-of-search-insert-and-remove)
+- [Counting](#counting)
+  - [Count less](#count-less)
+  - [Count Greater](#count-greater)
+- [Is BST ?](#is-bst-)
+  - [Method 1](#method-1)
+    - [Idea](#idea-3)
+    - [Code](#code-3)
+    - [Complexity](#complexity)
+  - [Method 2](#method-2)
+    - [Code](#code-4)
+    - [Complexity](#complexity-1)
+- [Is Full BST ?](#is-full-bst-)
 
 # Search Tree
 

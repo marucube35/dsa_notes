@@ -1,11 +1,18 @@
----
-title: Radix Sort
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">Radix Sort</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Idea](#idea)
+- [Properties](#properties)
+- [Complexity Analysis](#complexity-analysis)
+- [Complexity](#complexity)
+- [Code](#code)
+  - [Modified Counting Sort](#modified-counting-sort)
+  - [Radix Sort](#radix-sort)
 
 **Radix – cơ số**: Thuật toán này sắp xếp dựa trên cơ số (2, 8, 10, 16), mỗi cơ số có một cách biểu diễn riêng cho các giá trị phụ thuộc vào số lượng ký số (số ký tự để biểu diễn giá trị). Do đó nếu giá trị không thể hiện dưới dạng một số cơ số nhất định nào đó (chẳng hạn số thực hoặc số âm) thì việc sắp xếp sẽ khá khó khăn.
 

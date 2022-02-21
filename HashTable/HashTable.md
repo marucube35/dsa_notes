@@ -1,11 +1,29 @@
----
-title: Hash Table
----
-
 <link rel="stylesheet" href="../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">Hash Table</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Definition](#definition)
+- [Hashing](#hashing)
+- [Efficiency of Hashing](#efficiency-of-hashing)
+- [Hash Function](#hash-function)
+  - [Modulo](#modulo)
+  - [Code](#code)
+- [Collision](#collision)
+- [Resolving Collision](#resolving-collision)
+  - [Open Hashing and Closed Hashing](#open-hashing-and-closed-hashing)
+  - [Seperate Chaining](#seperate-chaining)
+  - [Open Adressing](#open-adressing)
+    - [Linear Probing](#linear-probing)
+    - [Quadratic Probing](#quadratic-probing)
+    - [Double hashing](#double-hashing)
+- [Create Hash Table](#create-hash-table)
+- [Searching](#searching)
+  - [Big Question](#big-question)
+- [Complexity](#complexity)
 
 # Definition
 

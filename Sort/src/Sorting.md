@@ -1,11 +1,14 @@
----
-title: Sorting Algorithms
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">Sorting Algorithms</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Sorting Algorithms](#sorting-algorithms)
+- [Internal Sorting](#internal-sorting)
+- [Comparision](#comparision)
 
 # Sorting Algorithms
 

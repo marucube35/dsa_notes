@@ -1,13 +1,19 @@
----
-title: Heap Sort
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
      <center><h1 class="bigtitle">Heap Sort</h1></center>
 </div>
 
+# Table of contents
 
+- [Table of contents](#table-of-contents)
+- [Idea](#idea)
+- [Properties](#properties)
+- [Complexity Analysis](#complexity-analysis)
+- [Complexity](#complexity)
+- [Code](#code)
+  - [Heapify](#heapify)
+  - [Sort](#sort)
+- [Variants](#variants)
 
 # Idea
 

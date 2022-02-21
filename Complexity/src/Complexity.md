@@ -1,11 +1,17 @@
----
-title: Complexity
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">Complexity</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Why do we need big O ?](#why-do-we-need-big-o-)
+- [Definition](#definition)
+- [Formal Definition](#formal-definition)
+- [Measurement](#measurement)
+- [Cases](#cases)
+- [Order of Big O](#order-of-big-o)
 
 # Why do we need big O ?
 

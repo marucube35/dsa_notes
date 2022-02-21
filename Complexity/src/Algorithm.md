@@ -1,11 +1,15 @@
----
-title: Algorithm
----
-
 <link rel="stylesheet" href="../../main.css">
 <div class="bg">
       <center><h1 class="bigtitle">Algorithm</h1></center>
 </div>
+
+# Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Definition](#definition)
+- [Real life example](#real-life-example)
+- [Benefits](#benefits)
+- [Google](#google)
 
 # Definition
 
