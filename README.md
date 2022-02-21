@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="./main.css">
 
-# Cấu trúc dữ liệu và thuật toán
+# Cấu trúc dữ liệu và giải thuật
 
-Đây là repo để lưu các kiến thức về cấu trúc dữ liệu và thuật toán được giảng dạy tại HCMUS. Các file markdown đã được export ra PDF (nhưng chưa có table of contents).
+Đây là repo để lưu các kiến thức về cấu trúc dữ liệu và thuật toán được giảng dạy tại HCMUS. Các file markdown đã được export ra PDF.
 
 Nội dung bao gồm:
 
