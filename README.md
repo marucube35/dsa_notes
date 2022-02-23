@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="./main.css">
 
-# Cấu trúc dữ liệu và giải thuật
+# ✨ Data Structures and Algorithms ✨
 
 Đây là repo để lưu các kiến thức về cấu trúc dữ liệu và thuật toán được giảng dạy tại HCMUS. Các file markdown đã được export ra PDF.
 
