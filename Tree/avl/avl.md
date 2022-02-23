@@ -33,7 +33,7 @@ Cây AVL là cây nhị phân tìm kiếm tự cân bằng có tính chất sau:
 
 Nói cách khác, khi xét tại node i nào đó, nếu chênh lệch độ cao hai cây con của node đó là -1, 0 hoặc 1 thì node đó cân bằng. Các trường hợp còn lại đều là không cân bằng và cần được cân bằng.
 
-<img src="img/Tree23.png">
+<img src="images/Tree23.png">
 
 Do tính chất cân bằng này mà chúng ta có thể kiểm soát chiều cao của cây (nhị phân) tìm kiếm tốt hơn, phục vụ cho các thao tác liên quan.
 
@@ -61,7 +61,7 @@ Gọi `N` là số node và `H` là chiều cao của cây AVL, ta có:
 
 Ví dụ về cây AVL:
 
-<img src="img/Tree29.png">
+<img src="images/Tree29.png">
 
 # Rotation
 
@@ -75,7 +75,7 @@ Thuật toán xoay cây là một thuật toán local, nó chỉ thao tác xung 
 
 Thuật toán xoay cây trái sẽ bắt đầu quanh một node nào đó. Chúng ta sẽ xét thêm cả node con phải của node đó. Ta gọi node đang xét là X, và node con phải là Y.
 
-<img src="img/Tree19.png">
+<img src="images/Tree19.png">
 
 Nhiệm vụ của chúng ta là:
 
@@ -84,10 +84,10 @@ Nhiệm vụ của chúng ta là:
 - Con trái của Y nếu có ($\beta$), sẽ là con phải của X. Vẫn duy trì được tính chất BST, do
   $$
   X < \beta < Y
-  $ành - Con phải của Y ($\gamma$) và con trái của X ($\alpha$) không đổi.
   $$
+- Con phải của Y ($\gamma$) và con trái của X ($\alpha$) không đổi.
 
-<img src="img/Tree20.png">
+<img src="images/Tree20.png">
 
 > Điều kiện của phép xoay trái là node cần xoay phải có con phải.
 
@@ -114,7 +114,7 @@ void LR(NODE *&pRoot)
 
 Để xoay phải cây ta cũng xét tương tự xoay trái tại một node nào đó. Và ta sẽ xét thêm node con trái của node cần xoay. Ta gọi node đang xét là X và node con trái là Y.
 
-<img src = "img/Tree21.png">
+<img src="images/Tree21.png">
 
 Tương tự phép xoay trái, ta cần:
 
@@ -126,7 +126,7 @@ Tương tự phép xoay trái, ta cần:
   $$
 - Con trái của X ($\gamma$) và con phải của Y ($\alpha$) không đổi.
 
-<img src ="img/Tree22.png">
+<img src="images/Tree22.png">
 
 > Điều kiện của phép xoay phải là node cần xoay phải có con trái.
 
@@ -157,25 +157,25 @@ Các trường hợp mất cân bằng, gồm:
 
 ## Left left case
 
-<img src="img/Tree24.png">
+<img src="images/Tree24.png">
 
 Để cân bằng cây, ta cần xoay phải tại node bị mất cân bằng, cụ thể là node 8.
 
 ## Right Right case
 
-<img src="img/Tree26.png">
+<img src="images/Tree26.png">
 
 Ngược lại với trường hợp left left, ta chỉ cần xoay trái cây tại node bị mất cân bằng, cụ thể là node 18.
 
 ## Left Right case
 
-<img src="img/Tree25.png">
+<img src="images/Tree25.png">
 
 Ta cần chuyển nó về trường hợp left left rồi xử lý theo trường hợp đó. Nói cách khác, xoay trái tại node con của node bị mất cân bằng. Rồi xoay phải tại node bị mất cân bằng. Cụ thể là xoay trái ở node 5 và xoay phải ở node 8.
 
 ## Right left case
 
-<img src="img/Tree27.png">
+<img src="images/Tree27.png">
 
 Tương tự như left right, ta cần chuyển nó về trường hợp right right rồi xử lý theo trường hợp đó. Cụ thể là xoay phải ở node 22 để thành right right. Sau đó xoay trái ở node 18 để cân bằng.
 
@@ -183,7 +183,7 @@ Tương tự như left right, ta cần chuyển nó về trường hợp right r
 
 Cho ví dụ một cây nhị phân tìm kiếm dưới đây, ta thấy cây mất cân bằng ở node 32 theo trường hợp phải trái. Lý do là vì 32 có con phải bị lệch, và con phải đó lại bị lệch sang trái. Để cân bằng cây, đầu tiên ta xoay phải ở node 49 rồi tiến hành xoay trái ở node 32.
 
-<img src="img/Tree28.png">
+<img src="images/Tree28.png">
 
 **Code cân bằng cây:**
 
@@ -321,11 +321,11 @@ Thao tác duyệt cây thì vẫn cần độ phức tạp là $O(n)$.
 
 Giả sử ta cần thêm các node dưới đây vào cây AVL.
 
-<img src="img/Tree34.png">
+<img src="images/Tree34.png">
 
 Ta sẽ thêm **node 9** là node gốc, sau đó thêm **node 1** là con trái của **node 9**, **node 4** là con phải của **node 1**. Cây trở nên mất cân bằng tại **node 9** theo trường hợp trái phải.
 
-<img src="img/Tree30.png">
+<img src="images/Tree30.png">
 
 Ta cân bằng cây bằng cách xoay trái tại **node 1** và xoay phải ở **node 9**.
 
@@ -335,21 +335,21 @@ Lúc này cây mất cân bằng ở **node 4** theo kiểu trái phải, hoặc
 
 Bởi vì khi xét từ khía cạnh thêm node vào cây AVL, **node 1** là node gần node lá nhất, gần nơi mà chúng ta cần thêm node. Do đó ta cần cân bằng ở đó trước. Ta xoay trái ở **node 1** để cân bằng cây.
 
-<img src="img/Tree31.png">
+<img src="images/Tree31.png">
 
 Tiếp theo ta thêm vào cây **node 5** và **node 8**, bỏ qua **node 9** vì bị trùng. Cây trở nên mất cân bằng tại **node 9** theo kiểu trái phải. Xử lý bằng cách xoay trái ở **node 5** và xoay phải ở **node 9**.
 
-<img src="img/Tree32.png">
+<img src="images/Tree32.png">
 
 Tiếp tục thêm **node 6**, **node 7** và bỏ qua **node 4**, cây mất cân bằng tại **node 5**. Tái cân bằng bằng cách xoay trái ở **node 5** vì đây là trường hợp phải phải.
 
-<img src="img/Tree33.png">
+<img src="images/Tree33.png">
 
 ## Example 2
 
 Dưới đây là một ví dụ không tốt cho cây AVL. Bởi vì trong thực tế các cây AVL không thể có độ lệch hai cây con của một node là 3 (**node 8**). Vì khi độ lệch là 2 thì cây AVL đã tự cân bằng.
 
-<img src="img/Tree35.png">
+<img src="images/Tree35.png">
 
 # Is AVL?
 

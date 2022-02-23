@@ -56,4 +56,4 @@ Thuật toán nào không nêu cụ thể đầu vào đầu ra ngầm hiểu c�
 
 # Comparision
 
-<img src = "../img/Sort8.png">
+<img src="../images/Sort8.png">

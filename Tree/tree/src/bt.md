@@ -35,7 +35,7 @@
 
 > Là cây mà mỗi đỉnh có tối đa 2 con (bậc tối đa là 2) và các giá trị của đỉnh không được trùng nhau.
 
-<img src="../img/Tree2.png">
+<img src="../images/Tree2.png">
 
 # Application
 
@@ -103,13 +103,13 @@ Tính chất này có thể chứng minh bằng bổ đề bắt tay (Handshakin
 
 > Cây nhị phân suy thoái, là một cây chỉ có một con trái hoặc con phải.
 
-<img src="../img/Tree25.png">
+<img src="../images/Tree25.png">
 
 ## Skewed Binary Tree
 
 > Cây nhị phân lệch hay thẳng, là cây nhị phân suy thoái mà các đỉnh con của nó toàn bộ là con trái hoặc con phải.
 
-<img src="../img/Tree26.png">
+<img src="../images/Tree26.png">
 
 ## Full Binary Tree
 
@@ -117,7 +117,7 @@ Tính chất này có thể chứng minh bằng bổ đề bắt tay (Handshakin
 
 Tức là nếu đỉnh đó có đỉnh con, thì phải có đầy đủ 2 đỉnh con. Nói cách khác, số bậc của các đỉnh sẽ là 0 hoặc là 2.
 
-<img src="../img/Tree10.png">
+<img src="../images/Tree10.png">
 
 ### Properties
 
@@ -159,7 +159,7 @@ bool isFull(NODE *root)
 
 > Cây nhị phân hoàn hảo: là một cây nhị phân mà các đỉnh lá của nó cùng nằm trên một mức. Hay nói cách khác, số bậc của đỉnh luôn là 2.
 
-<img src="../img/Tree11.png">
+<img src="../images/Tree11.png">
 
 ### Properties
 
@@ -205,19 +205,19 @@ bool isPerfect(NODE *root)
 
 > Cây nhị phân hoàn chỉnh: là cây nhị phân mà mọi mức đều được lấp đầy, trừ mức cuối. Tất cả các đỉnh lá của mức cuối dồn hết qua bên trái hết mức có thể.
 
-<img src="../img/Tree12.png">
+<img src="../images/Tree12.png">
 
 **So sánh giữa FBT và CBT**:
 
-<img src="../img/Tree28.png">
+<img src="../images/Tree28.png">
 
 Do bị dồn sang phải nên không phải CBT.
 
-<img src="../img/Tree29.png">
+<img src="../images/Tree29.png">
 
 Do node 2 chỉ có một con nên không phải FBT.
 
-<img src="../img/Tree30.png">
+<img src="../images/Tree30.png">
 
 Thỏa mãn điều kiện mỗi node có 0 hoặc 2 con đồng thời các node được dồn sang trái hết mức có thể.
 
@@ -333,7 +333,7 @@ bool isBalanced(NODE *root)
 }
 ```
 
-<img src="../img/Tree27.png">
+<img src="../images/Tree27.png">
 
 (Hình ảnh tham khảo từ [programmingquiz](https://www.programiz.com/dsa/binary-tree))
 
@@ -343,7 +343,7 @@ bool isBalanced(NODE *root)
 
 Nếu ta xét một cây nhị phân T, gọi $T(n)$ là số đỉnh trong cây nhị phân đó. Bài toán tìm số cây nhị phân có thể có tạo thành từ N đỉnh tồn tại các trường hợp cơ bản sau:
 
-<img src="../img/Tree3.png">
+<img src="../images/Tree3.png">
 
 Tức là
 $T(0) = 1$ (chỉ có duy nhất một cây rỗng)
@@ -354,9 +354,9 @@ $T(2) = 2$
 
 Với trường hợp số đỉnh con bên trái là 1 và con bên phải là 0, có hai cách chọn con tiếp theo cho nhánh này, hoặc là con trái hoặc là con phải. Tương tự cây con bên phải cũng có hai trường hợp.
 
-<img src="../img/Tree4.png">
+<img src="../images/Tree4.png">
 
-<img src="../img/Tree5.png">
+<img src="../images/Tree5.png">
 
 Trường hợp số đỉnh con bên trái và bên phải là 1, tức là cây không có mức 3. Thì vẫn có thể tạo nên một cây.
 
@@ -364,21 +364,21 @@ Vậy có 5 cách để tạo cây từ N đỉnh với N = 3.
 
 Viết lại dưới dạng công thức:
 
-<img src="../img/Tree6.png">
+<img src="../images/Tree6.png">
 
 Tương tự cho $T(4)$:
 
-<img src="../img/Tree7.png">
+<img src="../images/Tree7.png">
 
 Đây là một dãy số đặc biệt có tên là dãy Catalan. Công thức để tính số Catalan thứ n là:
 
-<img src="../img/Tree8.png">
+<img src="../images/Tree8.png">
 
 Dãy số này có thể dùng đệ quy để tính toán.
 
 Vậy ta rút ra từ công thức ở trên cách tính $T(n)$ tổng quát là:
 
-<img src="../img/Tree9.png">
+<img src="../images/Tree9.png">
 
 Cũng là số cấu hình cây nhị phân có thể có tạo thành từ N đỉnh cho trước.
 
@@ -407,7 +407,7 @@ Nếu không tồn tại node con đầu tiên, thì node gốc sẽ ở vị tr
 
 Chẳng hạn ta có cây như hình dưới.
 
-<img src="../img/Tree13.png">
+<img style="background-color:#fff;" src="../images/Tree13.png">
 
 **Duyệt trước** : $2-7-2-6-5-11-5-9-4$
 

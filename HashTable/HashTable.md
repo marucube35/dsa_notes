@@ -36,7 +36,7 @@ Các dữ liệu được lưu theo cặp gồm một key và một giá trị. 
 Mục đích tạo ra cấu trúc dữ liệu này là để truy xuất dữ liệu dựa trên key một cách nhanh chóng (ngẫu nhiên). Với bài toán tìm một phần tử gắn liền với một thông tin nào đó, ví dụ như tìm một sinh viên có tên Nguyễn Văn A thì việc sử dụng bảng băm (hash table) là rất hiệu quả.
 
 <center>
-    <img src = "img/hash1.png">
+    <img src="images/hash1.png">
 </center>
 
 Miễn là chúng ta có một hàm băm (hash function) tối ưu để chuyển đổi key từ một số thực hay chuỗi thành một mã băm (gọi là hash code). Rồi để từ đó chuyển thành index trong mảng.
@@ -48,7 +48,7 @@ Do đó chi phí không gian của bảng băm là khá lãng phí. Tuy nhiên t
 Một ví dụ khác:
 
 <center>
-    <img src = "img/hash4.png">
+    <img src="images/hash4.png">
 </center>
 
 Kích thước của bảng băm là dựa trên dự đoán tùy thuộc theo kiểu dữ liệu. Nếu dữ liệu quá lớn thì cần mở rộng bảng băm và tính lại hết tất cả các giá trị index.
@@ -58,7 +58,7 @@ Kích thước của bảng băm là dựa trên dự đoán tùy thuộc theo k
 Là một thuật toán nào đó để ánh xạ một dữ liệu của key thành một hash code để phục vụ cho việc indexing các phần tử trong bảng băm.
 
 <center>
-    <img src = "img/hash3.png">
+    <img src="images/hash3.png">
 </center>
 
 # Efficiency of Hashing
@@ -66,19 +66,19 @@ Là một thuật toán nào đó để ánh xạ một dữ liệu của key th
 Hệ số lấp đầy, hay hệ số alpha, được tính như sau:
 
 <center>
-    <img src = "img/hash10.png">
+    <img src="images/hash10.png">
 </center>
 
 Sự ảnh hưởng của hệ số alpha với các chi phí tìm kiếm:
 
 <center>
-    <img src = "img/hash11.png">
+    <img src="images/hash11.png">
 </center>
 
 Các điều kiện cho hệ số alpha:
 
 <center>
-    <img src = "img/hash12.png">
+    <img src="images/hash12.png">
 </center>
 
 Cách xử lý khi tràn bảng băm:
@@ -97,7 +97,7 @@ Là hàm thực hiện hashing cho một dữ liệu đầu vào và trả về 
 Có thể có các loại hàm băm như sau:
 
 <center>
-    <img src = "img/hash5.png">
+    <img src="images/hash5.png">
 </center>
 
 Trong thực tế thì lại có rất nhiều hàm băm chuyên biệt phục vụ riêng cho các dữ liệu và ngữ cảnh khác nhau.
@@ -112,9 +112,9 @@ Do tính chất đặc biệt của Modulo mà nó được sử dụng nhiều 
 
 Dưới đây là một hàm hash mẫu có công thức như sau:
 
-<center><img src="img/hash13.png"></center>
+<center><img src="images/hash13.png"></center>
 
-<center><img src="img/hash14.png"></center>
+<center><img src="images/hash14.png"></center>
 
 ```c++
 long long HashString(string company_name)
@@ -161,13 +161,13 @@ Open Hashing nghĩa là sự mở rộng các vị trí khi xảy ra xung đột
 Có nhiều cách để giải quyết xung đột, cách đơn giản nhất là dùng danh sách liên kết . Cách này xử lý xung đột bằng cách: bất cứ khi nào hai hay nhiều hash codes có cùng index thì sẽ nối chúng lại với nhau để tạo thành danh sách liên kết.
 
 <center>
-    <img src = "img/hash2.png">
+    <img src="images/hash2.png">
 </center>
 
 Tổng quát hơn gọi là **Seperate Chaining** (chuỗi riêng biệt) là một cách Open Hashing, tức là bất cứ khi nào xảy ra sự xung đột thì tiến hành xây dựng một cấu trúc mới (mảng, danh sách liên kết hoặc cây nhị phân) để chứa các phần tử trùng index.
 
 <center>
-    <img src = "img/hash6.png">
+    <img src="images/hash6.png">
 </center>
 
 **Điểm mạnh** của phương pháp này là có thể không cần biết số lượng phần tử, việc thêm phần tử được xử lý dễ dàng và lượng phần tử thêm vào cũng không giới hạn.
@@ -183,7 +183,7 @@ Ngoài ra còn cách khác gọi là **Open Adressing** (địa chỉ mở), là
 Khi xảy ra đụng độ, chỉ số index sẽ tăng tuần tự lên đến khi có vị trí trống thì thêm phần tử vào.
 
 <center>
-    <img src = "img/hash7.png">
+    <img src="images/hash7.png">
 </center>
 
 Trong trường hợp cần thêm phần tử vào vị trí `x`, nhưng chỉ còn vị trí trống từ `x - 1` trở về trước. Khi đó chi phí dò tìm có thể tăng lên thành $O(n)$ vì cần duyệt lại cả mảng.
@@ -222,7 +222,7 @@ void linearProbing(Company *hash_table, long long &hash)
 Để khắc phục vấn đề dữ liệu bị phân bố thành cụm thì chúng ta sẽ thay đổi bước nhảy của nó. Ở đây ta bình phương bước nhảy để có thể nhanh chóng thoát khỏi các cụm dữ liệu.
 
 <center>
-    <img src = "img/hash8.png">
+    <img src="images/hash8.png">
 </center>
 
 ### Double hashing
@@ -231,7 +231,7 @@ Ngoài ra, cũng có thể hashing hai lần, lần đầu để tạo ra index 
 Lưu ý là hàm băm thứ hai vẫn dựa trên khóa, không dựa trên index. Điều kiện của hàm băm thứ hai là phải khác 0 với mọi k để không bị đứng tại chỗ (lặp vô tận).
 
 <center>
-    <img src = "img/hash9.png">
+    <img src="images/hash9.png">
 </center>
 
 # Create Hash Table

@@ -29,7 +29,7 @@ Có n – 1 lần chèn tương đương n - 1 lần lặp, ở mỗi lần chè
 
 > Có thể hình dung Insertion Sort giống như khi chúng ta chơi tiến lên, chúng ta cần sắp bài vào sau khi được chia để có thể ra quân một cách nhanh chóng.
 
-<img src = "../img/Sort10.png">
+<img src="../images/Sort10.png">
 
 > Khi nào nên sử dụng?
 
@@ -43,15 +43,15 @@ Tham khảo ở [happycoders](https://www.happycoders.eu/algorithms/insertion-so
 
 Giả sử cần sắp xếp một mảng có sáu phần tử, ở vòng lặp đầu tiên, có hai khả năng xảy ra là dời chỗ một lần và không dời chỗ lần nào. Nên trung bình sẽ có 0.5 lần dời chỗ.
 
-<img src = "../img/Sort11.png">
+<img src="../images/Sort11.png">
 
 Vòng lặp thứ hai thì có ba khả năng từ 0 đến 2 lần dời chỗ, ta lấy 0 + 2 rồi chia 2 được trung bình 1 lần dời chỗ.
 
-<img src = "../img/Sort12.png">
+<img src="../images/Sort12.png">
 
 Xét tương tự cho đến vòng lặp thứ 5, ta sẽ có trung bình 2.5 lần dời chỗ.
 
-<img src = "../img/Sort13.png">
+<img src="../images/Sort13.png">
 
 Tổng quát hơn, với 6 phần tử thì ta có 5 lần lặp, mỗi lần lặp thì nửa số phần tử đã được sắp xếp, đồng thời ta chèn phần tử vào giữa mảng của một nửa phần tử đã sắp xếp đó. Ta có:
 
@@ -76,7 +76,7 @@ Kết luận độ phức tạp trong Average case của Insertion Sort là $O(n
 **Worst case**
 Trường hợp xấu nhất xảy ra khi mảng được sắp xếp nhưng bị đảo ngược. Lúc này ở mỗi lần lặp, thuật toán cần dời chỗ i phần tử để chèn phần tử vào vị trí ngoài cùng nhất bên trái của mảng.
 
-<img src = "../img/Sort14.png">
+<img src="../images/Sort14.png">
 
 Lúc đó sẽ có $\cfrac{n(n - 1)}{2}$ lần dời chỗ dẫn đến độ phức tạp là $O(n^2)$.
 

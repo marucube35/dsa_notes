@@ -15,7 +15,7 @@
 
 Cấu trúc tuyến tính ở đây là các cấu trúc không rẽ nhánh như mảng hoặc danh sách liên kết.
 
-<img src="../img/Tree1.png">
+<img src="../images/Tree1.png">
 
 # Terminologies
 
@@ -42,7 +42,7 @@ Các đỉnh chỉ có duy nhất một đỉnh cha và có thể có nhiều đ
 
 **Chiều cao của đỉnh** (Height of node) là số đỉnh trên đường đi dài nhất tính từ đỉnh đang xét đến đỉnh lá. Chiều cao của đỉnh lá là 0.
 
-<img src="../img/Tree23.png">
+<img src="../images/Tree23.png">
 
 **Chiều cao của cây** là số mức lớn nhất mà cây có được. Chiều cao của cây khác rỗng tối thiểu là 1, để phân biệt trường hợp cây rỗng thì height là 0.
 
@@ -50,7 +50,7 @@ Các đỉnh chỉ có duy nhất một đỉnh cha và có thể có nhiều đ
 
 **Rừng** (Forest) là một tập hợp nhiều cây. Có thể cắt đỉnh gốc ra để tạo thành một rừng từ một cây.
 
-<img src="../img/Tree24.png">
+<img src="../images/Tree24.png">
 
 Tham khảo các khái niệm và thuật ngữ khác bằng [Tiếng Việt](https://vi.wikipedia.org/wiki/Thu%E1%BA%ADt_ng%E1%BB%AF_l%C3%BD_thuy%E1%BA%BFt_%C4%91%E1%BB%93_th%E1%BB%8B) hoặc [Tiếng Anh](https://en.wikipedia.org/wiki/Glossary_of_graph_theory).
 
@@ -76,7 +76,7 @@ Với L là số đỉnh lá và I là số đỉnh trong (mỗi đỉnh có k c
 
 Chúng ta có thể biểu diễn cây theo cách tường minh. Tức là một node sẽ lưu giữ giá trị của bản thân nó đồng thời lưu giữ các con trỏ trỏ đến các node con.
 
-<img src="../img/Tree14.png">
+<img src="../images/Tree14.png">
 
 ```c++
 struct node{
@@ -113,7 +113,7 @@ Cách này có một hạn chế là chúng ta luôn phải tạo ra các con tr
 
 Để giải quyết vấn đề lãng phí này, ta có thể xây dựng cấu trúc cây với các node như sau:
 
-<img src="../img/Tree15.png">
+<img src="../images/Tree15.png">
 
 ```c++
 struct node{

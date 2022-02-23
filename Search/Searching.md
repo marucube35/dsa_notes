@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="../main.css">
 <div class="bg">
-     <center><h1 class="bigtitle">Hash Table</h1></center>
+     <center><h1 class="bigtitle">Searching Algorithm</h1></center>
 </div>
 
 # Table of contents

@@ -38,7 +38,7 @@ Cây tìm kiếm có tính chất sau:
 
 > Giá trị của key bất kỳ luôn lớn hơn giá trị của các key trong node bên trái và nhỏ hơn giá trị của các key trong node bên phải.
 
-<img src="../img/Tree31.png">
+<img src="../images/Tree31.png">
 
 Ở đây dùng từ "key" (khóa) bởi vì key và node là khác nhau, một node có thể có nhiều key (sẽ được nhắc lại trong phần cây 2 - 3 - 4).
 
@@ -54,7 +54,7 @@ Cây nhị phân tìm kiếm là cây nhị phân mà thỏa tính chất của 
 
 Cây nhị phân tìm kiếm phụ thuộc vào dữ liệu đầu vào, nếu như dữ liệu ấy là xấu thì các thao tác thực hiện sẽ có chi phí cao.
 
-<img src="../img/Tree16.png">
+<img src="../images/Tree16.png">
 
 **Fact thú vị**: khi duyệt giữa cây nhị phân tìm kiếm, do cấu trúc của nó được sắp theo thứ tự là left root right nên kết quả của phép duyệt sẽ là một danh sách các số có thứ tự.
 
@@ -116,12 +116,12 @@ Có ba khả năng xảy ra khi remove một node trong BST.
 1. Node đó là một lá:
    Chúng ta chỉ đơn giản xóa nó ra khỏi cây.
 
-<img src="../img/Tree17.png">
+<img src="../images/Tree17.png">
 
 2. Node đó có duy nhất một con:
    Sao chép con đó cho node cần xóa và xóa node con.
 
-<img src="../img/Tree18.png">
+<img src="../images/Tree18.png">
 
 3. Node có 2 con:
 

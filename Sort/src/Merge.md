@@ -31,7 +31,7 @@ Trộn 2 mảng con được thực hiện như sau:
 2. Phần tử nào đã xếp vào thì xóa đi, vị trí đầu của mảng là phần tử tiếp theo.
 3. Nếu chưa đến cuối mảng thì lặp lại bước 1. Nếu đã đến cuối của một mảng (luôn xảy ra một mảng đã sắp hết và một mảng thì chưa), thì thêm toàn bộ mảng kia vào mảng cần sắp.
 
-<img src = "../img/Sort17.png">
+<img style="background-color: #fff;" src="../images/Sort17.png">
 
 # Input
 
@@ -189,9 +189,11 @@ void merge(int *a, intleft, intmid, intright)
 
 Một phiên bản khác của Merge Sort không dùng đến việc chia mảng là Bottom - Up Merge Sort. Thuật toán này sẽ trộn các phần tử liền kề với nhau rồi mở rộng ra. Chẳng hạn như nó sẽ trộn 2 phần tử liên tiếp thành mảng con 2 phần tử. Sau đó nó sẽ trộn tiếp 2 mảng gồm 2 phần tử với nhau thành mảng 4 phần tử. Cứ như thế cho đến khi trộn hết mảng cũng là lúc mảng đã được sắp xếp.
 
-<img src = "../img/Sort18.png">
-<img src = "../img/Sort19.png">
-<img src = "../img/Sort20.png">
+<img src="../images/Sort18.png">
+<hr>
+<img src="../images/Sort19.png">
+<hr>
+<img src="../images/Sort20.png">
 
 (Hình ảnh tham khảo [interviewbit](https://www.interviewbit.com/tutorial/merge-sort-algorithm/))
 
@@ -204,18 +206,18 @@ Ngoài ra còn có Natural Merge Sort, thuật toán này sẽ không chia trự
 Bởi vì Merge Sort thông thường không nhận biết được một dãy đã sắp xếp nên trong thực tế người ta không dùng Merge Sort thuần để ứng dụng. Thay vào đó họ sử dụng Natural Merge Sort tận dụng các đường chạy để tối ưu thuật toán.
 Đường chạy là một dãy tăng không giảm. Ví dụ dãy 7 8 1 2 5 6 4 3 sẽ có bốn đường chạy là (7, 8), (1, 2, 5, 6), (4) và (3). Khi chọn ra được các đường chạy trong cùng một mảng, chúng ta sẽ tiến hành trộn tuần tự các đường chạy đó lại với nhau. Ví dụ sắp xếp cho dãy trên, ta có:
 
-<img src = "../img/Sort21.png">
+<img src="../images/Sort21.png">
 
 Trộn hai đường chạy đầu tiên lại với nhau
 
-<img src = "../img/Sort22.png">
+<img src="../images/Sort22.png">
 
 Tiếp tục trộn
 
-<img src = "../img/Sort23.png">
+<img src="../images/Sort23.png">
 
 Cuối cùng ta được dãy đã sắp xếp
-<img src = "../img/Sort24.png">
+<img src="../images/Sort24.png">
 
 Thay vì phân ra quá nhiều mảng con, phiên bản này của Merge Sort chỉ phân ra k đường chạy nhất định rồi trộn chúng lại với nhau.
 
