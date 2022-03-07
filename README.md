@@ -2,11 +2,11 @@
 
 # ✨ Data Structures and Algorithms ✨
 
-Đây là repo để lưu các kiến thức về cấu trúc dữ liệu và thuật toán được giảng dạy tại HCMUS. Các file markdown đã được export ra PDF.
+## Thời gian thực hiện: HK1/2021 - 2022
 
-Nội dung bao gồm:
+## Mục lục
 
-| Types               | Contents                                      |
+| Phân loại               | Nôi dung chính                                      |
 | ------------------- | :-------------------------------------------- |
 | Complexity Analysis | [Algorithm](complexity/src/Algorithm.md)      |
 | Complexity Analysis | [Complexity](complexity/src/Complexity.md)    |
@@ -34,3 +34,8 @@ Nội dung bao gồm:
 > Một số hình ảnh tham khảo từ Slide của thầy dạy DSA ở HCMUS và UIT, đa số có trích nguồn trong file MD.
 
 > Một số đoạn code các thuật toán tham khảo từ GeeksforGeeks, Programming Quiz, Opengenus và một số nơi khác trên Internet.
+
+## Về tác giả
+
+[Github](https://github.com/marucube35)\
+[Facebook](https://www.facebook.com/profile.php?id=100009916021095)
