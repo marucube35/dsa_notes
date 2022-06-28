@@ -8,9 +8,9 @@
 
 | Phân loại               | Nôi dung chính                                      |
 | ------------------- | :-------------------------------------------- |
-| Complexity Analysis | [Algorithm](complexity/src/Algorithm.md)      |
-| Complexity Analysis | [Complexity](complexity/src/Complexity.md)    |
-| Complexity Analysis | [Complexity Rules](complexity/src/Rules.md)   |
+| Complexity Analysis | [Algorithm](Complexity/src/Algorithm.md)      |
+| Complexity Analysis | [Complexity](Complexity/src/Complexity.md)    |
+| Complexity Analysis | [Complexity Rules](Complexity/src/Rules.md)   |
 | Algorithms          | [Search Algorithms](search/Searching.md)      |
 | Algorithms          | [Sorting Algorithm](sort/src/Sorting.md)      |
 | Algorithms          | [Interchange](sort/src/Interchange.md)        |
@@ -23,11 +23,11 @@
 | Algorithms          | [Heap](sort/src/Heap.md)                      |
 | Algorithms          | [Counting](sort/src/Counting.md)               |
 | Algorithms          | [Radix](sort/src/Radix.md)                    |
-| Tree                | [General Tree](tree/general/src/tree.md)      |
-| Tree                | [Binary Tree](tree/general/src/bt.md)         |
-| Tree                | [Binary Search Tree](tree/general/src/bst.md) |
-| Tree                | [AVL Tree](tree/avl/avl.md)                   |
-| Tree                | [2-3-4 Tree](tree/2-3-4/2-3-4.md)             |
+| Tree                | [General Tree](Tree/general/src/tree.md)      |
+| Tree                | [Binary Tree](Tree/general/src/bt.md)         |
+| Tree                | [Binary Search Tree](Tree/general/src/bst.md) |
+| Tree                | [AVL Tree](Tree/avl/avl.md)                   |
+| Tree                | [2-3-4 Tree](Tree/2-3-4/2-3-4.md)             |
 | Hash Table          | [Hash Table](hash_table/HashTable.md)         |
 | Graph               | [Graph](Graph/Graph.md)                       |
 
